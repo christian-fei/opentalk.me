@@ -14,7 +14,7 @@ task :g do
   ARGV[1..ARGV.length - 1].each { |v| mod += " #{v}" }
   mod.strip!
   sh "git add ."
-  sh "git commit -am ' #{mod} '"
-  sh "git push"
+  sh "git commit -am '#{mod}'"
+  sh "git push "
   exit
 end
