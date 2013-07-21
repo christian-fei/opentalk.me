@@ -23,7 +23,7 @@
 			{{> selectChatRoom}}
 		</header>
 		<section>
-			{{> messagesList}}
+			{{renderPage}}
 		</section>
 	</div>
 </body>
@@ -32,6 +32,7 @@
 <template name='selectChatRoom'>
 	{{#if loggedIn}}
 		<input type='text' id='roomID' placeholder='#roomID'/>
+		<button id='roomConfirm'>OK!</button>
 	{{/if}}
 </template>
 
@@ -44,4 +45,8 @@
 		</ul>
 		<input type='text' id='mymessage' placeholder='just write'/>
 	{{/if}}
+</template>
+
+<template name='about'>
+	test
 </template>

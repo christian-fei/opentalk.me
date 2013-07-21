@@ -1,28 +1,42 @@
 Messages = new Meteor.Collection('Messages');
-Rooms = new Meteor.Collection('Rooms');
-
-if (Meteor.isClient) {
+if(Meteor.isClient) {
   console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
+
+  Session.set('lastInsertId',null);
+
 
   var lastInsertId=0, //ID of the last inserted message
   text='', //current message text
   t=0, //current timestamp
   mSub, //Message subscription
   rSub=null; //Room subscription
+  /*
+    SET UP ROUTING
+  */
+  Meteor.Router.add({'/about':'about'});
+  Meteor.Router.add({'/*':'messagesList'});
+
 
   Template.selectChatRoom.events({
-    'keyup #roomID': function(evnt,tmplt){
-      var room = tmplt.find('#roomID').value;
-      if(room.length){
-        Session.set('roomID',tmplt.find('#roomID').value);
-        mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
-      }else{
-        Session.set('roomID',null);
-        if(mSub)
-          mSub.stop();
+    'click #roomConfirm, keyup #roomID': function(evnt,tmplt){
+      if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {        var room = tmplt.find('#roomID').value;
+        if(room.length){
+          Session.set('roomID',tmplt.find('#roomID').value);
+          mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
+          console.log('Route ' + room);
+          Session.set('route','/'+room);
+          Meteor.Router.to(Session.get('route'));
+        }else{
+          Session.set('roomID',null);
+          if(mSub)
+            mSub.stop();
+        }
       }
     }
   });
+
+
+  
 
   Template.messagesList.userName = function(){
     return Meteor.user().profile.name;
@@ -34,7 +48,7 @@ if (Meteor.isClient) {
       var m,p=0,
       ml = Messages.find().fetch().length,
       lm = Messages.find().fetch()[ml-1],
-      lmid;
+      lmid; 
       if(lm)
         lmid = lm._id;
       //console.log(lmid);
@@ -48,10 +62,6 @@ if (Meteor.isClient) {
   }
 
   Template.messagesList.messages = function(){
-    /*
-    TODO
-      - do not return the last message to the user that is typing it
-    */
     var ml = Messages.find({'roomID':Session.get('roomID')}).fetch().length;
 
     console.log(iAmWriting());
