@@ -19,8 +19,8 @@
 <body>
 	<div class="limit">
 		<header>
-			{{loginButtons}}
-			{{> selectChatRoom}}
+			{{>login}}
+			{{>selectChatRoom}}
 		</header>
 		<section>
 			{{renderPage}}
@@ -28,6 +28,18 @@
 	</div>
 </body>
 
+<template name='login'>
+	{{#if loggedIn}}
+		{{loginButtons}}
+	{{else}}
+		{{loginButtons}} or {{>pickNickname}}
+	{{/if}}
+</template>
+
+
+<template name='pickNickname'>
+	<input type="text" id='nickname' placeholder='pick an nickname'>
+</template>
 
 <template name='selectChatRoom'>
 	{{#if loggedIn}}

@@ -9,41 +9,61 @@ if(Meteor.isClient) {
   text='', //current message text
   t=0, //current timestamp
   mSub, //Message subscription
-  rSub=null; //Room subscription
+  rSub=null;//Room subscription
   /*
     SET UP ROUTING
   */
   Meteor.Router.add({'/about':'about'});
   Meteor.Router.add({'/*':'messagesList'});
 
+  if(window.location.pathname !== '/'){
+    console.log('Routing to ' + window.location.pathname);
+    Meteor.Router.to(window.location.pathname);
+    subscribeToRoom(window.location.pathname.substring(1));
+  }
+
+
+  /*
+    Subscribes the user to a room
+      -sets the Session var 'roomID'
+      -registers a subscription to 'MessagesChatRoom' in mSub
+      -routes to r
+  */
+  function subscribeToRoom(r){
+    if(r.length){
+      Session.set('roomID',r);
+      mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
+      console.log('subscribed to ' +r)
+      Session.set('route','/'+r);
+      Meteor.Router.to(Session.get('route'));
+    }else{
+      Meteor.Router.to('/');
+      Session.set('roomID',null);
+      if(mSub)
+        mSub.stop();
+    }
+  }
 
   Template.selectChatRoom.events({
     'click #roomConfirm, keyup #roomID': function(evnt,tmplt){
-      if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {        var room = tmplt.find('#roomID').value;
-        if(room.length){
-          Session.set('roomID',tmplt.find('#roomID').value);
-          mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
-          console.log('Route ' + room);
-          Session.set('route','/'+room);
-          Meteor.Router.to(Session.get('route'));
-        }else{
-          Session.set('roomID',null);
-          if(mSub)
-            mSub.stop();
-        }
+      if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
+        var room = tmplt.find('#roomID').value;
+        subscribeToRoom(room);
       }
     }
   });
 
 
+
   
 
-  Template.messagesList.userName = function(){
-    return Meteor.user().profile.name;
+  Template.messagesList.userName=Template.login.userName = function(){
+    if(Meteor.user())
+      return Meteor.user().profile.name;
+    return '';
   };
 
   function iAmWriting(){
-    console.log('liid  ' + Session.get('lastInsertId'));
     if(Session.get('lastInsertId')){
       var m,p=0,
       ml = Messages.find().fetch().length,
@@ -78,11 +98,16 @@ if(Meteor.isClient) {
         ,{sort: {timestamp: 1}}
       );  
   };
-  Template.messagesList.loggedIn=Template.selectChatRoom.loggedIn=function(){
+  Template.messagesList.loggedIn=Template.selectChatRoom.loggedIn=Template.login.loggedIn=function(){
     if(Meteor.user())
       return true;
     return false;
   };
+  Template.messagesList.loggedInWithAccount=Template.selectChatRoom.loggedInWithAccount = function(){
+    if(Meteor.user())
+      return true;
+    return false;
+  }
   Template.messagesList.roomSelected = function(){
     if(Session.get('roomID'))
       return true;
