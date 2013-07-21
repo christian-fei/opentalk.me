@@ -95,8 +95,6 @@ input, select {
 
 /* line 20, ../sass/_reset.scss */
 *, *:after, *:before {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -454,8 +452,15 @@ SUPER SLICK TRANSFORMS
   -o-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
-/* line 20, ../sass/_messages.scss */
-#mymessage:focus {
-  border: 1px solid rgba(30, 30, 30, 0.06);
+
+/* line 22, ../sass/_messages.scss */
+input[type='text'].input-light {
+  border: 1px solid transparent;
+  border-bottom: 2px solid rgba(30, 30, 30, 0.1);
   box-shadow: none;
+}
+/* line 27, ../sass/_messages.scss */
+input[type='text'].input-light:focus {
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.04);
 }

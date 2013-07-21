@@ -29,22 +29,27 @@
 </body>
 
 <template name='login'>
-	{{#if loggedIn}}
+	{{#if loggedInWithAccount}}
 		{{loginButtons}}
-	{{else}}
-		{{loginButtons}} or {{>pickNickname}}
 	{{/if}}
+	{{#if loggedInWithNickname}}
+		{{username}}
+	{{/if}}
+	{{#unless loggedIn}}
+		{{loginButtons}} or {{>pickNickname}}
+	{{/unless}}
 </template>
 
 
 <template name='pickNickname'>
-	<input type="text" id='nickname' placeholder='pick an nickname'>
+	<input type="text" id='nickname' class='input-light' placeholder='pick a nickname'>
 </template>
 
 <template name='selectChatRoom'>
 	{{#if loggedIn}}
-		<input type='text' id='roomID' placeholder='#roomID'/>
-		<button id='roomConfirm'>OK!</button>
+		{{#unless roomSelected}}
+			<input type='text' id='roomID' class='input-light' placeholder='#roomID'/>
+		{{/unless}}
 	{{/if}}
 </template>
 
@@ -52,10 +57,10 @@
 	{{#if roomSelected}}
 		<ul class='messages'>
 			{{#each messages}}
-				<li class='message'><b class='username'>{{username}}</b>: {{text}}</li>
+				<li class='message'><b class='username'>{{user}}</b>: {{text}}</li>
 			{{/each}}
 		</ul>
-		<input type='text' id='mymessage' placeholder='just write'/>
+		<input type='text' id='mymessage' class='input-light' placeholder='just write'/>
 	{{/if}}
 </template>
 

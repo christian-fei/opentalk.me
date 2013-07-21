@@ -17,8 +17,15 @@
 	-o-transition: all $transition-duration ease-out;
 	transition: all $transition-duration ease-out;
 
+}
+
+input[type='text'].input-light{
+	border:1px solid transparent;
+	border-bottom:2px solid rgba(30,30,30,.1);
+	box-shadow:none;
+	
 	&:focus{
-		border:1px solid rgba(30,30,30,.06);
-		box-shadow:none;
+		border:1px solid transparent;
+		border-bottom:1px solid rgba(30,30,30,.04);
 	}
 }
