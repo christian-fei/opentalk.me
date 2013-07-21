@@ -1,0 +1,27 @@
+.messages{
+	list-style-type: none;
+}
+	.message{
+		padding: 0.5em;
+	}
+
+#mymessage{
+	margin-top: 30px;
+	width: 100%;
+	padding: 0.7em;
+	
+	-webkit-transition: all $transition-duration ease-out;
+	-moz-transition: all $transition-duration ease-out;
+	-ms-transition: all $transition-duration ease-out;
+	-o-transition: all $transition-duration ease-out;
+	transition: all $transition-duration ease-out;
+
+	&:focus{
+		border:1px solid transparent;
+		padding:.7em;
+		box-shadow:none;
+	}
+}
+
+
+

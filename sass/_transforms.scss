@@ -1,0 +1,138 @@
+
+/*
+SUPER SLICK TRANSFORMS
+*/
+
+@media all and(min-width: 700px){
+  .csstransforms.cssanimations {
+    .fly-in-down, .fly-in-up, .fly-in-right, .fly-in-left{
+      -webkit-transition: opacity 300ms 200ms ease;
+      -moz-transition: opacity 300ms 200ms ease;
+      -ms-transition: opacity 300ms 200ms ease;
+      -o-transition: opacity 300ms 200ms ease;
+      transition: opacity 300ms 200ms ease;
+
+      -webkit-animation-fill-mode: forwards !important;
+      -moz-animation-fill-mode: forwards !important;
+      -o-animation-fill-mode: forwards !important;
+      animation-fill-mode: forwards !important;
+    }
+    .fly-in-down{
+      opacity:0;
+      -webkit-animation: flyindown 400ms ease;
+      -moz-animation: flyindown 400ms ease;
+      -o-animation: flyindown 400ms ease;
+      animation: flyindown 400ms ease;
+    }
+    .fly-in-up{
+      opacity:0;
+      -webkit-animation: flyinup 400ms ease;
+      -moz-animation: flyinup 400ms ease;
+      -o-animation: flyinup 400ms ease;
+      animation: flyinup 400ms ease;
+    }
+    .fly-in-right{
+      opacity:0;
+      -webkit-animation: flyinright 400ms ease;
+      -moz-animation: flyinright 400ms ease;
+      -o-animation: flyinright 400ms ease;
+      animation: flyinright 400ms ease;
+    }
+    .fly-in-left{
+      opacity:0;
+      -webkit-animation: flyinleft 400ms ease;
+      -moz-animation: flyinleft 400ms ease;
+      -o-animation: flyinleft 400ms ease;
+      animation: flyinleft 400ms ease;
+    }
+  }
+}
+/*flyindown*/
+@-webkit-keyframes flyindown {
+  0% {-webkit-transform: translate(0,50px);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyindown {
+  0% {-moz-transform: translate(0,50px);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyindown {
+  0% {-ms-transform: translate(0,50px);} 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyindown {
+  0% {-o-transform: translate(0,50px);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyindown {
+  0% {transform: translate(0,50px);} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinup*/
+@-webkit-keyframes flyinup {
+  0% {-webkit-transform: translate(0,-50px);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinup {
+  0% {-moz-transform:  translate(0,-50px);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinup {
+  0% {-ms-transform: translate(0,-50px);} 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinup {
+  0% {-o-transform:  translate(0,-50px);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinup {
+  0% {transform: translate(0,-50px)} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinright*/
+@-webkit-keyframes flyinright {
+  0% {-webkit-transform: translate(-50px,0);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinright {
+  0% {-moz-transform:  translate(-50px,0);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinright {
+  0% {-ms-transform: translate(-50px,0);
+  } 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinright {
+  0% {-o-transform:  translate(-50px,0);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinright{
+  0% {transform: translate(-50px,0)} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinleft*/
+@-webkit-keyframes flyinleft {
+  0% {-webkit-transform: translate(50px,0);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinleft {
+  0% {-moz-transform:  translate(50px,0);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinleft {
+  0% {-ms-transform: translate(50px,0);
+  } 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinleft {
+  0% {-o-transform:  translate(50px,0);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinleft {
+  0% {transform: translate(50px,0)} 
+  100% {opacity:1;transform: translate(0,0);}
+}

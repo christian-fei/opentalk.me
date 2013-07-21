@@ -63,30 +63,26 @@
     "app/packages/github/github_server.js",
     "app/packages/accounts-github/github_common.js",
     "app/packages/accounts-github/github_server.js",
-    "app/packages/facebook/facebook_common.js",
-    "app/packages/facebook/facebook_server.js",
-    "app/packages/accounts-facebook/facebook_common.js",
-    "app/packages/accounts-facebook/facebook_server.js",
     "app/opentalk.js"
   ],
   "manifest": [
     {
-      "path": "static_cacheable/638ec3ecc3dc02c245940f0e33652c3ad4dc11d2.js",
+      "path": "static_cacheable/52e3336fb3ffdaaabc8173acadcf6691956a952d.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/638ec3ecc3dc02c245940f0e33652c3ad4dc11d2.js",
-      "size": 350353,
-      "hash": "638ec3ecc3dc02c245940f0e33652c3ad4dc11d2"
+      "url": "/52e3336fb3ffdaaabc8173acadcf6691956a952d.js",
+      "size": 349371,
+      "hash": "52e3336fb3ffdaaabc8173acadcf6691956a952d"
     },
     {
-      "path": "static_cacheable/c7f711ddd992902858b24b21f82ad333776a2069.css",
+      "path": "static_cacheable/1ae737c827980c71cc12b8bbcad1d8a60be18709.css",
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/c7f711ddd992902858b24b21f82ad333776a2069.css",
-      "size": 133537,
-      "hash": "c7f711ddd992902858b24b21f82ad333776a2069"
+      "url": "/1ae737c827980c71cc12b8bbcad1d8a60be18709.css",
+      "size": 138140,
+      "hash": "1ae737c827980c71cc12b8bbcad1d8a60be18709"
     },
     {
       "path": "static/packages/bootstrap/img/glyphicons-halflings.png",
@@ -109,7 +105,7 @@
     {
       "path": "app.html",
       "where": "internal",
-      "hash": "f35a77c71c03b0a36220d4d4c3a77d1e058a325f"
+      "hash": "071c56e4582d45ae25b72731bf46e304dfcfdfd7"
     }
   ],
   "release": "0.6.4.1"
