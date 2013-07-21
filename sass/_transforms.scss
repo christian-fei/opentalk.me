@@ -3,50 +3,51 @@
 SUPER SLICK TRANSFORMS
 */
 
-@media all and(min-width: 700px){
-  .csstransforms.cssanimations {
-    .fly-in-down, .fly-in-up, .fly-in-right, .fly-in-left{
-      -webkit-transition: opacity 300ms 200ms ease;
-      -moz-transition: opacity 300ms 200ms ease;
-      -ms-transition: opacity 300ms 200ms ease;
-      -o-transition: opacity 300ms 200ms ease;
-      transition: opacity 300ms 200ms ease;
+%transform-base{
+  -webkit-transition: opacity 300ms 200ms ease;
+  -moz-transition: opacity 300ms 200ms ease;
+  -ms-transition: opacity 300ms 200ms ease;
+  -o-transition: opacity 300ms 200ms ease;
+  transition: opacity 300ms 200ms ease;
 
-      -webkit-animation-fill-mode: forwards !important;
-      -moz-animation-fill-mode: forwards !important;
-      -o-animation-fill-mode: forwards !important;
-      animation-fill-mode: forwards !important;
-    }
-    .fly-in-down{
-      opacity:0;
-      -webkit-animation: flyindown 400ms ease;
-      -moz-animation: flyindown 400ms ease;
-      -o-animation: flyindown 400ms ease;
-      animation: flyindown 400ms ease;
-    }
-    .fly-in-up{
-      opacity:0;
-      -webkit-animation: flyinup 400ms ease;
-      -moz-animation: flyinup 400ms ease;
-      -o-animation: flyinup 400ms ease;
-      animation: flyinup 400ms ease;
-    }
-    .fly-in-right{
-      opacity:0;
-      -webkit-animation: flyinright 400ms ease;
-      -moz-animation: flyinright 400ms ease;
-      -o-animation: flyinright 400ms ease;
-      animation: flyinright 400ms ease;
-    }
-    .fly-in-left{
-      opacity:0;
-      -webkit-animation: flyinleft 400ms ease;
-      -moz-animation: flyinleft 400ms ease;
-      -o-animation: flyinleft 400ms ease;
-      animation: flyinleft 400ms ease;
-    }
-  }
+  -webkit-animation-fill-mode: forwards !important;
+  -moz-animation-fill-mode: forwards !important;
+  -o-animation-fill-mode: forwards !important;
+  animation-fill-mode: forwards !important;
 }
+.fly-in-down{
+  @extend %transform-base;
+  opacity:0;
+  -webkit-animation: flyindown 400ms ease;
+  -moz-animation: flyindown 400ms ease;
+  -o-animation: flyindown 400ms ease;
+  animation: flyindown 400ms ease;
+}
+.fly-in-up{
+  @extend %transform-base;
+  opacity:0;
+  -webkit-animation: flyinup 400ms ease;
+  -moz-animation: flyinup 400ms ease;
+  -o-animation: flyinup 400ms ease;
+  animation: flyinup 400ms ease;
+}
+.fly-in-right{
+  @extend %transform-base;
+  opacity:0;
+  -webkit-animation: flyinright 400ms ease;
+  -moz-animation: flyinright 400ms ease;
+  -o-animation: flyinright 400ms ease;
+  animation: flyinright 400ms ease;
+}
+.fly-in-left{
+  @extend %transform-base;
+  opacity:0;
+  -webkit-animation: flyinleft 400ms ease;
+  -moz-animation: flyinleft 400ms ease;
+  -o-animation: flyinleft 400ms ease;
+  animation: flyinleft 400ms ease;
+}
+
 /*flyindown*/
 @-webkit-keyframes flyindown {
   0% {-webkit-transform: translate(0,50px);} 

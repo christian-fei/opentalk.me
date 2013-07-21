@@ -103,7 +103,7 @@ if (Meteor.isClient) {
         if(evnt.keyCode === 13){
           if(text.length){
             //new Message
-            Session.set(
+            /*Session.set(
               'lastInsertId',
               Messages.insert(
                 {userId:Meteor.user()._id
@@ -112,7 +112,8 @@ if (Meteor.isClient) {
                 ,text:'',
                 timestamp:t}
               )
-            );
+            );*/
+            Session.set('lastInsertId',null);
             tmplt.find('#mymessage').value = '';
           } else {
             Messages.remove({_id:''+Session.get('lastInsertId')});

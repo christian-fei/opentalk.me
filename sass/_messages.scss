@@ -1,5 +1,6 @@
 .messages{
 	list-style-type: none;
+	//@extend .fly-in-up;
 }
 	.message{
 		padding: 0.5em;
@@ -8,8 +9,8 @@
 #mymessage{
 	margin-top: 30px;
 	width: 100%;
-	padding: 0.7em;
-	
+	padding: 1.1em;
+
 	-webkit-transition: all $transition-duration ease-out;
 	-moz-transition: all $transition-duration ease-out;
 	-ms-transition: all $transition-duration ease-out;
@@ -17,11 +18,7 @@
 	transition: all $transition-duration ease-out;
 
 	&:focus{
-		border:1px solid transparent;
-		padding:.7em;
+		border:1px solid rgba(30,30,30,.06);
 		box-shadow:none;
 	}
 }
-
-
-

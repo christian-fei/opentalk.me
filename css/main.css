@@ -93,102 +93,90 @@ input, select {
   vertical-align: middle;
 }
 
+/* line 20, ../sass/_reset.scss */
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 /* line 1, ../sass/_rwd.scss */
 .limit {
   max-width: 40em;
   margin: auto;
+  padding: 2em;
 }
 
-/* line 5, ../sass/_rwd.scss */
+/* line 6, ../sass/_rwd.scss */
 img {
   max-width: 100%;
-}
-
-/* line 1, ../sass/_messages.scss */
-.messages {
-  list-style-type: none;
-}
-
-/* line 4, ../sass/_messages.scss */
-.message {
-  padding: 0.5em;
-}
-
-/* line 8, ../sass/_messages.scss */
-#mymessage {
-  margin-top: 30px;
-  width: 100%;
-  padding: 0.7em;
-  -webkit-transition: all 0.25s ease-out;
-  -moz-transition: all 0.25s ease-out;
-  -ms-transition: all 0.25s ease-out;
-  -o-transition: all 0.25s ease-out;
-  transition: all 0.25s ease-out;
-}
-/* line 19, ../sass/_messages.scss */
-#mymessage:focus {
-  border: 1px solid transparent;
-  padding: .7em;
-  box-shadow: none;
 }
 
 /*
 SUPER SLICK TRANSFORMS
 */
-@media all and (min-width: 700px) {
-  /* line 8, ../sass/_transforms.scss */
-  .csstransforms.cssanimations .fly-in-down, .csstransforms.cssanimations .fly-in-up, .csstransforms.cssanimations .fly-in-right, .csstransforms.cssanimations .fly-in-left {
-    -webkit-transition: opacity 300ms 200ms ease;
-    -moz-transition: opacity 300ms 200ms ease;
-    -ms-transition: opacity 300ms 200ms ease;
-    -o-transition: opacity 300ms 200ms ease;
-    transition: opacity 300ms 200ms ease;
-    -webkit-animation-fill-mode: forwards !important;
-    -moz-animation-fill-mode: forwards !important;
-    -o-animation-fill-mode: forwards !important;
-    animation-fill-mode: forwards !important;
-  }
-  /* line 20, ../sass/_transforms.scss */
-  .csstransforms.cssanimations .fly-in-down {
-    opacity: 0;
-    -webkit-animation: flyindown 400ms ease;
-    -moz-animation: flyindown 400ms ease;
-    -o-animation: flyindown 400ms ease;
-    animation: flyindown 400ms ease;
-  }
-  /* line 27, ../sass/_transforms.scss */
-  .csstransforms.cssanimations .fly-in-up {
-    opacity: 0;
-    -webkit-animation: flyinup 400ms ease;
-    -moz-animation: flyinup 400ms ease;
-    -o-animation: flyinup 400ms ease;
-    animation: flyinup 400ms ease;
-  }
-  /* line 34, ../sass/_transforms.scss */
-  .csstransforms.cssanimations .fly-in-right {
-    opacity: 0;
-    -webkit-animation: flyinright 400ms ease;
-    -moz-animation: flyinright 400ms ease;
-    -o-animation: flyinright 400ms ease;
-    animation: flyinright 400ms ease;
-  }
-  /* line 41, ../sass/_transforms.scss */
-  .csstransforms.cssanimations .fly-in-left {
-    opacity: 0;
-    -webkit-animation: flyinleft 400ms ease;
-    -moz-animation: flyinleft 400ms ease;
-    -o-animation: flyinleft 400ms ease;
-    animation: flyinleft 400ms ease;
-  }
+/* line 6, ../sass/_transforms.scss */
+.fly-in-down, .fly-in-up, .fly-in-right, .fly-in-left {
+  -webkit-transition: opacity 300ms 200ms ease;
+  -moz-transition: opacity 300ms 200ms ease;
+  -ms-transition: opacity 300ms 200ms ease;
+  -o-transition: opacity 300ms 200ms ease;
+  transition: opacity 300ms 200ms ease;
+  -webkit-animation-fill-mode: forwards !important;
+  -moz-animation-fill-mode: forwards !important;
+  -o-animation-fill-mode: forwards !important;
+  animation-fill-mode: forwards !important;
 }
+
+/* line 18, ../sass/_transforms.scss */
+.fly-in-down {
+  opacity: 0;
+  -webkit-animation: flyindown 400ms ease;
+  -moz-animation: flyindown 400ms ease;
+  -o-animation: flyindown 400ms ease;
+  animation: flyindown 400ms ease;
+}
+
+/* line 26, ../sass/_transforms.scss */
+.fly-in-up {
+  opacity: 0;
+  -webkit-animation: flyinup 400ms ease;
+  -moz-animation: flyinup 400ms ease;
+  -o-animation: flyinup 400ms ease;
+  animation: flyinup 400ms ease;
+}
+
+/* line 34, ../sass/_transforms.scss */
+.fly-in-right {
+  opacity: 0;
+  -webkit-animation: flyinright 400ms ease;
+  -moz-animation: flyinright 400ms ease;
+  -o-animation: flyinright 400ms ease;
+  animation: flyinright 400ms ease;
+}
+
+/* line 42, ../sass/_transforms.scss */
+.fly-in-left {
+  opacity: 0;
+  -webkit-animation: flyinleft 400ms ease;
+  -moz-animation: flyinleft 400ms ease;
+  -o-animation: flyinleft 400ms ease;
+  animation: flyinleft 400ms ease;
+}
+
 /*flyindown*/
 @-webkit-keyframes flyindown {
-  /* line 52, ../sass/_transforms.scss */
+  /* line 53, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(0, 50px);
   }
 
-  /* line 53, ../sass/_transforms.scss */
+  /* line 54, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -196,12 +184,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyindown {
-  /* line 56, ../sass/_transforms.scss */
+  /* line 57, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(0, 50px);
   }
 
-  /* line 57, ../sass/_transforms.scss */
+  /* line 58, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -209,12 +197,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyindown {
-  /* line 60, ../sass/_transforms.scss */
+  /* line 61, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(0, 50px);
   }
 
-  /* line 61, ../sass/_transforms.scss */
+  /* line 62, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -222,12 +210,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyindown {
-  /* line 64, ../sass/_transforms.scss */
+  /* line 65, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(0, 50px);
   }
 
-  /* line 65, ../sass/_transforms.scss */
+  /* line 66, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -235,12 +223,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyindown {
-  /* line 68, ../sass/_transforms.scss */
+  /* line 69, ../sass/_transforms.scss */
   0% {
     transform: translate(0, 50px);
   }
 
-  /* line 69, ../sass/_transforms.scss */
+  /* line 70, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -249,12 +237,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinup*/
 @-webkit-keyframes flyinup {
-  /* line 74, ../sass/_transforms.scss */
+  /* line 75, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(0, -50px);
   }
 
-  /* line 75, ../sass/_transforms.scss */
+  /* line 76, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -262,12 +250,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinup {
-  /* line 78, ../sass/_transforms.scss */
+  /* line 79, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(0, -50px);
   }
 
-  /* line 79, ../sass/_transforms.scss */
+  /* line 80, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -275,12 +263,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinup {
-  /* line 82, ../sass/_transforms.scss */
+  /* line 83, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(0, -50px);
   }
 
-  /* line 83, ../sass/_transforms.scss */
+  /* line 84, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -288,12 +276,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinup {
-  /* line 86, ../sass/_transforms.scss */
+  /* line 87, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(0, -50px);
   }
 
-  /* line 87, ../sass/_transforms.scss */
+  /* line 88, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -301,12 +289,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinup {
-  /* line 90, ../sass/_transforms.scss */
+  /* line 91, ../sass/_transforms.scss */
   0% {
     transform: translate(0, -50px);
   }
 
-  /* line 91, ../sass/_transforms.scss */
+  /* line 92, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -315,12 +303,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinright*/
 @-webkit-keyframes flyinright {
-  /* line 96, ../sass/_transforms.scss */
+  /* line 97, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(-50px, 0);
   }
 
-  /* line 97, ../sass/_transforms.scss */
+  /* line 98, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -328,12 +316,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinright {
-  /* line 100, ../sass/_transforms.scss */
+  /* line 101, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(-50px, 0);
   }
 
-  /* line 101, ../sass/_transforms.scss */
+  /* line 102, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -341,12 +329,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinright {
-  /* line 104, ../sass/_transforms.scss */
+  /* line 105, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(-50px, 0);
   }
 
-  /* line 106, ../sass/_transforms.scss */
+  /* line 107, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -354,12 +342,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinright {
-  /* line 109, ../sass/_transforms.scss */
+  /* line 110, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(-50px, 0);
   }
 
-  /* line 110, ../sass/_transforms.scss */
+  /* line 111, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -367,12 +355,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinright {
-  /* line 113, ../sass/_transforms.scss */
+  /* line 114, ../sass/_transforms.scss */
   0% {
     transform: translate(-50px, 0);
   }
 
-  /* line 114, ../sass/_transforms.scss */
+  /* line 115, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -381,12 +369,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinleft*/
 @-webkit-keyframes flyinleft {
-  /* line 119, ../sass/_transforms.scss */
+  /* line 120, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(50px, 0);
   }
 
-  /* line 120, ../sass/_transforms.scss */
+  /* line 121, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -394,12 +382,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinleft {
-  /* line 123, ../sass/_transforms.scss */
+  /* line 124, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(50px, 0);
   }
 
-  /* line 124, ../sass/_transforms.scss */
+  /* line 125, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -407,12 +395,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinleft {
-  /* line 127, ../sass/_transforms.scss */
+  /* line 128, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(50px, 0);
   }
 
-  /* line 129, ../sass/_transforms.scss */
+  /* line 130, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -420,12 +408,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinleft {
-  /* line 132, ../sass/_transforms.scss */
+  /* line 133, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(50px, 0);
   }
 
-  /* line 133, ../sass/_transforms.scss */
+  /* line 134, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -433,14 +421,41 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinleft {
-  /* line 136, ../sass/_transforms.scss */
+  /* line 137, ../sass/_transforms.scss */
   0% {
     transform: translate(50px, 0);
   }
 
-  /* line 137, ../sass/_transforms.scss */
+  /* line 138, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
   }
+}
+
+/* line 1, ../sass/_messages.scss */
+.messages {
+  list-style-type: none;
+}
+
+/* line 5, ../sass/_messages.scss */
+.message {
+  padding: 0.5em;
+}
+
+/* line 9, ../sass/_messages.scss */
+#mymessage {
+  margin-top: 30px;
+  width: 100%;
+  padding: 1.1em;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+/* line 20, ../sass/_messages.scss */
+#mymessage:focus {
+  border: 1px solid rgba(30, 30, 30, 0.06);
+  box-shadow: none;
 }
