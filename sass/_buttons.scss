@@ -1,0 +1,33 @@
+.button{
+	display: inline-block;
+	font-size: .8em;
+	font-weight: bold;
+	line-height: 1;
+	margin-top: 0;
+	padding: .6em;
+}
+
+.silver{
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efefef), color-stop(1, #f7f7f7));
+	background: -webkit-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+	background: -moz-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+	background: -o-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+	background: -ms-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+	background: linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+	border: 1px solid #ddd;
+	-webkit-box-shadow: inset 0 2px 0 #fff;
+	box-shadow: inset 0 2px 0 #fff;
+	color: #666;
+
+	&:hover{
+		background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e3e3e3), color-stop(1, #efefef));
+		background: -webkit-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+		background: -moz-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+		background: -o-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+		background: -ms-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+		background: linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+		color: #444;
+	}
+}
+
+

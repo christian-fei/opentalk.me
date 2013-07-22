@@ -107,7 +107,7 @@ input, select {
 .limit {
   max-width: 40em;
   margin: auto;
-  padding: 2em;
+  padding: 1em;
 }
 
 /* line 6, ../sass/_rwd.scss */
@@ -453,14 +453,86 @@ SUPER SLICK TRANSFORMS
   transition: all 0.25s ease-out;
 }
 
-/* line 22, ../sass/_messages.scss */
+/* line 21, ../sass/_messages.scss */
 input[type='text'].input-light {
-  border: 1px solid transparent;
+  border: 2px solid rgba(30, 30, 30, 0.1);
   border-bottom: 2px solid rgba(30, 30, 30, 0.1);
   box-shadow: none;
 }
-/* line 27, ../sass/_messages.scss */
+/* line 26, ../sass/_messages.scss */
 input[type='text'].input-light:focus {
-  border: 1px solid transparent;
-  border-bottom: 1px solid rgba(30, 30, 30, 0.04);
+  border: 2px solid rgba(30, 30, 30, 0.04);
+  border-bottom: 2px solid rgba(30, 30, 30, 0.04);
+}
+
+/* line 1, ../sass/_buttons.scss */
+.button {
+  display: inline-block;
+  font-size: .8em;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 0;
+  padding: .6em;
+}
+
+/* line 10, ../sass/_buttons.scss */
+.silver {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efefef), color-stop(1, #f7f7f7));
+  background: -webkit-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+  background: -moz-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+  background: -o-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+  background: -ms-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+  background: linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
+  border: 1px solid #ddd;
+  -webkit-box-shadow: inset 0 2px 0 #fff;
+  box-shadow: inset 0 2px 0 #fff;
+  color: #666;
+}
+/* line 22, ../sass/_buttons.scss */
+.silver:hover {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e3e3e3), color-stop(1, #efefef));
+  background: -webkit-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+  background: -moz-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+  background: -o-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+  background: -ms-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+  background: linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
+  color: #444;
+}
+
+/* line 1, ../sass/_fields.scss */
+input[type='text'] {
+  padding: .8em;
+}
+/* line 4, ../sass/_fields.scss */
+input[type='text'].change {
+  border: 2px solid transparent;
+}
+
+/* line 1, ../sass/_header.scss */
+header {
+  height: 3em;
+}
+/* line 4, ../sass/_header.scss */
+header input {
+  text-align: center;
+}
+/* line 8, ../sass/_header.scss */
+header input.user {
+  margin-top: .1em;
+  max-width: 8em;
+}
+/* line 12, ../sass/_header.scss */
+header .user {
+  font-size: .8em;
+  margin: 1.4em 0 0 1em;
+  display: inline-block;
+}
+/* line 18, ../sass/_header.scss */
+header #roomID {
+  max-width: 7em;
+  margin-top: .75em;
+}
+/* line 23, ../sass/_header.scss */
+header #logout {
+  margin: .6em 1em 0;
 }

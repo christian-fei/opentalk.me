@@ -19,8 +19,7 @@
 <body>
 	<div class="limit">
 		<header>
-			{{>login}}
-			{{>selectChatRoom}}
+			{{>login}} {{>selectChatRoom}}
 		</header>
 		<section>
 			{{renderPage}}
@@ -30,11 +29,15 @@
 
 <template name='login'>
 	{{#if loggedInWithAccount}}
-		{{loginButtons}}
+		<span class="user">{{username}}</span>
+		{{>logout}}
 	{{/if}}
+
 	{{#if loggedInWithNickname}}
-		{{username}}
+		<input type='text' class="user input-light change" value='{{username}}'/>
+		{{>logout}}
 	{{/if}}
+
 	{{#unless loggedIn}}
 		{{loginButtons}} or {{>pickNickname}}
 	{{/unless}}
@@ -45,16 +48,21 @@
 	<input type="text" id='nickname' class='input-light' placeholder='pick a nickname'>
 </template>
 
+<template name='logout'>
+	<a href="#" id='logout' class='button silver'>Logout</a>
+</template>
+
+
 <template name='selectChatRoom'>
 	{{#if loggedIn}}
-		{{#unless roomSelected}}
-			<input type='text' id='roomID' class='input-light' placeholder='#roomID'/>
-		{{/unless}}
+		<input type='text' id='roomID' class='input-light {{#if roomSelected}}change{{/if}}' value='{{selectedRoom}}' placeholder='room'/>
 	{{/if}}
 </template>
 
 <template name='messagesList'>
 	{{#if roomSelected}}
+		<a href="#" id='deleteMyMessages' class="button silver">X</a>
+
 		<ul class='messages'>
 			{{#each messages}}
 				<li class='message'><b class='username'>{{user}}</b>: {{text}}</li>

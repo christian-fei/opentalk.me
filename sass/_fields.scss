@@ -1,0 +1,7 @@
+input[type='text']{
+	padding: .8em;
+	
+	&.change{
+		border: 2px solid transparent;
+	}
+}

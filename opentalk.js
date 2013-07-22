@@ -1,5 +1,8 @@
 Messages = new Meteor.Collection('Messages');
 if(Meteor.isClient) {
+  /*
+    set absoluteUrl for setting up the accounts system for the right domain
+  */
   console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
   /*
@@ -13,23 +16,41 @@ if(Meteor.isClient) {
   text='', //current message text
   t=0, //current timestamp
   mSub, //Message subscription
-  rSub=null,//Room subscription
-  username='',
-  userid=0;
+  rSub=null; //Room subscription
+
+
+  /*
+  */
+
+  Session.set('username',Meteor._localStorage.getItem('username'));
+  Session.set('userid',Meteor._localStorage.getItem('userid'));
   
-
-
+  /*
+  console.log('sun  ' + Session.get('username'));
+  console.log('sui  ' + Session.get('userid'));
+  */
   /*
     SET UP ROUTING
   */
   Meteor.Router.add({'/about':'about'});
   Meteor.Router.add({'/*':'messagesList'});
+  
+  var pathRoot = window.location.pathname,
+      path = pathRoot.substring(1);
 
-  if(window.location.pathname !== '/'){
-    console.log('Routing to ' + window.location.pathname);
-    Meteor.Router.to(window.location.pathname);
-    subscribeToRoom(window.location.pathname.substring(1));
-    Session.set('roomID',window.location.pathname.substring(1));
+  if(path !== '/'){
+    /*
+      The path must be valid
+        ==> no # and /
+    */
+    if(path.match(/^[a-z0-9]+$/i)){
+      console.log('Routing to ' + pathRoot);
+      Meteor.Router.to(pathRoot);
+      if(Session.get('username'))
+        subscribeToRoom(window.location.pathname.substring(1));
+    } else {
+      Meteor.Router.to('/');
+    }
   }
 
 
@@ -39,15 +60,10 @@ if(Meteor.isClient) {
   Meteor.autorun(function () {
     if (Meteor.userId()) {
       // on login
-      username=Meteor.user().profile.name;
-      userid=Meteor.user()._id;
-      console.log(username + '  ' + userid);
-      Session.set('username',username);
-    } else {
-      // on logout
-      username='';
-      userid=0;
-      Session.set('username',null);
+      Meteor._localStorage.setItem('username',Meteor.user().profile.name);
+      Meteor._localStorage.setItem('userid',Meteor.user()._id);
+      Session.set('username',Meteor.user().profile.name);
+      Session.set('userid',Meteor.user()._id);
     }
   });
 
@@ -56,14 +72,39 @@ if(Meteor.isClient) {
       if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
         var nickname = tmplt.find('#nickname').value;
         if(nickname.length && nickname.indexOf(' ') <= 0) {
-          username = nickname;
           //TODO: better unique ID
           userid = Date.now();
-          console.log(username + '  ' + userid);
           //bind it to the Session to make it reactive
-          Session.set('username',username);
+
+          Meteor._localStorage.setItem('username',nickname);
+          Meteor._localStorage.setItem('userid',userid);
+          Session.set('username',Meteor._localStorage.getItem('username'));
+          Session.set('userid',Meteor._localStorage.getItem('userid'));
         }
       }
+    }
+  });
+
+
+  Template.logout.events({
+    'click #logout' : function(evnt,tmplt){
+      evnt.preventDefault();
+      if(Meteor.user())
+        Meteor.logout();
+      Meteor._localStorage.removeItem('username');
+      Meteor._localStorage.removeItem('userid');
+
+      Session.set('username',null);
+      Session.set('userid',null);
+      Session.set('roomID',null);
+
+      //redirect user to /
+      Meteor.Router.to('/');
+      /*
+        test if defined, since it is possible that the user logged in, but didn't select a room
+      */
+      if(mSub)
+        mSub.stop();
     }
   });
 
@@ -83,7 +124,6 @@ if(Meteor.isClient) {
     if(r.length){
       Session.set('roomID',r);
       mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
-      console.log('subscribed to ' +r)
       Session.set('route','/'+r);
       Meteor.Router.to(Session.get('route'));
     }else{
@@ -137,8 +177,8 @@ if(Meteor.isClient) {
       if(lm)
         lmid = lm._id;
       //console.log(lmid);
-      if(m=Messages.find({_id:lmid,userID:userid}).fetch()[0])
-        if(m.userID === userid){
+      if(m=Messages.find({_id:lmid,userid:Session.get('userid')}).fetch()[0])
+        if(m.userid === Session.get('userid')){
           return true;
         }
       return false;
@@ -149,9 +189,7 @@ if(Meteor.isClient) {
   Template.messagesList.messages = function(){
     var ml = Messages.find({'roomID':Session.get('roomID')}).fetch().length;
 
-    console.log(iAmWriting());
     if(iAmWriting()){
-      console.log(ml);
       if(ml <= 1)
         return [];
       return Messages.find(
@@ -164,11 +202,18 @@ if(Meteor.isClient) {
       );  
   };
   Template.messagesList.roomSelected=Template.selectChatRoom.roomSelected= function(){
-    console.log('roomID  ' + Session.get('roomID'));
     if(Session.get('roomID'))
       return true;
     return false;
   };
+
+  Template.selectChatRoom.selectedRoom= function(){
+    if(Session.get('roomID'))
+      return Session.get('roomID');
+    return '';
+  };
+
+
   Template.messagesList.events({
     'keyup #mymessage' : function(evnt,tmplt){
       if(Session.get('username')){
@@ -181,7 +226,7 @@ if(Meteor.isClient) {
           Session.set(
             'lastInsertId',
             Messages.insert(
-              {userID:userid
+              {userid:Session.get('userid')
               ,user:Session.get('username')
               ,roomID:Session.get('roomID')
               ,text:text
@@ -216,8 +261,16 @@ if(Meteor.isClient) {
           }
         }
       }
+    },
+
+    'click #deleteMyMessages' : function(evnt,tmplt){
+      evnt.preventDefault();
+      if(confirm('Do you want to remove your messages from this room?')){
+        Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'));
+      }
     }
   });
+  
 
 }
 
@@ -236,6 +289,12 @@ if (Meteor.isServer) {
     )
    }
   );
+
+  Meteor.methods({
+    removeMessagesOfUserInRoom : function(userid){
+      Messages.remove({userid:userid}, function(){console.log('messages removed');});
+    }
+  });
 
   Meteor.startup(function () {
     // code to run on server at startup

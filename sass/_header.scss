@@ -1,0 +1,26 @@
+header{
+	height:3em;
+	
+	input{
+		text-align: center;
+	}
+
+	input.user{
+		margin-top: .1em;
+		max-width:8em;
+	}
+	.user{
+		font-size: .8em;
+		margin: 1.4em 0 0 1em;
+		display: inline-block;
+	}
+
+	#roomID{
+		max-width: 7em;
+		margin-top: .75em;
+	}
+
+	#logout{
+		margin: .6em 1em 0;
+	}
+}
