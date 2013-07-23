@@ -1,17 +1,22 @@
 header{
-	height:3em;
+	height:4em;
+	background:#EC5B0F;
 	
 	input{
 		text-align: center;
 	}
 
+}
 	#login-buttons{
+		margin: .9em  0 0 1em;
 		display: inline-block;
 		position:relative;
 		border-radius:5px;
 		border:1px solid rgb(230,230,230);
-		box-shadow: 6px 6px 7px rgb(218,218,218);
 	}
+		.login-link-text,.login-close-text{
+			cursor: pointer;
+		}
 		.login-link-and-dropdown-list{
 			position: relative;
 			padding:.5em;
@@ -26,7 +31,6 @@ header{
 			background: rgb(240,240,240);
 			border-radius: 5px;
 			border:1px solid rgb(230,230,230);
-			box-shadow: 6px 6px 7px rgb(218,218,218);
 			
 			/*
 				center text like 'Sign in with Github'
@@ -46,8 +50,9 @@ header{
 		}
 
 	.user{
-		font-size: .8em;
-		margin: 1.4em 0 0 1em;
+		color:#F7F7F7;
+		font-size: .9em;
+		margin: 1.8em 0 0 1em;
 		display: inline-block;
 	}
 
@@ -58,10 +63,11 @@ header{
 	#logout{
 		margin: .6em 1em 0;
 	}
-	
+	#nickname{
+		max-width: 10em;
+		margin-top: .45em;		
+	}
 	#roomID{
 		max-width: 7em;
 		margin-top: .75em;
 	}
-
-}
