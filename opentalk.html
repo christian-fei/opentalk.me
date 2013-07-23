@@ -28,19 +28,12 @@
 </body>
 
 <template name='login'>
-	{{#if loggedInWithAccount}}
+	{{#if loggedIn}}
 		<span class="user">{{username}}</span>
 		{{>logout}}
+	{{else}}
+		{{loginButtons}} <span class='or'>or</span> {{>pickNickname}}
 	{{/if}}
-
-	{{#if loggedInWithNickname}}
-		<input type='text' class="user input-light change" value='{{username}}'/>
-		{{>logout}}
-	{{/if}}
-
-	{{#unless loggedIn}}
-		{{loginButtons}} or {{>pickNickname}}
-	{{/unless}}
 </template>
 
 
@@ -49,7 +42,7 @@
 </template>
 
 <template name='logout'>
-	<a href="#" id='logout' class='button silver'>Logout</a>
+	<a href="#" id='logout' class='button silver' title='Log out'><span class="icon-logout"></span></a>
 </template>
 
 
