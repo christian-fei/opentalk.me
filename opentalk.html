@@ -21,18 +21,30 @@
 		<header>
 			{{>login}} {{>selectChatRoom}}
 		</header>
-		<section>
+		<section role='main' class='main'>
 			{{renderPage}}
 		</section>
 	</div>
+
+	<script type='text/javascript'>
+		$(document).ready(function() {
+
+		});
+	</script>
 </body>
 
 <template name='login'>
+	{{#if roomSelected}}
+		{{>roomSelected}}
+	{{/if}}
+	<!--span class="user">{{username}}</span>-->
+</template>
+
+<template name="roomSelected">
 	{{#if loggedIn}}
-		<span class="user">{{username}}</span>
-		{{>logout}}
+		{{username}} {{>logout}}
 	{{else}}
-		{{loginButtons}} <span class='or'>or</span> {{>pickNickname}}
+		{{loginButtons}} <span class="or">or</span> {{>pickNickname}}
 	{{/if}}
 </template>
 
@@ -47,15 +59,18 @@
 
 
 <template name='selectChatRoom'>
-	{{#if loggedIn}}
-		<input type='text' id='roomID' class='input-light {{#if roomSelected}}change{{/if}}' value='{{selectedRoom}}' placeholder='room'/>
-	{{/if}}
+	<input type='text' id='roomid' class='input-light {{#if roomSelected}}change{{/if}}' value='{{selectedRoom}}' placeholder='room'/>
 </template>
 
 <template name='messagesList'>
-	{{#if roomSelected}}
+	{{#if loggedIn}}
 		<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
-
+		<ul id="online-users">
+			<a href='#' id='toggle-show-online-users'>Online</a>
+			{{#each users}}
+				<li class="online">{{username}}</li>
+			{{/each}}
+		</ul>
 		<ul class='messages'>
 			{{#each messages}}
 				<li class='message'><b class='username'>{{user}}</b>: {{text}}</li>

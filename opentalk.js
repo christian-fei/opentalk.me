@@ -1,4 +1,6 @@
 Messages = new Meteor.Collection('Messages');
+OnlineUsers = new Meteor.Collection('OnlineUsers');
+
 if(Meteor.isClient) {
   /*
     set absoluteUrl for setting up the accounts system for the right domain
@@ -9,55 +11,25 @@ if(Meteor.isClient) {
     RESET
   */
   Session.set('lastInsertId',null);
-  Session.set('roomID',null);
-
+  Session.set('roomid',null);
 
   var lastInsertId=0, //ID of the last inserted message
   text='', //current message text
   t=0, //current timestamp
   mSub, //Message subscription
+  ouSub, //OnlineUsers subscription
   rSub=null; //Room subscription
 
 
-  /*
-  */
-
   Session.set('username',Meteor._localStorage.getItem('username'));
   Session.set('userid',Meteor._localStorage.getItem('userid'));
-  
-  /*
-  console.log('sun  ' + Session.get('username'));
-  console.log('sui  ' + Session.get('userid'));
-  */
-  /*
-    SET UP ROUTING
-  */
-  Meteor.Router.add({'/about':'about'});
-  Meteor.Router.add({'/*':'messagesList'});
-  
-  var pathRoot = window.location.pathname,
-      path = pathRoot.substring(1);
 
-  if(path !== '/'){
-    /*
-      The path must be valid
-        ==> no # and /
-    */
-    if(path.match(/^[a-z0-9]+$/i)){
-      console.log('Routing to ' + pathRoot);
-      Meteor.Router.to(pathRoot);
-      if(Session.get('username'))
-        subscribeToRoom(window.location.pathname.substring(1));
-    } else {
-      Meteor.Router.to('/');
-    }
-  }
 
 
   /*
     ACCOUNT MANAGEMENT
   */
-  Meteor.autorun(function () {
+  Deps.autorun(function () {
     if (Meteor.userId()) {
       // on login
       Meteor._localStorage.setItem('username',Meteor.user().profile.name);
@@ -66,6 +38,91 @@ if(Meteor.isClient) {
       Session.set('userid',Meteor.user()._id);
     }
   });
+
+
+  
+  /*
+    SET UP ROUTING
+  */
+  Meteor.Router.add({'/about':'about'});
+  Meteor.Router.add({'/*':'messagesList'});
+  
+  var pathRoot = window.location.pathname;
+      
+
+  console.log(pathRoot);
+  routeAndSubscribe(pathRoot);
+
+
+  function routeAndSubscribe(p){
+    path = p.substring(1);
+     if(path !== '/'){
+      /*
+        The path must be valid
+          ==> no # and /
+      */
+      if(path.match(/^[a-z0-9]+$/i)){
+        console.log('Routing to ' + p);
+        //if(Session.get('username'))
+          subscribeToRoom(path);
+      } else {
+        Meteor.Router.to('/');
+      }
+    }
+  }
+  
+
+
+ 
+  /*
+    Online users
+
+    OnlineUsers Collection:
+      userid
+      username
+      roomid
+  */
+  Deps.autorun(function(){ 
+    if(Session.get('roomid'))
+      ouSub = Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+    else
+      if(ouSub)
+        ouSub.stop();
+    
+    if(Session.get('roomid') !== null && Session.get('username') !== null && Session.get('userid') !== null) {
+    
+      if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){
+        console.log('register online status');
+        OnlineUsers.insert(
+          {
+            userid:Session.get('userid'),
+            username:Session.get('username'),
+            roomid:Session.get('roomid')
+          }
+        );
+      } 
+    } 
+  });
+
+
+  /*
+    going offline
+  */
+  window.onbeforeunload = goOffline;
+
+  function goOffline(){
+    Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
+    Meteor.call('clog','logging out');
+  }
+
+  Template.messagesList.users =function(){
+    var users = OnlineUsers.find().fetch();
+    var distinctUsers = _.uniq(users, false, function(d) {return d.username});
+    return distinctUsers;
+  }
+
+
+
 
   Template.pickNickname.events({
     'keyup #nickname': function(evnt,tmplt){
@@ -80,6 +137,8 @@ if(Meteor.isClient) {
           Meteor._localStorage.setItem('userid',userid);
           Session.set('username',Meteor._localStorage.getItem('username'));
           Session.set('userid',Meteor._localStorage.getItem('userid'));
+        
+          routeAndSubscribe(pathRoot);
         }
       }
     }
@@ -89,6 +148,7 @@ if(Meteor.isClient) {
   Template.logout.events({
     'click #logout' : function(evnt,tmplt){
       evnt.preventDefault();
+      goOffline();
       if(Meteor.user())
         Meteor.logout();
       Meteor._localStorage.removeItem('username');
@@ -96,7 +156,7 @@ if(Meteor.isClient) {
 
       Session.set('username',null);
       Session.set('userid',null);
-      Session.set('roomID',null);
+      Session.set('roomid',null);
 
       //redirect user to /
       Meteor.Router.to('/');
@@ -116,28 +176,29 @@ if(Meteor.isClient) {
 
   /*
     Subscribes the user to a room
-      -sets the Session var 'roomID'
+      -sets the Session var 'roomid'
       -registers a subscription to 'MessagesChatRoom' in mSub
       -routes to r
   */
   function subscribeToRoom(r){
     if(r.length){
-      Session.set('roomID',r);
-      mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomID'));
+      goOffline();
+      Session.set('roomid',r);
+      mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'));
       Session.set('route','/'+r);
       Meteor.Router.to(Session.get('route'));
     }else{
       Meteor.Router.to('/');
-      Session.set('roomID',null);
+      Session.set('roomid',null);
       if(mSub)
         mSub.stop();
     }
   }
 
   Template.selectChatRoom.events({
-    'keyup #roomID': function(evnt,tmplt){
+    'keyup #roomid': function(evnt,tmplt){
       if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
-        var room = tmplt.find('#roomID').value;
+        var room = tmplt.find('#roomid').value;
         subscribeToRoom(room);
       }
     }
@@ -149,11 +210,11 @@ if(Meteor.isClient) {
   /*
     global username, either from accounts or nickname
   */
-  Template.messagesList.username=Template.login.username = function(){
+  Template.roomSelected.username = function(){
     return Session.get('username');
   };
 
-  Template.selectChatRoom.loggedIn=Template.login.loggedIn=function(){
+  Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
     if(Session.get('username'))
       return true;
     return false;
@@ -168,6 +229,7 @@ if(Meteor.isClient) {
       return true;
     return false;
   }
+
   function iAmWriting(){
     if(Session.get('lastInsertId')){
       var m,p=0,
@@ -187,29 +249,29 @@ if(Meteor.isClient) {
   }
 
   Template.messagesList.messages = function(){
-    var ml = Messages.find({'roomID':Session.get('roomID')}).fetch().length;
+    var ml = Messages.find({'roomid':Session.get('roomid')}).fetch().length;
 
     if(iAmWriting()){
       if(ml <= 1)
         return [];
       return Messages.find(
-        {'roomID':Session.get('roomID')}
+        {'roomid':Session.get('roomid')}
         ,{sort: {timestamp: 1},limit:ml -1});
     }else
       return Messages.find(
-        {'roomID':Session.get('roomID')}
+        {'roomid':Session.get('roomid')}
         ,{sort: {timestamp: 1}}
       );  
   };
-  Template.messagesList.roomSelected=Template.selectChatRoom.roomSelected= function(){
-    if(Session.get('roomID'))
+  Template.messagesList.roomSelected=Template.login.roomSelected=Template.selectChatRoom.roomSelected= function(){
+    if(Session.get('roomid'))
       return true;
     return false;
   };
 
   Template.selectChatRoom.selectedRoom= function(){
-    if(Session.get('roomID'))
-      return Session.get('roomID');
+    if(Session.get('roomid'))
+      return Session.get('roomid');
     return '';
   };
 
@@ -228,7 +290,7 @@ if(Meteor.isClient) {
             Messages.insert(
               {userid:Session.get('userid')
               ,user:Session.get('username')
-              ,roomID:Session.get('roomID')
+              ,roomid:Session.get('roomid')
               ,text:text
               ,timestamp:t}
             )
@@ -268,6 +330,12 @@ if(Meteor.isClient) {
       if(confirm('Do you want to remove your messages from this room?')){
         Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'));
       }
+    },
+
+    'click #toggle-show-online-users' : function(evnt,tmplt){
+      evnt.preventDefault();
+      var cont = tmplt.find('#online-users');
+      cont.classList.toggle('toggled');
     }
   });
   
@@ -282,17 +350,39 @@ if (Meteor.isServer) {
     ,update : function(){return true}
     ,remove : function(){return true}
   });
+  OnlineUsers.allow({
+    insert : function(){return true}
+    ,update : function(){return true}
+    ,remove : function(){return true}
+  });  
 
-  Meteor.publish('MessagesChatroom',function(roomID){
+  Meteor.publish('MessagesChatroom',function(roomid){
     return Messages.find(
-      {roomID:roomID}
-    )
-   }
-  );
+      {
+        roomid:roomid
+      }
+    );
+  });
+
+  Meteor.publish('usersOnlineInThisRoom',function(roomid){
+    return OnlineUsers.find(
+      {
+        roomid:roomid
+      }
+    );
+  });
+
 
   Meteor.methods({
     removeMessagesOfUserInRoom : function(userid){
       Messages.remove({userid:userid}, function(){console.log('messages removed');});
+    },
+    clog : function(s){
+      console.log(s);
+    },
+    removeOnlineUserFromRoom : function(userid,roomid){
+      OnlineUsers.remove({userid:userid,roomid:roomid});
+      console.log('removed messages of user ' + userid + ' from room ' + roomid);
     }
   });
 

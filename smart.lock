@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "router": {},
-      "HTML5-History-API": {}
+      "HTML5-History-API": {},
+      "presence": {}
     },
     "packages": {
       "router": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
         "tag": "v4.0.0",
         "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
+      },
+      "presence": {
+        "git": "https://github.com/tmeasday/meteor-presence.git",
+        "tag": "v0.2.1",
+        "commit": "265948d9aab7334c009cfa2daf84869a26c5318c"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

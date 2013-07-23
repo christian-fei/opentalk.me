@@ -1,0 +1,33 @@
+.main{
+	position: relative;
+}
+
+
+#online-users{
+	position:absolute;
+	@media all and(min-width:$limit + 10em){
+		position:fixed;
+	}
+
+	height:2em;
+	overflow:hidden;
+	padding: .66em;
+	background:#F9F9F9;
+
+
+	list-style-type: none;
+	border-bottom:1px solid #DADADA;
+	
+	top:1em;
+	right:1em;
+	
+	&.toggled{
+		/*that's shit*/
+		/*override #id high specifity*/
+		height:auto!important;
+	}
+}
+	.online{
+		margin-left:15px;
+		padding:1px;
+	}

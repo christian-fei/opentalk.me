@@ -1,7 +1,7 @@
 header{
-	height:4em;
+	//height:4em;
 	background:#EC5B0F;
-	
+	padding:.5em;
 	input{
 		text-align: center;
 	}
@@ -67,7 +67,13 @@ header{
 		max-width: 10em;
 		margin-top: .45em;		
 	}
-	#roomID{
+	#roomid{
+		/*
 		max-width: 7em;
-		margin-top: .75em;
+		*/
+		/*
+		margin: 1.3em 0 0 1em;
+		*/
+		margin: .5em auto .5em;
+		display:block;
 	}

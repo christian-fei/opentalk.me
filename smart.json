@@ -1,6 +1,7 @@
 {
   "packages": {
     "router": {},
-    "HTML5-History-API": {}
+    "HTML5-History-API": {},
+    "presence": {}
   }
 }

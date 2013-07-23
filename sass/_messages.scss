@@ -1,6 +1,15 @@
 .messages{
 	list-style-type: none;
-	//@extend .fly-in-up;
+	
+	width:100%;
+	
+	&.online-users-toggled{
+		width:75%;
+	}
+
+	@media all and(min-width: $limit + 10em){
+		width:$limit;
+	}
 }
 	.message{
 		padding: 0.5em;
