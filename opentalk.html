@@ -54,7 +54,7 @@
 
 <template name='messagesList'>
 	{{#if roomSelected}}
-		<a href="#" id='deleteMyMessages' class="button silver">X</a>
+		<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
 
 		<ul class='messages'>
 			{{#each messages}}
