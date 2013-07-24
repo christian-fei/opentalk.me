@@ -3,7 +3,7 @@ OnlineUsers = new Meteor.Collection('OnlineUsers');
 
 if(Meteor.isClient) {
   /*
-    set absoluteUrl for setting up the accounts system for the right domain
+  set absoluteUrl for setting up the accounts system for the right domain
   */
   console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
