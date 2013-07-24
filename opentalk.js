@@ -7,27 +7,115 @@ if(Meteor.isClient) {
   */
   console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
+
+  var lastInsertId=0, //ID of the last inserted message
+  text='', //current message text
+  t=0, //current timestamp
+  mSub, //Message subscription
+  ouSub; //OnlineUsers subscription
+
+
+
+  /*
+    UTILITY FUNCTIONS
+  */
+
+  /*
+    unsubscribe from subscriptions
+  */
+  function unsubscribe(){
+    if(mSub)
+      mSub.stop();
+    if(ouSub)
+      ouSub.stop();
+  }
+
+  /*
+  USER GOES OFFLINE
+  */
+  /*
+    -remove user from OnlineUsers Collection (Meteor.call)
+    -unsubscribe from Messages, OnlineUsers
+  */
+  function goOffline(){
+    unsubscribe();
+    Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
+    Meteor.call('clog','logging out');
+  }
+
+
+  function isValidRoom(r){
+    if(r.match(/^[^#\/>]+$/gi))
+      return true;
+    return false;
+  }
+
+
+
+
+  /*
+  USER ENTERS A ROOM
+
+  CAUTION:
+    THE ROOM MUST BEGIN WITH NO SLASH
+  */
+  function routeToRoom(r){
+    //valid path
+    Session.set('roomid',null);
+    Meteor._localStorage.removeItem('roomid');    
+    if(isValidRoom(r)) {
+      console.log('valid path\nrouting to /' + r);
+      Meteor.Router.to('/'+r);
+      Session.set('roomid',r);
+      Meteor._localStorage.setItem('roomid',r);
+    } else {
+      Meteor.Router.to('/');
+      console.log('invalid path or already root\nrouting to /');
+    }
+  }
+  
+
+
+  /*
+    -unsubscribe from previous rooms
+    -Session roomid will be set
+    -manage subscriptions
+  */
+  function subscribeToRoom(r){
+    if(isValidRoom(r)) {
+      unsubscribe();
+      Session.set('roomid',r);
+      Meteor._localStorage.setItem('roomid',r);
+      mSub=Meteor.subscribe('MessagesChatroom',r);
+      ouSub = Meteor.subscribe('usersOnlineInThisRoom',r);
+    }
+  }
+
+
+
+
   /*
     RESET
+    -lastInsertId = null, to reset the pointer of the current message //could be left blank, since Session resets after pageload
+    -TO FIGURE OUT: room in localStorage to Session or not
+      -figured out: when the user logs out, clear the roomid in localStorage
+    -get the username,userid from localStorage
   */
   Session.set('lastInsertId',null);
-
+/*
+*/
   if(Meteor._localStorage.getItem('roomid'))
     Session.set('roomid',Meteor._localStorage.getItem('roomid'));
 
   Session.set('username',Meteor._localStorage.getItem('username'));
   Session.set('userid',Meteor._localStorage.getItem('userid'));
 
-  console.log('roomid ' + Session.get('roomid'));
-  console.log('userid ' + Session.get('userid'));
-  console.log('username ' + Session.get('username'));
+  Deps.autorun(function(){
+    console.log('roomid ' + Session.get('roomid'));
+    console.log('userid ' + Session.get('userid'));
+    console.log('username ' + Session.get('username'));
+  });
 
-  var lastInsertId=0, //ID of the last inserted message
-  text='', //current message text
-  t=0, //current timestamp
-  mSub, //Message subscription
-  ouSub, //OnlineUsers subscription
-  rSub=null; //Room subscription
 
 
 
@@ -35,6 +123,7 @@ if(Meteor.isClient) {
 
   /*
     ACCOUNT MANAGEMENT
+    for users logged in with Twitter,Github and shit
   */
   Deps.autorun(function () {
     if (Meteor.userId()) {
@@ -49,89 +138,79 @@ if(Meteor.isClient) {
 
   
   /*
-    SET UP ROUTING
+    SET UP BASIC ROUTING
   */
   Meteor.Router.add({'/about':'about'});
+  /*
+  there aren't no 404's
+    except the user types an invalid URL, then he will be redirected to /
+  */
   Meteor.Router.add({'/*':'messagesList'});
 
-  var pathRoot = window.location.pathname;
-      
-  console.log(pathRoot);
-  routeAndSubscribe(pathRoot);
+  var pathRoot = window.location.pathname,
+      room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
+  console.log('current loc ' +pathRoot);
 
-
-  function routeAndSubscribe(p){
-    var path;
-    if(p.charAt(0) === '/')
-      path = p.substring(1);
-    else
-      path = p;
-    if(path !== '/'){
-      /*
-        The path must be valid
-          ==> no # and /
-      */
-      console.log('path to check ' + path);
-      console.log('result '+ path.match(/^[a-z0-9]+$/i));
-      if(path.match(/^[a-z0-9]+$/i)){
-        console.log('Routing to ' + p);
-        //if(Session.get('username'))
-          subscribeToRoom(path);
-      } else {
-        Meteor.Router.to('/');
-      }
+  if(isValidRoom(room)) {
+    routeToRoom(room);
+    subscribeToRoom(room);
+  } else {
+    if(Session.get('roomid')){
+      routeToRoom(Session.get('roomid'));
+      subscribeToRoom(Session.get('roomid'));
     }
   }
-  
 
 
- 
-  /*
-    Online users
 
-    OnlineUsers Collection:
-      userid
-      username
-      roomid
-  */
-  Deps.autorun(function(){ 
-    if(Session.get('roomid'))
-      ouSub = Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-    else
-      if(ouSub)
-        ouSub.stop();
-    
-    if(Session.get('roomid') && Session.get('username') && Session.get('userid')) {
-    
-      if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){
-        
-        console.log('register online status');
-        OnlineUsers.insert(
-          {
-            userid:Session.get('userid'),
-            username:Session.get('username'),
-            roomid:Session.get('roomid')
-          }
-        );
+  function goOnline(){
+    //register as online only if not already online
+    if(!Session.get('userid') || !Session.get('username') || !Session.get('roomid'))
+      return;
+    if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
+      console.log('register online status');
+      OnlineUsers.insert(
+        {
+          userid:Session.get('userid'),
+          username:Session.get('username'),
+          roomid:Session.get('roomid')
+        }
+      );
+    }
+  }
 
-      } 
-    } 
+  Deps.autorun(function(){
+    goOnline(); 
   });
-
+  
 
   /*
     going offline
   */
   window.onbeforeunload = goOffline;
 
-  function goOffline(){
-    Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
-    Meteor.call('clog','logging out');
-  }
+
+
+
 
   function distinctUsers(){
-    var users = OnlineUsers.find().fetch();
-    var distinctUsers = _.uniq(users, false, function(d) {return [d.username,d.userid]});
+    var users = OnlineUsers.find().fetch(),
+        user,
+        distinctUsers=[],
+        du,
+        i=0,
+        j,
+        distinct;
+
+    while(u=users[i++]){
+      j=0;
+      distinct=true;
+      while(du=distinctUsers[j++])
+        if(du.userid === u.userid)
+          distinct=false;
+      if(distinct)
+        distinctUsers.push(u);
+    }
     return distinctUsers;
   }
 
@@ -151,15 +230,17 @@ if(Meteor.isClient) {
         var nickname = tmplt.find('#nickname').value;
         if(nickname.length && nickname.indexOf(' ') <= 0) {
           //TODO: better unique ID
-          userid = Date.now();
+          userid = '' + Date.now();
           //bind it to the Session to make it reactive
 
           Meteor._localStorage.setItem('username',nickname);
           Meteor._localStorage.setItem('userid',userid);
-          Session.set('username',Meteor._localStorage.getItem('username'));
-          Session.set('userid',Meteor._localStorage.getItem('userid'));
+          Session.set('username',nickname);
+          Session.set('userid',userid);
         
           routeAndSubscribe(pathRoot);
+        } else{
+          //notify
         }
       }
     }
@@ -196,28 +277,7 @@ if(Meteor.isClient) {
 
 
 
-  /*
-    Subscribes the user to a room
-      -sets the Session var 'roomid'
-      -registers a subscription to 'MessagesChatRoom' in mSub
-      -routes to r
-  */
-  function subscribeToRoom(r){
-    if(r.length){
-      goOffline();
-      Meteor._localStorage.setItem('roomid',r);
-      Session.set('roomid',r);
-      mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'));
-      Session.set('route','/'+r);
-      Meteor.Router.to(Session.get('route'));
-    }else{
-      Meteor.Router.to('/');
-      Meteor._localStorage.removeItem('roomid');
-      Session.set('roomid',null);
-     if(mSub)
-        mSub.stop();
-    }
-  }
+
 
   Template.selectChatRoom.events({
     'keyup #roomid': function(evnt,tmplt){
@@ -413,6 +473,7 @@ if (Meteor.isServer) {
   Meteor.methods({
     removeMessagesOfUserInRoom : function(userid){
       Messages.remove({userid:userid}, function(){console.log('messages removed');});
+      Messages.remove({userid:''+userid}, function(){console.log('messages removed');});
     },
     clog : function(s){
       console.log(s);
