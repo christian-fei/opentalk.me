@@ -61,6 +61,12 @@ if(Meteor.isClient) {
   */
   function routeToRoom(r){
     //valid path
+    /*
+    unsubscribe and go offline from current room, even if next condition will fail
+    since it will be restored
+    */
+    unsubscribe();
+    goOffline();
     Session.set('roomid',null);
     Meteor._localStorage.removeItem('roomid');    
     if(isValidRoom(r)) {
