@@ -40,7 +40,8 @@ if(Meteor.isClient) {
   function goOffline(){
     unsubscribe();
     Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
-    Meteor.call('clog','logging out');
+    var str = Session.get('username') + '('+Session.get('userid')+') is leaving room ' + Session.get('roomid');
+    Meteor.call('clog',str);
   }
 
 
@@ -62,8 +63,9 @@ if(Meteor.isClient) {
   function routeToRoom(r){
     //valid path
     /*
-    unsubscribe and go offline from current room, even if next condition will fail
-    since it will be restored
+    unsubscribe and go offline from current room
+      This because if condition is true, the user will be subscribed and signed in as online again
+      else it's all ok, since he is in /
     */
     unsubscribe();
     goOffline();
@@ -90,6 +92,7 @@ if(Meteor.isClient) {
   function subscribeToRoom(r){
     if(isValidRoom(r)) {
       unsubscribe();
+      goOffline();
       Session.set('roomid',r);
       Meteor._localStorage.setItem('roomid',r);
       mSub=Meteor.subscribe('MessagesChatroom',r);
@@ -156,6 +159,9 @@ if(Meteor.isClient) {
   var pathRoot = window.location.pathname,
       room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
   console.log('current loc ' +pathRoot);
+
+  goOffline();
+  unsubscribe();
 
   if(isValidRoom(room)) {
     routeToRoom(room);
@@ -236,15 +242,15 @@ if(Meteor.isClient) {
         var nickname = tmplt.find('#nickname').value;
         if(nickname.length && nickname.indexOf(' ') <= 0) {
           //TODO: better unique ID
+          //make to string as a (temporary?) fix
           userid = '' + Date.now();
-          //bind it to the Session to make it reactive
 
+          //bind it to the Session to make it reactive
           Meteor._localStorage.setItem('username',nickname);
           Meteor._localStorage.setItem('userid',userid);
           Session.set('username',nickname);
           Session.set('userid',userid);
-        
-          routeAndSubscribe(pathRoot);
+
         } else{
           //notify
         }
@@ -257,6 +263,8 @@ if(Meteor.isClient) {
     'click #logout' : function(evnt,tmplt){
       evnt.preventDefault();
       goOffline();
+      unsubscribe();
+
       if(Meteor.user())
         Meteor.logout();
       Meteor._localStorage.removeItem('username');
@@ -269,11 +277,6 @@ if(Meteor.isClient) {
 
       //redirect user to /
       Meteor.Router.to('/');
-      /*
-        test if defined, since it is possible that the user logged in, but didn't select a room
-      */
-      if(mSub)
-        mSub.stop();
     }
   });
 
@@ -289,7 +292,12 @@ if(Meteor.isClient) {
     'keyup #roomid': function(evnt,tmplt){
       if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
         var room = tmplt.find('#roomid').value;
-        routeAndSubscribe(room);
+        if(isValidRoom(room)){
+          routeToRoom(room);
+          subscribeToRoom(room);
+        } else {
+          //notify
+        }
       }
     }
   });
@@ -321,21 +329,9 @@ if(Meteor.isClient) {
   }
 
   function iAmWriting(){
-    if(Session.get('lastInsertId')){
-      var m,p=0,
-      ml = Messages.find().fetch().length,
-      lm = Messages.find().fetch()[ml-1],
-      lmid;
-      if(lm)
-        lmid = lm._id;
-      //console.log(lmid);
-      if(m=Messages.find({_id:lmid,userid:Session.get('userid')}).fetch()[0])
-        if(m.userid === Session.get('userid')){
-          return true;
-        }
-      return false;
-    }
-    return false;    
+    if(Session.get('lastInsertId'))
+      return true;
+    return false;
   }
 
   Template.messagesList.messages = function(){
@@ -420,7 +416,7 @@ if(Meteor.isClient) {
     'click #deleteMyMessages' : function(evnt,tmplt){
       evnt.preventDefault();
       if(confirm('Do you want to remove your messages from this room?')){
-        Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'));
+        Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'),Session.get('roomid'));
       }
     },
 
@@ -477,16 +473,14 @@ if (Meteor.isServer) {
 
 
   Meteor.methods({
-    removeMessagesOfUserInRoom : function(userid){
-      Messages.remove({userid:userid}, function(){console.log('messages removed');});
-      Messages.remove({userid:''+userid}, function(){console.log('messages removed');});
+    removeMessagesOfUserInRoom : function(userid,roomid){
+      Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
     },
     clog : function(s){
       console.log(s);
     },
     removeOnlineUserFromRoom : function(userid,roomid){
       OnlineUsers.remove({userid:userid,roomid:roomid});
-      console.log('removed messages of user ' + userid + ' from room ' + roomid);
     }
   });
 
