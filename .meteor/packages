@@ -10,3 +10,4 @@ bootstrap
 accounts-base
 localstorage
 accounts-ui-unstyled
+jquery

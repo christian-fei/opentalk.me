@@ -26,11 +26,6 @@
 		</section>
 	</div>
 
-	<script type='text/javascript'>
-		$(document).ready(function() {
-
-		});
-	</script>
 </body>
 
 <template name='login'>
@@ -42,7 +37,7 @@
 
 <template name="roomSelected">
 	{{#if loggedIn}}
-		{{username}} {{>logout}}
+		<span class="user">{{username}}</span> {{>logout}}
 	{{else}}
 		{{loginButtons}} <span class="or">or</span> {{>pickNickname}}
 	{{/if}}
@@ -64,9 +59,13 @@
 
 <template name='messagesList'>
 	{{#if loggedIn}}
-		<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
+		<div class="menu">
+			<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
+		</div>
 		<ul id="online-users">
-			<a href='#' id='toggle-show-online-users'>Online</a>
+			<li class='usersCount'>
+				<span href='#'>{{usersCount}}</span>
+			</li>
 			{{#each users}}
 				<li class="online">{{username}}</li>
 			{{/each}}
@@ -75,8 +74,10 @@
 			{{#each messages}}
 				<li class='message'><b class='username'>{{user}}</b>: {{text}}</li>
 			{{/each}}
+			<li>
+				<input type='text' id='mymessage' class='input-light' placeholder='just write'/>
+			</li>
 		</ul>
-		<input type='text' id='mymessage' class='input-light' placeholder='just write'/>
 	{{/if}}
 </template>
 
