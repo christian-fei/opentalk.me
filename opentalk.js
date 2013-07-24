@@ -11,7 +11,16 @@ if(Meteor.isClient) {
     RESET
   */
   Session.set('lastInsertId',null);
-  Session.set('roomid',null);
+
+  if(Meteor._localStorage.getItem('roomid'))
+    Session.set('roomid',Meteor._localStorage.getItem('roomid'));
+
+  Session.set('username',Meteor._localStorage.getItem('username'));
+  Session.set('userid',Meteor._localStorage.getItem('userid'));
+
+  console.log('roomid ' + Session.get('roomid'));
+  console.log('userid ' + Session.get('userid'));
+  console.log('username ' + Session.get('username'));
 
   var lastInsertId=0, //ID of the last inserted message
   text='', //current message text
@@ -21,8 +30,6 @@ if(Meteor.isClient) {
   rSub=null; //Room subscription
 
 
-  Session.set('username',Meteor._localStorage.getItem('username'));
-  Session.set('userid',Meteor._localStorage.getItem('userid'));
 
 
 
@@ -89,9 +96,10 @@ if(Meteor.isClient) {
       if(ouSub)
         ouSub.stop();
     
-    if(Session.get('roomid') !== null && Session.get('username') !== null && Session.get('userid') !== null) {
+    if(Session.get('roomid') && Session.get('username') && Session.get('userid')) {
     
       if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){
+        
         console.log('register online status');
         OnlineUsers.insert(
           {
@@ -100,6 +108,7 @@ if(Meteor.isClient) {
             roomid:Session.get('roomid')
           }
         );
+
       } 
     } 
   });
@@ -115,10 +124,17 @@ if(Meteor.isClient) {
     Meteor.call('clog','logging out');
   }
 
-  Template.messagesList.users =function(){
+  function distinctUsers(){
     var users = OnlineUsers.find().fetch();
-    var distinctUsers = _.uniq(users, false, function(d) {return d.username});
+    var distinctUsers = _.uniq(users, false, function(d) {return [d.username,d.userid]});
     return distinctUsers;
+  }
+
+  Template.messagesList.users =function(){
+    return distinctUsers();
+  }
+  Template.messagesList.usersCount =function(){
+    return distinctUsers().length;
   }
 
 
@@ -153,6 +169,7 @@ if(Meteor.isClient) {
         Meteor.logout();
       Meteor._localStorage.removeItem('username');
       Meteor._localStorage.removeItem('userid');
+      Meteor._localStorage.removeItem('roomid');
 
       Session.set('username',null);
       Session.set('userid',null);
@@ -183,14 +200,16 @@ if(Meteor.isClient) {
   function subscribeToRoom(r){
     if(r.length){
       goOffline();
+      Meteor._localStorage.setItem('roomid',r);
       Session.set('roomid',r);
       mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'));
       Session.set('route','/'+r);
       Meteor.Router.to(Session.get('route'));
     }else{
       Meteor.Router.to('/');
+      Meteor._localStorage.removeItem('roomid');
       Session.set('roomid',null);
-      if(mSub)
+     if(mSub)
         mSub.stop();
     }
   }
@@ -215,7 +234,7 @@ if(Meteor.isClient) {
   };
 
   Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
-    if(Session.get('username'))
+    if(Session.get('username') && Session.get('roomid'))
       return true;
     return false;
   };
@@ -299,6 +318,7 @@ if(Meteor.isClient) {
         }
 
         if(evnt.keyCode === 13){
+
           if(text.length){
             //new Message
             Session.set('lastInsertId',null);
@@ -323,6 +343,7 @@ if(Meteor.isClient) {
           }
         }
       }
+      $('#mymessage').focus();
     },
 
     'click #deleteMyMessages' : function(evnt,tmplt){
@@ -332,13 +353,24 @@ if(Meteor.isClient) {
       }
     },
 
-    'click #toggle-show-online-users' : function(evnt,tmplt){
-      evnt.preventDefault();
-      var cont = tmplt.find('#online-users');
-      cont.classList.toggle('toggled');
-    }
   });
   
+
+
+  $(document).ready(function() {
+
+    function adapt(){
+
+      $('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
+    
+    }
+
+    adapt();
+
+    $(window).resize(function(){
+      adapt();
+    });
+  });
 
 }
 

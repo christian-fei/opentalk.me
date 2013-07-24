@@ -433,25 +433,17 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_messages.scss */
 .messages {
   list-style-type: none;
-  width: 100%;
-}
-/* line 6, ../sass/_messages.scss */
-.messages.online-users-toggled {
-  width: 75%;
-}
-@media all and (min-width: 50em) {
-  /* line 1, ../sass/_messages.scss */
-  .messages {
-    width: 40em;
-  }
+  max-width: 100%;
+  padding: .66em;
+  float: left;
 }
 
-/* line 14, ../sass/_messages.scss */
+/* line 11, ../sass/_messages.scss */
 .message {
   padding: 0.5em;
 }
 
-/* line 18, ../sass/_messages.scss */
+/* line 15, ../sass/_messages.scss */
 #mymessage {
   margin-top: 30px;
   width: 100%;
@@ -463,13 +455,13 @@ SUPER SLICK TRANSFORMS
   transition: all 0.25s ease-out;
 }
 
-/* line 30, ../sass/_messages.scss */
+/* line 27, ../sass/_messages.scss */
 input[type='text'].input-light {
   border: 2px solid rgba(30, 30, 30, 0.1);
   border-bottom: 2px solid rgba(30, 30, 30, 0.1);
   box-shadow: none;
 }
-/* line 35, ../sass/_messages.scss */
+/* line 32, ../sass/_messages.scss */
 input[type='text'].input-light:focus {
   border: 2px solid rgba(30, 30, 30, 0.04);
   border-bottom: 2px solid rgba(30, 30, 30, 0.04);
@@ -648,35 +640,28 @@ header input {
 /* line 1, ../sass/_general.scss */
 .main {
   position: relative;
+  overflow-x: hidden;
 }
 
-/* line 6, ../sass/_general.scss */
+/* line 7, ../sass/_general.scss */
 #online-users {
-  position: absolute;
-  height: 2em;
-  overflow: hidden;
+  max-width: 10em;
+  min-width: 3em;
+  height: 100%;
   padding: .66em;
   background: #F9F9F9;
+  float: left;
   list-style-type: none;
-  border-bottom: 1px solid #DADADA;
-  top: 1em;
-  right: 1em;
-}
-@media all and (min-width: 50em) {
-  /* line 6, ../sass/_general.scss */
-  #online-users {
-    position: fixed;
-  }
-}
-/* line 24, ../sass/_general.scss */
-#online-users.toggled {
-  /*that's shit*/
-  /*override #id high specifity*/
-  height: auto !important;
 }
 
-/* line 30, ../sass/_general.scss */
+/* line 22, ../sass/_general.scss */
+.usersCount {
+  text-align: center;
+}
+
+/* line 25, ../sass/_general.scss */
 .online {
-  margin-left: 15px;
   padding: 1px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

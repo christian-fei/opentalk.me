@@ -1,33 +1,31 @@
 .main{
 	position: relative;
+	overflow-x:hidden;
 }
 
 
 #online-users{
-	position:absolute;
-	@media all and(min-width:$limit + 10em){
-		position:fixed;
-	}
+	max-width: 10em;
+	
+	min-width: 3em;
 
-	height:2em;
-	overflow:hidden;
+	height:100%;
+	
 	padding: .66em;
 	background:#F9F9F9;
-
+	
+	float:left;
 
 	list-style-type: none;
-	border-bottom:1px solid #DADADA;
 	
-	top:1em;
-	right:1em;
-	
-	&.toggled{
-		/*that's shit*/
-		/*override #id high specifity*/
-		height:auto!important;
-	}
 }
+	.usersCount{
+		text-align: center;
+	}
 	.online{
-		margin-left:15px;
+		//margin-left:15px;
 		padding:1px;
+
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
