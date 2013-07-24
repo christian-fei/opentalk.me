@@ -3,12 +3,11 @@ OnlineUsers = new Meteor.Collection('OnlineUsers');
 
 if(Meteor.isClient) {
   /*
-    set absoluteUrl for setting up the accounts system for the right domain
+  set absoluteUrl for setting up the accounts system for the right domain
   */
   console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
 
-<<<<<<< HEAD
   var lastInsertId=0, //ID of the last inserted message
   text='', //current message text
   t=0, //current timestamp
@@ -91,18 +90,11 @@ if(Meteor.isClient) {
       ouSub = Meteor.subscribe('usersOnlineInThisRoom',r);
     }
   }
-=======
-
-
-
-
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
 
 
 
 
   /*
-<<<<<<< HEAD
     RESET
     -lastInsertId = null, to reset the pointer of the current message //could be left blank, since Session resets after pageload
     -TO FIGURE OUT: room in localStorage to Session or not
@@ -114,33 +106,16 @@ if(Meteor.isClient) {
 */
   if(Meteor._localStorage.getItem('roomid'))
     Session.set('roomid',Meteor._localStorage.getItem('roomid'));
-=======
-  restoring the previous session
-  I'm attaching the values of localStorage to the session,
-    to enable the reactivity sources (like Session) of Meteor
-  */
 
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
-
-  //Session.set('room',Meteor._localStorage.getItem('room'));
   Session.set('username',Meteor._localStorage.getItem('username'));
   Session.set('userid',Meteor._localStorage.getItem('userid'));
 
-<<<<<<< HEAD
   Deps.autorun(function(){
     console.log('roomid ' + Session.get('roomid'));
     console.log('userid ' + Session.get('userid'));
     console.log('username ' + Session.get('username'));
   });
 
-=======
-  Session.set('currentMessageId',0);
-  
-  var currentMessageText='', //current message currentMessageText
-    currentMessageTimestamp=0, //current timestamp
-    mSub, //Message subscription
-    ouSub; //OnlineUsers subscription
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
 
 
 
@@ -161,7 +136,6 @@ if(Meteor.isClient) {
   });
 
 
-<<<<<<< HEAD
   
   /*
     SET UP BASIC ROUTING
@@ -204,27 +178,6 @@ if(Meteor.isClient) {
       );
     }
   }
-=======
-
-  /**
-    Online users
-    OnlineUsers Collection:
-      userid
-      username
-      room
-  */
-  Deps.autorun(function(){    
-    if(Session.get('room') && Session.get('username') && Session.get('userid')) {
-      if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),room:Session.get('room')}).fetch().length === 0){
-        console.log('register online status');
-        OnlineUsers.insert(
-          {
-            userid:Session.get('userid'),
-            username:Session.get('username'),
-            room:Session.get('room')
-          }
-        );
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
 
   Deps.autorun(function(){
     goOnline(); 
@@ -232,27 +185,13 @@ if(Meteor.isClient) {
   
 
   /*
-    going offline, NOT LOGGIN OUT
+    going offline
   */
   window.onbeforeunload = goOffline;
 
-<<<<<<< HEAD
 
 
 
-=======
-  function goOffline(){
-    if(Session.get('userid') && Session.get('room')){
-      Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('room'));
-      var str = 'user ' + Session.get('username') + ' ('+Session.get('userid')+') leaves room  ' + Session.get('room');
-      Meteor.call('clog',str);
-      
-
-      //redirect user to /
-      Meteor.Router.to('/');
-    }
-  }
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
 
   function distinctUsers(){
     var users = OnlineUsers.find().fetch(),
@@ -281,58 +220,6 @@ if(Meteor.isClient) {
   Template.messagesList.usersCount =function(){
     return distinctUsers().length;
   }
-
-
-
-
-
-
-
-
-
-
-
-  
-  /*
-    SET UP ROUTING
-  */
-  Meteor.Router.add({'/about':'about'});
-  Meteor.Router.add({'/*':'messagesList'});
-
-  var pathRoot = window.location.pathname;
-
-  if(!pathRoot.length && Session.get('room'))
-    routeAndSubscribe(Session.get('room'));
-  else
-    routeAndSubscribe(pathRoot);
-
-
-  function routeAndSubscribe(p){
-    goOffline();
-    var path;
-    if(p.charAt(0) === '/')
-      path = p.substring(1);
-    else
-      path = p;
-    if(path.length){
-      /*
-        The path must be valid
-          ==> no # and /
-      */
-      if(path.match(/^[a-z0-9]+$/i)){
-        console.log('Routing to ' + p);
-        //if(Session.get('username'))
-          subscribeToRoom(path);
-      } else {
-        Meteor.Router.to('/');
-      }
-    }
-  }
-  
-
-
- 
-  
 
 
 
@@ -368,12 +255,14 @@ if(Meteor.isClient) {
         Meteor.logout();
       Meteor._localStorage.removeItem('username');
       Meteor._localStorage.removeItem('userid');
-      Meteor._localStorage.removeItem('room');
+      Meteor._localStorage.removeItem('roomid');
 
       Session.set('username',null);
       Session.set('userid',null);
-      Session.set('room',null);
+      Session.set('roomid',null);
 
+      //redirect user to /
+      Meteor.Router.to('/');
       /*
         test if defined, since it is possible that the user logged in, but didn't select a room
       */
@@ -388,51 +277,12 @@ if(Meteor.isClient) {
 
 
 
-<<<<<<< HEAD
 
-=======
-  /*
-    Subscribes the user to a room
-      -sets the Session var 'room'
-      -registers a subscription to 'MessagesChatRoom' in mSub
-      -routes to r
-  */
-  function subscribeToRoom(r){
-    /*
-      go offline in previous room, if any
-    */
-    goOffline();
-
-    if(r.length){
-      goOffline();
-      Meteor._localStorage.setItem('room',r);
-      Session.set('room',r);
-    }else{
-      Session.set('room',null);
-      Meteor._localStorage.removeItem('room');
-      unsubscribe();
-    }
-  }
->>>>>>> 8a180cf8c2f292504c1f22d5e934eb2a760a89b4
-
-
-
-
-  function subscribe(){
-    mSub=Meteor.subscribe('MessagesChatroom',Session.get('room'));
-    ouSub = Meteor.subscribe('usersOnlineInThisRoom',Session.get('room'));
-  }
-  function unsubscribe(){
-    if(mSub)
-        mSub.stop();
-    if(ouSub)
-      ouSub.stop();
-  }
 
   Template.selectChatRoom.events({
-    'keyup #room': function(evnt,tmplt){
+    'keyup #roomid': function(evnt,tmplt){
       if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
-        var room = tmplt.find('#room').value;
+        var room = tmplt.find('#roomid').value;
         routeAndSubscribe(room);
       }
     }
@@ -449,7 +299,7 @@ if(Meteor.isClient) {
   };
 
   Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
-    if(Session.get('username') && Session.get('room'))
+    if(Session.get('username') && Session.get('roomid'))
       return true;
     return false;
   };
@@ -465,8 +315,8 @@ if(Meteor.isClient) {
   }
 
   function iAmWriting(){
-    if(Session.get('currentMessageId')){
-      /*var m,p=0,
+    if(Session.get('lastInsertId')){
+      var m,p=0,
       ml = Messages.find().fetch().length,
       lm = Messages.find().fetch()[ml-1],
       lmid;
@@ -476,90 +326,86 @@ if(Meteor.isClient) {
       if(m=Messages.find({_id:lmid,userid:Session.get('userid')}).fetch()[0])
         if(m.userid === Session.get('userid')){
           return true;
-        }*/
-      return true;
+        }
+      return false;
     }
     return false;    
   }
 
   Template.messagesList.messages = function(){
-    var ml = Messages.find({'room':Session.get('room')}).fetch().length;
+    var ml = Messages.find({'roomid':Session.get('roomid')}).fetch().length;
 
     if(iAmWriting()){
       if(ml <= 1)
         return [];
       return Messages.find(
-        {'room':Session.get('room')}
+        {'roomid':Session.get('roomid')}
         ,{sort: {timestamp: 1},limit:ml -1});
     }else
       return Messages.find(
-        {'room':Session.get('room')}
+        {'roomid':Session.get('roomid')}
         ,{sort: {timestamp: 1}}
       );  
   };
-
   Template.messagesList.roomSelected=Template.login.roomSelected=Template.selectChatRoom.roomSelected= function(){
-    if(Session.get('room'))
+    if(Session.get('roomid'))
       return true;
     return false;
   };
 
   Template.selectChatRoom.selectedRoom= function(){
-    if(Session.get('room'))
-      return Session.get('room');
+    if(Session.get('roomid'))
+      return Session.get('roomid');
     return '';
   };
 
 
   Template.messagesList.events({
     'keyup #mymessage' : function(evnt,tmplt){
-      currentMessageText = tmplt.find('#mymessage').value;
-      currentMessageTimestamp = Date.now();
+      if(Session.get('username')){
 
-      /*First message/first keystroke being sent*/
-      if(!Session.get('currentMessageId') && currentMessageText.length){
-        console.log('first message');
-        Session.set('currentMessageId',
-          Messages.insert(
-            {userid:Session.get('userid')
-            ,user:Session.get('username')
-            ,room:Session.get('room')
-            ,text:currentMessageText
-            ,timestamp:currentMessageTimestamp}
-          )
-        );
-        return;
-      }
+        text = tmplt.find('#mymessage').value;
+        t = Date.now();
 
-      if(evnt.keyCode === 13){
-        console.log('enter');
-        if(currentMessageText.length){
-          console.log('new message');
-          //new Message
-          Session.set('currentMessageId',0);
-          tmplt.find('#mymessage').value = '';
-        } else {
-          console.log('deleting message');
-          /*
-            remove the last message, since it's shit
-          */
-          Messages.remove({_id:''+Session.get('currentMessageId')});
-          Session.set('currentMessageId',0)
-        }
-      } else {
-        if(currentMessageText.length){
-          console.log('updating message');
-          Messages.update(
-            {_id:''+Session.get('currentMessageId')}
-            ,{$set : {
-                text:currentMessageText
-                ,timestamp:currentMessageTimestamp
-              }
-            }
+        /*First message/first keystroke being sent*/
+        if(!Session.get('lastInsertId') && text.length){
+          Session.set(
+            'lastInsertId',
+            Messages.insert(
+              {userid:Session.get('userid')
+              ,user:Session.get('username')
+              ,roomid:Session.get('roomid')
+              ,text:text
+              ,timestamp:t}
+            )
           );
+          return;
+        }
+
+        if(evnt.keyCode === 13){
+
+          if(text.length){
+            //new Message
+            Session.set('lastInsertId',null);
+            tmplt.find('#mymessage').value = '';
+          } else {
+            Messages.remove({_id:''+Session.get('lastInsertId')});
+            Session.set('lastInsertId',null);
+          }
         } else {
-          Messages.remove({_id:''+Session.get('currentMessageId')});
-          Session.set('currentMessageId',0)
+          if(text.length){
+            Messages.update(
+              {_id:''+Session.get('lastInsertId')}
+              ,{$set : {
+                  text:text
+                  ,timestamp:t
+                }
+              }
+            );
+          } else {
+            Messages.remove({_id:''+Session.get('lastInsertId')});
+            Session.set('lastInsertId',null);
+          }
         }
       }
       $('#mymessage').focus();
@@ -584,14 +430,13 @@ if(Meteor.isClient) {
     
     }
 
+    adapt();
 
     $(window).resize(function(){
       adapt();
     });
-
-    adapt();
-
   });
+
 }
 
 if (Meteor.isServer) {
@@ -608,18 +453,18 @@ if (Meteor.isServer) {
     ,remove : function(){return true}
   });  
 
-  Meteor.publish('MessagesChatroom',function(room){
+  Meteor.publish('MessagesChatroom',function(roomid){
     return Messages.find(
       {
-        room:room
+        roomid:roomid
       }
     );
   });
 
-  Meteor.publish('usersOnlineInThisRoom',function(room){
+  Meteor.publish('usersOnlineInThisRoom',function(roomid){
     return OnlineUsers.find(
       {
-        room:room
+        roomid:roomid
       }
     );
   });
@@ -633,9 +478,9 @@ if (Meteor.isServer) {
     clog : function(s){
       console.log(s);
     },
-    removeOnlineUserFromRoom : function(userid,room){
-      OnlineUsers.remove({userid:userid,room:room});
-      console.log('removed messages of user ' + userid + ' from room ' + room);
+    removeOnlineUserFromRoom : function(userid,roomid){
+      OnlineUsers.remove({userid:userid,roomid:roomid});
+      console.log('removed messages of user ' + userid + ' from room ' + roomid);
     }
   });
 
