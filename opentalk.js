@@ -53,21 +53,26 @@ if(Meteor.isClient) {
   */
   Meteor.Router.add({'/about':'about'});
   Meteor.Router.add({'/*':'messagesList'});
-  
+
   var pathRoot = window.location.pathname;
       
-
   console.log(pathRoot);
   routeAndSubscribe(pathRoot);
 
 
   function routeAndSubscribe(p){
-    path = p.substring(1);
-     if(path !== '/'){
+    var path;
+    if(p.charAt(0) === '/')
+      path = p.substring(1);
+    else
+      path = p;
+    if(path !== '/'){
       /*
         The path must be valid
           ==> no # and /
       */
+      console.log('path to check ' + path);
+      console.log('result '+ path.match(/^[a-z0-9]+$/i));
       if(path.match(/^[a-z0-9]+$/i)){
         console.log('Routing to ' + p);
         //if(Session.get('username'))
@@ -218,7 +223,7 @@ if(Meteor.isClient) {
     'keyup #roomid': function(evnt,tmplt){
       if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
         var room = tmplt.find('#roomid').value;
-        subscribeToRoom(room);
+        routeAndSubscribe(room);
       }
     }
   });
