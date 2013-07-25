@@ -39,6 +39,8 @@ if(Meteor.isClient) {
   */
   function goOffline(){
     unsubscribe();
+    if( !(Session.get('userid') && Session.get('roomd')) )
+      return;
     Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
     var str = Session.get('username') + '('+Session.get('userid')+') is leaving room ' + Session.get('roomid');
     Meteor.call('clog',str);
@@ -297,6 +299,7 @@ if(Meteor.isClient) {
           subscribeToRoom(room);
         } else {
           //notify
+          
         }
       }
     }
