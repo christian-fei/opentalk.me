@@ -65,10 +65,12 @@ function routeToRoom(r){
 	  This because if condition is true, the user will be subscribed and signed in as online again
 	  else it's all ok, since he is in /
 	*/
+	/*
 	unsubscribe();
 	goOffline();
+	*/
 	Session.set('roomid',null);
-	Meteor._localStorage.removeItem('roomid');    
+	Meteor._localStorage.removeItem('roomid');
 	if(isValidRoom(r)) {
 	  console.log('valid path\nrouting to /' + r);
 	  Meteor.Router.to('/'+r);
@@ -89,12 +91,16 @@ function routeToRoom(r){
 */
 function subscribeToRoom(r){
 	if(isValidRoom(r)) {
+	  
 	  unsubscribe();
 	  goOffline();
+
 	  Session.set('roomid',r);
 	  Meteor._localStorage.setItem('roomid',r);
 	  mSub=Meteor.subscribe('MessagesChatroom',r);
 	  ouSub = Meteor.subscribe('usersOnlineInThisRoom',r);
+
+	  goOnline();
 	}
 }
 
@@ -165,7 +171,8 @@ unsubscribe();
 if(isValidRoom(room)) {
 	routeToRoom(room);
 	subscribeToRoom(room);
-	} else {
+	goOnline();
+} else {
 	if(Session.get('roomid')){
 	  routeToRoom(Session.get('roomid'));
 	  subscribeToRoom(Session.get('roomid'));
@@ -175,24 +182,26 @@ if(isValidRoom(room)) {
 
 
 function goOnline(){
+
 	//register as online only if not already online
 	if(!Session.get('userid') || !Session.get('username') || !Session.get('roomid'))
 	  return;
+	
 	if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
-	  console.log('register online status');
-	  OnlineUsers.insert(
-	    {
-	      userid:Session.get('userid'),
-	      username:Session.get('username'),
-	      roomid:Session.get('roomid')
-	    }
-	  );
+		console.log('register online status');
+		var str = Session.get('username') + '('+Session.get('userid')+') entered room ' + Session.get('roomid');
+		Meteor.call('clog',str);
+		OnlineUsers.insert(
+			{
+			  userid:Session.get('userid'),
+			  username:Session.get('username'),
+			  roomid:Session.get('roomid')
+			}
+		);
 	}
 }
 
-Deps.autorun(function(){
-	goOnline(); 
-});
+
 
 
 /*
@@ -250,6 +259,9 @@ Template.pickNickname.events({
 	      Session.set('username',nickname);
 	      Session.set('userid',userid);
 
+	      subscribeToRoom(Session.get('roomid'));
+	      routeToRoom(Session.get('roomid'));
+	      goOnline;
 	    } else{
 	      //notify
 	    }
