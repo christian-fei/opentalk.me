@@ -49,6 +49,8 @@ function goOnline(){
 	if(!Session.get('userid') || !Session.get('username') || !Session.get('roomid'))
 	  return;
 	
+	setAvatar();
+
 	if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
 		console.log('register online status');
 		var str = Session.get('username') + '('+Session.get('userid')+') entered room ' + Session.get('roomid');
@@ -63,6 +65,23 @@ function goOnline(){
 	}
 }
 
+
+function setAvatar(){
+	var imgsrc = '/images/avatar.png';
+
+	var coll = Meteor.users.find({_id:Session.get('userid')}).fetch()[0];
+	var cur;
+	if(cur=coll){
+		if(cur=cur['services']){
+			if(cur=cur['twitter']){
+				if(cur=cur['profile_image_url'])
+					imgsrc=cur;
+			}
+		}
+	}
+	Meteor._localStorage.setItem('avatar',imgsrc);
+	Session.set('avatar',imgsrc);
+}
 
 function isValidRoom(r){
 	if(r.match(/^[^#\/>]+$/gi))
@@ -322,6 +341,9 @@ global username, either from accounts or nickname
 Template.roomSelected.username = function(){
 	return Session.get('username');
 };
+Template.roomSelected.avatar = function(){
+	return Session.get('avatar');
+}
 
 Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
 	if(Session.get('username') && Session.get('roomid'))
