@@ -39,7 +39,7 @@
 	{{#if loggedIn}}
 		<img src="{{avatar}}" alt="" class="avatar"/><span class="user">{{username}}</span> {{>logout}}
 	{{else}}
-		{{loginButtons}} <span class="or">or</span> {{>pickNickname}}
+		{{>pickNickname}}
 	{{/if}}
 </template>
 

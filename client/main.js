@@ -6,10 +6,24 @@ console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
 var lastInsertId=0, //ID of the last inserted message
 	text='', //current message text
-	t=0, //current timestamp
-	mSub, //Message subscription
-	ouSub; //OnlineUsers subscription
+	t=0, //current timestamp (synched with server)
+	clientt= Date.now(),
+	servert=0,
+	tdiff=0. //difference between time on server and time on client
+	mSub = null, //Messages subscription
+	ouSub = null; //OnlineUsers subscription
 
+
+Meteor.call('serverTime',function(error, result){
+	console.log('server responded with ' + result);
+	servert=result;
+	tdiff = servert - clientt;
+	console.log('tdiff s/c: ' + tdiff);
+});
+
+
+/*sync time*/
+function syncTime(){}
 
 
 /*
@@ -26,62 +40,49 @@ function unsubscribe(){
 	  ouSub.stop();
 }
 
+function subscribe(){
+	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'));
+	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+}
+
 /*
 USER GOES OFFLINE
 */
 /*
--remove user from OnlineUsers Collection (Meteor.call)
 -unsubscribe from Messages, OnlineUsers
+-remove user from OnlineUsers Collection (Meteor.call)
 */
 function goOffline(){
+	Meteor.call('setOfflineUser',Session.get('userid'),Session.get('roomid'));
 	unsubscribe();
-	if( !(Session.get('userid') && Session.get('roomid')) )
-	  return;
-	Meteor.call('removeOnlineUserFromRoom',Session.get('userid'),Session.get('roomid'));
-	var str = Session.get('username') + '('+Session.get('userid')+') is leaving room ' + Session.get('roomid');
-	Meteor.call('clog',str);
 }
+
+
 
 
 function goOnline(){
-
-	//register as online only if not already online
-	if(!Session.get('userid') || !Session.get('username') || !Session.get('roomid'))
-	  return;
-	
-	setAvatar();
-
+	if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username')){
+		Session.set('userid',Meteor._localStorage.getItem('userid'));
+		Session.set('username',Meteor._localStorage.getItem('username'));
+	}
 	if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
-		console.log('register online status');
-		var str = Session.get('username') + '('+Session.get('userid')+') entered room ' + Session.get('roomid');
-		Meteor.call('clog',str);
-		OnlineUsers.insert(
-			{
-			  userid:Session.get('userid'),
-			  username:Session.get('username'),
-			  roomid:Session.get('roomid')
-			}
-		);
+		console.log('setting avatar, because not already online ?!');
+		setAvatar();
+		console.log('register online status, because not already online ?!');
+		Meteor.call('setOnlineUser',Session.get('userid'),Session.get('username'),Session.get('roomid'));
 	}
 }
+
 
 
 function setAvatar(){
-	var imgsrc = '/images/avatar.png';
-
-	var coll = Meteor.users.find({_id:Session.get('userid')}).fetch()[0];
-	var cur;
-	if(cur=coll){
-		if(cur=cur['services']){
-			if(cur=cur['twitter']){
-				if(cur=cur['profile_image_url'])
-					imgsrc=cur;
-			}
-		}
-	}
-	Meteor._localStorage.setItem('avatar',imgsrc);
-	Session.set('avatar',imgsrc);
+	if(Meteor._localStorage.getItem('avatar'))
+		Session.set('avatar',Meteor._localStorage.getItem('avatar'));
+	else
+		Session.set('avatar','/images/avatar.png');
 }
+
+
 
 function isValidRoom(r){
 	if(r.match(/^[^#\/>]+$/gi))
@@ -98,7 +99,7 @@ USER ENTERS A ROOM
 CAUTION:
 THE ROOM MUST BEGIN WITH NO SLASH
 */
-function routeToRoom(r){
+function joinRoom(r){
 	//valid path
 	/*
 	unsubscribe and go offline from current room
@@ -106,37 +107,22 @@ function routeToRoom(r){
 	  else it's all ok, since he is in /
 	*/
 	Session.set('roomid',null);
-	Meteor._localStorage.removeItem('roomid');
+	if(r === ''){
+		Meteor.Router.to('/');
+	}
+	Session.set('roomid',null);
+	unsubscribe();
+	goOffline();	
 	if(isValidRoom(r)) {
 	  console.log('valid path\nrouting to /' + r);
 	  Meteor.Router.to('/'+r);
 	  Session.set('roomid',r);
 	  Meteor._localStorage.setItem('roomid',r);
+	  goOnline();
+	  subscribe();
 	} else {
 	  Meteor.Router.to('/');
 	  console.log('invalid path or already root\nrouting to /');
-	}
-}
-
-
-
-/*
--unsubscribe from previous rooms
--Session roomid will be set
--manage subscriptions
-*/
-function subscribeToRoom(r){
-	if(isValidRoom(r)) {
-	  
-	  unsubscribe();
-	  goOffline();
-
-	  Session.set('roomid',r);
-	  Meteor._localStorage.setItem('roomid',r);
-	  mSub=Meteor.subscribe('MessagesChatroom',r);
-	  ouSub = Meteor.subscribe('usersOnlineInThisRoom',r);
-
-	  goOnline();
 	}
 }
 
@@ -153,36 +139,8 @@ RESET
 Session.set('lastInsertId',null);
 /*
 */
-if(Meteor._localStorage.getItem('roomid'))
-	Session.set('roomid',Meteor._localStorage.getItem('roomid'));
-
-	Session.set('username',Meteor._localStorage.getItem('username'));
-	Session.set('userid',Meteor._localStorage.getItem('userid'));
-
-	Deps.autorun(function(){
-	console.log('roomid ' + Session.get('roomid'));
-	console.log('userid ' + Session.get('userid'));
-	console.log('username ' + Session.get('username'));
-});
 
 
-
-
-
-
-/*
-ACCOUNT MANAGEMENT
-for users logged in with Twitter,Github and shit
-*/
-Deps.autorun(function () {
-	if (Meteor.userId()) {
-	  // on login
-	  Meteor._localStorage.setItem('username',Meteor.user().profile.name);
-	  Meteor._localStorage.setItem('userid',Meteor.user()._id);
-	  Session.set('username',Meteor.user().profile.name);
-	  Session.set('userid',Meteor.user()._id);
-	}
-});
 
 
 
@@ -203,27 +161,19 @@ console.log('current loc ' +pathRoot);
 
 goOffline();
 unsubscribe();
+Session.set('roomid',null);
 
 if(isValidRoom(room)) {
-	routeToRoom(room);
-	subscribeToRoom(room);
+	joinRoom(room);
 	goOnline();
 } else {
-	if(Session.get('roomid')){
-	  routeToRoom(Session.get('roomid'));
-	  subscribeToRoom(Session.get('roomid'));
-	}
 }
 
 
 
 
-
-
-
-
 /*
-going offline
+going offline when the user closes the browser (also at page releod, but that's how onbeforeunload works)
 */
 window.onbeforeunload = goOffline;
 
@@ -271,15 +221,15 @@ Template.pickNickname.events({
 	      //make to string as a (temporary?) fix
 	      userid = '' + Date.now();
 
-	      //bind it to the Session to make it reactive
+
 	      Meteor._localStorage.setItem('username',nickname);
 	      Meteor._localStorage.setItem('userid',userid);
+
 	      Session.set('username',nickname);
 	      Session.set('userid',userid);
 
-	      subscribeToRoom(Session.get('roomid'));
-	      routeToRoom(Session.get('roomid'));
-	      goOnline;
+
+	      joinRoom(Session.get('roomid'));
 	    } else{
 	      //notify
 	    }
@@ -290,19 +240,16 @@ Template.pickNickname.events({
 
 Template.logout.events({
 	'click #logout' : function(evnt,tmplt){
+		console.log('logout clicked');
 	  evnt.preventDefault();
+
 	  goOffline();
-	  unsubscribe();
 
-	  if(Meteor.user())
-	    Meteor.logout();
-	  Meteor._localStorage.removeItem('username');
-	  Meteor._localStorage.removeItem('userid');
-	  Meteor._localStorage.removeItem('roomid');
-
-	  Session.set('username',null);
-	  Session.set('userid',null);
-	  Session.set('roomid',null);
+		Meteor._localStorage.removeItem('userid');
+		Meteor._localStorage.removeItem('username');
+		Session.set('userid',null);
+		Session.set('username',null);
+		Session.set('roomid',null);
 
 	  //redirect user to /
 	  Meteor.Router.to('/');
@@ -319,16 +266,14 @@ Template.logout.events({
 
 Template.selectChatRoom.events({
 	'keyup #roomid': function(evnt,tmplt){
-	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
-	    var room = tmplt.find('#roomid').value;
-	    if(isValidRoom(room)){
-	      routeToRoom(room);
-	      subscribeToRoom(room);
-	    } else {
-	      //notify
-	      
-	    }
-	  }
+		if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
+			var room = tmplt.find('#roomid').value;
+			if(isValidRoom(room)){
+				joinRoom(room);
+			} else {
+				//notify
+			}
+		}
 	}
 });
 
@@ -346,20 +291,10 @@ Template.roomSelected.avatar = function(){
 }
 
 Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
-	if(Session.get('username') && Session.get('roomid'))
-	  return true;
+	if(Session.get('username') && Session.get('userid') && Session.get('roomid'))
+		return true;
 	return false;
 };
-Template.messagesList.loggedInWithAccount=Template.login.loggedInWithAccount = function(){
-	if(Meteor.user())
-	  return true;
-	return false;
-}
-Template.messagesList.loggedInWithNickname=Template.login.loggedInWithNickname = function(){
-	if(!Meteor.user() && Session.get('username'))
-	  return true;
-	return false;
-}
 
 function iAmWriting(){
 	if(Session.get('lastInsertId'))
@@ -382,6 +317,7 @@ Template.messagesList.messages = function(){
 	    ,{sort: {timestamp: 1}}
 	  );  
 };
+
 Template.messagesList.roomSelected=Template.login.roomSelected=Template.selectChatRoom.roomSelected= function(){
 	if(Session.get('roomid'))
 	  return true;
@@ -397,10 +333,11 @@ Template.selectChatRoom.selectedRoom= function(){
 
 Template.messagesList.events({
 	'keyup #mymessage' : function(evnt,tmplt){
+		console.log('k');
 	  if(Session.get('username')){
 
 	    text = tmplt.find('#mymessage').value;
-	    t = Date.now();
+	    t= Date.now() + tdiff;
 
 	    /*First message/first keystroke being sent*/
 	    if(!Session.get('lastInsertId') && text.length){
@@ -456,18 +393,19 @@ Template.messagesList.events({
 });
 
 
+Meteor.startup(function(){
+	$(document).ready(function() {
 
-$(document).ready(function() {
+		function adapt(){
 
-	function adapt(){
+		  $('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
 
-	  $('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
+		}
 
-	}
+		adapt();
 
-	adapt();
-
-	$(window).resize(function(){
-	  adapt();
+		$(window).resize(function(){
+		  adapt();
+		});
 	});
 });
