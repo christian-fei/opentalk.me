@@ -3,16 +3,18 @@
 	
 	max-width:100%;
 
-	//width: calc(100% - 10em);
 	
 	padding:.66em;
-	float:left;
 }
 	.message{
 		padding: 0.5em;
 	}
 
+#li-message{
+	width:100%;
+}
 #mymessage{
+	resize: none;
 	margin-top: 30px;
 	width: 100%;
 	padding: 1.1em;

@@ -1,59 +1,35 @@
-<template name='login'>
-	{{#if roomSelected}}
-		{{>roomSelected}}
-	{{/if}}
-	<!--span class="user">{{username}}</span>-->
-</template>
-
-<template name="roomSelected">
-	{{#if loggedIn}}
-		<img src="{{avatar}}" alt="" class="avatar"/><span class="user">{{username}}</span> {{>logout}}
-	{{else}}
-		{{>pickNickname}}
-	{{/if}}
-</template>
-
-
 <template name='pickNickname'>
-	<input type="text" id='nickname' class='input-light' placeholder='pick a nickname'>
+	<span class="vam">Pick a username to join</span>
+	<input type="text" id='nickname' class='vam' placeholder='pick a nickname'>
 </template>
 
 <template name='logout'>
 	<a href="#" id='logout' class='button silver' title='Log out'><span class="icon-logout"></span></a>
 </template>
 
-
 <template name='selectChatRoom'>
-	<input type='text' id='roomid' value='{{selectedRoom}}' placeholder='room'/>
+	<input type='text' id='roomid' placeholder='public-room'/>
 </template>
 
-<template name='messagesList'>
-	{{#if loggedIn}}
-		<div class="menu">
-			<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
-		</div>
-	{{/if}}
+<template name='messages'>
+	<div class="main">
+		{{#if loggedIn}}
+			<div class="menu">
+				<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
+			</div>
+		{{/if}}
 
-	{{#if roomSelected}}
-		<ul id="online-users">
-			<li class='usersCount'>
-				<span href='#'>{{usersCount}}</span>
-			</li>
-			{{#each users}}
-				<li class="online">{{username}}</li>
-			{{/each}}
-		</ul>
-	{{/if}}
-	{{#if loggedIn}}
-		<ul class='messages'>
-			{{#each messages}}
-				<li class='message'><b class='username'>{{user}}</b>: {{text}}</li>
-			{{/each}}
-			<li>
-				<input type='text' id='mymessage' class='input-light' placeholder='just write'/>
-			</li>
-		</ul>
-	{{/if}}
+		{{#if loggedIn}}
+			<ul class='messages'>
+				{{#each messages}}
+					<li class='message'><b class='username'>{{username}}</b>: {{text}}</li>
+				{{/each}}
+				<li id='li-message'>
+					<textarea id="mymessage"  rows="1" placeholder='your message'/>
+				</li>
+			</ul>
+		{{/if}}
+	</div>
 </template>
 
 <template name="welcome">
@@ -69,14 +45,24 @@
 
 <template name="room">
 	<aside class="fixed-sidebar">
-		this
-		<br>
-		is
-		<br>
-		the
-		<br>
-		fixed
-		<br>
-		sidebar
+		{{#if loggedIn}}
+			{{username}}
+			{{>logout}}
+		{{/if}}
+
+		<ul id="online-users">
+			<li class='usersCount'>
+				<span >{{usersCount}}</span>
+			</li>
+			{{#each users}}
+				<li class="online">{{nickname}}</li>
+			{{/each}}
+		</ul>
 	</aside>
+	
+	{{#unless loggedIn}}
+		{{>pickNickname}}
+	{{/unless}}
+	
+	{{>messages}}
 </template>

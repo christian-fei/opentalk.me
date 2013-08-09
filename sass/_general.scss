@@ -10,36 +10,12 @@
 	background-size: 800px;
 }
 
-.main{
-	z-index: 100;
-	@extends .limit;
+body > * {
+	position:relative;
 }
 
-
-
-
-#online-users{
-	max-width: 10em;
-	
-	min-width: 3em;
-
-	height:100%;
-	
-	padding: .66em;
-	background:#F9F9F9;
-	
-	float:left;
-
-	list-style-type: none;
-	
+body{
+	max-width:$limit;
+	margin:0 auto;
+	position: relative;
 }
-	.usersCount{
-		text-align: center;
-	}
-	.online{
-		//margin-left:15px;
-		padding:1px;
-
-		text-overflow: ellipsis;
-		overflow: hidden;
-	}

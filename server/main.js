@@ -39,11 +39,11 @@ Meteor.methods({
   setOnlineUser: function(userid,username,roomid){
     if(!userid || !username || !roomid)
       return;
-    if( OnlineUsers.find( {userid:userid,username:username,roomid:roomid} ).fetch().length === 0 ){
+    if( OnlineUsers.find( {userid:userid,nickname:username,roomid:roomid} ).fetch().length === 0 ){
       OnlineUsers.insert(
         {
           userid:userid,
-          username:username,
+          nickname:username,
           roomid:roomid
         }
       );

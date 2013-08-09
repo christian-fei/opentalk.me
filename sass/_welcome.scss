@@ -10,10 +10,10 @@
 		background:url('/images/opentalk_bg_opaque.png');
 		background:url('/images/pattern-white.png');
 		background-size: 400px;
-		-webkit-animation: welcome-mast-anim 20s infinite linear;
-		-moz-animation: welcome-mast-anim 20s infinite linear;
-		-o-animation: welcome-mast-anim 20s infinite linear;
-		animation: welcome-mast-anim 20s infinite linear;
+		-webkit-animation: welcome-mast-anim 20s infinite ease-in-out;
+		-moz-animation: welcome-mast-anim 20s infinite ease-in-out;
+		-o-animation: welcome-mast-anim 20s infinite ease-in-out;
+		animation: welcome-mast-anim 20s infinite ease-in-out;
 		-webkit-animation-fill-mode: both;
 		-moz-animation-fill-mode: both;
 		-o-animation-fill-mode: both;
@@ -36,6 +36,10 @@
 	outline:none;
 	border:0px;
 	box-shadow: none;
+
+	font-size: 1.1rem;
+	font-family: 'Questrial', sans-serif;
+	margin-top: -.3em;
 }
 
 .blanket{
@@ -61,7 +65,7 @@
 	display:table-cell;
 }
 
-$offset:333px;
+$offset:222px;
 @-webkit-keyframes welcome-mast-anim{
 	0%,100% { background-position:0%; }
 	50% { background-position:$offset $offset; }

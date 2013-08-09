@@ -1,0 +1,55 @@
+.fixed-sidebar{
+	position:fixed;
+	width:$limit*2/5;
+	top:0;bottom:0;
+	//left:0;
+	background:grey;
+	z-index: 99;
+	
+	@media all and(max-width: $limit*3/2){
+		width:$limit/3;
+	}
+}
+.main{
+	z-index: 126;
+	margin-left:$limit*2/5;
+	width: $limit*3/5;
+
+	@media all and(max-width: $limit*3/2){
+		margin-left:$limit/3;
+	}
+}
+
+@media all and (max-width: $limit){
+	.fixed-sidebar{
+		left:-100%;
+	}
+	.main{
+		margin: auto;
+	}
+}
+
+
+#online-users{
+	padding: .66em;
+	
+	list-style-type: none;
+}
+	.usersCount{
+		text-align: center;
+	}
+	.online{
+		//margin-left:15px;
+		padding:1px;
+
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+
+
+#nickname{
+	position:absolute;
+	top:40%;
+	left:40%;
+}

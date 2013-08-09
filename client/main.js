@@ -16,7 +16,7 @@ var lastInsertId=0, //ID of the last inserted message
 
 
 Meteor.call('serverTime',function(error, result){
-	console.log('server responded with ' + result);
+	//console.log('server responded with ' + result);
 	servert=result;
 	tdiff = servert - clientt;
 	console.log('tdiff s/c: ' + tdiff);
@@ -67,9 +67,9 @@ function goOnline(){
 		Session.set('username',Meteor._localStorage.getItem('username'));
 	}
 	if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
-		console.log('setting avatar, because not already online ?!');
+		//console.log('setting avatar, because not already online ?!');
 		setAvatar();
-		console.log('register online status, because not already online ?!');
+		//console.log('register online status, because not already online ?!');
 		Meteor.call('setOnlineUser',Session.get('userid'),Session.get('username'),Session.get('roomid'));
 	}
 }
@@ -157,9 +157,8 @@ except the user types an invalid URL, then he will be redirected to /
 Meteor.Router.add({'/*':'room'});
 
 var pathRoot = window.location.pathname,
-  room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
+  	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
 
-console.log('current loc ' +pathRoot);
 
 goOffline();
 unsubscribe();
@@ -204,10 +203,10 @@ function distinctUsers(){
 	return distinctUsers;
 }
 
-Template.messagesList.users =function(){
+Template.room.users =function(){
 	return distinctUsers();
 }
-Template.messagesList.usersCount =function(){
+Template.room.usersCount =function(){
 	return distinctUsers().length;
 }
 
@@ -221,7 +220,7 @@ Template.pickNickname.events({
 	    if(nickname.length && nickname.indexOf(' ') <= 0) {
 	      //TODO: better unique ID
 	      //make to string as a (temporary?) fix
-	      userid = '' + Date.now();
+	      userid = '' + Date.now() + tdiff;
 
 
 	      Meteor._localStorage.setItem('username',nickname);
@@ -230,8 +229,10 @@ Template.pickNickname.events({
 	      Session.set('username',nickname);
 	      Session.set('userid',userid);
 
+	      goOnline();
+	      subscribe();
 
-	      joinRoom(Session.get('roomid'));
+	      //joinRoom(Session.get('roomid'));
 	    } else{
 	      //notify
 	    }
@@ -285,14 +286,19 @@ Template.selectChatRoom.events({
 /*
 global username, either from accounts or nickname
 */
-Template.roomSelected.username = function(){
+Template.room.username = function(){
 	return Session.get('username');
 };
-Template.roomSelected.avatar = function(){
+Template.room.avatar = function(){
 	return Session.get('avatar');
 }
+Template.room.roomSelected = function(){
+	if(Session.get('roomid'))
+		return true;
+	return false;
+}
 
-Template.messagesList.loggedIn=Template.roomSelected.loggedIn=function(){
+Template.messages.loggedIn=Template.room.loggedIn=function(){
 	if(Session.get('username') && Session.get('userid') && Session.get('roomid'))
 		return true;
 	return false;
@@ -304,7 +310,7 @@ function iAmWriting(){
 	return false;
 }
 
-Template.messagesList.messages = function(){
+Template.messages.messages = function(){
 	var ml = Messages.find({'roomid':Session.get('roomid')}).fetch().length;
 
 	if(iAmWriting()){
@@ -320,76 +326,77 @@ Template.messagesList.messages = function(){
 	  );  
 };
 
-Template.messagesList.roomSelected=Template.login.roomSelected=Template.selectChatRoom.roomSelected= function(){
-	if(Session.get('roomid'))
-	  return true;
-	return false;
-};
+function removeLastMessage(){
+    Messages.remove({_id:''+Session.get('lastInsertId')});
+    Session.set('lastInsertId',null);
+    $('#mymessage').val('');
+}
 
-Template.selectChatRoom.selectedRoom= function(){
-	if(Session.get('roomid'))
-	  return Session.get('roomid');
-	return '';
-};
-
-
-Template.messagesList.events({
+Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
-		console.log('k');
-	  if(Session.get('username')){
+		console.log('k ' + evnt.keyCode);
 
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
 
+    	if(!text.trim().length){
+    		removeLastMessage();
+    		return;
+    	}
+
+
 	    /*First message/first keystroke being sent*/
-	    if(!Session.get('lastInsertId') && text.length){
-	      Session.set(
-	        'lastInsertId',
-	        Messages.insert(
-	          {userid:Session.get('userid')
-	          ,user:Session.get('username')
-	          ,roomid:Session.get('roomid')
-	          ,text:text
-	          ,timestamp:t}
-	        )
-	      );
-	      return;
+	    if(!Session.get('lastInsertId')){
+	    	console.log('=====================');
+	    	console.log('      new message   ');
+	    	console.log('=====================');
+			Session.set(
+				'lastInsertId',
+				Messages.insert(
+					{
+					userid:Session.get('userid')
+					,username:Session.get('username')
+					,roomid:Session.get('roomid')
+					,text:text
+					,timestamp:t
+					}
+				)
+			);
+	      	return;
 	    }
 
 	    if(evnt.keyCode === 13){
-
-	      if(text.length){
-	        //new Message
-	        Session.set('lastInsertId',null);
-	        tmplt.find('#mymessage').value = '';
-	      } else {
-	        Messages.remove({_id:''+Session.get('lastInsertId')});
-	        Session.set('lastInsertId',null);
-	      }
+			if(text.length){
+				//new Message
+				Session.set('lastInsertId',null);
+				tmplt.find('#mymessage').value = '';
+			} else {
+				removeLastMessage();
+			}
 	    } else {
-	      if(text.length){
-	        Messages.update(
-	          {_id:''+Session.get('lastInsertId')}
-	          ,{$set : {
-	              text:text
-	              ,timestamp:t
-	            }
-	          }
-	        );
-	      } else {
-	        Messages.remove({_id:''+Session.get('lastInsertId')});
-	        Session.set('lastInsertId',null);
-	      }
+			if(text.length){
+				Messages.update(
+					{
+						_id:''+Session.get('lastInsertId')
+					}
+					,{$set : 
+						{
+							text:text
+							,timestamp:t
+						}
+					}
+				);
+			} else {
+				removeLastMessage();
+			}
 	    }
-	  }
-	  $('#mymessage').focus();
 	},
 
 	'click #deleteMyMessages' : function(evnt,tmplt){
-	  evnt.preventDefault();
-	  if(confirm('Do you want to remove your messages from this room?')){
-	    Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'),Session.get('roomid'));
-	  }
+		evnt.preventDefault();
+		if(confirm('Do you want to remove your messages from this room?')){
+			Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'),Session.get('roomid'));
+		}
 	}
 
 });
@@ -400,41 +407,56 @@ Meteor.startup(function(){
 
 		function adapt(){
 
-		  $('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
+		  //$('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
 
 		}
 
 		adapt();
 
 		$(window).resize(function(){
-		  adapt();
+			adapt();
+			fixSidebar();
 		});
+
+		$('#roomid').focus();
+
+		$('.blanket').on('click',function(){
+			$('#roomid').focus();
+		});
+
+
+		function fixSidebar(){
+			if($(window).width() > 40/0.063)
+				$('.fixed-sidebar').css( 'left', $('body').offset().left );
+			else
+				$('.fixed-sidebar').css( 'left', '-100%' );
+		}
+		fixSidebar();
 
 
 		if(!Modernizr.input.placeholder){
 			console.log('there ain\'t no placeholder support in your shitty browser, dude');
 			$('[placeholder]').focus(function() {
-			  var input = $(this);
-			  if (input.val() == input.attr('placeholder')) {
+			var input = $(this);
+			if (input.val() == input.attr('placeholder')) {
 				input.val('');
 				input.removeClass('placeholder');
-			  }
+			}
 			}).blur(function() {
-			  var input = $(this);
-			  if (input.val() == '' || input.val() == input.attr('placeholder')) {
-				input.addClass('placeholder');
-				input.val(input.attr('placeholder'));
-			  }
+				var input = $(this);
+				if (input.val() == '' || input.val() == input.attr('placeholder')) {
+					input.addClass('placeholder');
+					input.val(input.attr('placeholder'));
+				}
 			}).blur();
 			$('[placeholder]').parents('form').submit(function() {
-			  $(this).find('[placeholder]').each(function() {
-				var input = $(this);
-				if (input.val() == input.attr('placeholder')) {
-				  input.val('');
-				}
-			  })
+				$(this).find('[placeholder]').each(function() {
+					var input = $(this);
+					if (input.val() == input.attr('placeholder')) {
+						input.val('');
+					}
+				})
 			});
-
 		}
 	});
 });
