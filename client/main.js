@@ -1,5 +1,6 @@
 /*
 set absoluteUrl for setting up the accounts system for the right domain
+edit:obsolete now, since no account-system is implemented anymore
 */
 console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
 
@@ -148,11 +149,12 @@ Session.set('lastInsertId',null);
 SET UP BASIC ROUTING
 */
 Meteor.Router.add({'/about':'about'});
+Meteor.Router.add({'/':'welcome'});
 /*
 there aren't no 404's
 except the user types an invalid URL, then he will be redirected to /
 */
-Meteor.Router.add({'/*':'messagesList'});
+Meteor.Router.add({'/*':'room'});
 
 var pathRoot = window.location.pathname,
   room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
@@ -407,5 +409,32 @@ Meteor.startup(function(){
 		$(window).resize(function(){
 		  adapt();
 		});
+
+
+		if(!Modernizr.input.placeholder){
+			console.log('there ain\'t no placeholder support in your shitty browser, dude');
+			$('[placeholder]').focus(function() {
+			  var input = $(this);
+			  if (input.val() == input.attr('placeholder')) {
+				input.val('');
+				input.removeClass('placeholder');
+			  }
+			}).blur(function() {
+			  var input = $(this);
+			  if (input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.addClass('placeholder');
+				input.val(input.attr('placeholder'));
+			  }
+			}).blur();
+			$('[placeholder]').parents('form').submit(function() {
+			  $(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+				  input.val('');
+				}
+			  })
+			});
+
+		}
 	});
 });

@@ -37,10 +37,8 @@ Meteor.methods({
     console.log(s);
   },
   setOnlineUser: function(userid,username,roomid){
-    if(!userid || !username || !roomid){
-      console.log('null shit ' + userid + ' ' + username + ' ' + roomid);
+    if(!userid || !username || !roomid)
       return;
-    }
     if( OnlineUsers.find( {userid:userid,username:username,roomid:roomid} ).fetch().length === 0 ){
       OnlineUsers.insert(
         {
@@ -56,8 +54,10 @@ Meteor.methods({
     }
   },
   setOfflineUser: function(userid,roomid){
-    OnlineUsers.remove({userid:userid,roomid:roomid});
-    console.log('setOfflineUser: ' + userid + ' @ ' + roomid);
+    if(userid && roomid) {
+      OnlineUsers.remove({userid:userid,roomid:roomid});
+      console.log('setOfflineUser: ' + userid + ' @ ' + roomid);
+    }
   }
 });
 

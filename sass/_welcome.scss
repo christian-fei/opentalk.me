@@ -1,0 +1,84 @@
+.welcome-mast{
+	background:#3498db;
+	color:white;
+	text-align:center;
+	font-size: 2em;
+	position: relative;
+}
+	.welcome-mast-cont{
+		padding:3em;
+		background:url('/images/opentalk_bg_opaque.png');
+		background:url('/images/pattern-white.png');
+		background-size: 400px;
+		-webkit-animation: welcome-mast-anim 20s infinite linear;
+		-moz-animation: welcome-mast-anim 20s infinite linear;
+		-o-animation: welcome-mast-anim 20s infinite linear;
+		animation: welcome-mast-anim 20s infinite linear;
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		-o-animation-fill-mode: both;
+		animation-fill-mode: both;
+
+		h1{
+			font-family: 'Josefin Sans', sans-serif;
+			font-weight: 400;
+		}
+	}
+
+#roomid {
+	position: relative;
+	padding: 1em;
+	//font-size: 1.3em;
+	margin: 0 1em;
+	text-align: center;
+	width:8em;
+
+	outline:none;
+	border:0px;
+	box-shadow: none;
+}
+
+.blanket{
+	position: relative;
+	display:table;
+	background:white;
+	padding:1.5em;
+	box-shadow: 3px 3px 25px lightgrey;
+	margin: 4em auto 6em;
+	border-radius: 5px;
+	border: 1px solid lightgrey;
+
+	@media all and(max-width: $limit){
+		margin: 2.5em auto 4em;
+	}
+}
+
+.medium-text{
+	font-size: 1.3em;
+}
+.vam{
+	vertical-align: middle;
+	display:table-cell;
+}
+
+$offset:333px;
+@-webkit-keyframes welcome-mast-anim{
+	0%,100% { background-position:0%; }
+	50% { background-position:$offset $offset; }
+}
+@-moz-keyframes welcome-mast-anim{
+	0% { background-position:0%; }
+	100% { background-position:$offset $offset; }
+}
+@-ms-keyframes welcome-mast-anim{
+	0% { background-position:0%; }
+	100% { background-position:$offset $offset; }
+}
+@-o-keyframes welcome-mast-anim{
+	0% { background-position:0%; }
+	100% { background-position:$offset $offset; }
+}
+@keyframes welcome-mast-anim{
+	0% { background-position:0%; }
+	100% { background-position:$offset $offset; }
+}

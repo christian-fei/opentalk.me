@@ -6,7 +6,6 @@
 preserve-inputs
 accounts-twitter
 accounts-github
-bootstrap
 accounts-base
 localstorage
 accounts-ui-unstyled
