@@ -1,8 +1,10 @@
 .main{
 	z-index: 126;
 	//margin-left:$limit*2/5;
-	margin: auto;
-	width: $limit;
+	margin: 5em auto;
+	max-width: $limit;
+	width:100%;
+	
 	padding: 1em;
 	@extend .blanket;
 	
@@ -10,6 +12,16 @@
 
 	border-top-right-radius:0px;
 	border-top-left-radius:0px;
+
+
+	&.blur{
+		-webkit-filter: blur(3px);
+	    -moz-filter: blur(3px);
+	    -o-filter: blur(3px);
+	    -ms-filter: blur(3px);
+	    filter: blur(3px);
+	    opacity: 0.5;
+	}
 }
 
 #nickname{

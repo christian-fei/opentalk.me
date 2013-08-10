@@ -220,7 +220,8 @@ Template.pickNickname.events({
 	    if(nickname.length && nickname.length < 25 && nickname.trim().length ) {
 	      //TODO: better unique ID
 	      //make to string as a (temporary?) fix
-	      userid = '' + Date.now() + tdiff;
+	      var uid = Date.now() + tdiff;
+	      userid = '' + uid;
 
 
 	      Meteor._localStorage.setItem('username',nickname);
@@ -400,6 +401,9 @@ Template.messages.events({
 
 });
 
+
+var sidebarToggled = false;
+
 function fixSidebar(){
 	var limit = 35, //same as CSS _vars.scss
 		sidebarWidth = 12; //same as CSS _room.scss
@@ -407,6 +411,12 @@ function fixSidebar(){
 	if($(window).width() > pcView){
 		var l = $('.main').offset().left - sidebarWidth*16;
 		$('.fixed-sidebar').css( 'left', l );
+
+		if(sidebarToggled){
+			$('.fixed-sidebar').toggleClass('show');
+			$('.main').toggleClass('blur');
+			sidebarToggled = false;
+		}
 	}
 	else
 		$('.fixed-sidebar').css( 'left', '-100%' );
@@ -421,8 +431,22 @@ Template.room.rendered = function(){
 		$('#nickname').focus();
 
 
-
 	scrollToBottom();
+
+
+	$('.toggle-sidebar').on('click',function(){
+		console.log('toggle sidebar');
+		$('.fixed-sidebar').toggleClass('show');
+		$('.main').toggleClass('blur');
+		sidebarToggled = !sidebarToggled;
+	});
+	$('.main').on('click',function(){
+		if(sidebarToggled){
+			$('.fixed-sidebar').removeClass('show');
+			$('.main').removeClass('blur');
+			sidebarToggled = false;
+		}
+	});
 };
 
 Template.welcome.rendered = function(){
@@ -431,6 +455,7 @@ Template.welcome.rendered = function(){
 	$('.blanket').on('click',function(){
 		$('#roomid').focus();
 	});
+	
 };
 
 
@@ -441,9 +466,14 @@ function scrollToBottom(){
 Meteor.startup(function(){
 	$(document).ready(function() {
 		
+		
+
+		scrollToBottom();
+
 		$(window).resize(function(){
 			fixSidebar();
 		});
+
 
 
 

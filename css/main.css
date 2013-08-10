@@ -579,15 +579,25 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_room.scss */
 .main {
   z-index: 126;
-  margin: auto;
-  width: 35em;
+  margin: 5em auto;
+  max-width: 35em;
+  width: 100%;
   padding: 1em;
   background: rgba(255, 255, 255, 0.6);
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
 }
+/* line 17, ../sass/_room.scss */
+.main.blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+  opacity: 0.5;
+}
 
-/* line 15, ../sass/_room.scss */
+/* line 27, ../sass/_room.scss */
 #nickname {
   position: relative;
   padding: 1em;
@@ -616,13 +626,29 @@ SUPER SLICK TRANSFORMS
   -ms-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  padding-top: 5em;
 }
-/* line 21, ../sass/_sidebar.scss */
+@media all and (max-width: 59em) {
+  /* line 1, ../sass/_sidebar.scss */
+  .fixed-sidebar {
+    left: -100%;
+  }
+}
+/* line 25, ../sass/_sidebar.scss */
+.fixed-sidebar.show {
+  width: 15em;
+  left: 0 !important;
+  z-index: 900;
+  opacity: 1;
+  background: white;
+  box-shadow: .3em .3em 2.5em lightgrey;
+}
+/* line 34, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
 
-/* line 25, ../sass/_sidebar.scss */
+/* line 40, ../sass/_sidebar.scss */
 .avatar {
   height: 3em;
   border: 2px solid black;
@@ -631,12 +657,12 @@ SUPER SLICK TRANSFORMS
   float: right;
 }
 
-/* line 33, ../sass/_sidebar.scss */
+/* line 48, ../sass/_sidebar.scss */
 .nickname {
   clear: right;
 }
 
-/* line 36, ../sass/_sidebar.scss */
+/* line 51, ../sass/_sidebar.scss */
 .nickname, #logout {
   float: right;
   clear: right;
@@ -644,20 +670,20 @@ SUPER SLICK TRANSFORMS
   margin-top: 0.3em;
 }
 
-/* line 43, ../sass/_sidebar.scss */
+/* line 58, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 2em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 49, ../sass/_sidebar.scss */
+/* line 64, ../sass/_sidebar.scss */
 .userinfo, .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 54, ../sass/_sidebar.scss */
+/* line 69, ../sass/_sidebar.scss */
 .online-users-count {
   color: #111;
   font-weight: bold;
@@ -668,6 +694,24 @@ SUPER SLICK TRANSFORMS
   border-radius: .6em;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+
+/* line 84, ../sass/_sidebar.scss */
+.toggle-sidebar {
+  display: none;
+}
+@media all and (max-width: 59em) {
+  /* line 84, ../sass/_sidebar.scss */
+  .toggle-sidebar {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    height: 3em;
+    width: 3em;
+    background: #f1c40f;
+    top: 0;
+    left: 0;
+  }
 }
 
 /* line 1, ../sass/_messages.scss */

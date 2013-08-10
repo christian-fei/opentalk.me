@@ -1,7 +1,7 @@
 .fixed-sidebar{
 	position:fixed;
 	
-	width:12em;
+	width:$sidebar-width;
 
 	top:0;bottom:0;
 	z-index: 99;
@@ -18,10 +18,25 @@
 	-o-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
 
+	@media all and (max-width: $limit + $sidebar-width*2){
+		left:-100%;
+	}
+
+	&.show{
+		width:15em;
+		left:0!important;
+		z-index:900;
+		opacity:1;
+		background:white;
+		box-shadow: .3em .3em 2.5em lightgrey;
+	}
+
 	&:hover{
 		opacity:1;
 	}
+	padding-top: 5em;
 }
+
 .avatar{
 	height:3em;
 	border: 2px solid black;
@@ -61,4 +76,21 @@
 	border-radius: .6em;
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
+}
+
+
+
+
+.toggle-sidebar{
+	display:none;
+	@media all and(max-width: $limit + $sidebar-width*2){
+		display:block;
+		position:fixed;
+		z-index:1000;
+		height:3em;
+		width:3em;
+		background:$color-secondary;
+		top:0;
+		left:0;
+	}
 }
