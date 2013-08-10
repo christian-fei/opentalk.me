@@ -12,24 +12,16 @@
 </template>
 
 <template name='messages'>
-	<div class="main">
-		{{#if loggedIn}}
-			<div class="menu">
-				<a href='#' id='deleteMyMessages' class='button silver' title='delete your messages'><span class="icon-remove"></span></a>
-			</div>
-		{{/if}}
-
-		{{#if loggedIn}}
-			<ul class='messages'>
-				{{#each messages}}
-					<li class='message'><b class='username'>{{username}}</b>: {{text}}</li>
-				{{/each}}
-				<li id='li-message'>
-					<textarea id="mymessage"  rows="1" placeholder='your message'/>
-				</li>
-			</ul>
-		{{/if}}
-	</div>
+	{{#if loggedIn}}
+		<ul class='messages'>
+			{{#each messages}}
+				<li class='message'><b class='username'>{{username}}</b>: {{text}}</li>
+			{{/each}}
+			<li id='li-message'>
+				<textarea id="mymessage"  rows="1" placeholder='your message'/>
+			</li>
+		</ul>
+	{{/if}}
 </template>
 
 <template name="welcome">
@@ -60,9 +52,12 @@
 		</ul>
 	</aside>
 	
-	{{#unless loggedIn}}
-		{{>pickNickname}}
-	{{/unless}}
+	<div class="main">
+		{{#unless loggedIn}}
+			{{>pickNickname}}
+		{{/unless}}
+		
+		{{>messages}}
+	</div>
 	
-	{{>messages}}
 </template>

@@ -390,6 +390,7 @@ Template.messages.events({
 				removeLastMessage();
 			}
 	    }
+		scrollToBottom();
 	},
 
 	'click #deleteMyMessages' : function(evnt,tmplt){
@@ -402,22 +403,36 @@ Template.messages.events({
 });
 
 
+Template.room.rendered = function(){
+	function fixSidebar(){
+		var limit = 35, //same as CSS _vars.scss
+			sidebarWidth = 12; //same as CSS _room.scss
+		var pcView = limit * 16 + 2*sidebarWidth*16;
+		console.log(pcView);
+		if($(window).width() > pcView){
+			console.log('pc view');
+			var l = $('.main').offset().left - sidebarWidth*16;
+			console.log(l);
+			$('.fixed-sidebar').css( 'left', l );
+		}
+		else
+			$('.fixed-sidebar').css( 'left', '-100%' );
+	};
+
+	fixSidebar();
+	
+	$(window).resize(function(){
+		fixSidebar();
+	});
+}
+
+
+function scrollToBottom(){
+	$('html,body').animate({scrollTop:50000});
+}
+
 Meteor.startup(function(){
 	$(document).ready(function() {
-
-		function adapt(){
-
-		  //$('.messages').innerWidth( Math.floor($('.main').innerWidth() -1 - $('#online-users').innerWidth()) );
-
-		}
-
-		adapt();
-
-		$(window).resize(function(){
-			adapt();
-			fixSidebar();
-		});
-
 		$('#roomid').focus();
 
 		$('.blanket').on('click',function(){
@@ -425,13 +440,9 @@ Meteor.startup(function(){
 		});
 
 
-		function fixSidebar(){
-			if($(window).width() > 40/0.063)
-				$('.fixed-sidebar').css( 'left', $('body').offset().left );
-			else
-				$('.fixed-sidebar').css( 'left', '-100%' );
-		}
-		fixSidebar();
+
+
+
 
 
 		if(!Modernizr.input.placeholder){

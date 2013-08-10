@@ -105,7 +105,7 @@ input, select {
 
 /* line 1, ../sass/_rwd.scss */
 .limit {
-  max-width: 40em;
+  max-width: 35em;
   margin: auto;
 }
 
@@ -495,7 +495,7 @@ SUPER SLICK TRANSFORMS
   border-radius: 5px;
   border: 1px solid lightgrey;
 }
-@media all and (max-width: 40em) {
+@media all and (max-width: 35em) {
   /* line 45, ../sass/_welcome.scss */
   .blanket {
     margin: 2.5em auto 4em;
@@ -576,66 +576,38 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_room.scss */
 .fixed-sidebar {
   position: fixed;
-  width: 16em;
+  width: 12em;
   top: 0;
   bottom: 0;
   background: grey;
   z-index: 99;
 }
-@media all and (max-width: 60em) {
-  /* line 1, ../sass/_room.scss */
-  .fixed-sidebar {
-    width: 13.33333em;
-  }
-}
 
-/* line 13, ../sass/_room.scss */
+/* line 11, ../sass/_room.scss */
 .main {
   z-index: 126;
-  margin-left: 16em;
-  width: 24em;
-}
-@media all and (max-width: 60em) {
-  /* line 13, ../sass/_room.scss */
-  .main {
-    margin-left: 13.33333em;
-  }
+  margin: auto;
+  width: 35em;
+  padding: 1em;
+  background: lightgrey;
 }
 
-@media all and (max-width: 40em) {
-  /* line 24, ../sass/_room.scss */
-  .fixed-sidebar {
-    left: -100%;
-  }
-
-  /* line 27, ../sass/_room.scss */
-  .main {
-    margin: auto;
-  }
-}
-/* line 33, ../sass/_room.scss */
+/* line 20, ../sass/_room.scss */
 #online-users {
   padding: .66em;
   list-style-type: none;
 }
 
-/* line 38, ../sass/_room.scss */
+/* line 25, ../sass/_room.scss */
 .usersCount {
   text-align: center;
 }
 
-/* line 41, ../sass/_room.scss */
+/* line 28, ../sass/_room.scss */
 .online {
   padding: 1px;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-/* line 51, ../sass/_room.scss */
-#nickname {
-  position: absolute;
-  top: 40%;
-  left: 40%;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -773,8 +745,8 @@ body > * {
 }
 
 /* line 17, ../sass/_general.scss */
-body {
-  max-width: 40em;
+body.roomok {
+  max-width: 35em;
   margin: 0 auto;
   position: relative;
 }
