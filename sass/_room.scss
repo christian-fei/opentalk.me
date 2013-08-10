@@ -1,25 +1,30 @@
-
 .main{
 	z-index: 126;
 	//margin-left:$limit*2/5;
 	margin: auto;
 	width: $limit;
 	padding: 1em;
-	background:lightgrey;
-}
-
-#online-users{
-	padding: .66em;
+	@extend .blanket;
 	
-	list-style-type: none;
-}
-	.usersCount{
-		text-align: center;
-	}
-	.online{
-		//margin-left:15px;
-		padding:1px;
+	background: rgba(255,255,255,.6);
 
-		text-overflow: ellipsis;
-		overflow: hidden;
-	}
+	border-top-right-radius:0px;
+	border-top-left-radius:0px;
+}
+
+#nickname{
+	position: relative;
+	padding: 1em;
+	//font-size: 1.3em;
+	//margin: 0 1em;
+	text-align: center;
+	width:8em;
+
+	outline:none;
+	border:0px;
+	box-shadow: none;
+
+	font-size: 1.1rem;
+	font-family: 'Questrial', sans-serif;
+	margin-top: -.3em;
+}

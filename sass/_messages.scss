@@ -1,13 +1,13 @@
 .messages{
 	list-style-type: none;
-	
-	max-width:100%;
-
-	
 	padding:.66em;
+	max-width: $limit;
+	
+	@extends .blanket;
 }
 	.message{
 		padding: 0.5em;
+		word-wrap:break-word;
 	}
 
 #li-message{
@@ -17,22 +17,21 @@
 	resize: none;
 	margin-top: 30px;
 	width: 100%;
-	padding: 1.1em;
+	padding: 1em;
+
+	outline:none;
+	border:none;
+	border-left:2px solid #C8C8C8;
+	border-right:2px solid #C8C8C8;
 
 	-webkit-transition: all $transition-duration ease-out;
 	-moz-transition: all $transition-duration ease-out;
 	-ms-transition: all $transition-duration ease-out;
 	-o-transition: all $transition-duration ease-out;
 	transition: all $transition-duration ease-out;
-}
-
-input[type='text'].input-light{
-	border:2px solid rgba(30,30,30,.1);
-	border-bottom:2px solid rgba(30,30,30,.1);
-	box-shadow:none;
 	
 	&:focus{
-		border:2px solid rgba(30,30,30,.04);
-		border-bottom:2px solid rgba(30,30,30,.04);
+		border:none;
+		border-top:1px solid #C8C8C8;
 	}
 }

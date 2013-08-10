@@ -217,7 +217,7 @@ Template.pickNickname.events({
 	'keyup #nickname': function(evnt,tmplt){
 	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 	    var nickname = tmplt.find('#nickname').value;
-	    if(nickname.length && nickname.indexOf(' ') <= 0) {
+	    if(nickname.length && nickname.length < 25 && nickname.trim().length ) {
 	      //TODO: better unique ID
 	      //make to string as a (temporary?) fix
 	      userid = '' + Date.now() + tdiff;
@@ -244,18 +244,18 @@ Template.pickNickname.events({
 Template.logout.events({
 	'click #logout' : function(evnt,tmplt){
 		console.log('logout clicked');
-	  evnt.preventDefault();
+		evnt.preventDefault();
 
-	  goOffline();
+		goOffline();
 
 		Meteor._localStorage.removeItem('userid');
 		Meteor._localStorage.removeItem('username');
 		Session.set('userid',null);
 		Session.set('username',null);
-		Session.set('roomid',null);
+		//Session.set('roomid',null);
 
 	  //redirect user to /
-	  Meteor.Router.to('/');
+	  //Meteor.Router.to('/');
 	}
 });
 
@@ -299,7 +299,7 @@ Template.room.roomSelected = function(){
 }
 
 Template.messages.loggedIn=Template.room.loggedIn=function(){
-	if(Session.get('username') && Session.get('userid') && Session.get('roomid'))
+	if(Session.get('username') && Session.get('userid'))
 		return true;
 	return false;
 };
@@ -314,16 +314,18 @@ Template.messages.messages = function(){
 	var ml = Messages.find({'roomid':Session.get('roomid')}).fetch().length;
 
 	if(iAmWriting()){
-	  if(ml <= 1)
-	    return [];
-	  return Messages.find(
-	    {'roomid':Session.get('roomid')}
-	    ,{sort: {timestamp: 1},limit:ml -1});
-	}else
-	  return Messages.find(
-	    {'roomid':Session.get('roomid')}
-	    ,{sort: {timestamp: 1}}
-	  );  
+		if(ml <= 1)
+			return [];
+		return Messages.find(
+			{roomid:Session.get('roomid')}
+			,{sort: {timestamp: 1},limit:ml -1}
+		);
+	}else{
+		return Messages.find(
+			{roomid:Session.get('roomid')}
+			,{sort: {timestamp: 1}}
+		);  
+	}
 };
 
 function removeLastMessage(){
@@ -334,7 +336,6 @@ function removeLastMessage(){
 
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
-		console.log('k ' + evnt.keyCode);
 
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
@@ -347,9 +348,6 @@ Template.messages.events({
 
 	    /*First message/first keystroke being sent*/
 	    if(!Session.get('lastInsertId')){
-	    	console.log('=====================');
-	    	console.log('      new message   ');
-	    	console.log('=====================');
 			Session.set(
 				'lastInsertId',
 				Messages.insert(
@@ -406,27 +404,34 @@ function fixSidebar(){
 	var limit = 35, //same as CSS _vars.scss
 		sidebarWidth = 12; //same as CSS _room.scss
 	var pcView = limit * 16 + 2*sidebarWidth*16;
-	console.log(pcView);
 	if($(window).width() > pcView){
-		console.log('pc view');
 		var l = $('.main').offset().left - sidebarWidth*16;
-		console.log(l);
 		$('.fixed-sidebar').css( 'left', l );
 	}
 	else
 		$('.fixed-sidebar').css( 'left', '-100%' );
 };
 Template.room.rendered = function(){
-
-
+	
 	fixSidebar();
 	
-	
-	$('#mymessage').focus();
-	$('#nickname').focus();
+	if($('#mymessage'))
+		$('#mymessage').focus();
+	if($('#nickname'))
+		$('#nickname').focus();
+
+
 
 	scrollToBottom();
-}
+};
+
+Template.welcome.rendered = function(){
+	$('#roomid').focus();
+
+	$('.blanket').on('click',function(){
+		$('#roomid').focus();
+	});
+};
 
 
 function scrollToBottom(){
@@ -440,11 +445,6 @@ Meteor.startup(function(){
 			fixSidebar();
 		});
 
-		$('#roomid').focus();
-
-		$('.blanket').on('click',function(){
-			$('#roomid').focus();
-		});
 
 
 		if(!Modernizr.input.placeholder){

@@ -484,10 +484,9 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 45, ../sass/_welcome.scss */
-.blanket {
+.blanket, .blanket-white, .main {
   position: relative;
   display: table;
-  background: white;
   padding: 1.5em;
   box-shadow: 3px 3px 25px lightgrey;
   margin: 4em auto 6em;
@@ -496,107 +495,110 @@ SUPER SLICK TRANSFORMS
 }
 @media all and (max-width: 35em) {
   /* line 45, ../sass/_welcome.scss */
-  .blanket {
+  .blanket, .blanket-white, .main {
     margin: 2.5em auto 4em;
   }
 }
 
-/* line 60, ../sass/_welcome.scss */
+/* line 58, ../sass/_welcome.scss */
+.blanket-white {
+  background: white;
+}
+
+/* line 63, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 63, ../sass/_welcome.scss */
+/* line 66, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 70, ../sass/_welcome.scss */
+  /* line 73, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 71, ../sass/_welcome.scss */
+  /* line 74, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 74, ../sass/_welcome.scss */
+  /* line 77, ../sass/_welcome.scss */
   0% {
     background-position: 0%;
   }
 
-  /* line 75, ../sass/_welcome.scss */
+  /* line 78, ../sass/_welcome.scss */
   100% {
     background-position: 222px 222px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 78, ../sass/_welcome.scss */
+  /* line 81, ../sass/_welcome.scss */
   0% {
     background-position: 0%;
   }
 
-  /* line 79, ../sass/_welcome.scss */
+  /* line 82, ../sass/_welcome.scss */
   100% {
     background-position: 222px 222px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 82, ../sass/_welcome.scss */
+  /* line 85, ../sass/_welcome.scss */
   0% {
     background-position: 0%;
   }
 
-  /* line 83, ../sass/_welcome.scss */
+  /* line 86, ../sass/_welcome.scss */
   100% {
     background-position: 222px 222px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 86, ../sass/_welcome.scss */
+  /* line 89, ../sass/_welcome.scss */
   0% {
     background-position: 0%;
   }
 
-  /* line 87, ../sass/_welcome.scss */
+  /* line 90, ../sass/_welcome.scss */
   100% {
     background-position: 222px 222px;
   }
 }
 
-/* line 2, ../sass/_room.scss */
+/* line 1, ../sass/_room.scss */
 .main {
   z-index: 126;
   margin: auto;
   width: 35em;
   padding: 1em;
-  background: lightgrey;
+  background: rgba(255, 255, 255, 0.6);
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
 }
 
-/* line 11, ../sass/_room.scss */
-#online-users {
-  padding: .66em;
-  list-style-type: none;
-}
-
-/* line 16, ../sass/_room.scss */
-.usersCount {
+/* line 15, ../sass/_room.scss */
+#nickname {
+  position: relative;
+  padding: 1em;
   text-align: center;
-}
-
-/* line 19, ../sass/_room.scss */
-.online {
-  padding: 1px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  width: 8em;
+  outline: none;
+  border: 0px;
+  box-shadow: none;
+  font-size: 1.1rem;
+  font-family: 'Questrial', sans-serif;
+  margin-top: -.3em;
 }
 
 /* line 1, ../sass/_sidebar.scss */
@@ -608,9 +610,19 @@ SUPER SLICK TRANSFORMS
   z-index: 99;
   overflow: hidden;
   padding: 1em;
+  opacity: .5;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+/* line 21, ../sass/_sidebar.scss */
+.fixed-sidebar:hover {
+  opacity: 1;
 }
 
-/* line 13, ../sass/_sidebar.scss */
+/* line 25, ../sass/_sidebar.scss */
 .avatar {
   height: 3em;
   border: 2px solid black;
@@ -619,12 +631,12 @@ SUPER SLICK TRANSFORMS
   float: right;
 }
 
-/* line 21, ../sass/_sidebar.scss */
+/* line 33, ../sass/_sidebar.scss */
 .nickname {
   clear: right;
 }
 
-/* line 24, ../sass/_sidebar.scss */
+/* line 36, ../sass/_sidebar.scss */
 .nickname, #logout {
   float: right;
   clear: right;
@@ -632,40 +644,44 @@ SUPER SLICK TRANSFORMS
   margin-top: 0.3em;
 }
 
-/* line 31, ../sass/_sidebar.scss */
+/* line 43, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 2em;
   text-align: left;
+  list-style-type: none;
 }
 
-/* line 36, ../sass/_sidebar.scss */
+/* line 49, ../sass/_sidebar.scss */
 .userinfo, .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 41, ../sass/_sidebar.scss */
+/* line 54, ../sass/_sidebar.scss */
 .online-users-count {
   color: #111;
   font-weight: bold;
   font-family: 'Raleway';
-  padding: .5em .9em;
+  padding: .5em .9em .5em .5em;
   background: #f1c40f;
   display: inline-block;
   border-radius: .6em;
-  margin-left: -1.5em;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 /* line 1, ../sass/_messages.scss */
 .messages {
   list-style-type: none;
-  max-width: 100%;
   padding: .66em;
+  max-width: 35em;
+  @extends .blanket;
 }
 
-/* line 9, ../sass/_messages.scss */
+/* line 8, ../sass/_messages.scss */
 .message {
   padding: 0.5em;
+  word-wrap: break-word;
 }
 
 /* line 13, ../sass/_messages.scss */
@@ -678,24 +694,21 @@ SUPER SLICK TRANSFORMS
   resize: none;
   margin-top: 30px;
   width: 100%;
-  padding: 1.1em;
+  padding: 1em;
+  outline: none;
+  border: none;
+  border-left: 2px solid #C8C8C8;
+  border-right: 2px solid #C8C8C8;
   -webkit-transition: all 0.25s ease-out;
   -moz-transition: all 0.25s ease-out;
   -ms-transition: all 0.25s ease-out;
   -o-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
-
-/* line 29, ../sass/_messages.scss */
-input[type='text'].input-light {
-  border: 2px solid rgba(30, 30, 30, 0.1);
-  border-bottom: 2px solid rgba(30, 30, 30, 0.1);
-  box-shadow: none;
-}
-/* line 34, ../sass/_messages.scss */
-input[type='text'].input-light:focus {
-  border: 2px solid rgba(30, 30, 30, 0.04);
-  border-bottom: 2px solid rgba(30, 30, 30, 0.04);
+/* line 33, ../sass/_messages.scss */
+#mymessage:focus {
+  border: none;
+  border-top: 1px solid #C8C8C8;
 }
 
 /* line 1, ../sass/_buttons.scss */
@@ -796,4 +809,32 @@ body.roomok {
   max-width: 35em;
   margin: 0 auto;
   position: relative;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* line 25, ../sass/_general.scss */
+  ::-webkit-scrollbar {
+    width: .777em;
+  }
+
+  /* line 26, ../sass/_general.scss */
+  ::-webkit-scrollbar-track {
+    background-color: #999;
+  }
+
+  /* line 27, ../sass/_general.scss */
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+  }
+}
+/* line 29, ../sass/_general.scss */
+::selection {
+  background: #FF8400;
+  color: white;
+}
+
+/* line 30, ../sass/_general.scss */
+::-moz-selection {
+  background: #FF8400;
+  color: white;
 }

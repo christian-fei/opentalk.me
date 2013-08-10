@@ -9,6 +9,18 @@
 	overflow: hidden;
 	
 	padding:1em;
+
+	opacity: .5;
+
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+
+	&:hover{
+		opacity:1;
+	}
 }
 .avatar{
 	height:3em;
@@ -31,6 +43,7 @@
 .online-users{
 	margin-top: 2em;
 	text-align: left;
+	list-style-type: none;
 }
 
 .userinfo,.online-users{
@@ -42,9 +55,10 @@
 	color:#111;
 	font-weight: bold;
 	font-family:'Raleway';
-	padding: .5em .9em;
+	padding: .5em .9em .5em .5em;
 	background: $color-secondary;
 	display: inline-block;
 	border-radius: .6em;
-	margin-left: -1.5em;
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
 }

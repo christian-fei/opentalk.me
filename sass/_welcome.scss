@@ -45,7 +45,6 @@
 .blanket{
 	position: relative;
 	display:table;
-	background:white;
 	padding:1.5em;
 	box-shadow: 3px 3px 25px lightgrey;
 	margin: 4em auto 6em;
@@ -55,6 +54,10 @@
 	@media all and(max-width: $limit){
 		margin: 2.5em auto 4em;
 	}
+}
+.blanket-white{
+	@extend .blanket;
+	background:white;
 }
 
 .medium-text{

@@ -19,3 +19,12 @@ body.roomok{
 	margin:0 auto;
 	position: relative;
 }
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+	::-webkit-scrollbar{width:.777em;} 
+	::-webkit-scrollbar-track{background-color: #999;} 
+	::-webkit-scrollbar-thumb{background:#666;}
+}
+::selection{background:#FF8400;color:white;}
+::-moz-selection{background:#FF8400;color:white;}
