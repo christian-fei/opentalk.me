@@ -1,18 +1,21 @@
 .main{
 	z-index: 126;
-	//margin-left:$limit*2/5;
-	margin: 5em auto;
+
+	margin: 5em auto 0.5em;
 	max-width: $limit;
 	width:100%;
 	
-	padding: 1em;
-	@extend .blanket;
+	padding: .66em;
 	
-	background: rgba(255,255,255,.6);
+
+	background: rgba(255,255,255,.8);
 
 	border-top-right-radius:0px;
 	border-top-left-radius:0px;
-
+	
+	@media all and(max-width:$limit){
+		width: 100%;
+	}
 
 	&.blur{
 		-webkit-filter: blur(3px);

@@ -8,9 +8,11 @@
 
 	overflow: hidden;
 	
-	padding:1em;
+	/*padding top 5em to  push it away from .toggle-*/
+	padding:5em 2em 2em 1em;
 
 	opacity: .5;
+
 
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -34,7 +36,11 @@
 	&:hover{
 		opacity:1;
 	}
-	padding-top: 5em;
+	
+	&.overflow{
+	}
+		overflow-y:auto;
+
 }
 
 .avatar{
@@ -83,14 +89,19 @@
 
 .toggle-sidebar{
 	display:none;
+	left:1em;
+	top:1em;
+	position:fixed;
+	height:3em;
+	width:3em;
+	background:$color-secondary;
+	z-index:1000;
+	
 	@media all and(max-width: $limit + $sidebar-width*2){
 		display:block;
-		position:fixed;
-		z-index:1000;
-		height:3em;
-		width:3em;
-		background:$color-secondary;
-		top:0;
+	}
+	@media all and(max-width: $limit + 10em){
 		left:0;
 	}
+
 }
