@@ -1,0 +1,50 @@
+.fixed-sidebar{
+	position:fixed;
+	
+	width:12em;
+
+	top:0;bottom:0;
+	z-index: 99;
+
+	overflow: hidden;
+	
+	padding:1em;
+}
+.avatar{
+	height:3em;
+	border: 2px solid black;
+	border-radius: 50%;
+	overflow: hidden;
+	float:right;
+}
+
+.nickname{
+	clear:right;
+}
+.nickname,#logout{
+	float:right;
+	clear:right;
+	margin-left:0.3em;
+	margin-top:0.3em;
+}
+
+.online-users{
+	margin-top: 2em;
+	text-align: left;
+}
+
+.userinfo,.online-users{
+	float:right;
+	width:100%;
+}
+
+.online-users-count{
+	color:#111;
+	font-weight: bold;
+	font-family:'Raleway';
+	padding: .5em .9em;
+	background: $color-secondary;
+	display: inline-block;
+	border-radius: .6em;
+	margin-left: -1.5em;
+}

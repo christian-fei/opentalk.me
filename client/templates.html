@@ -1,14 +1,14 @@
 <template name='pickNickname'>
-	<span class="vam">Pick a username to join</span>
-	<input type="text" id='nickname' class='vam' placeholder='pick a nickname'>
+	<span class="vam">Pick a nickname to join</span>
+	<input type="text" id='nickname' class='vam' placeholder='trasher666'>
 </template>
 
 <template name='logout'>
-	<a href="#" id='logout' class='button silver' title='Log out'><span class="icon-logout"></span></a>
+	<a href="#" id='logout' class='button silver' title='Log out'>Log out</span></a>
 </template>
 
 <template name='selectChatRoom'>
-	<input type='text' id='roomid' placeholder='public-room'/>
+	<input type='text' id='roomid' placeholder='enter room'/>
 </template>
 
 <template name='messages'>
@@ -38,15 +38,17 @@
 <template name="room">
 	<aside class="fixed-sidebar">
 		{{#if loggedIn}}
-			{{username}}
-			{{>logout}}
+			<div class="userinfo">
+				<img class="avatar" src="{{avatar}}"/>
+				<span class="nickname">{{username}}</span>
+				{{>logout}}
+			</div>
 		{{/if}}
+		
+		<div class="online-users-count">{{onlineUsersCount}}</div>
 
-		<ul id="online-users">
-			<li class='usersCount'>
-				<span >{{usersCount}}</span>
-			</li>
-			{{#each users}}
+		<ul class="online-users">
+			{{#each onlineUsers}}
 				<li class="online">{{nickname}}</li>
 			{{/each}}
 		</ul>

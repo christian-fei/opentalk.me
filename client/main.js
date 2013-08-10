@@ -203,10 +203,10 @@ function distinctUsers(){
 	return distinctUsers;
 }
 
-Template.room.users =function(){
+Template.room.onlineUsers =function(){
 	return distinctUsers();
 }
-Template.room.usersCount =function(){
+Template.room.onlineUsersCount =function(){
 	return distinctUsers().length;
 }
 
@@ -402,47 +402,49 @@ Template.messages.events({
 
 });
 
-
+function fixSidebar(){
+	var limit = 35, //same as CSS _vars.scss
+		sidebarWidth = 12; //same as CSS _room.scss
+	var pcView = limit * 16 + 2*sidebarWidth*16;
+	console.log(pcView);
+	if($(window).width() > pcView){
+		console.log('pc view');
+		var l = $('.main').offset().left - sidebarWidth*16;
+		console.log(l);
+		$('.fixed-sidebar').css( 'left', l );
+	}
+	else
+		$('.fixed-sidebar').css( 'left', '-100%' );
+};
 Template.room.rendered = function(){
-	function fixSidebar(){
-		var limit = 35, //same as CSS _vars.scss
-			sidebarWidth = 12; //same as CSS _room.scss
-		var pcView = limit * 16 + 2*sidebarWidth*16;
-		console.log(pcView);
-		if($(window).width() > pcView){
-			console.log('pc view');
-			var l = $('.main').offset().left - sidebarWidth*16;
-			console.log(l);
-			$('.fixed-sidebar').css( 'left', l );
-		}
-		else
-			$('.fixed-sidebar').css( 'left', '-100%' );
-	};
+
 
 	fixSidebar();
 	
-	$(window).resize(function(){
-		fixSidebar();
-	});
+	
+	$('#mymessage').focus();
+	$('#nickname').focus();
+
+	scrollToBottom();
 }
 
 
 function scrollToBottom(){
-	$('html,body').animate({scrollTop:50000});
+	$('html,body').animate({scrollTop:50000},10);
 }
 
 Meteor.startup(function(){
 	$(document).ready(function() {
+		
+		$(window).resize(function(){
+			fixSidebar();
+		});
+
 		$('#roomid').focus();
 
 		$('.blanket').on('click',function(){
 			$('#roomid').focus();
 		});
-
-
-
-
-
 
 
 		if(!Modernizr.input.placeholder){

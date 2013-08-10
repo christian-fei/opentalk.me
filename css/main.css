@@ -441,7 +441,7 @@ SUPER SLICK TRANSFORMS
 
 /* line 1, ../sass/_welcome.scss */
 .welcome-mast {
-  background: #3498db;
+  background: #409ad5;
   color: white;
   text-align: center;
   font-size: 2em;
@@ -465,7 +465,7 @@ SUPER SLICK TRANSFORMS
 }
 /* line 22, ../sass/_welcome.scss */
 .welcome-mast-cont h1 {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
 }
 
@@ -473,7 +473,6 @@ SUPER SLICK TRANSFORMS
 #roomid {
   position: relative;
   padding: 1em;
-  margin: 0 1em;
   text-align: center;
   width: 8em;
   outline: none;
@@ -573,17 +572,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 1, ../sass/_room.scss */
-.fixed-sidebar {
-  position: fixed;
-  width: 12em;
-  top: 0;
-  bottom: 0;
-  background: grey;
-  z-index: 99;
-}
-
-/* line 11, ../sass/_room.scss */
+/* line 2, ../sass/_room.scss */
 .main {
   z-index: 126;
   margin: auto;
@@ -592,22 +581,79 @@ SUPER SLICK TRANSFORMS
   background: lightgrey;
 }
 
-/* line 20, ../sass/_room.scss */
+/* line 11, ../sass/_room.scss */
 #online-users {
   padding: .66em;
   list-style-type: none;
 }
 
-/* line 25, ../sass/_room.scss */
+/* line 16, ../sass/_room.scss */
 .usersCount {
   text-align: center;
 }
 
-/* line 28, ../sass/_room.scss */
+/* line 19, ../sass/_room.scss */
 .online {
   padding: 1px;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+/* line 1, ../sass/_sidebar.scss */
+.fixed-sidebar {
+  position: fixed;
+  width: 12em;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  overflow: hidden;
+  padding: 1em;
+}
+
+/* line 13, ../sass/_sidebar.scss */
+.avatar {
+  height: 3em;
+  border: 2px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  float: right;
+}
+
+/* line 21, ../sass/_sidebar.scss */
+.nickname {
+  clear: right;
+}
+
+/* line 24, ../sass/_sidebar.scss */
+.nickname, #logout {
+  float: right;
+  clear: right;
+  margin-left: 0.3em;
+  margin-top: 0.3em;
+}
+
+/* line 31, ../sass/_sidebar.scss */
+.online-users {
+  margin-top: 2em;
+  text-align: left;
+}
+
+/* line 36, ../sass/_sidebar.scss */
+.userinfo, .online-users {
+  float: right;
+  width: 100%;
+}
+
+/* line 41, ../sass/_sidebar.scss */
+.online-users-count {
+  color: #111;
+  font-weight: bold;
+  font-family: 'Raleway';
+  padding: .5em .9em;
+  background: #f1c40f;
+  display: inline-block;
+  border-radius: .6em;
+  margin-left: -1.5em;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -660,6 +706,7 @@ input[type='text'].input-light:focus {
   line-height: 1;
   margin-top: 0;
   padding: .6em 0.7em;
+  border-radius: 0.5em;
 }
 
 /* line 10, ../sass/_buttons.scss */
