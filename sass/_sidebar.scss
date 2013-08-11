@@ -74,6 +74,11 @@
 
 .nickname{
 	clear:right;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    width: 100%;
 }
 .nickname,#logout{
 	float:right;
@@ -86,11 +91,12 @@
 	margin-top: 2em;
 	text-align: left;
 	list-style-type: none;
-	//padding-left:2em;
 }
-
 	.online-user{
-		display: inline-block;
+		display: block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	    overflow: hidden;
 	}
 
 .userinfo,.online-users{
@@ -159,6 +165,9 @@
 	width:.5em;
 	display:inline-block;
 	margin: .33em .5em 0 0;
+	border-radius: 50%;
+
+	float:left;
 
 	&.online{
 		background:#29A100;

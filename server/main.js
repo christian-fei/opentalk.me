@@ -26,11 +26,10 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
 });
 
 
-var idleTime = 5*60*1000,
-    idleCheck = 1*60*1000,
-    killTime = 60*60*1000,
-    killCheck = 30*60*1000;
-
+var idleTime = 60*1000,
+    idleCheck = idleTime/2,
+    killTime = 20*60*1000,
+    killCheck = killTime/2;
 
 Meteor.methods({
   serverTime : function(){
@@ -74,6 +73,7 @@ Meteor.methods({
 });
 
 Meteor.setInterval(function() {
+  console.log('idle check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - idleTime)} } ).forEach(function(user){
     OnlineUsers.update({_id:user._id},{$set:{status:'idle'}});
@@ -81,6 +81,7 @@ Meteor.setInterval(function() {
 },idleCheck);
 
 Meteor.setInterval(function() {
+  console.log('kill check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - killTime)} } ).forEach(function(user){
     OnlineUsers.remove({_id:user._id});

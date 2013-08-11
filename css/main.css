@@ -692,9 +692,14 @@ SUPER SLICK TRANSFORMS
 /* line 75, ../sass/_sidebar.scss */
 .nickname {
   clear: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  width: 100%;
 }
 
-/* line 78, ../sass/_sidebar.scss */
+/* line 83, ../sass/_sidebar.scss */
 .nickname, #logout {
   float: right;
   clear: right;
@@ -702,25 +707,28 @@ SUPER SLICK TRANSFORMS
   margin-top: 0.3em;
 }
 
-/* line 85, ../sass/_sidebar.scss */
+/* line 90, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 2em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 92, ../sass/_sidebar.scss */
+/* line 95, ../sass/_sidebar.scss */
 .online-user {
-  display: inline-block;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-/* line 96, ../sass/_sidebar.scss */
+/* line 102, ../sass/_sidebar.scss */
 .userinfo, .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 101, ../sass/_sidebar.scss */
+/* line 107, ../sass/_sidebar.scss */
 .online-users-count {
   color: #111;
   font-weight: bold;
@@ -742,13 +750,13 @@ SUPER SLICK TRANSFORMS
   transition: all .4s ease-in-out;
 }
 @media all and (max-width: 59em) {
-  /* line 101, ../sass/_sidebar.scss */
+  /* line 107, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
   }
 }
 
-/* line 129, ../sass/_sidebar.scss */
+/* line 135, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -764,30 +772,32 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
 }
 @media all and (max-width: 59em) {
-  /* line 129, ../sass/_sidebar.scss */
+  /* line 135, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
   }
 }
-/* line 148, ../sass/_sidebar.scss */
+/* line 154, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.8325em 0 0 0.8325em;
 }
 
-/* line 157, ../sass/_sidebar.scss */
+/* line 163, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
   display: inline-block;
   margin: .33em .5em 0 0;
+  border-radius: 50%;
+  float: left;
 }
-/* line 163, ../sass/_sidebar.scss */
+/* line 172, ../sass/_sidebar.scss */
 .status-badge.online {
   background: #29A100;
 }
-/* line 166, ../sass/_sidebar.scss */
+/* line 175, ../sass/_sidebar.scss */
 .status-badge.idle {
   background: #FF8200;
 }
