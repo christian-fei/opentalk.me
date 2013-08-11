@@ -2,7 +2,7 @@
 set absoluteUrl for setting up the accounts system for the right domain
 edit:obsolete now, since no account-system is implemented anymore
 */
-console.log(Meteor.absoluteUrl({rootUrl:'http://opentalk.me'}));
+Meteor.absoluteUrl({rootUrl:'http://opentalk.me'})
 
 
 var lastInsertId=0, //ID of the last inserted message
@@ -117,7 +117,7 @@ function joinRoom(r){
 	unsubscribe();
 	goOffline();	
 	if(isValidRoom(r)) {
-	  console.log('valid path\nrouting to /' + r);
+	  //console.log('valid path\nrouting to /' + r);
 	  Meteor.Router.to('/'+r);
 	  Session.set('roomid',r);
 	  Meteor._localStorage.setItem('roomid',r);
@@ -161,7 +161,7 @@ Meteor.Router.add({'/*':'room'});
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
 
-console.log('going offline');
+//console.log('going offline');
 goOffline();
 
 unsubscribe();
@@ -271,10 +271,10 @@ Template.logout.events({
 		Meteor._localStorage.removeItem('username');
 		Session.set('userid',null);
 		Session.set('username',null);
-		Session.set('roomid',null);
+		//Session.set('roomid',null);
 
 		//redirect user to /
-		Meteor.Router.to('/');
+		//Meteor.Router.to('/');
 	}
 });
 
@@ -450,21 +450,26 @@ Template.messages.events({
 				removeLastMessage();
 			}
 	    }
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
-		$('#mymessage').focus();
+		scrollIfAtBottom();
 	}
 });
 
 
 /*weird hack to scrollDown only once, and not at each rerendering of Template.room*/
-var rolo = true;
 function scrollAndFocus(){
-	console.log($('body').outerHeight());
-	if( $('body').outerHeight() > 300 && rolo){
-		console.log('scroll');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
+	//console.log($('body').outerHeight());
+	if( $('body').outerHeight() > 300 ){
+		//console.log('scroll');
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},200);
+	}
+	$('#mymessage').focus();
+}
+
+function scrollIfAtBottom(){
+	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
+		//console.log('scrolling because at bottom');
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},10);
 		$('#mymessage').focus();
-		rolo=false;
 	}
 }
 
@@ -486,15 +491,18 @@ function positionFixedContent(){
 	//else
 		//$('.fixed-sidebar').css( 'left', '-100%' );
 };
+
+var firstRun = 0;
 Template.room.rendered = function(){
-	
+	//console.log('============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 
-	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
-		console.log('trying to scroll');
+	if(instnc.find('#mymessage') && !instnc.find('#nickname') && firstRun < 2 ){
 		scrollAndFocus();
 	}
+	scrollIfAtBottom();
+	firstRun++;
 
 	if($('#nickname')){
 		$('#nickname').focus();
@@ -546,7 +554,7 @@ Meteor.startup(function(){
 
 
 	if(!Modernizr.input.placeholder){
-		console.log('there ain\'t no placeholder support in your shitty browser, dude');
+		//console.log('there ain\'t no placeholder support in your shitty browser, dude');
 		$('[placeholder]').focus(function() {
 		var input = $(this);
 		if (input.val() == input.attr('placeholder')) {

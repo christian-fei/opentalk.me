@@ -45,7 +45,7 @@ Meteor.methods({
     if(!userid || !roomid)
       return;
     if(status === 'offline'){
-      OnlineUsers.remove({userid:userid,roomid:roomid});
+      OnlineUsers.remove({userid:userid});
       console.log('offline ' + userid);
       return;
     }
