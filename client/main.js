@@ -450,16 +450,21 @@ Template.messages.events({
 				removeLastMessage();
 			}
 	    }
-		scrollToBottom();
+		scrollAndFocus();
 	}
 });
 
 
-
-
-function scrollToBottom(){
-	//console.log('scrolling to bottom');
-	$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
+/*weird hack to scrollDown only once, and not at each rerendering of Template.room*/
+var rolo = true;
+function scrollAndFocus(){
+	console.log($('body').outerHeight());
+	if( $('body').outerHeight() > 300 && rolo){
+		console.log('scroll');
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
+		$('#mymessage').focus();
+		rolo=false;
+	}
 }
 
 function positionFixedContent(){
@@ -486,8 +491,8 @@ Template.room.rendered = function(){
 	var instnc = this;
 
 	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
-		scrollToBottom();
-		instnc.find('#mymessage').focus();
+		console.log('trying to scroll');
+		scrollAndFocus();
 	}
 
 	if($('#nickname')){
