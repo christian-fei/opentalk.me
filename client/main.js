@@ -450,7 +450,8 @@ Template.messages.events({
 				removeLastMessage();
 			}
 	    }
-		scrollAndFocus();
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
+		$('#mymessage').focus();
 	}
 });
 

@@ -10,6 +10,7 @@
 	<div class="welcome-mast">
 		<div class="welcome-mast-cont">
 			<h1>opentalk.me</h1>
+			<h4></h4>
 		</div>
 	</div>
 </template>
@@ -38,9 +39,10 @@
 <template name="room">
 	<div class="toggle-sidebar"><span class="icon-arrow"></span></div>
 	{{#isolate}}
-		<div class="online-users-count">{{onlineUsersCount}}</div>
+		<div class="online-users-count"><span>{{onlineUsersCount}}</span></div>
 	{{/isolate}}
 	<aside class="fixed-sidebar">
+		<a href="/" title='to the homepage'><img src="/images/logo_lines.png" alt="" class="logo"></a>
 		{{#isolate}}
 			{{#if loggedIn}}
 				<div class="userinfo">

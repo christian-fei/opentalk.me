@@ -9,7 +9,7 @@
 	overflow: hidden;
 	
 	/*padding top 5em to  push it away from .toggle-*/
-	padding:5em 2em 4em;
+	padding:5em 1em 4em;
 	margin-bottom:-2em;
 
 	overflow-y:auto;
@@ -25,6 +25,7 @@
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: - $sidebar-width - 1em !important;
+		padding:5em 2em 4em;
 	}
 
 	&.show{
@@ -79,6 +80,7 @@
     overflow: hidden;
     display: block;
     width: 100%;
+    text-align: right;
 }
 .nickname,#logout{
 	float:right;
@@ -179,4 +181,11 @@
 	&.idle{
 		background:#FF8200;
 	}
+}
+
+.logo{
+	position:absolute;
+	top:0;
+	right:0;
+	width: 3.66em;
 }
