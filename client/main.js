@@ -12,8 +12,8 @@ var lastInsertId=0, //ID of the last inserted message
 	servert=0,
 	tdiff=0. //difference between time on server and time on client
 	mSub = null, //Messages subscription
-	ouSub = null; //OnlineUsers subscription
-
+	ouSub = null, //OnlineUsers subscription
+	keepaliveTime = 10000;
 
 Meteor.call('serverTime',function(error, result){
 	//console.log('server responded with ' + result);
@@ -21,6 +21,10 @@ Meteor.call('serverTime',function(error, result){
 	tdiff = servert - clientt;
 	console.log('tdiff s/c: ' + tdiff);
 });
+
+Meteor.setInterval(function () {
+	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
+}, keepaliveTime);
 
 
 /*sync time*/
@@ -54,7 +58,7 @@ USER GOES OFFLINE
 -remove user from OnlineUsers Collection (Meteor.call)
 */
 function goOffline(){
-	Meteor.call('setOfflineUser',Session.get('userid'),Session.get('roomid'));
+	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'offline');
 	//unsubscribe();
 }
 
@@ -66,10 +70,8 @@ function goOnline(){
 		Session.set('userid',Meteor._localStorage.getItem('userid'));
 		Session.set('username',Meteor._localStorage.getItem('username'));
 	}
-	if(OnlineUsers.find({userid:Session.get('userid'),username:Session.get('username'),roomid:Session.get('roomid')}).fetch().length === 0){  
-		//console.log('setting avatar, because not already online ?!');
+	if(OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
 		setAvatar();
-		//console.log('register online status, because not already online ?!');
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 	}
 }
@@ -215,7 +217,7 @@ Template.room.onlineUsersCount =function(){
 
 
 function validNickname(n){
-	if(n.length && n.length < 25 && n.trim().length && nicknameAvailable(n))
+	if(n.length && n.length < 25 && n.charAt(n.length - 1) !== ' ' && n.trim().length && nicknameAvailable(n))
 		return true;
 	return false;
 }

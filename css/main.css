@@ -787,6 +787,10 @@ SUPER SLICK TRANSFORMS
 .status-badge.online {
   background: #29A100;
 }
+/* line 166, ../sass/_sidebar.scss */
+.status-badge.idle {
+  background: #FF8200;
+}
 
 /* line 1, ../sass/_messages.scss */
 .messages {

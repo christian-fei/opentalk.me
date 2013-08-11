@@ -26,6 +26,12 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
 });
 
 
+var idleTime = 5*60*1000,
+    idleCheck = 1*60*1000,
+    killTime = 60*60*1000,
+    killCheck = 30*60*1000;
+
+
 Meteor.methods({
   serverTime : function(){
     return Date.now();
@@ -37,30 +43,50 @@ Meteor.methods({
     console.log(s);
   },
   setUserStatus: function(userid,username,roomid,status){
-    if(!userid || !username || !roomid)
+    if(!userid || !roomid)
       return;
+    if(status === 'offline'){
+      OnlineUsers.remove({userid:userid,roomid:roomid});
+      console.log('offline ' + userid);
+      return;
+    }
+    var now = Date.now();
     if( OnlineUsers.find( {userid:userid,nickname:username,roomid:roomid} ).fetch().length === 0 ){
+     
       OnlineUsers.insert(
         {
           userid:userid,
           nickname:username,
           roomid:roomid,
-          status:status
+          status:status,
+          lastSeen:now
         }
       );
       console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
-
     }else{
-      console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );
-    }
-  },
-  setOfflineUser: function(userid,roomid){
-    if(userid && roomid) {
-      OnlineUsers.remove({userid:userid,roomid:roomid});
-      console.log('setOfflineUser: ' + userid + ' @ ' + roomid);
+      //keep alive
+      OnlineUsers.update({userid:userid},{$set:{status:'online',lastSeen:now}});
+      console.log('keep alive ' + userid);
+
+      //console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );
     }
   }
 });
+
+Meteor.setInterval(function() {
+  var now = Date.now();
+  OnlineUsers.find( {lastSeen: {$lt: (now - idleTime)} } ).forEach(function(user){
+    OnlineUsers.update({_id:user._id},{$set:{status:'idle'}});
+  });
+},idleCheck);
+
+Meteor.setInterval(function() {
+  var now = Date.now();
+  OnlineUsers.find( {lastSeen: {$lt: (now - killTime)} } ).forEach(function(user){
+    OnlineUsers.remove({_id:user._id});
+  });
+},killCheck);
+
 
 Meteor.startup(function () {
   // code to run on server at startup
