@@ -70,7 +70,7 @@ function goOnline(){
 		//console.log('setting avatar, because not already online ?!');
 		setAvatar();
 		//console.log('register online status, because not already online ?!');
-		Meteor.call('setOnlineUser',Session.get('userid'),Session.get('username'),Session.get('roomid'));
+		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 	}
 }
 
@@ -214,13 +214,26 @@ Template.room.onlineUsersCount =function(){
 }
 
 
+function validNickname(n){
+	if(n.length && n.length < 25 && n.trim().length && nicknameAvailable(n))
+		return true;
+	return false;
+}
 
+function nicknameAvailable(n){
+	if(OnlineUsers.find({nickname:n}).fetch().length === 0)
+		return true;
+	return false;
+}
 
 Template.pickNickname.events({
 	'keyup #nickname': function(evnt,tmplt){
 	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 	    var nickname = tmplt.find('#nickname').value;
-	    if(nickname.length && nickname.length < 25 && nickname.trim().length ) {
+
+	    
+
+	    if(validNickname(nickname)) {
 	      //TODO: better unique ID
 	      //make to string as a (temporary?) fix
 	      var uid = Date.now() + tdiff;
@@ -235,8 +248,6 @@ Template.pickNickname.events({
 
 	      goOnline();
 	      subscribe();
-
-	      tmplt.find('#mymessage').focus();
 
 	      //joinRoom(Session.get('roomid'));
 	    } else{
@@ -449,14 +460,15 @@ function scrollToBottom(){
 	$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
 }
 
-function fixSidebar(){
-	if(!$('.fixed-sidebar'))return;
+function positionFixedContent(){
+	if( !$('.fixed-sidebar') || !$('.online-users-count'))return;
 	var limit = 35, //same as CSS _vars.scss
 		sidebarWidth = 12; //same as CSS _room.scss
 	var pcView = limit * 16 + 2*sidebarWidth*16;
 	if($(window).width() > pcView){
 		var l = $('.main').offset().left - sidebarWidth*16;
 		$('.fixed-sidebar').css( 'left', l );
+		$('.online-users-count').css( 'left', l );
 
 		if($('.fixed-sidebar').hasClass('show')){
 			$('.fixed-sidebar').toggleClass('show');
@@ -468,7 +480,7 @@ function fixSidebar(){
 };
 Template.room.rendered = function(){
 	
-	fixSidebar();
+	positionFixedContent();
 	var instnc = this;
 
 	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
@@ -509,7 +521,7 @@ Meteor.startup(function(){
 		
 
 		$(window).resize(function(){
-			fixSidebar();
+			positionFixedContent();
 		});
 
 		$(document).wipetouch({

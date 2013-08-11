@@ -9,7 +9,7 @@
 	overflow: hidden;
 	
 	/*padding top 5em to  push it away from .toggle-*/
-	padding:5em 2em 4em 0em;
+	padding:5em 2em 4em;
 	margin-bottom:-2em;
 
 	overflow-y:auto;
@@ -83,11 +83,15 @@
 }
 
 .online-users{
-	margin-top: 1em;
+	margin-top: 2em;
 	text-align: left;
 	list-style-type: none;
-	padding-left:2em;
+	//padding-left:2em;
 }
+
+	.online-user{
+		display: inline-block;
+	}
 
 .userinfo,.online-users{
 	float:right;
@@ -98,12 +102,27 @@
 	color:#111;
 	font-weight: bold;
 	font-family:'Raleway';
-	padding: .5em .9em .5em .5em;
+	padding: .5em 1em .5em .5em;
 	background: $color-secondary;
 	display: inline-block;
 	border-radius: 50%;
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
+
+	position:fixed;
+	left:0em;
+	top:4.3em;
+	z-index: 998;
+
+	-webkit-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+
+	@media all and (max-width: $limit + $sidebar-width*2){
+		left: 0!important;
+	}
 }
 
 
@@ -133,4 +152,15 @@
 		margin:$toggle-size/4 0 0 $toggle-size/4;
 	}
 
+}
+
+.status-badge{
+	height:.5em;
+	width:.5em;
+	display:inline-block;
+	margin: .33em .5em 0 0;
+
+	&.online{
+		background:#29A100;
+	}
 }

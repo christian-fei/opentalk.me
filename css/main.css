@@ -627,7 +627,7 @@ SUPER SLICK TRANSFORMS
   z-index: 99;
   overflow: hidden;
   /*padding top 5em to  push it away from .toggle-*/
-  padding: 5em 2em 4em 0em;
+  padding: 5em 2em 4em;
   margin-bottom: -2em;
   overflow-y: auto;
   opacity: .5;
@@ -704,32 +704,51 @@ SUPER SLICK TRANSFORMS
 
 /* line 85, ../sass/_sidebar.scss */
 .online-users {
-  margin-top: 1em;
+  margin-top: 2em;
   text-align: left;
   list-style-type: none;
-  padding-left: 2em;
 }
 
 /* line 92, ../sass/_sidebar.scss */
+.online-user {
+  display: inline-block;
+}
+
+/* line 96, ../sass/_sidebar.scss */
 .userinfo, .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 97, ../sass/_sidebar.scss */
+/* line 101, ../sass/_sidebar.scss */
 .online-users-count {
   color: #111;
   font-weight: bold;
   font-family: 'Raleway';
-  padding: .5em .9em .5em .5em;
+  padding: .5em 1em .5em .5em;
   background: #f1c40f;
   display: inline-block;
   border-radius: 50%;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  position: fixed;
+  left: 0em;
+  top: 4.3em;
+  z-index: 998;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+@media all and (max-width: 59em) {
+  /* line 101, ../sass/_sidebar.scss */
+  .online-users-count {
+    left: 0 !important;
+  }
 }
 
-/* line 110, ../sass/_sidebar.scss */
+/* line 129, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -745,16 +764,28 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
 }
 @media all and (max-width: 59em) {
-  /* line 110, ../sass/_sidebar.scss */
+  /* line 129, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
   }
 }
-/* line 129, ../sass/_sidebar.scss */
+/* line 148, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.8325em 0 0 0.8325em;
+}
+
+/* line 157, ../sass/_sidebar.scss */
+.status-badge {
+  height: .5em;
+  width: .5em;
+  display: inline-block;
+  margin: .33em .5em 0 0;
+}
+/* line 163, ../sass/_sidebar.scss */
+.status-badge.online {
+  background: #29A100;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -860,7 +891,7 @@ input[type='text'].change:focus {
 
 /* line 6, ../sass/_icons.scss */
 .icon-arrow {
-  background: url("/images/arrow.png") no-repeat;
+  background: url("/images/arrow_white.png") no-repeat;
   background-size: 100%;
   -webkit-transition: all .3s ease-in;
   -moz-transition: all .3s ease-in;

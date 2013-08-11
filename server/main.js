@@ -36,7 +36,7 @@ Meteor.methods({
   clog : function(s){
     console.log(s);
   },
-  setOnlineUser: function(userid,username,roomid){
+  setUserStatus: function(userid,username,roomid,status){
     if(!userid || !username || !roomid)
       return;
     if( OnlineUsers.find( {userid:userid,nickname:username,roomid:roomid} ).fetch().length === 0 ){
@@ -44,10 +44,11 @@ Meteor.methods({
         {
           userid:userid,
           nickname:username,
-          roomid:roomid
+          roomid:roomid,
+          status:status
         }
       );
-      console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid );
+      console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
 
     }else{
       console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );

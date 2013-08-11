@@ -37,6 +37,9 @@
 </template>
 <template name="room">
 	<div class="toggle-sidebar"><span class="icon-arrow"></span></div>
+	{{#isolate}}
+		<div class="online-users-count">{{onlineUsersCount}}</div>
+	{{/isolate}}
 	<aside class="fixed-sidebar">
 		{{#isolate}}
 			{{#if loggedIn}}
@@ -48,10 +51,9 @@
 			{{/if}}
 		{{/isolate}}
 		{{#isolate}}
-			<div class="online-users-count">{{onlineUsersCount}}</div>
 			<ul class="online-users">
 				{{#each onlineUsers}}
-					<li class="online">{{nickname}}</li>
+					<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
 				{{/each}}
 			</ul>
 		{{/isolate}}
