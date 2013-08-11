@@ -319,6 +319,7 @@ function toggleSidebar(){
 		$('.fixed-sidebar').addClass('show');
 		$('.main').addClass('blur');
 	}
+	
 }
 
 Template.room.events({
