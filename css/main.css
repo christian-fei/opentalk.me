@@ -612,6 +612,7 @@ SUPER SLICK TRANSFORMS
   outline: none;
   border: 0px;
   box-shadow: none;
+  background: none;
   font-size: 1.1rem;
   font-family: 'Questrial', sans-serif;
   margin-top: -.3em;
@@ -626,7 +627,8 @@ SUPER SLICK TRANSFORMS
   z-index: 99;
   overflow: hidden;
   /*padding top 5em to  push it away from .toggle-*/
-  padding: 5em 2em 2em 0em;
+  padding: 5em 2em 4em 0em;
+  margin-bottom: -2em;
   overflow-y: auto;
   opacity: .5;
   -webkit-transition: all .4s ease-in-out;
@@ -638,38 +640,61 @@ SUPER SLICK TRANSFORMS
 @media all and (max-width: 59em) {
   /* line 1, ../sass/_sidebar.scss */
   .fixed-sidebar {
-    left: -100%;
+    left: -13em !important;
   }
 }
-/* line 29, ../sass/_sidebar.scss */
+/* line 30, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   width: 15em;
-  left: 0 !important;
   z-index: 900;
   opacity: 1;
   background: white;
   box-shadow: .3em .3em 2.5em lightgrey;
 }
-/* line 38, ../sass/_sidebar.scss */
+/* line 39, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
 
 /* line 43, ../sass/_sidebar.scss */
+.csstransforms .fixed-sidebar {
+  /*@media all and (max-width: $limit + $sidebar-width*2){
+  	-webkit-transform: translateX(-$sidebar-width);
+  	-moz-transform: translateX(-$sidebar-width);
+  	-o-transform: translateX(-$sidebar-width);
+  	-ms-transform: translateX(-$sidebar-width);
+  	transform: translateX(-$sidebar-width);
+  }*/
+}
+/* line 44, ../sass/_sidebar.scss */
+.csstransforms .fixed-sidebar.show {
+  -webkit-transform: translateX(13em);
+  -moz-transform: translateX(13em);
+  -o-transform: translateX(13em);
+  -ms-transform: translateX(13em);
+  transform: translateX(13em);
+}
+
+/* line 61, ../sass/_sidebar.scss */
+.no-csstransforms .fixed-sidebar.show {
+  left: 0 !important;
+}
+
+/* line 67, ../sass/_sidebar.scss */
 .avatar {
-  height: 3em;
+  height: 2.5em;
   border: 2px solid black;
   border-radius: 50%;
   overflow: hidden;
   float: right;
 }
 
-/* line 51, ../sass/_sidebar.scss */
+/* line 75, ../sass/_sidebar.scss */
 .nickname {
   clear: right;
 }
 
-/* line 54, ../sass/_sidebar.scss */
+/* line 78, ../sass/_sidebar.scss */
 .nickname, #logout {
   float: right;
   clear: right;
@@ -677,21 +702,21 @@ SUPER SLICK TRANSFORMS
   margin-top: 0.3em;
 }
 
-/* line 61, ../sass/_sidebar.scss */
+/* line 85, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1em;
   text-align: left;
   list-style-type: none;
-  padding-left: 1em;
+  padding-left: 2em;
 }
 
-/* line 68, ../sass/_sidebar.scss */
+/* line 92, ../sass/_sidebar.scss */
 .userinfo, .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 73, ../sass/_sidebar.scss */
+/* line 97, ../sass/_sidebar.scss */
 .online-users-count {
   color: #111;
   font-weight: bold;
@@ -704,14 +729,15 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
 }
 
-/* line 86, ../sass/_sidebar.scss */
+/* line 110, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
+  cursor: pointer;
   left: 0;
   top: 1em;
   position: fixed;
-  height: 3em;
-  width: 3em;
+  height: 3.33em;
+  width: 3.33em;
   background: #f1c40f;
   z-index: 1000;
   border-radius: 50%;
@@ -719,10 +745,16 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
 }
 @media all and (max-width: 59em) {
-  /* line 86, ../sass/_sidebar.scss */
+  /* line 110, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
   }
+}
+/* line 129, ../sass/_sidebar.scss */
+.toggle-sidebar .icon-arrow {
+  width: 1.665em;
+  height: 1.665em;
+  margin: 0.8325em 0 0 0.8325em;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -753,7 +785,9 @@ SUPER SLICK TRANSFORMS
   padding: 1em;
   outline: none;
   border: none;
+  background: none;
   border-left: 2px solid #C8C8C8;
+  font-family: 'Questrial', sans-serif;
   -webkit-transition: all 0.25s ease-out;
   -moz-transition: all 0.25s ease-out;
   -ms-transition: all 0.25s ease-out;
@@ -826,11 +860,8 @@ input[type='text'].change:focus {
 
 /* line 6, ../sass/_icons.scss */
 .icon-arrow {
-  height: 1.5em;
-  width: 1.5em;
   background: url("/images/arrow.png") no-repeat;
   background-size: 100%;
-  margin: .75em 0 0 .75em;
   -webkit-transition: all .3s ease-in;
   -moz-transition: all .3s ease-in;
   -ms-transition: all .3s ease-in;
@@ -838,13 +869,13 @@ input[type='text'].change:focus {
   transition: all .3s ease-in;
 }
 
-/* line 20, ../sass/_icons.scss */
-.toggle-sidebar.right .icon-arrow {
-  -webkit-transform: rotateZ(180deg);
-  -moz-transform: rotateZ(180deg);
-  -o-transform: rotateZ(180deg);
-  -ms-transform: rotateZ(180deg);
-  transform: rotateZ(180deg);
+/* line 17, ../sass/_icons.scss */
+.toggle-sidebar.left .icon-arrow {
+  -webkit-transform: rotateZ(-180deg);
+  -moz-transform: rotateZ(-180deg);
+  -o-transform: rotateZ(-180deg);
+  -ms-transform: rotateZ(-180deg);
+  transform: rotateZ(-180deg);
 }
 
 /* line 1, ../sass/_general.scss */
@@ -898,4 +929,22 @@ body.roomok {
 ::-moz-selection {
   background: #FF8400;
   color: white;
+}
+
+/* line 34, ../sass/_general.scss */
+.logo-go-home {
+  height: 3.5em;
+  position: fixed;
+  top: 1em;
+  right: 0;
+  opacity: .666;
+  -webkit-transition: all .333s ease-in-out;
+  -moz-transition: all .333s ease-in-out;
+  -ms-transition: all .333s ease-in-out;
+  -o-transition: all .333s ease-in-out;
+  transition: all .333s ease-in-out;
+}
+/* line 41, ../sass/_general.scss */
+.logo-go-home:hover {
+  opacity: 1;
 }

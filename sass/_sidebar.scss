@@ -9,7 +9,8 @@
 	overflow: hidden;
 	
 	/*padding top 5em to  push it away from .toggle-*/
-	padding:5em 2em 2em 0em;
+	padding:5em 2em 4em 0em;
+	margin-bottom:-2em;
 
 	overflow-y:auto;
 
@@ -23,12 +24,12 @@
 	transition: all .4s ease-in-out;
 
 	@media all and (max-width: $limit + $sidebar-width*2){
-		left:-100%;
+		left: - $sidebar-width - 1em !important;
 	}
 
 	&.show{
 		width:15em;
-		left:0!important;
+		//left:0!important;
 		z-index:900;
 		opacity:1;
 		background:white;
@@ -39,9 +40,32 @@
 		opacity:1;
 	}
 }
+.csstransforms .fixed-sidebar{
+	&.show{
+		-webkit-transform: translateX($sidebar-width + 1em);
+		-moz-transform: translateX($sidebar-width + 1em);
+		-o-transform: translateX($sidebar-width + 1em);
+		-ms-transform: translateX($sidebar-width + 1em);
+		transform: translateX($sidebar-width + 1em);
+	}
+	/*@media all and (max-width: $limit + $sidebar-width*2){
+		-webkit-transform: translateX(-$sidebar-width);
+		-moz-transform: translateX(-$sidebar-width);
+		-o-transform: translateX(-$sidebar-width);
+		-ms-transform: translateX(-$sidebar-width);
+		transform: translateX(-$sidebar-width);
+	}*/
+}
+
+.no-csstransforms .fixed-sidebar{
+	&.show{
+		left:0!important;
+	}
+}
+
 
 .avatar{
-	height:3em;
+	height:2.5em;
 	border: 2px solid black;
 	border-radius: 50%;
 	overflow: hidden;
@@ -62,7 +86,7 @@
 	margin-top: 1em;
 	text-align: left;
 	list-style-type: none;
-	padding-left:1em;
+	padding-left:2em;
 }
 
 .userinfo,.online-users{
@@ -85,11 +109,12 @@
 
 .toggle-sidebar{
 	display:none;
+	cursor: pointer;
 	left:0;
 	top:1em;
 	position:fixed;
-	height:3em;
-	width:3em;
+	height:$toggle-size;
+	width:$toggle-size;
 	background:$color-secondary;
 	z-index:1000;
 
@@ -101,5 +126,11 @@
 		display:block;
 	}
 
+	.icon-arrow{
+		width:$toggle-size/2;
+		height:$toggle-size/2;
+
+		margin:$toggle-size/4 0 0 $toggle-size/4;
+	}
 
 }

@@ -159,15 +159,18 @@ Meteor.Router.add({'/*':'room'});
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
 
-
+console.log('going offline');
 goOffline();
+
 unsubscribe();
+
 Session.set('roomid',null);
 
 if(isValidRoom(room)) {
 	joinRoom(room);
 	goOnline();
 } else {
+
 }
 
 
@@ -232,6 +235,8 @@ Template.pickNickname.events({
 
 	      goOnline();
 	      subscribe();
+
+	      tmplt.find('#mymessage').focus();
 
 	      //joinRoom(Session.get('roomid'));
 	    } else{
@@ -302,14 +307,22 @@ function showSidebar(){
 	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
 		$('.fixed-sidebar').addClass('show');
 		$('.main').addClass('under-modal');
-		$('.toggle-sidebar').addClass('right');
+		$('.toggle-sidebar').addClass('left');
+		if($('#mymessage'))
+			$('#mymessage').attr('disabled',true);
+		if($('#nickname'))
+			$('#nickname').attr('disabled',true);
 	}
 }
 function hideSidebar(){
 	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
 		$('.fixed-sidebar').removeClass('show');
 		$('.main').removeClass('under-modal');
-		$('.toggle-sidebar').removeClass('right');
+		$('.toggle-sidebar').removeClass('left');
+		if($('#mymessage'))
+			$('#mymessage').attr('disabled',false);
+		if($('#nickname'))
+			$('#nickname').attr('disabled',false);
 	}
 }
 
@@ -323,12 +336,7 @@ function toggleSidebar(){
 }
 
 Template.room.events({
-	'click .toggle-sidebar' : function(e){
-		//e.stopImmediatePropagation();
-		//alert(e.type);
-		toggleSidebar();
-		//setTimeout(function(){;},100);
-	}
+	'click .toggle-sidebar' : toggleSidebar
 });
 
 
@@ -352,19 +360,19 @@ function iAmWriting(){
 }
 
 Template.messages.messages = function(){
-	var ml = Messages.find().fetch().length;
+	var ml = Messages.find({},{fields:{_id:true}}).fetch().length;
 
 	if(iAmWriting()){
 		if(ml <= 1)
 			return [];
 		return Messages.find(
 			{}
-			,{sort: {timestamp: 1},limit:ml -1}
+			,{fields:{username:true,text:true},sort: {timestamp: 1},limit:ml -1}
 		);
 	}else{
 		return Messages.find(
 			{}
-			,{sort: {timestamp: 1}}
+			,{fields:{username:true,text:true},sort: {timestamp: 1}}
 		);  
 	}
 };
@@ -437,10 +445,12 @@ Template.messages.events({
 
 
 function scrollToBottom(){
-	$('html,body').animate({scrollTop:50000},30);
+	//console.log('scrolling to bottom');
+	$('html,body').animate({scrollTop: $('html,body').outerHeight()},100);
 }
 
 function fixSidebar(){
+	if(!$('.fixed-sidebar'))return;
 	var limit = 35, //same as CSS _vars.scss
 		sidebarWidth = 12; //same as CSS _room.scss
 	var pcView = limit * 16 + 2*sidebarWidth*16;
@@ -453,24 +463,24 @@ function fixSidebar(){
 			$('.main').toggleClass('under-modal');
 		}
 	}
-	else
-		$('.fixed-sidebar').css( 'left', '-100%' );
+	//else
+		//$('.fixed-sidebar').css( 'left', '-100%' );
 };
 Template.room.rendered = function(){
 	
 	fixSidebar();
-		
+	var instnc = this;
 
-	if($('#mymessage') && !$('#nickname')){
+	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
 		scrollToBottom();
-		$('#mymessage').focus();
+		instnc.find('#mymessage').focus();
 	}
 
 	if($('#nickname')){
 		$('#nickname').focus();
 
 		$('.blanket-white').on('click',function(){		
-			$('#nickname').focus();
+			instnc.find('#nickname').focus();
 		});
 	}
 
@@ -502,40 +512,42 @@ Meteor.startup(function(){
 			fixSidebar();
 		});
 
-		$(document).swipe({
-			swipeLeft:function(event, direction, distance, duration, fingerCount) {
+		$(document).wipetouch({
+			preventDefault:false,
+			wipeLeft: function(result) {
 				hideSidebar();
 			},
-			swipeRight:function(event, direction, distance, duration, fingerCount) {
+			wipeRight: function(result) {
 				showSidebar();
 			}
 		});
 
-
-
 	});
-if(!Modernizr.input.placeholder){
-	console.log('there ain\'t no placeholder support in your shitty browser, dude');
-	$('[placeholder]').focus(function() {
-	var input = $(this);
-	if (input.val() == input.attr('placeholder')) {
-		input.val('');
-		input.removeClass('placeholder');
-	}
-	}).blur(function() {
+
+
+	if(!Modernizr.input.placeholder){
+		console.log('there ain\'t no placeholder support in your shitty browser, dude');
+		$('[placeholder]').focus(function() {
 		var input = $(this);
-		if (input.val() == '' || input.val() == input.attr('placeholder')) {
-			input.addClass('placeholder');
-			input.val(input.attr('placeholder'));
+		if (input.val() == input.attr('placeholder')) {
+			input.val('');
+			input.removeClass('placeholder');
 		}
-	}).blur();
-	$('[placeholder]').parents('form').submit(function() {
-		$(this).find('[placeholder]').each(function() {
+		}).blur(function() {
 			var input = $(this);
-			if (input.val() == input.attr('placeholder')) {
-				input.val('');
+			if (input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.addClass('placeholder');
+				input.val(input.attr('placeholder'));
 			}
-		})
-	});
-}
+		}).blur();
+		$('[placeholder]').parents('form').submit(function() {
+			$(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+					input.val('');
+				}
+			})
+		});
+	}
+
 });

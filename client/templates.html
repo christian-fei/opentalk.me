@@ -38,23 +38,26 @@
 <template name="room">
 	<div class="toggle-sidebar"><span class="icon-arrow"></span></div>
 	<aside class="fixed-sidebar">
-		{{#if loggedIn}}
-			<div class="userinfo">
-				<img class="avatar" src="{{avatar}}"/>
-				<span class="nickname">{{username}}</span>
-				{{>logout}}
-			</div>
-		{{/if}}
-		
-		<div class="online-users-count">{{onlineUsersCount}}</div>
-
-		<ul class="online-users">
-			{{#each onlineUsers}}
-				<li class="online">{{nickname}}</li>
-			{{/each}}
-		</ul>
+		{{#isolate}}
+			{{#if loggedIn}}
+				<div class="userinfo">
+					<img class="avatar" src="{{avatar}}"/>
+					<span class="nickname">{{username}}</span>
+					{{>logout}}
+				</div>
+			{{/if}}
+		{{/isolate}}
+		{{#isolate}}
+			<div class="online-users-count">{{onlineUsersCount}}</div>
+			<ul class="online-users">
+				{{#each onlineUsers}}
+					<li class="online">{{nickname}}</li>
+				{{/each}}
+			</ul>
+		{{/isolate}}
 	</aside>
 	<div class="main">
+		
 		{{#unless loggedIn}}
 			{{>pickNickname}}
 		{{/unless}}
