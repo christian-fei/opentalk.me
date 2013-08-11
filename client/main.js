@@ -298,18 +298,35 @@ Template.room.roomSelected = function(){
 		return true;
 	return false;
 }
+function showSidebar(){
+	if( !$('.fixed-sidebar').hasClass('show') ){
+		$('.fixed-sidebar').addClass('show');
+		$('.main').addClass('blur');
+	}
+}
+function hideSidebar(){
+	if( $('.fixed-sidebar').hasClass('show') ){
+		$('.fixed-sidebar').removeClass('show');
+		$('.main').removeClass('blur');
+	}
+}
 
-
+function toggleSidebar(){
+	if($('.fixed-sidebar').hasClass('show')){
+		$('.fixed-sidebar').removeClass('show');
+		$('.main').removeClass('blur');
+	}else{
+		$('.fixed-sidebar').addClass('show');
+		$('.main').addClass('blur');
+	}
+}
 
 Template.room.events({
 	'click .toggle-sidebar' : function(e){
-		if($('.fixed-sidebar').hasClass('show')){
-			$('.fixed-sidebar').removeClass('show');
-			$('.main').removeClass('blur');
-		}else{
-			$('.fixed-sidebar').addClass('show');
-			$('.main').addClass('blur');
-		}
+		//e.stopImmediatePropagation();
+		//alert(e.type);
+		toggleSidebar();
+		//setTimeout(function(){;},100);
 	}
 });
 
@@ -412,15 +429,7 @@ Template.messages.events({
 			}
 	    }
 		scrollToBottom();
-	},
-
-	'click #deleteMyMessages' : function(evnt,tmplt){
-		evnt.preventDefault();
-		if(confirm('Do you want to remove your messages from this room?')){
-			Meteor.call('removeMessagesOfUserInRoom',Session.get('userid'),Session.get('roomid'));
-		}
 	}
-
 });
 
 
@@ -480,6 +489,9 @@ Template.welcome.rendered = function(){
 
 
 Meteor.startup(function(){
+
+	FastClick.attach(document.body);
+
 	$(document).ready(function() {
 		
 		
@@ -489,32 +501,42 @@ Meteor.startup(function(){
 			fixSidebar();
 		});
 
+		$(document).swipe({
+			swipe: function(event, direction, distance, duration, fingerCount) {
+				console.log("You swiped " + direction );
+
+				if(direction === 'right')
+					showSidebar();
+				if(direction === 'left')
+					hideSidebar();
+			}
+		});
 
 
 
-		if(!Modernizr.input.placeholder){
-			console.log('there ain\'t no placeholder support in your shitty browser, dude');
-			$('[placeholder]').focus(function() {
+	});
+if(!Modernizr.input.placeholder){
+	console.log('there ain\'t no placeholder support in your shitty browser, dude');
+	$('[placeholder]').focus(function() {
+	var input = $(this);
+	if (input.val() == input.attr('placeholder')) {
+		input.val('');
+		input.removeClass('placeholder');
+	}
+	}).blur(function() {
+		var input = $(this);
+		if (input.val() == '' || input.val() == input.attr('placeholder')) {
+			input.addClass('placeholder');
+			input.val(input.attr('placeholder'));
+		}
+	}).blur();
+	$('[placeholder]').parents('form').submit(function() {
+		$(this).find('[placeholder]').each(function() {
 			var input = $(this);
 			if (input.val() == input.attr('placeholder')) {
 				input.val('');
-				input.removeClass('placeholder');
 			}
-			}).blur(function() {
-				var input = $(this);
-				if (input.val() == '' || input.val() == input.attr('placeholder')) {
-					input.addClass('placeholder');
-					input.val(input.attr('placeholder'));
-				}
-			}).blur();
-			$('[placeholder]').parents('form').submit(function() {
-				$(this).find('[placeholder]').each(function() {
-					var input = $(this);
-					if (input.val() == input.attr('placeholder')) {
-						input.val('');
-					}
-				})
-			});
-		}
+		})
 	});
+}
 });

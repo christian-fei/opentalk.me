@@ -11,6 +11,8 @@
 	/*padding top 5em to  push it away from .toggle-*/
 	padding:5em 2em 2em 1em;
 
+	overflow-y:auto;
+
 	opacity: .5;
 
 
@@ -36,11 +38,6 @@
 	&:hover{
 		opacity:1;
 	}
-	
-	&.overflow{
-	}
-		overflow-y:auto;
-
 }
 
 .avatar{
@@ -79,12 +76,10 @@
 	padding: .5em .9em .5em .5em;
 	background: $color-secondary;
 	display: inline-block;
-	border-radius: .6em;
+	border-radius: 50%;
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
 }
-
-
 
 
 .toggle-sidebar{
