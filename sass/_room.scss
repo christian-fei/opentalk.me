@@ -17,15 +17,21 @@
 		width: 100%;
 	}
 
-	&.blur{
-		/*
-		-webkit-filter: blur(3px);
-	    -moz-filter: blur(3px);
-	    -o-filter: blur(3px);
-	    -ms-filter: blur(3px);
-	    filter: blur(3px);
-	    */
-	    opacity: 0.5;
+	-webkit-transition: all 333ms ease-in-out;
+	-moz-transition: all 333ms ease-in-out;
+	-ms-transition: all 333ms ease-in-out;
+	-o-transition: all 333ms ease-in-out;
+	transition: all 333ms ease-in-out;
+
+	&.under-modal{
+		$blur:3px;
+		-webkit-filter: blur($blur);
+	    -moz-filter: blur($blur);
+	    -o-filter: blur($blur);
+	    -ms-filter: blur($blur);
+	    filter: blur($blur);
+	    
+	    opacity: 0.3;
 	}
 }
 

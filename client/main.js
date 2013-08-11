@@ -299,25 +299,25 @@ Template.room.roomSelected = function(){
 	return false;
 }
 function showSidebar(){
-	if( !$('.fixed-sidebar').hasClass('show') ){
+	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
 		$('.fixed-sidebar').addClass('show');
-		$('.main').addClass('blur');
+		$('.main').addClass('under-modal');
+		$('.toggle-sidebar').addClass('right');
 	}
 }
 function hideSidebar(){
-	if( $('.fixed-sidebar').hasClass('show') ){
+	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
 		$('.fixed-sidebar').removeClass('show');
-		$('.main').removeClass('blur');
+		$('.main').removeClass('under-modal');
+		$('.toggle-sidebar').removeClass('right');
 	}
 }
 
 function toggleSidebar(){
 	if($('.fixed-sidebar').hasClass('show')){
-		$('.fixed-sidebar').removeClass('show');
-		$('.main').removeClass('blur');
+		hideSidebar();
 	}else{
-		$('.fixed-sidebar').addClass('show');
-		$('.main').addClass('blur');
+		showSidebar();
 	}
 	
 }
@@ -450,7 +450,7 @@ function fixSidebar(){
 
 		if($('.fixed-sidebar').hasClass('show')){
 			$('.fixed-sidebar').toggleClass('show');
-			$('.main').toggleClass('blur');
+			$('.main').toggleClass('under-modal');
 		}
 	}
 	else
@@ -503,13 +503,11 @@ Meteor.startup(function(){
 		});
 
 		$(document).swipe({
-			swipe: function(event, direction, distance, duration, fingerCount) {
-				console.log("You swiped " + direction );
-
-				if(direction === 'right')
-					showSidebar();
-				if(direction === 'left')
-					hideSidebar();
+			swipeLeft:function(event, direction, distance, duration, fingerCount) {
+				hideSidebar();
+			},
+			swipeRight:function(event, direction, distance, duration, fingerCount) {
+				showSidebar();
 			}
 		});
 
