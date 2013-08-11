@@ -72,7 +72,7 @@
 	float:right;
 }
 
-.nickname{
+ .nickname{
 	clear:right;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -105,10 +105,14 @@
 }
 
 .online-users-count{
-	color:#111;
+	/*
+	color:#eee;
+	text-shadow: .1em .1em .2em #313131;
+	*/
+	color:black;
 	font-weight: bold;
 	font-family:'Raleway';
-	padding: .5em 1em .5em .5em;
+	padding: .5em .8em .5em;
 	background: $color-secondary;
 	display: inline-block;
 	border-radius: 50%;

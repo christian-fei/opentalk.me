@@ -730,10 +730,14 @@ SUPER SLICK TRANSFORMS
 
 /* line 107, ../sass/_sidebar.scss */
 .online-users-count {
-  color: #111;
+  /*
+  color:#eee;
+  text-shadow: .1em .1em .2em #313131;
+  */
+  color: black;
   font-weight: bold;
   font-family: 'Raleway';
-  padding: .5em 1em .5em .5em;
+  padding: .5em .8em .5em;
   background: #f1c40f;
   display: inline-block;
   border-radius: 50%;
@@ -756,7 +760,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 135, ../sass/_sidebar.scss */
+/* line 139, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -772,19 +776,19 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
 }
 @media all and (max-width: 59em) {
-  /* line 135, ../sass/_sidebar.scss */
+  /* line 139, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
   }
 }
-/* line 154, ../sass/_sidebar.scss */
+/* line 158, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.8325em 0 0 0.8325em;
 }
 
-/* line 163, ../sass/_sidebar.scss */
+/* line 167, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -793,11 +797,11 @@ SUPER SLICK TRANSFORMS
   border-radius: 50%;
   float: left;
 }
-/* line 172, ../sass/_sidebar.scss */
+/* line 176, ../sass/_sidebar.scss */
 .status-badge.online {
   background: #29A100;
 }
-/* line 175, ../sass/_sidebar.scss */
+/* line 179, ../sass/_sidebar.scss */
 .status-badge.idle {
   background: #FF8200;
 }
