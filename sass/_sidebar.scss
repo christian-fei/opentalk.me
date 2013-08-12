@@ -116,11 +116,11 @@
 	color:#eee;
 	text-shadow: .1em .1em .2em #313131;
 	*/
-	color:black;
+	color:white;
 	font-weight: bold;
-	font-family:'Raleway';
+	font-family: 'Source Sans Pro', sans-serif;
 	padding: .5em .8em .5em;
-	background: $color-secondary;
+	background: $color-main;
 	display: inline-block;
 	border-radius: 50%;
 	border-top-left-radius:0px;
@@ -157,7 +157,7 @@
 	position:fixed;
 	height:$toggle-size;
 	width:$toggle-size;
-	background:$color-secondary;
+	background:$color-main;
 	z-index:1000;
 
 	border-radius: 50%;

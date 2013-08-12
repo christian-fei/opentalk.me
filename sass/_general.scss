@@ -26,25 +26,5 @@ body.roomok{
 	::-webkit-scrollbar-track{background-color: #999;} 
 	::-webkit-scrollbar-thumb{background:#666;}
 }
-::selection{background:#FF8400;color:white;}
-::-moz-selection{background:#FF8400;color:white;}
-
-
-
-.logo-go-home{
-	height:3.5em;
-	position:fixed;
-	top: 1em;
-	right:0;
-	opacity: .666;
-
-	&:hover{
-		opacity: 1;
-	}
-
-	-webkit-transition: all .333s ease-in-out;
-	-moz-transition: all .333s ease-in-out;
-	-ms-transition: all .333s ease-in-out;
-	-o-transition: all .333s ease-in-out;
-	transition: all .333s ease-in-out;
-}
+::selection{background:$color-main;color:inherit;}
+::-moz-selection{background:$color-main;color:inherit;}

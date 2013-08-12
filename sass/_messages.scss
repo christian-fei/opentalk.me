@@ -11,6 +11,9 @@
 		padding: 0.2em 0.5em;
 		word-wrap:break-word;
 	}
+	.in-realtime{
+		background:lighten($color-main,45%);
+	}
 
 #li-message{
 	width:100%;
