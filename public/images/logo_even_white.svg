@@ -9,26 +9,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="715.96875"
-   height="594.625"
-   id="svg2"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg3073"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="logo_lines.svg"
-   inkscape:export-filename="/home/cf/Documents/github/opentalk.me/public/images/logo_lines.png"
-   inkscape:export-xdpi="100.68875"
-   inkscape:export-ydpi="100.68875">
+   sodipodi:docname="logo_even_white.svg">
   <defs
-     id="defs4">
-    <style
-       id="style3847"
-       type="text/css">
-			line {
-				stroke-width: 3px;
-				stroke: black;
-			}
-		</style>
-  </defs>
+     id="defs3075" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -36,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="332.41336"
-     inkscape:cy="254.92816"
+     inkscape:zoom="0.7"
+     inkscape:cx="303.02865"
+     inkscape:cy="562.99351"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -46,51 +34,29 @@
      inkscape:window-height="1056"
      inkscape:window-x="56"
      inkscape:window-y="24"
-     inkscape:window-maximized="1"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" />
+     inkscape:window-maximized="1" />
   <metadata
-     id="metadata7">
+     id="metadata3078">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-14.0625,-228.875)">
-    <rect
-       style="fill:#ffcc00;fill-opacity:1;stroke:#000000;stroke-width:0.48149091;stroke-opacity:1"
-       id="rect3821"
-       width="715.49548"
-       height="594.15979"
-       x="14.299491"
-       y="229.1012"
-       inkscape:export-filename="/home/cf/Documents/github/opentalk.me/public/images/opentalk_logo.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <g
-       style="fill:#000000"
-       id="g3809"
-       transform="matrix(8.3691946,0,0,8.3691946,-278.89457,-416.04026)"
-       inkscape:export-filename="/home/cf/Documents/github/opentalk.me/public/images/opentalk_logo.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <g
-         id="g3812" />
-    </g>
+     id="layer1">
     <g
        id="g3024"
-       transform="matrix(1.0591593,0,0,0.95925872,-11.177439,29.489139)">
+       transform="matrix(1.0591593,0,0,0.95925872,3.085559,-239.03453)"
+       inkscape:export-filename="/home/cf/Documents/github/opentalk.me/public/images/logo_even_white.png"
+       inkscape:export-xdpi="13.90478"
+       inkscape:export-ydpi="13.90478">
       <g
          style="opacity:0.65843626;stroke:#ffffff;stroke-opacity:1"
          transform="matrix(1.6902151,0,0,1.6902151,-864.75753,-202.72497)"
@@ -188,7 +154,7 @@
          inkscape:connector-curvature="0"
          id="path3777"
          d="m 461.87092,654.46217 c 47.42167,-26.89884 84.15151,-85.05335 83.98293,-148.77883 -0.25394,-95.99056 -77.816,-173.80689 -173.8069,-173.80689 -95.99089,0 -173.80689,77.816 -173.80689,173.80689 0,95.9909 77.816,173.8069 173.93002,173.82 0,0 25.82344,38.49208 117.87256,36.93648 -47.18083,-18.33951 -28.17172,-61.97765 -28.17172,-61.97765 z"
-         style="fill:none;stroke:#ffffff;stroke-width:30.81542015;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:none;stroke:#ffffff;stroke-width:49.60454661;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -196,7 +162,7 @@
          inkscape:connector-curvature="0"
          id="path3979"
          d="m 274.30493,427.77703 164.6699,0"
-         style="opacity:0.4;fill:none;stroke:#ffffff;stroke-width:19.25963783;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="opacity:0.40000000000000002;fill:none;stroke:#ffffff;stroke-width:29.76272797;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -204,7 +170,7 @@
          inkscape:connector-curvature="0"
          id="path3981"
          d="m 273.70307,470.14824 75.11258,0"
-         style="opacity:0.4;fill:none;stroke:#ffffff;stroke-width:19.25963783;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="opacity:0.40000000000000002;fill:none;stroke:#ffffff;stroke-width:29.76272797;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -212,13 +178,13 @@
          inkscape:connector-curvature="0"
          id="path3983"
          d="m 273.1012,577.03922 104.00204,0"
-         style="opacity:0.4;fill:none;stroke:#ffffff;stroke-width:19.25963783;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="opacity:0.40000000000000002;fill:none;stroke:#ffffff;stroke-width:29.76272797;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
          inkscape:export-filename="/home/cf/Documents/github/opentalk.me/public/images/opentalk_logo.png"
-         style="opacity:0.8;fill:none;stroke:#ffffff;stroke-width:19.25963783;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 262.78157,547.24395 113.36541,-42.04052 74.54575,24.75624"
+         style="opacity:0.8;fill:none;stroke:#ffffff;stroke-width:39.68363571;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 261.43279,536.81923 114.71419,-31.6158 74.54575,24.75624"
          id="path4886"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccc" />

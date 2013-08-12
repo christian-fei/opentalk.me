@@ -33,6 +33,7 @@ var idleTime = 60*1000,
 
 Meteor.methods({
   serverTime : function(){
+    console.log('requested serverTime');
     return Date.now();
   },
   removeMessagesOfUserInRoom : function(userid,roomid){
@@ -73,7 +74,7 @@ Meteor.methods({
 });
 
 Meteor.setInterval(function() {
-  console.log('idle check');
+  //console.log('idle check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - idleTime)} } ).forEach(function(user){
     OnlineUsers.update({_id:user._id},{$set:{status:'idle'}});
@@ -81,7 +82,7 @@ Meteor.setInterval(function() {
 },idleCheck);
 
 Meteor.setInterval(function() {
-  console.log('kill check');
+  //console.log('kill check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - killTime)} } ).forEach(function(user){
     OnlineUsers.remove({_id:user._id});

@@ -14,7 +14,7 @@
 
 	overflow-y:auto;
 
-	opacity: .5;
+	opacity: .7;
 
 
 	-webkit-transition: all .4s ease-in-out;
@@ -82,12 +82,17 @@
     width: 100%;
     text-align: right;
 }
-.nickname,#logout{
+.nickname,#logout,#toggleRealtime{
 	float:right;
 	clear:right;
 	margin-left:0.3em;
-	margin-top:0.3em;
+	margin-top:0.6em;
 }
+
+#toggleRealtime{
+	margin-top: .8em;
+}
+
 
 .online-users{
 	margin-top: 2em;
@@ -126,11 +131,17 @@
 	top:4.3em;
 	z-index: 998;
 
+	/*sadly no transition because it would be 
+		positioned *again* when a heartbeat happens,
+		will be fixed, soon
+	*/
+	/*
 	-webkit-transition: all .4s ease-in-out;
 	-moz-transition: all .4s ease-in-out;
 	-ms-transition: all .4s ease-in-out;
 	-o-transition: all .4s ease-in-out;
 	transition: all .4s ease-in-out;
+	*/
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: 0!important;
@@ -170,22 +181,32 @@
 	height:.5em;
 	width:.5em;
 	display:inline-block;
-	margin: .33em .5em 0 0;
+	margin: .4em .5em 0 0;
 	border-radius: 50%;
 
 	float:left;
+	
+	opacity: 1;
 
-	&.online{
+	&.online,&.on{
 		background:#29A100;
 	}
-	&.idle{
+	&.idle,&.off{
 		background:#FF8200;
 	}
 }
 
+
 .logo{
 	position:absolute;
-	top:0;
+	top:1em;
 	right:0;
-	width: 3.66em;
+	height:$toggle-size;
+	width:$toggle-size;
+	border-radius: 50%;
+	border-top-right-radius:0;
+	border-bottom-right-radius:0;
+	padding:$toggle-size/4;
+	background:$color-main;
+	display: inline-block;
 }

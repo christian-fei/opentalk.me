@@ -13,7 +13,20 @@ var lastInsertId=0, //ID of the last inserted message
 	tdiff=0. //difference between time on server and time on client
 	mSub = null, //Messages subscription
 	ouSub = null, //OnlineUsers subscription
-	keepaliveTime = 10000;
+	keepaliveTime = 20000;
+
+
+
+var realtimeEnabled = false;
+Session.set('realtimeEnabled',true);
+
+
+var pathRoot = window.location.pathname,
+  	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
+
+
+var limit = 32, //same as CSS _vars.scss
+	sidebarWidth = 12; //same as CSS _room.scss
 
 Meteor.call('serverTime',function(error, result){
 	//console.log('server responded with ' + result);
@@ -23,6 +36,7 @@ Meteor.call('serverTime',function(error, result){
 });
 
 Meteor.setInterval(function () {
+	console.log('sending keep alive command');
 	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 }, keepaliveTime);
 
@@ -158,8 +172,7 @@ except the user types an invalid URL, then he will be redirected to /
 */
 Meteor.Router.add({'/*':'room'});
 
-var pathRoot = window.location.pathname,
-  	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
+
 
 //console.log('going offline');
 goOffline();
@@ -184,9 +197,7 @@ going offline when the user closes the browser (also at page releod, but that's 
 window.onbeforeunload = goOffline;
 
 
-
-
-
+/*
 function distinctUsers(){
 	var users = OnlineUsers.find().fetch(),
 	    user,
@@ -206,15 +217,19 @@ function distinctUsers(){
 	    distinctUsers.push(u);
 	}
 	return distinctUsers;
-}
+}*/
 
 Template.room.onlineUsers =function(){
-	return distinctUsers();
+	return OnlineUsers.find().fetch();
+//	return distinctUsers();
 }
 Template.room.onlineUsersCount =function(){
-	return distinctUsers().length;
+	return OnlineUsers.find().fetch().length;
+//	return distinctUsers().length;
 }
-
+Template.room.realtimeEnabled = function(){
+	return Session.get('realtimeEnabled') ? 'on' : 'off';
+}
 
 function validNickname(n){
 	if(n.length && n.length < 25 && n.charAt(n.length - 1) !== ' ' && n.trim().length && nicknameAvailable(n))
@@ -317,7 +332,7 @@ Template.room.roomSelected = function(){
 	return false;
 }
 function showSidebar(){
-	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
+	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
 		$('.fixed-sidebar').addClass('show');
 		$('.main').addClass('under-modal');
 		$('.toggle-sidebar').addClass('left');
@@ -328,7 +343,7 @@ function showSidebar(){
 	}
 }
 function hideSidebar(){
-	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < 35*16 + 12*2*16 ){
+	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
 		$('.fixed-sidebar').removeClass('show');
 		$('.main').removeClass('under-modal');
 		$('.toggle-sidebar').removeClass('left');
@@ -349,7 +364,12 @@ function toggleSidebar(){
 }
 
 Template.room.events({
-	'click .toggle-sidebar' : toggleSidebar
+	'click .toggle-sidebar' : toggleSidebar,
+	'click #toggleRealtime' : function(evnt,tmplt){
+		evnt.preventDefault();
+		Session.set('realtimeEnabled' , !Session.get('realtimeEnabled'));
+		$('#mymessage').blur();
+	}
 });
 
 
@@ -378,11 +398,21 @@ Template.messages.messages = function(){
 	if(iAmWriting()){
 		if(ml <= 1)
 			return [];
+		/*if(!Session.get('realtimeEnabled'))
+			return Messages.find(
+				{messageComplete:true}
+				,{fields:{username:true,text:true},sort: {timestamp: 1},limit:ml -1}
+			);*/
 		return Messages.find(
 			{}
 			,{fields:{username:true,text:true},sort: {timestamp: 1},limit:ml -1}
 		);
 	}else{
+		/*if(!Session.get('realtimeEnabled'))
+			return Messages.find(
+				{messageComplete:true}
+				,{fields:{username:true,text:true},sort: {timestamp: 1}}
+			);*/
 		return Messages.find(
 			{}
 			,{fields:{username:true,text:true},sort: {timestamp: 1}}
@@ -396,6 +426,8 @@ function removeLastMessage(){
     $('#mymessage').val('');
 }
 
+
+
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
 
@@ -407,49 +439,81 @@ Template.messages.events({
     		return;
     	}
 
+    	if(Session.get('realtimeEnabled')) {
+    		/*First message/first keystroke being sent*/
+		    if(!Session.get('lastInsertId')){
+				Session.set(
+					'lastInsertId',
+					Messages.insert(
+						{
+						userid:Session.get('userid')
+						,username:Session.get('username')
+						,roomid:Session.get('roomid')
+						,text:text
+						,timestamp:t
+						,messageComplete:false
+						}
+					)
+				);
+		      	return;
+		    }
+		    if(evnt.keyCode === 13){
+				if(text.length){
+					//new Message
+					Messages.update(
+						{
+							_id:''+Session.get('lastInsertId')
+						}
+						,{$set : 
+							{
+								text:text
+								,timestamp:t
+								,messageComplete:true
+							}
+						}
+					);
+					Session.set('lastInsertId',null);
+					tmplt.find('#mymessage').value = '';
+				} else {
+					removeLastMessage();
+				}
+		    } else {
 
-	    /*First message/first keystroke being sent*/
-	    if(!Session.get('lastInsertId')){
-			Session.set(
-				'lastInsertId',
-				Messages.insert(
+				if(text.length){
+					Messages.update(
+						{
+							_id:''+Session.get('lastInsertId')
+						}
+						,{$set : 
+							{
+								text:text
+								,timestamp:t
+							}
+						}
+					);
+				} else {
+					removeLastMessage();
+				}
+		    }
+    	} else {
+    		if(evnt.keyCode === 13){
+	    		Messages.insert(
 					{
 					userid:Session.get('userid')
 					,username:Session.get('username')
 					,roomid:Session.get('roomid')
 					,text:text
 					,timestamp:t
-					}
-				)
-			);
-	      	return;
-	    }
-
-	    if(evnt.keyCode === 13){
-			if(text.length){
-				//new Message
-				Session.set('lastInsertId',null);
-				tmplt.find('#mymessage').value = '';
-			} else {
-				removeLastMessage();
-			}
-	    } else {
-			if(text.length){
-				Messages.update(
-					{
-						_id:''+Session.get('lastInsertId')
-					}
-					,{$set : 
-						{
-							text:text
-							,timestamp:t
-						}
+					,messageComplete:true
 					}
 				);
-			} else {
-				removeLastMessage();
-			}
-	    }
+				tmplt.find('#mymessage').value = '';
+	    	}
+    	}
+
+	    
+
+	    
 		scrollIfAtBottom();
 	}
 });
@@ -474,9 +538,8 @@ function scrollIfAtBottom(){
 }
 
 function positionFixedContent(){
-	if( !$('.fixed-sidebar') || !$('.online-users-count'))return;
-	var limit = 35, //same as CSS _vars.scss
-		sidebarWidth = 12; //same as CSS _room.scss
+	if( !$('.fixed-sidebar') || !$('.online-users-count') || !$('.main'))return;
+
 	var pcView = limit * 16 + 2*sidebarWidth*16;
 	if($(window).width() > pcView){
 		var l = $('.main').offset().left - sidebarWidth*16;

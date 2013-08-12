@@ -42,7 +42,9 @@
 		<div class="online-users-count"><span>{{onlineUsersCount}}</span></div>
 	{{/isolate}}
 	<aside class="fixed-sidebar">
-		<a href="/" title='to the homepage'><img src="/images/logo_lines.png" alt="" class="logo"></a>
+		<a href="/" title='to the homepage'>
+			<img src="/images/logo_even_white.png" alt="" class="logo">
+		</a>
 		{{#isolate}}
 			{{#if loggedIn}}
 				<div class="userinfo">
@@ -50,6 +52,7 @@
 					<span class="nickname">{{username}}</span>
 					{{>logout}}
 				</div>
+				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'><span class="status-badge {{realtimeEnabled}}"></span> realtime</a>
 			{{/if}}
 		{{/isolate}}
 		{{#isolate}}
