@@ -4,16 +4,16 @@ Messages.allow({
   ,remove : function(){return true}
 });
 OnlineUsers.allow({
-  insert : function(){return true}
-  ,update : function(){return true}
-  ,remove : function(){return true}
+  insert : function(){return false}
+  ,update : function(){return false}
+  ,remove : function(){return false}
 });  
 
 Meteor.publish('MessagesChatroom',function(roomid){
   return Messages.find(
     {
       roomid:roomid
-    }
+    },{sort:{timestamp:1}}
   );
 });
 
@@ -26,7 +26,7 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
 });
 
 
-var idleTime = 60*1000,
+var idleTime = 20*1000,
     idleCheck = idleTime/2,
     killTime = 20*60*1000,
     killCheck = killTime/2;
@@ -48,6 +48,12 @@ Meteor.methods({
     if(status === 'offline'){
       OnlineUsers.remove({userid:userid});
       console.log('offline ' + userid);
+      /*mark all messages as complete*/
+      Messages.update(
+        {userid:userid,roomid:roomid}
+        ,{$set : {messageComplete:true}}
+        ,{multi:true}
+      );
       return;
     }
     var now = Date.now();

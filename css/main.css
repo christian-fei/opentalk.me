@@ -484,14 +484,14 @@ SUPER SLICK TRANSFORMS
 .blanket, .blanket-white {
   position: relative;
   display: table;
-  max-width: 33em;
+  max-width: 32em;
   padding: 1.5em;
   box-shadow: 3px 3px 25px lightgrey;
   margin: 4em auto 4em;
   border-radius: 5px;
   border: 1px solid lightgrey;
 }
-@media all and (max-width: 33em) {
+@media all and (max-width: 32em) {
   /* line 44, ../sass/_welcome.scss */
   .blanket, .blanket-white {
     margin: 2.5em auto 2.5em;
@@ -578,8 +578,7 @@ SUPER SLICK TRANSFORMS
 .main {
   z-index: 126;
   margin: 5em auto 0.5em;
-  max-width: 33em;
-  width: 100%;
+  max-width: 31em;
   padding: .66em;
   background: rgba(255, 255, 255, 0.8);
   border-top-right-radius: 0px;
@@ -590,7 +589,7 @@ SUPER SLICK TRANSFORMS
   -o-transition: all 333ms ease-in-out;
   transition: all 333ms ease-in-out;
 }
-@media all and (max-width: 33em) {
+@media all and (max-width: 32em) {
   /* line 1, ../sass/_room.scss */
   .main {
     width: 100%;
@@ -640,7 +639,7 @@ SUPER SLICK TRANSFORMS
   -o-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
-@media all and (max-width: 57em) {
+@media all and (max-width: 56em) {
   /* line 1, ../sass/_sidebar.scss */
   .fixed-sidebar {
     left: -13em !important;
@@ -769,7 +768,7 @@ SUPER SLICK TRANSFORMS
   transition: all .4s ease-in-out;
   */
 }
-@media all and (max-width: 57em) {
+@media all and (max-width: 56em) {
   /* line 114, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
@@ -791,7 +790,7 @@ SUPER SLICK TRANSFORMS
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
-@media all and (max-width: 57em) {
+@media all and (max-width: 56em) {
   /* line 152, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
@@ -842,7 +841,7 @@ SUPER SLICK TRANSFORMS
 .messages {
   list-style-type: none;
   padding: 0em .66em;
-  max-width: 33em;
+  max-width: 31em;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 3px 3px 25px lightgrey;
 }
@@ -854,7 +853,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 14, ../sass/_messages.scss */
-.in-realtime {
+.realtime {
   background: #fff8e5;
 }
 
@@ -869,11 +868,13 @@ SUPER SLICK TRANSFORMS
   margin-top: 30px;
   width: 100%;
   padding: 1em;
+  font-size: 1em;
   outline: none;
   border: none;
   background: none;
   border-left: 2px solid #C8C8C8;
   font-family: 'Questrial', sans-serif;
+  overflow-y: auto;
   -webkit-transition: all 0.25s ease-out;
   -moz-transition: all 0.25s ease-out;
   -ms-transition: all 0.25s ease-out;
@@ -984,7 +985,7 @@ body > * {
 
 /* line 17, ../sass/_general.scss */
 body.roomok {
-  max-width: 33em;
+  max-width: 32em;
   margin: 0 auto;
   position: relative;
 }

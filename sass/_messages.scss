@@ -1,7 +1,7 @@
 .messages{
 	list-style-type: none;
 	padding: 0em .66em;
-	max-width: $limit;
+	max-width: $limit - 1em;
 
 	background: rgba(255,255,255,.6);
 	box-shadow: 3px 3px 25px lightgrey;
@@ -11,7 +11,7 @@
 		padding: 0.2em 0.5em;
 		word-wrap:break-word;
 	}
-	.in-realtime{
+	.realtime{
 		background:lighten($color-main,45%);
 	}
 
@@ -23,6 +23,7 @@
 	margin-top: 30px;
 	width: 100%;
 	padding: 1em;
+	font-size: 1em;
 
 	outline:none;
 	border:none;
@@ -33,6 +34,8 @@
 	border-left:2px solid #C8C8C8;
 	font-family: 'Questrial', sans-serif;
 	
+	overflow-y:auto;
+
 	-webkit-transition: all $transition-duration ease-out;
 	-moz-transition: all $transition-duration ease-out;
 	-ms-transition: all $transition-duration ease-out;

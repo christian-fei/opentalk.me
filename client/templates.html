@@ -27,11 +27,11 @@
 <template name='messages'>
 	<ul class='messages'>
 		{{#each messages}}
-			<li class='message'><b class='username'>{{username}}</b>: <span>{{text}}</span></li>
+			<li class='message {{#unless messageComplete}}realtime{{/unless}}'><b class='username'>{{username}}</b>: <span>{{text}}</span></li>
 		{{/each}}
 		{{#if loggedIn}}
 			<li id='li-message'>
-				<textarea id="mymessage" rows="1" placeholder='your message'/>
+				<textarea id="mymessage" placeholder='your message'/>
 			</li>
 		{{/if}}
 	</ul>
