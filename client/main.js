@@ -16,11 +16,7 @@ var lastInsertId=0, //ID of the last inserted message
 	keepaliveTime = 10000;
 
 
-if(Meteor._localStorage.getItem('realtimeEnabled'))
-	Session.set('realtimeEnabled',Meteor._localStorage.getItem('realtimeEnabled'));
-else{
-	Session.set('realtimeEnabled',false);
-}
+Session.set('realtimeEnabled',Meteor._localStorage.getItem('realtimeEnabled'));
 
 Deps.autorun(function(){
 	if( Meteor.user() ) {
@@ -230,39 +226,6 @@ window.onbeforeunload = function(){
 }
 
 
-/*
-function distinctUsers(){
-	var users = OnlineUsers.find().fetch(),
-	    user,
-	    distinctUsers=[],
-	    du,
-	    i=0,
-	    j,
-	    distinct;
-
-	while(u=users[i++]){
-	  j=0;
-	  distinct=true;
-	  while(du=distinctUsers[j++])
-	    if(du.userid === u.userid)
-	      distinct=false;
-	  if(distinct)
-	    distinctUsers.push(u);
-	}
-	return distinctUsers;
-}*/
-
-Template.room.onlineUsers =function(){
-	return OnlineUsers.find().fetch();
-//	return distinctUsers();
-}
-Template.room.onlineUsersCount =function(){
-	return OnlineUsers.find().fetch().length;
-//	return distinctUsers().length;
-}
-Template.room.realtimeEnabled = function(){
-	return Session.get('realtimeEnabled') ? 'on' : 'off';
-}
 
 function validNickname(n){
 	if(n.length && n.length < 25 && n.charAt(n.length - 1) !== ' ' && n.trim().length && nicknameAvailable(n))
@@ -354,6 +317,26 @@ Template.selectChatRoom.events({
 
 
 
+Template.room.onlineUsers =function(){
+	return OnlineUsers.find().fetch();
+//	return distinctUsers();
+}
+Template.room.onlineUsersCount =function(){
+	return OnlineUsers.find().fetch().length;
+//	return distinctUsers().length;
+}
+Template.room.realtimeEnabled = function(){
+	//Session.set('realtimeEnabled',Meteor._localStorage.getItem('realtimeEnabled'));
+	if(Session.get('realtimeEnabled'))
+		return 'on';
+	return 'off';
+	// return Session.get('realtimeEnabled') ? 'on' : 'off';
+}
+
+
+
+
+
 /*
 global username, either from accounts or nickname
 */
@@ -405,8 +388,8 @@ Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click #toggleRealtime' : function(evnt,tmplt){
 		evnt.preventDefault();
+		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));
 		Session.set('realtimeEnabled' , !Session.get('realtimeEnabled'));
-		Meteor._localStorage.setItem('realtimeEnabled',Session.get('realtimeEnabled'));
 	}
 });
 
