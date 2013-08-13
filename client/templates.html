@@ -28,7 +28,7 @@
 <template name='messages'>
 	<ul class='messages'>
 		{{#each messages}}
-			<li class='message {{#unless messageComplete}}realtime{{/unless}}'><b class='username'>{{username}}</b>: <span>{{text}}</span></li>
+			<li class='message {{#unless messageComplete}}realtime{{/unless}}'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{text}}</span></li>
 		{{/each}}
 		{{#if loggedIn}}
 			<li id='li-message'>

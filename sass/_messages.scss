@@ -1,6 +1,6 @@
 .messages{
 	list-style-type: none;
-	padding: 0.5em 0em 0em;
+	//padding: 0.5em 0em 0em;
 	max-width: $limit - 1em;
 
 	background: rgba(255,255,255,.6);
@@ -10,10 +10,34 @@
 	.message{
 		padding: 0.2em 0.5em;
 		word-wrap:break-word;
+		border-bottom:1px dotted #EFEFEF;
 	}
+		.useravatar{
+			height:1.75em;
+			width: 1.75em;
+			margin-top:.2em;
+			margin-left:.5em;
+			border-radius: 45%;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+
+			vertical-align: top;
+		}
+		.username,.text{
+			display: inline-block;
+			vertical-align: middle;
+			margin-left:.5em;
+			margin-right:.5em;
+			margin-top:.5em;
+			word-wrap:break-word;
+			-ms-word-break: break-all;
+			word-break: break-all;
+		}
+
 	.realtime{
 		background:lighten($color-main,45%);
 	}
+	
 
 #li-message{
 	width:100%;

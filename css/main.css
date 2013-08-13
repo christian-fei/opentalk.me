@@ -840,7 +840,6 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_messages.scss */
 .messages {
   list-style-type: none;
-  padding: 0.5em 0em 0em;
   max-width: 31em;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 3px 3px 25px lightgrey;
@@ -850,19 +849,44 @@ SUPER SLICK TRANSFORMS
 .message {
   padding: 0.2em 0.5em;
   word-wrap: break-word;
+  border-bottom: 1px dotted #EFEFEF;
 }
 
-/* line 14, ../sass/_messages.scss */
+/* line 15, ../sass/_messages.scss */
+.useravatar {
+  height: 1.75em;
+  width: 1.75em;
+  margin-top: .2em;
+  margin-left: .5em;
+  border-radius: 45%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  vertical-align: top;
+}
+
+/* line 26, ../sass/_messages.scss */
+.username, .text {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: .5em;
+  margin-right: .5em;
+  margin-top: .5em;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+}
+
+/* line 37, ../sass/_messages.scss */
 .realtime {
   background: #fff8e5;
 }
 
-/* line 18, ../sass/_messages.scss */
+/* line 42, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 21, ../sass/_messages.scss */
+/* line 45, ../sass/_messages.scss */
 #mymessage {
   resize: none;
   margin-top: 30px;

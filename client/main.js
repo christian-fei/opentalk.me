@@ -502,6 +502,7 @@ Template.messages.events({
 						,text:text
 						,timestamp:t
 						,messageComplete:false
+						,useravatar:Session.get('avatar')
 						}
 					)
 				);
@@ -557,6 +558,7 @@ Template.messages.events({
 					,text:text
 					,timestamp:t
 					,messageComplete:true
+					,useravatar:Session.get('avatar')
 					}
 				);
 				tmplt.find('#mymessage').value = '';
@@ -622,13 +624,7 @@ Template.room.rendered = function(){
 
 	if($('#nickname')){
 		$('#nickname').focus();
-
-		$('.blanket-white').on('click',function(){		
-			instnc.find('#nickname').focus();
-		});
 	}
-
-	
 };
 
 Template.welcome.rendered = function(){
