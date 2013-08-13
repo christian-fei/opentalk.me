@@ -685,8 +685,8 @@ SUPER SLICK TRANSFORMS
 
 /* line 68, ../sass/_sidebar.scss */
 .avatar {
-  height: 2.5em;
-  border: 2px solid black;
+  height: 3em;
+  border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
   float: right;
@@ -840,7 +840,7 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_messages.scss */
 .messages {
   list-style-type: none;
-  padding: 0em .66em;
+  padding: 0.5em 0em 0em;
   max-width: 31em;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 3px 3px 25px lightgrey;

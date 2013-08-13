@@ -8,7 +8,9 @@ OnlineUsers.allow({
   ,update : function(){return false}
   ,remove : function(){return false}
 });  
-
+/*Meteor.users.deny({
+  update: function () { return true; }
+});*/
 Meteor.publish('MessagesChatroom',function(roomid){
   return Messages.find(
     {
@@ -23,6 +25,9 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
       roomid:roomid
     }
   );
+});
+Meteor.publish("userData", function () {
+  return Meteor.users.find({_id: this.userId},{});
 });
 
 

@@ -22,7 +22,17 @@ else{
 	Session.set('realtimeEnabled',false);
 }
 
-
+Deps.autorun(function(){
+	if( Meteor.user() ) {
+		var currentUser = Meteor.users.find().fetch()[0];
+		Meteor.subscribe('userData');
+		Session.set('userid',currentUser._id);
+		Session.set('username',currentUser.profile.name);
+		goOnline();
+	    subscribe();
+	    //setAvatar();
+	}
+});
 
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
@@ -40,14 +50,11 @@ Meteor.call('serverTime',function(error, result){
 
 Meteor.setInterval(function () {
 	if(Session.get('roomid')){
-		console.log('sending keep alive command');
+		//console.log('sending keep alive command');
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 	}
 }, keepaliveTime);
 
-
-/*sync time*/
-function syncTime(){}
 
 
 /*
@@ -99,10 +106,32 @@ function goOnline(){
 
 
 function setAvatar(){
-	if(Meteor._localStorage.getItem('avatar'))
-		Session.set('avatar',Meteor._localStorage.getItem('avatar'));
-	else
-		Session.set('avatar','/images/avatar.png');
+	if( Meteor.user() ){
+		if(Meteor.user().services){
+			if(Meteor.user().services.twitter)
+				Meteor._localStorage.setItem('avatar',Meteor.user().services.twitter.profile_image_url);
+			if(Meteor.user().services.google)
+				Meteor._localStorage.setItem('avatar',Meteor.user().services.google.picture);
+			if(Meteor.user().services.facebook)
+				Meteor._localStorage.setItem('avatar','https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture?type=normal');
+			if(Meteor.user().services.github){
+				//make ajax call to get profile image
+				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
+				console.log('ajax to gh');
+				$.ajax({
+				  url: gh_api_url
+				}).done(function ( data ) {
+				  if( console && console.log ) {
+				    console.log("data:", data);
+				    if(data.avatar_url)
+				    	Meteor._localStorage.setItem('avatar',data.avatar_url);
+				  }
+				});
+			}
+		}
+	}else{
+		Meteor._localStorage.setItem('avatar','/images/avatar.png');
+	}
 }
 
 
@@ -257,8 +286,6 @@ Template.pickNickname.events({
 	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 	    var nickname = tmplt.find('#nickname').value;
 
-	    
-
 	    if(validNickname(nickname)) {
 	      //TODO: better unique ID
 	      //make to string as a (temporary?) fix
@@ -290,7 +317,13 @@ Template.logout.events({
 		evnt.preventDefault();
 
 		goOffline();
+		if(Meteor.user())
+			Meteor.logout(function(){
+				Session.set('userid',null);
+				Session.set('username',null);
+			});
 
+		Meteor._localStorage.removeItem('avatar');
 		Meteor._localStorage.removeItem('userid');
 		Meteor._localStorage.removeItem('username');
 		Session.set('userid',null);
@@ -323,6 +356,9 @@ Template.selectChatRoom.events({
 	}
 });
 
+Deps.autorun(function(){
+	Meteor._localStorage;
+});
 
 
 
@@ -333,7 +369,7 @@ Template.room.username = function(){
 	return Session.get('username');
 };
 Template.room.avatar = function(){
-	return Session.get('avatar');
+	return Meteor._localStorage.getItem('avatar');
 }
 Template.room.roomSelected = function(){
 	if(Session.get('roomid'))
