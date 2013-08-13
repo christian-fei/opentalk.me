@@ -30,7 +30,7 @@ Deps.autorun(function(){
 		Session.set('username',currentUser.profile.name);
 		goOnline();
 	    subscribe();
-	    //setAvatar();
+	    setAvatar();
 	}
 });
 
@@ -108,11 +108,11 @@ function setAvatar(){
 	if( Meteor.user() ){
 		if(Meteor.user().services){
 			if(Meteor.user().services.twitter)
-				Meteor._localStorage.setItem('avatar',Meteor.user().services.twitter.profile_image_url);
+				Session.set('avatar',Meteor.user().services.twitter.profile_image_url);
 			if(Meteor.user().services.google)
-				Meteor._localStorage.setItem('avatar',Meteor.user().services.google.picture);
+				Session.set('avatar',Meteor.user().services.google.picture);
 			if(Meteor.user().services.facebook)
-				Meteor._localStorage.setItem('avatar','https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture?type=normal');
+				Session.set('avatar','https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture');
 			if(Meteor.user().services.github){
 				//make ajax call to get profile image
 				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
@@ -123,13 +123,13 @@ function setAvatar(){
 				  if( console && console.log ) {
 				    console.log("data:", data);
 				    if(data.avatar_url)
-				    	Meteor._localStorage.setItem('avatar',data.avatar_url);
+				    	Session.set('avatar',data.avatar_url);
 				  }
 				});
 			}
 		}
 	}else{
-		Meteor._localStorage.setItem('avatar','/images/avatar.png');
+		Session.set('avatar','/images/avatar.png');
 	}
 }
 
@@ -351,9 +351,6 @@ Template.selectChatRoom.events({
 	}
 });
 
-Deps.autorun(function(){
-	Meteor._localStorage;
-});
 
 
 
@@ -364,7 +361,7 @@ Template.room.username = function(){
 	return Session.get('username');
 };
 Template.room.avatar = function(){
-	return Meteor._localStorage.getItem('avatar');
+	return Session.get('avatar');
 }
 Template.room.roomSelected = function(){
 	if(Session.get('roomid'))
@@ -446,15 +443,23 @@ Template.messages.preserve({
 */
 
 Template.messages.messages = function(){
+
+	//if in realtime, 
+		//if my last message has not been completed yet, don't display it.
+		//in other words, don't display message that are mine and not completed
+
+
 	if(Session.get('realtimeEnabled')) {
-		var lastmessage = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0];
-		if(lastmessage && lastmessage._id === Session.get('lastInsertId'))
+		return Messages.find({_id:{$not:Messages.find({userid:Session.get('userid'),messageComplete:false}).fetch()[0]._id}}).fetch()
+		/*var mylastmessage = Messages.find({userid:Session.get('userid')},{sort:{timestamp:-1},limit:1}).fetch()[0];
+		if(mylastmessage && mylastmessage._id === Session.get('lastInsertId'))
 			return Messages.find({},{limit: Messages.find({}).fetch().length -1 });
-		return Messages.find({},{});
+		return Messages.find({},{});*/
 	}
 	else
 		return Messages.find({messageComplete:true},{});
 	
+
 	/*
 	var ml = Messages.find({},{fields:{_id:true}}).fetch().length;
 
