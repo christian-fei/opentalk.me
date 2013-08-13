@@ -451,14 +451,17 @@ Template.messages.messages = function(){
 
 
 	if(Session.get('realtimeEnabled')) {
-		return Messages.find({_id:{$not:Messages.find({userid:Session.get('userid'),messageComplete:false}).fetch()[0]._id}}).fetch()
+		if( Session.get('lastInsertId') )
+			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
+		return Messages.find({},{sort:{timestamp:1}});
 		/*var mylastmessage = Messages.find({userid:Session.get('userid')},{sort:{timestamp:-1},limit:1}).fetch()[0];
 		if(mylastmessage && mylastmessage._id === Session.get('lastInsertId'))
 			return Messages.find({},{limit: Messages.find({}).fetch().length -1 });
 		return Messages.find({},{});*/
 	}
-	else
-		return Messages.find({messageComplete:true},{});
+	else{
+		return Messages.find({messageComplete:true},{sort:{timestamp:1}});
+	}
 	
 
 	/*
