@@ -115,7 +115,6 @@ function isValidRoom(r){
 
 
 
-
 /*
 USER ENTERS A ROOM
 
@@ -129,13 +128,14 @@ function joinRoom(r){
 	  This because if condition is true, the user will be subscribed and signed in as online again
 	  else it's all ok, since he is in /
 	*/
+
+	goOffline();
+	unsubscribe();
 	Session.set('roomid',null);
+
 	if(r === ''){
 		Meteor.Router.to('/');
 	}
-	Session.set('roomid',null);
-	unsubscribe();
-	goOffline();	
 	if(isValidRoom(r)) {
 	  //console.log('valid path\nrouting to /' + r);
 	  Meteor.Router.to('/'+r);
@@ -180,14 +180,10 @@ Meteor.Router.add({'/*':'room'});
 
 
 
-//console.log('going offline');
-goOffline();
-
-unsubscribe();
-
-Session.set('roomid',null);
 
 if(isValidRoom(room)) {
+	
+
 	joinRoom(room);
 	goOnline();
 } else {

@@ -71,7 +71,7 @@ Meteor.methods({
       console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
     }else{
       //keep alive
-      OnlineUsers.update({userid:userid},{$set:{status:'online',lastSeen:now}});
+      OnlineUsers.update({userid:userid,roomid:roomid},{$set:{status:'online',lastSeen:now}});
       console.log('keep alive ' + userid);
 
       //console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );
@@ -83,7 +83,7 @@ Meteor.setInterval(function() {
   //console.log('idle check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - idleTime)} } ).forEach(function(user){
-    OnlineUsers.update({_id:user._id},{$set:{status:'idle'}});
+    OnlineUsers.update({_id:user._id,roomid:user.roomid},{$set:{status:'idle'}});
   });
 },idleCheck);
 
@@ -91,7 +91,7 @@ Meteor.setInterval(function() {
   //console.log('kill check');
   var now = Date.now();
   OnlineUsers.find( {lastSeen: {$lt: (now - killTime)} } ).forEach(function(user){
-    OnlineUsers.remove({_id:user._id});
+    OnlineUsers.remove({_id:user._id,roomid:user.roomid},{multi:true});
   });
 },killCheck);
 
