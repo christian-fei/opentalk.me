@@ -104,7 +104,6 @@ function goOnline(){
 }
 
 
-
 function setAvatar(){
 	if( Meteor.user() ){
 		if(Meteor.user().services){
