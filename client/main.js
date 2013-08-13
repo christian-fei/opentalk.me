@@ -442,6 +442,7 @@ Template.messages.preserve({
 }
 */
 
+
 Template.messages.messages = function(){
 
 	//if in realtime, 
@@ -579,7 +580,6 @@ Template.messages.events({
 				tmplt.find('#mymessage').value = '';
 	    	}
     	}
-
 	    
 
 	    
@@ -607,7 +607,7 @@ function scrollIfAtBottom(){
 }
 
 function positionFixedContent(){
-	if( !$('.fixed-sidebar') || !$('.online-users-count') || !$('.main'))return;
+	if( !$('.online-users-count') )return;
 
 	var pcView = limit * 16 + 2*sidebarWidth*16;
 	if($(window).width() > pcView){
