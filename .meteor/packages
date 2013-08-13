@@ -4,12 +4,10 @@
 # but you can also edit it by hand.
 
 preserve-inputs
-accounts-twitter
-accounts-github
-accounts-base
 localstorage
-accounts-ui-unstyled
 jquery
 accounts-ui
+accounts-twitter
+accounts-github
 accounts-google
 accounts-facebook

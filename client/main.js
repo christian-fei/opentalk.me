@@ -30,7 +30,7 @@ Deps.autorun(function(){
 		Session.set('username',currentUser.profile.name);
 		goOnline();
 	    subscribe();
-	    //setAvatar();
+	    setAvatar();
 	}
 });
 
@@ -108,11 +108,11 @@ function setAvatar(){
 	if( Meteor.user() ){
 		if(Meteor.user().services){
 			if(Meteor.user().services.twitter)
-				Meteor._localStorage.setItem('avatar',Meteor.user().services.twitter.profile_image_url);
+				Session.set('avatar',Meteor.user().services.twitter.profile_image_url);
 			if(Meteor.user().services.google)
-				Meteor._localStorage.setItem('avatar',Meteor.user().services.google.picture);
+				Session.set('avatar',Meteor.user().services.google.picture);
 			if(Meteor.user().services.facebook)
-				Meteor._localStorage.setItem('avatar','https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture?type=normal');
+				Session.set('avatar','https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture');
 			if(Meteor.user().services.github){
 				//make ajax call to get profile image
 				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
@@ -123,13 +123,13 @@ function setAvatar(){
 				  if( console && console.log ) {
 				    console.log("data:", data);
 				    if(data.avatar_url)
-				    	Meteor._localStorage.setItem('avatar',data.avatar_url);
+				    	Session.set('avatar',data.avatar_url);
 				  }
 				});
 			}
 		}
 	}else{
-		Meteor._localStorage.setItem('avatar','/images/avatar.png');
+		Session.set('avatar','/images/avatar.png');
 	}
 }
 
@@ -351,9 +351,6 @@ Template.selectChatRoom.events({
 	}
 });
 
-Deps.autorun(function(){
-	Meteor._localStorage;
-});
 
 
 
@@ -364,7 +361,7 @@ Template.room.username = function(){
 	return Session.get('username');
 };
 Template.room.avatar = function(){
-	return Meteor._localStorage.getItem('avatar');
+	return Session.get('avatar');
 }
 Template.room.roomSelected = function(){
 	if(Session.get('roomid'))
@@ -574,7 +571,6 @@ Template.messages.events({
 				tmplt.find('#mymessage').value = '';
 	    	}
     	}
-
 	    
 
 	    
@@ -602,7 +598,7 @@ function scrollIfAtBottom(){
 }
 
 function positionFixedContent(){
-	if( !$('.fixed-sidebar') || !$('.online-users-count') || !$('.main'))return;
+	if( !$('.online-users-count') )return;
 
 	var pcView = limit * 16 + 2*sidebarWidth*16;
 	if($(window).width() > pcView){
