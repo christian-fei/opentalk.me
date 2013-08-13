@@ -857,6 +857,7 @@ SUPER SLICK TRANSFORMS
   height: 1.75em;
   width: 1.75em;
   margin-top: .2em;
+  margin-bottom: .2em;
   margin-left: .5em;
   border-radius: 45%;
   border-top-right-radius: 0px;
@@ -864,7 +865,7 @@ SUPER SLICK TRANSFORMS
   vertical-align: top;
 }
 
-/* line 26, ../sass/_messages.scss */
+/* line 27, ../sass/_messages.scss */
 .username, .text {
   display: inline-block;
   vertical-align: middle;
@@ -876,17 +877,17 @@ SUPER SLICK TRANSFORMS
   word-break: break-all;
 }
 
-/* line 37, ../sass/_messages.scss */
+/* line 38, ../sass/_messages.scss */
 .realtime {
   background: #fff8e5;
 }
 
-/* line 42, ../sass/_messages.scss */
+/* line 43, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 45, ../sass/_messages.scss */
+/* line 46, ../sass/_messages.scss */
 #mymessage {
   resize: none;
   margin-top: 30px;
