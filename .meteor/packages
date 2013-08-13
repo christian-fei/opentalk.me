@@ -10,3 +10,6 @@ accounts-base
 localstorage
 accounts-ui-unstyled
 jquery
+accounts-ui
+accounts-google
+accounts-facebook
