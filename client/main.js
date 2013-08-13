@@ -326,11 +326,7 @@ Template.room.onlineUsersCount =function(){
 //	return distinctUsers().length;
 }
 Template.room.realtimeEnabled = function(){
-	//Session.set('realtimeEnabled',Meteor._localStorage.getItem('realtimeEnabled'));
-	if(Session.get('realtimeEnabled'))
-		return 'on';
-	return 'off';
-	// return Session.get('realtimeEnabled') ? 'on' : 'off';
+	return Session.get('realtimeEnabled') ? 'on' : 'off';
 }
 
 
