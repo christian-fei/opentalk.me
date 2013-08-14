@@ -64,33 +64,32 @@
 	}
 }
 
+.userinfo{
+	text-align: center;
+}
 
 .avatar{
 	height:3em;
 	border: 1px solid black;
 	border-radius: 50%;
 	overflow: hidden;
-	float:right;
 }
 
  .nickname{
-	clear:right;
 	text-overflow: ellipsis;
 	white-space: nowrap;
     overflow: hidden;
     display: block;
-    width: 100%;
-    text-align: right;
 }
-.nickname,#logout,#toggleRealtime{
-	float:right;
-	clear:right;
+#logout,#toggleRealtime{
+	float:left;
+	//clear:right;
 	margin-left:0.3em;
 	margin-top:0.6em;
 }
 
 #toggleRealtime{
-	margin-top: .8em;
+	//margin-top: .8em;
 }
 
 
@@ -106,7 +105,7 @@
 	    overflow: hidden;
 	}
 
-.userinfo,.online-users{
+.online-users{
 	float:right;
 	width:100%;
 }
