@@ -51,7 +51,7 @@ Meteor.methods({
   setUserStatus: function(userid,username,roomid,status){
     //console.log('t.uid ' + this.userId);
     //console.log('m.u()' + Meteor.userId());
-    if(!userid || !roomid)
+    if(!userid || !roomid || !username)
       return;
     if(status === 'offline'){
       OnlineUsers.remove({userid:userid});

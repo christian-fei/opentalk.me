@@ -41,10 +41,27 @@ Deps.autorun(function(){
 	    setAvatar();
 	    subscribe();
 		Session.set('userid',currentUser._id);
-		Session.set('username',currentUser.profile.name);
+		// Session.set('username',currentUser.profile.name);
+		//setMeteorUserName();
+		var username,s,u;
+		if(s=Meteor.user().services){
+			if(u=s.facebook)
+				username=u.username;
+			if(u=s.github)
+				username=u.username;
+			if(u=s.google)
+				username=u.name;
+			if(u=s.twitter)
+				username=u.screenName;
+		}
+		Session.set('username',username);
 		goOnline();
 	}
 });
+
+function setMeteorUserName(){
+
+}
 
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
