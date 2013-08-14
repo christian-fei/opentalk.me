@@ -9,7 +9,6 @@
 }
 	.message{
 		padding: 0.2em 0.5em;
-		word-wrap:break-word;
 		border-bottom:1px dotted #EFEFEF;
 	}
 		.useravatar{
@@ -18,8 +17,8 @@
 			margin-top:.2em;
 			margin-bottom:.2em;
 			margin-left:.5em;
-			border-radius: 45%;
-			border-top-right-radius: 0px;
+			border-radius: 35%;
+			//border-top-right-radius: 0px;
 			border-bottom-right-radius: 0px;
 
 			vertical-align: top;
@@ -30,9 +29,8 @@
 			margin-left:.5em;
 			margin-right:.5em;
 			margin-top:.5em;
-			word-wrap:break-word;
-			-ms-word-break: break-all;
-			word-break: break-all;
+			-ms-word-break: break-word;
+			word-break: break-word;
 		}
 
 	.realtime{

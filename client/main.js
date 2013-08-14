@@ -1,3 +1,5 @@
+var Messages = new Meteor.Collection('Messages');
+var OnlineUsers = new Meteor.Collection('OnlineUsers');
 /*
 set absoluteUrl for setting up the accounts system for the right domain
 edit:obsolete now, since no account-system is implemented anymore
@@ -38,15 +40,12 @@ var limit = 32, //same as CSS _vars.scss
 	sidebarWidth = 12; //same as CSS _room.scss
 
 Meteor.call('serverTime',function(error, result){
-	//console.log('server responded with ' + result);
 	servert=result;
 	tdiff = servert - clientt;
-	//console.log('tdiff s/c: ' + tdiff);
 });
 
 Meteor.setInterval(function () {
 	if(Session.get('roomid')){
-		//console.log('sending keep alive command');
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 	}
 }, keepaliveTime);
@@ -96,6 +95,7 @@ function goOnline(){
 	if(OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
 		setAvatar();
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
+		Meteor.call('setUserId',Session.get('userid'));
 	}
 }
 

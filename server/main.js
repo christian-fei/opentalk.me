@@ -1,13 +1,14 @@
+var Messages = new Meteor.Collection('Messages');
+var OnlineUsers = new Meteor.Collection('OnlineUsers');
 Messages.allow({
-  insert : function(){return true}
-  ,update : function(){return true}
-  ,remove : function(){return true}
+  insert : function(userId,doc){
+    console.log(userId + ' attempts to insert a doc');
+    console.log('on the server he is ' + this.userId + ' || ' + Meteor.userId());
+    return true}
+  ,update : function(userId,doc){return true}
+  ,remove : function(userId,doc){return true}
 });
-OnlineUsers.allow({
-  insert : function(){return false}
-  ,update : function(){return false}
-  ,remove : function(){return false}
-});  
+
 /*Meteor.users.deny({
   update: function () { return true; }
 });*/
@@ -48,6 +49,8 @@ Meteor.methods({
     console.log(s);
   },
   setUserStatus: function(userid,username,roomid,status){
+    console.log('t.uid ' + this.userId);
+    console.log('m.u()' + Meteor.userId());
     if(!userid || !roomid)
       return;
     if(status === 'offline'){
@@ -81,6 +84,12 @@ Meteor.methods({
 
       //console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );
     }
+  },
+
+  setUserId: function(userId) {
+    console.log('previous userId ' + this.userid);
+    this.setUserId(userId)
+    console.log('setting user id ' + this.userId);
   }
 });
 
