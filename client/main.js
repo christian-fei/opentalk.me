@@ -59,7 +59,7 @@ Meteor.call('serverTime',function(error, result){
 });
 
 Meteor.setInterval(function () {
-	if(Session.get('roomid')){
+	if(Session.get('roomid') && !loggingOut){
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 	}
 }, keepaliveTime);
@@ -101,7 +101,7 @@ function goOffline(){
 
 function goOnline(){
 	console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
-	if(OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
+	if(!loggingOut && OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
 		setAvatar();
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 		Meteor.call('setUserId',Session.get('userid'));
@@ -121,15 +121,12 @@ function setAvatar(){
 			if(Meteor.user().services.github){
 				//make ajax call to get profile image
 				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
-				console.log('ajax to gh');
+				//console.log('ajax to gh');
 				$.ajax({
 				  url: gh_api_url
 				}).done(function ( data ) {
-				  if( console && console.log ) {
-				    console.log("data:", data);
 				    if(data.avatar_url)
 				    	Session.set('avatar',data.avatar_url);
-				  }
 				});
 			}
 		}
@@ -326,9 +323,11 @@ Template.logout.events({
 			Meteor.logout(function(){
 				Session.set('userid',null);
 				Session.set('username',null);
-				loggingOut=false;
 			});
-
+		setTimeout(function(){
+			loggingOut=false;
+		},500);
+		//loggingOut=false;
 		//Session.set('roomid',null);
 
 		//redirect user to /
@@ -530,7 +529,7 @@ function scrollAndFocus(){
 	//console.log($('body').outerHeight());
 	if( $('body').outerHeight() > 300 ){
 		//console.log('scroll');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},200);
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},20);
 	}
 	$('#mymessage').focus();
 }
@@ -538,7 +537,7 @@ function scrollAndFocus(){
 function scrollIfAtBottom(){
 	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
 		//console.log('scrolling because at bottom');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},50);
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},20);
 		$('#mymessage').focus();
 	}
 }
