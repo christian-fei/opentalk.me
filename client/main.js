@@ -29,13 +29,15 @@ if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 		Session.set('realtimeEnabled',false);
 }
 
-if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username')){
+if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username') && !loggingOut){
+	console.log('restoring session from localstorage');
 	Session.set('userid',Meteor._localStorage.getItem('userid'));
 	Session.set('username',Meteor._localStorage.getItem('username'));
 }
 
 Deps.autorun(function(){
 	if( Meteor.user() && !loggingOut) {
+		console.log('user logged in with services');
 		var currentUser = Meteor.users.find().fetch()[0];
 		Meteor.subscribe('userData');
 	    setAvatar();
@@ -111,14 +113,12 @@ USER GOES OFFLINE
 */
 function goOffline(){
 	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'offline');
-	//Session.set('roomid',null);
-	//unsubscribe();
 }
 
 
 function goOnline(){
-	console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
-	if(!loggingOut && OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
+	if(!loggingOut && Session.get('userid') && Session.get('roomid') && OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
+		console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
 		setAvatar();
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 		Meteor.call('setUserId',Session.get('userid'));
@@ -202,13 +202,8 @@ function joinRoom(r){
 /*
 RESET
 -lastInsertId = null, to reset the pointer of the current message //could be left blank, since Session resets after pageload
--TO FIGURE OUT: room in localStorage to Session or not
-  -figured out: when the user logs out, clear the roomid in localStorage
--get the username,userid from localStorage
 */
 Session.set('lastInsertId',null);
-/*
-*/
 
 
 
@@ -343,7 +338,7 @@ Template.logout.events({
 			});
 		setTimeout(function(){
 			loggingOut=false;
-		},500);
+		},50);
 		//loggingOut=false;
 		//Session.set('roomid',null);
 
@@ -372,7 +367,7 @@ Template.selectChatRoom.events({
 
 
 Template.room.onlineUsers =function(){
-	return OnlineUsers.find().fetch();
+	return OnlineUsers.find();
 }
 Template.room.onlineUsersCount =function(){
 	return OnlineUsers.find().fetch().length;
@@ -462,9 +457,9 @@ Template.messages.events({
     	if(mm.scrollHeight > initialMessageHeight)
 	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
     	
-    	console.log('offsetheight ' + initialMessageHeight);
-    	console.log('scrollheight ' + mm.scrollHeight);
-    	console.log('offsetheight ' + mm.offsetHeight);
+    	// console.log('offsetheight ' + initialMessageHeight);
+    	// console.log('scrollheight ' + mm.scrollHeight);
+    	// console.log('offsetheight ' + mm.offsetHeight);
 
 
 
@@ -554,20 +549,25 @@ Template.messages.events({
 	}
 });
 
+Template.messages.rendered = function(){
+	setTimeout(function(){
+		scrollIfAtBottom();
+	},10);
+}
+
 
 function scrollAndFocus(){
-	//console.log($('body').outerHeight());
-	if( $('body').outerHeight() > 300 ){
-		//console.log('scroll');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},20);
-	}
-	$('#mymessage').focus();
+	setTimeout(function(){
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},1000);
+		$('#mymessage').focus();
+	},200);
 }
 
 function scrollIfAtBottom(){
-	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
+	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 150) {
 		//console.log('scrolling because at bottom');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},20);
+		$('html,body').animate({scrollTop: $('html,body').height()},25);
+		//$('html,body').animate({scrollTop: 50000},20);
 		$('#mymessage').focus();
 	}
 }
@@ -603,7 +603,6 @@ Template.room.rendered = function(){
 	if(instnc.find('#mymessage') && !instnc.find('#nickname') && firstRun < 2 ){
 		scrollAndFocus();
 	}
-	scrollIfAtBottom();
 	firstRun++;
 
 	if($('#nickname')){
@@ -625,13 +624,19 @@ Template.welcome.rendered = function(){
 
 
 
+
+
 Meteor.startup(function(){
 
 	FastClick.attach(document.body);
 
 	$(document).ready(function() {
 		
-		
+		$('body,html').bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
+			if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
+				$("html,body").stop();
+			}
+		});		
 		
 
 		$(window).resize(function(){

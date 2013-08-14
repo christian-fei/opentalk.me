@@ -3,6 +3,7 @@
 </template>
 
 
+
 <template name="welcome">
 	<div class="blanket medium-text">
 		<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
@@ -15,6 +16,8 @@
 	</div>
 </template>
 
+
+
 <template name='pickNickname'>
 	<div class="blanket-white">
 		<span class="vam">Pick a nickname to join </span> <input type="text" id='nickname' placeholder='trasher666'>
@@ -22,13 +25,23 @@
 	</div>
 </template>
 
+
+
+
 <template name='logout'>
 	<a href="#" id='logout' class='button silver' title='Log out'>Log out</span></a>
+</template>
+
+
+
+<template name="message">
+	<li class='message {{#unless messageComplete}}realtime{{/unless}}'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{text}}</span></li>
 </template>
 <template name='messages'>
 	<ul class='messages'>
 		{{#each messages}}
-			<li class='message {{#unless messageComplete}}realtime{{/unless}}'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{text}}</span></li>
+				{{>message}}
+			
 		{{/each}}
 		{{#if loggedIn}}
 			<li id='li-message'>
@@ -37,6 +50,10 @@
 		{{/if}}
 	</ul>
 </template>
+
+
+
+
 <template name="room">
 	<div class="toggle-sidebar"><span class="icon-arrow"></span></div>
 	{{#isolate}}

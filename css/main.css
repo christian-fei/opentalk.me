@@ -632,11 +632,11 @@ SUPER SLICK TRANSFORMS
   margin-bottom: -2em;
   overflow-y: auto;
   opacity: .7;
-  -webkit-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: transform .4s ease-in-out;
+  -moz-transition: transform .4s ease-in-out;
+  -ms-transition: transform .4s ease-in-out;
+  -o-transition: transform .4s ease-in-out;
+  transition: transform .4s ease-in-out;
 }
 @media all and (max-width: 56em) {
   /* line 1, ../sass/_sidebar.scss */
