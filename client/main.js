@@ -448,11 +448,24 @@ Template.messages.events({
     		return;
     	}
 
-    	var mm=$('#mymessage')[0];
+    	/*
+		working in Chrome 28.0.1500.95
+    	*/
+    	var mm=$('#mymessage')[0],
+    		hackOffset = 0;
+    	if(navigator.userAgent.indexOf('Firefox') >=0){
+    		hackOffset=32;
+    		console.log('firefox');
+    	}
     	if(initialMessageHeight===0)
     		initialMessageHeight = mm.offsetHeight;
-    	mm.style.height = mm.scrollHeight + 'px';
-    	console.log(mm.scrollHeight);
+    	if(mm.scrollHeight > initialMessageHeight)
+	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
+    	
+    	console.log('offsetheight ' + initialMessageHeight);
+    	console.log('scrollheight ' + mm.scrollHeight);
+    	console.log('offsetheight ' + mm.offsetHeight);
+
 
 
     	if(Session.get('realtimeEnabled')) {

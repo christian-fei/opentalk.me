@@ -74,18 +74,18 @@ $offset:222px;
 	50% { background-position:$offset $offset; }
 }
 @-moz-keyframes welcome-mast-anim{
-	0% { background-position:0%; }
-	100% { background-position:$offset $offset; }
+	0%,100% { background-position:0%; }
+	50% { background-position:$offset $offset; }
 }
 @-ms-keyframes welcome-mast-anim{
-	0% { background-position:0%; }
-	100% { background-position:$offset $offset; }
+	0%,100% { background-position:0%; }
+	50% { background-position:$offset $offset; }
 }
 @-o-keyframes welcome-mast-anim{
-	0% { background-position:0%; }
-	100% { background-position:$offset $offset; }
+	0%,100% { background-position:0%; }
+	50% { background-position:$offset $offset; }
 }
 @keyframes welcome-mast-anim{
-	0% { background-position:0%; }
-	100% { background-position:$offset $offset; }
+	0%,100% { background-position:0%; }
+	50% { background-position:$offset $offset; }
 }

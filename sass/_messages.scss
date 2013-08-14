@@ -44,7 +44,13 @@
 		}
 
 	.realtime{
-		background:lighten($color-main,45%);
+		-webkit-animation: realtime-anim 5s ease-in-out;
+		-moz-animation: realtime-anim 5s ease-in-out;
+		-o-animation: realtime-anim 5s ease-in-out;
+		animation: realtime-anim 5s ease-in-out;
+
+		border-left:2px solid $color-main;
+		margin-left:-2px;
 	}
 	
 
@@ -70,15 +76,34 @@
 	font-family: 'Questrial', sans-serif;
 	
 	overflow-y:hidden;
-/*
-	-webkit-transition: all .05s ease-out;
-	-moz-transition: all .05s ease-out;
-	-ms-transition: all .05s ease-out;
-	-o-transition: all .05s ease-out;
-	transition: all .05s ease-out;
-*/
+
+	
+
 	&:focus{
 		//border-top:1px solid #C8C8C8;
 		//border-bottom:1px solid #C8C8C8;
 	}
+}
+
+
+
+@-webkit-keyframes realtime-anim{
+	0% { background:lighten($color-main,46%); }
+	100% { background:lighten($color-main,50%); }
+}
+@-moz-keyframes realtime-anim{
+	0% { background:lighten($color-main,46%); }
+	100% { background:lighten($color-main,50%); }
+}
+@-ms-keyframes realtime-anim{
+	0% { background:lighten($color-main,46%); }
+	100% { background:lighten($color-main,50%); }
+}
+@-o-keyframes realtime-anim{
+	0% { background:lighten($color-main,46%); }
+	100% { background:lighten($color-main,50%); }
+}
+@keyframes realtime-anim{
+	0% { background:lighten($color-main,46%); }
+	100% { background:lighten($color-main,50%); }
 }
