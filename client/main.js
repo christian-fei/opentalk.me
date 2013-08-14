@@ -420,10 +420,7 @@ function removeLastMessage(){
     $('#mymessage').val('');
 }
 
-
-Template.messages.rendered = function(){
-	$('textarea').autosize();
-}
+var initialMessageHeight = 0;
 
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
@@ -434,6 +431,14 @@ Template.messages.events({
     		removeLastMessage();
     		return;
     	}
+
+    	var mm=$('#mymessage')[0];
+    	if(initialMessageHeight===0)
+    		initialMessageHeight = mm.offsetHeight;
+    	mm.style.height = mm.scrollHeight + 'px';
+    	console.log(mm.scrollHeight);
+
+
     	if(Session.get('realtimeEnabled')) {
     		/*First message/first keystroke being sent*/
 		    if(!Session.get('lastInsertId')){
@@ -454,6 +459,7 @@ Template.messages.events({
 		      	return;
 		    }
 		    if(evnt.keyCode === 13){
+
 				if(text.length){
 					//new Message
 					Messages.update(
@@ -473,6 +479,8 @@ Template.messages.events({
 				} else {
 					removeLastMessage();
 				}
+				mm.style.height = initialMessageHeight;
+
 		    } else {
 
 				if(text.length){
@@ -492,8 +500,10 @@ Template.messages.events({
 				}
 		    }
     	} else {
-			Messages.remove({_id:Session.get('lastInsertId')});
-			Session.set('lastInsertId',null);
+    		if(Session.get('lastInsertId') !== null){
+				Messages.remove({_id:Session.get('lastInsertId')});
+				Session.set('lastInsertId',null);
+    		}
     		if(evnt.keyCode === 13){
 	    		Messages.insert(
 					{
@@ -506,13 +516,12 @@ Template.messages.events({
 					,useravatar:Session.get('avatar')
 					}
 				);
-				tmplt.find('#mymessage').value = '';
+				mm.style.height = initialMessageHeight;
+				$('#mymessage').val('');
+
 	    	}
     	}
-	    
-
-	    
-		scrollIfAtBottom();
+    	scrollAndFocus();
 	}
 });
 
@@ -609,7 +618,6 @@ Meteor.startup(function(){
 				showSidebar();
 			}
 		});
-
 	});
 
 

@@ -580,7 +580,6 @@ SUPER SLICK TRANSFORMS
   margin: 5em auto 0.5em;
   max-width: 31em;
   padding: .66em;
-  background: rgba(255, 255, 255, 0.8);
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
   -webkit-transition: all 333ms ease-in-out;
@@ -895,18 +894,21 @@ SUPER SLICK TRANSFORMS
   resize: none;
   width: 100%;
   font-size: 1em;
-  padding: 1em 1em 1.1em;
+  padding: 1em;
+  min-height: 2em;
   outline: none;
   border: none;
   background: none;
   border-left: 2px solid #C8C8C8;
   font-family: 'Questrial', sans-serif;
-  overflow-y: auto;
-  -webkit-transition: all 0.25s ease-out;
-  -moz-transition: all 0.25s ease-out;
-  -ms-transition: all 0.25s ease-out;
-  -o-transition: all 0.25s ease-out;
-  transition: all 0.25s ease-out;
+  overflow-y: hidden;
+  /*
+  	-webkit-transition: all .05s ease-out;
+  	-moz-transition: all .05s ease-out;
+  	-ms-transition: all .05s ease-out;
+  	-o-transition: all .05s ease-out;
+  	transition: all .05s ease-out;
+  */
 }
 
 /* line 1, ../sass/_buttons.scss */
@@ -1010,11 +1012,14 @@ body > * {
   position: relative;
 }
 
-/* line 17, ../sass/_general.scss */
-body.roomok {
-  max-width: 32em;
-  margin: 0 auto;
-  position: relative;
+/* line 16, ../sass/_general.scss */
+body {
+  background: #FAFAFA;
+}
+
+/* line 20, ../sass/_general.scss */
+input {
+  background: none;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {

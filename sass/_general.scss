@@ -13,13 +13,13 @@
 body > * {
 	position:relative;
 }
-
-body.roomok{
-	max-width:$limit;
-	margin:0 auto;
-	position: relative;
+body{
+	background:#FAFAFA;
 }
 
+input{
+	background:none;
+}
 
 @media screen and (-webkit-min-device-pixel-ratio:0){
 	::-webkit-scrollbar{width:.777em;} 

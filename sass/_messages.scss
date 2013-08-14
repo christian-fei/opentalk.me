@@ -56,8 +56,10 @@
 	resize: none;
 	width: 100%;
 	font-size: 1em;
-	padding: 1em 1em 1.1em;
+	padding: 1em;
 
+	//height:3.18em;
+	min-height:2em;
 	outline:none;
 	border:none;
 	//border-left:2px solid #C8C8C8;
@@ -67,14 +69,14 @@
 	border-left:2px solid #C8C8C8;
 	font-family: 'Questrial', sans-serif;
 	
-	overflow-y:auto;
-
-	-webkit-transition: all $transition-duration ease-out;
-	-moz-transition: all $transition-duration ease-out;
-	-ms-transition: all $transition-duration ease-out;
-	-o-transition: all $transition-duration ease-out;
-	transition: all $transition-duration ease-out;
-
+	overflow-y:hidden;
+/*
+	-webkit-transition: all .05s ease-out;
+	-moz-transition: all .05s ease-out;
+	-ms-transition: all .05s ease-out;
+	-o-transition: all .05s ease-out;
+	transition: all .05s ease-out;
+*/
 	&:focus{
 		//border-top:1px solid #C8C8C8;
 		//border-bottom:1px solid #C8C8C8;
