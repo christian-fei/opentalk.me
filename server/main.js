@@ -2,8 +2,8 @@ var Messages = new Meteor.Collection('Messages');
 var OnlineUsers = new Meteor.Collection('OnlineUsers');
 Messages.allow({
   insert : function(userId,doc){
-    console.log(userId + ' attempts to insert a doc');
-    console.log('on the server he is ' + this.userId + ' || ' + Meteor.userId());
+    //console.log(userId + ' attempts to insert a doc');
+    //console.log('on the server he is ' + this.userId + ' || ' + Meteor.userId());
     return true}
   ,update : function(userId,doc){return true}
   ,remove : function(userId,doc){return true}
@@ -39,7 +39,7 @@ var idleTime = 20*1000,
 
 Meteor.methods({
   serverTime : function(){
-    console.log('requested serverTime');
+    //console.log('requested serverTime');
     return Date.now();
   },
   removeMessagesOfUserInRoom : function(userid,roomid){
@@ -49,8 +49,8 @@ Meteor.methods({
     console.log(s);
   },
   setUserStatus: function(userid,username,roomid,status){
-    console.log('t.uid ' + this.userId);
-    console.log('m.u()' + Meteor.userId());
+    //console.log('t.uid ' + this.userId);
+    //console.log('m.u()' + Meteor.userId());
     if(!userid || !roomid)
       return;
     if(status === 'offline'){
@@ -80,16 +80,14 @@ Meteor.methods({
     }else{
       //keep alive
       OnlineUsers.update({userid:userid,roomid:roomid},{$set:{status:'online',lastSeen:now}});
-      console.log('keep alive ' + userid);
-
-      //console.log('setOnlineUser: already online [' + username + '](' + userid + ') @ ' + roomid );
+      console.log('keep alive ' + userid + ' in  ' + roomid);
     }
   },
 
   setUserId: function(userId) {
-    console.log('previous userId ' + this.userid);
+    //console.log('previous userId ' + this.userid);
     this.setUserId(userId)
-    console.log('setting user id ' + this.userId);
+    //console.log('setting user id ' + this.userId);
   }
 });
 

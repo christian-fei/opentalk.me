@@ -16,19 +16,33 @@ var lastInsertId=0, //ID of the last inserted message
 	mSub = null, //Messages subscription
 	ouSub = null, //OnlineUsers subscription
 	keepaliveTime = 10000;
+loggingOut = false;
 
+if(Meteor._localStorage.getItem('realtimeEnabled') === null){
+	//set default
+	Meteor._localStorage.setItem('realtimeEnabled',true);
+	Session.set('realtimeEnabled',true);
+} else {
+	if(Meteor._localStorage.getItem('realtimeEnabled') === 'true')
+		Session.set('realtimeEnabled',true);
+	else
+		Session.set('realtimeEnabled',false);
+}
 
-Session.set('realtimeEnabled',Meteor._localStorage.getItem('realtimeEnabled'));
+if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username')){
+	Session.set('userid',Meteor._localStorage.getItem('userid'));
+	Session.set('username',Meteor._localStorage.getItem('username'));
+}
 
 Deps.autorun(function(){
-	if( Meteor.user() ) {
+	if( Meteor.user() && !loggingOut) {
 		var currentUser = Meteor.users.find().fetch()[0];
 		Meteor.subscribe('userData');
+	    setAvatar();
+	    subscribe();
 		Session.set('userid',currentUser._id);
 		Session.set('username',currentUser.profile.name);
 		goOnline();
-	    subscribe();
-	    setAvatar();
 	}
 });
 
@@ -80,18 +94,13 @@ USER GOES OFFLINE
 */
 function goOffline(){
 	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'offline');
-	Session.set('roomid',null);
+	//Session.set('roomid',null);
 	//unsubscribe();
 }
 
 
-
-
 function goOnline(){
-	if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username')){
-		Session.set('userid',Meteor._localStorage.getItem('userid'));
-		Session.set('username',Meteor._localStorage.getItem('username'));
-	}
+	console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
 	if(OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
 		setAvatar();
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
@@ -155,7 +164,7 @@ function joinRoom(r){
 
 	goOffline();
 	unsubscribe();
-	Session.set('roomid',null);
+	//Session.set('roomid',null);
 
 	if(r === ''){
 		Meteor.Router.to('/');
@@ -225,8 +234,6 @@ window.onbeforeunload = function(){
 	return null;
 }
 
-
-
 function validNickname(n){
 	if(n.length && n.length < 25 && n.charAt(n.length - 1) !== ' ' && n.trim().length && nicknameAvailable(n))
 		return true;
@@ -239,114 +246,8 @@ function nicknameAvailable(n){
 	return false;
 }
 
-Template.pickNickname.events({
-	'keyup #nickname': function(evnt,tmplt){
-	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
-	    var nickname = tmplt.find('#nickname').value;
-
-	    if(validNickname(nickname)) {
-	      //TODO: better unique ID
-	      //make to string as a (temporary?) fix
-	      var uid = Date.now() + tdiff;
-	      userid = '' + uid;
 
 
-	      Meteor._localStorage.setItem('username',nickname);
-	      Meteor._localStorage.setItem('userid',userid);
-
-	      Session.set('username',nickname);
-	      Session.set('userid',userid);
-
-	      goOnline();
-	      subscribe();
-
-	      //joinRoom(Session.get('roomid'));
-	    } else{
-	      //notify
-	    }
-	  }
-	}
-});
-
-
-Template.logout.events({
-	'click #logout' : function(evnt,tmplt){
-		console.log('logout clicked');
-		evnt.preventDefault();
-
-		goOffline();
-		if(Meteor.user())
-			Meteor.logout(function(){
-				Session.set('userid',null);
-				Session.set('username',null);
-			});
-
-		Meteor._localStorage.removeItem('avatar');
-		Meteor._localStorage.removeItem('userid');
-		Meteor._localStorage.removeItem('username');
-		Session.set('userid',null);
-		Session.set('username',null);
-		//Session.set('roomid',null);
-
-		//redirect user to /
-		//Meteor.Router.to('/');
-	}
-});
-
-
-
-
-
-
-
-
-
-Template.selectChatRoom.events({
-	'keyup #roomid': function(evnt,tmplt){
-		if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
-			var room = tmplt.find('#roomid').value;
-			if(isValidRoom(room)){
-				joinRoom(room);
-			} else {
-				//notify
-			}
-		}
-	}
-});
-
-
-
-
-Template.room.onlineUsers =function(){
-	return OnlineUsers.find().fetch();
-//	return distinctUsers();
-}
-Template.room.onlineUsersCount =function(){
-	return OnlineUsers.find().fetch().length;
-//	return distinctUsers().length;
-}
-Template.room.realtimeEnabled = function(){
-	return Session.get('realtimeEnabled') ? 'on' : 'off';
-}
-
-
-
-
-
-/*
-global username, either from accounts or nickname
-*/
-Template.room.username = function(){
-	return Session.get('username');
-};
-Template.room.avatar = function(){
-	return Session.get('avatar');
-}
-Template.room.roomSelected = function(){
-	if(Session.get('roomid'))
-		return true;
-	return false;
-}
 function showSidebar(){
 	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
 		$('.fixed-sidebar').addClass('show');
@@ -369,17 +270,115 @@ function hideSidebar(){
 			$('#nickname').attr('disabled',false);
 	}
 }
-
-
 function toggleSidebar(){
 	if($('.fixed-sidebar').hasClass('show')){
 		hideSidebar();
 	}else{
 		showSidebar();
 	}
-	
 }
 
+
+
+Template.pickNickname.events({
+	'keyup #nickname': function(evnt,tmplt){
+	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
+	    var nickname = tmplt.find('#nickname').value;
+
+	    if(validNickname(nickname)) {
+	      //TODO: better unique ID
+	      //make to string as a (temporary?) fix
+	      var uid = Date.now() + tdiff;
+	      userid = '' + uid;
+
+
+	      Meteor._localStorage.setItem('username',nickname);
+	      Meteor._localStorage.setItem('userid',userid);
+
+	      Session.set('username',nickname);
+	      Session.set('userid',userid);
+
+	      goOnline();
+	      subscribe();
+
+	    } else{
+	      //notify
+	    }
+	  }
+	}
+});
+
+
+Template.logout.events({
+	'click #logout' : function(evnt,tmplt){
+		console.log('logout clicked');
+		evnt.preventDefault();
+
+		loggingOut=true;
+
+		goOffline();
+		Session.set('userid',null);
+		Session.set('username',null);
+		Meteor._localStorage.removeItem('avatar');
+		Meteor._localStorage.removeItem('userid');
+		Meteor._localStorage.removeItem('username');
+		if(Meteor.user())
+			Meteor.logout(function(){
+				Session.set('userid',null);
+				Session.set('username',null);
+				loggingOut=false;
+			});
+
+		//Session.set('roomid',null);
+
+		//redirect user to /
+		//Meteor.Router.to('/');
+	}
+});
+
+
+
+
+Template.selectChatRoom.events({
+	'keyup #roomid': function(evnt,tmplt){
+		if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
+			var room = tmplt.find('#roomid').value;
+			if(isValidRoom(room)){
+				joinRoom(room);
+			} else {
+				//notify
+			}
+		}
+	}
+});
+
+
+
+
+Template.room.onlineUsers =function(){
+	return OnlineUsers.find().fetch();
+}
+Template.room.onlineUsersCount =function(){
+	return OnlineUsers.find().fetch().length;
+}
+Template.room.realtimeEnabled = function(){
+	/*if(Session.equals('realtimeEnabled','true'))
+		return 'on';
+	return 'off';*/
+	return Session.get('realtimeEnabled') ? 'on' : 'off';
+}
+/*username and userid, either from accounts or nickname*/
+Template.room.username = function(){
+	return Session.get('username');
+};
+Template.room.avatar = function(){
+	return Session.get('avatar');
+}
+Template.room.roomSelected = function(){
+	if(Session.get('roomid'))
+		return true;
+	return false;
+}
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click #toggleRealtime' : function(evnt,tmplt){
@@ -396,31 +395,6 @@ Template.messages.loggedIn=Template.room.loggedIn=function(){
 	return false;
 };
 
-function iAmWriting(){
-	var mslength = Messages.find().fetch().length,
-		lastMessage = Messages.find().fetch()[mslength - 1];
-	if(mslength > 0 && Session.get('lastInsertId') == lastMessage._id)
-		return true;
-	return false;
-	/*
-	if(Session.get('lastInsertId'))
-	  return true;
-	return false;
-	*/
-}
-
-/*
-Template.messages.preserve({
-	'.message' : function(node){console.log(node)}
-});
-*/
-
-/*Template.messages.myif = function(data,options){
-	console.log(data());
-	console.log(options);
-}
-*/
-
 
 Template.messages.messages = function(){
 
@@ -433,42 +407,11 @@ Template.messages.messages = function(){
 		if( Session.get('lastInsertId') )
 			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
 		return Messages.find({},{sort:{timestamp:1}});
-		/*var mylastmessage = Messages.find({userid:Session.get('userid')},{sort:{timestamp:-1},limit:1}).fetch()[0];
-		if(mylastmessage && mylastmessage._id === Session.get('lastInsertId'))
-			return Messages.find({},{limit: Messages.find({}).fetch().length -1 });
-		return Messages.find({},{});*/
+
 	}
 	else{
 		return Messages.find({messageComplete:true},{sort:{timestamp:1}});
 	}
-	
-
-	/*
-	var ml = Messages.find({},{fields:{_id:true}}).fetch().length;
-
-	if(iAmWriting()){
-		if(ml <= 1)
-			return [];
-		if(!Session.get('realtimeEnabled'))
-			return Messages.find(
-				{messageComplete:true}
-				,{fields:{username:true,text:true},sort: {timestamp: 1},limit:ml -1}
-			);
-		return Messages.find(
-			{}
-			,{fields:{username:true,text:true},sort: {timestamp: 1},limit:ml -1}
-		);
-	}else{
-		if(!Session.get('realtimeEnabled'))
-			return Messages.find(
-				{messageComplete:true}
-				,{fields:{username:true,text:true},sort: {timestamp: 1}}
-			);*		return Messages.find(
-			{}
-			,{fields:{username:true,text:true},sort: {timestamp: 1}}
-		);  
-	}
-	*/
 };
 
 function removeLastMessage(){
@@ -478,10 +421,12 @@ function removeLastMessage(){
 }
 
 
+Template.messages.rendered = function(){
+	$('textarea').autosize();
+}
 
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
-
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
 
@@ -572,7 +517,6 @@ Template.messages.events({
 });
 
 
-/*weird hack to scrollDown only once, and not at each rerendering of Template.room*/
 function scrollAndFocus(){
 	//console.log($('body').outerHeight());
 	if( $('body').outerHeight() > 300 ){
@@ -585,13 +529,15 @@ function scrollAndFocus(){
 function scrollIfAtBottom(){
 	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
 		//console.log('scrolling because at bottom');
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},10);
+		$('html,body').animate({scrollTop: $('html,body').outerHeight()},50);
 		$('#mymessage').focus();
 	}
 }
 
 function positionFixedContent(){
-	if( !$('.online-users-count') )return;
+	//if the room hasn't been rendered (like on the welcome page)
+		//there ain't no .online-users-count
+	if( !$('.online-users-count').length )return;
 
 	var pcView = limit * 16 + 2*sidebarWidth*16;
 	if($(window).width() > pcView){

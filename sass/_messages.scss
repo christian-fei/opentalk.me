@@ -6,14 +6,15 @@
 	background: rgba(255,255,255,.6);
 	box-shadow: 3px 3px 25px lightgrey;
 
+	border-radius: .5em;
 }
 	.message{
 		padding: 0.2em 0.5em;
 		border-bottom:1px dotted #EFEFEF;
 	}
 		.useravatar{
-			height:1.75em;
-			width: 1.75em;
+			height:1.5em;
+			width: 1.5em;
 			margin-top:.2em;
 			margin-bottom:.2em;
 			margin-left:.5em;
@@ -29,8 +30,17 @@
 			margin-left:.5em;
 			margin-right:.5em;
 			margin-top:.5em;
-			-ms-word-break: break-word;
+			
+
+			-ms-word-break: break-all;
+			word-break: break-all;
+
+			// Non standard for webkit
 			word-break: break-word;
+
+			-webkit-hyphens: auto;
+			-moz-hyphens: auto;
+			hyphens: auto;
 		}
 
 	.realtime{
@@ -42,11 +52,11 @@
 	width:100%;
 }
 #mymessage{
+	vertical-align: middle;
 	resize: none;
-	margin-top: 30px;
 	width: 100%;
-	padding: 1em;
 	font-size: 1em;
+	padding: 1em 1em 1.1em;
 
 	outline:none;
 	border:none;
