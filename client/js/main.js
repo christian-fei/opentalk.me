@@ -103,7 +103,7 @@ function unsubscribe(){
 function subscribe(){
 	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
 		console.log('messages ready');
-		if(Session.get('userid')) {
+		if(Session.get('roomid') && Session.get('userid')) {
 			scrollDown();
 			$('#mymessage').focus();
 		}
@@ -595,20 +595,16 @@ Template.messages.events({
 
 
 function scrollDown(){
-	setTimeout(function(){
-		$('body').animate({scrollTop: $('body').height() + 5000},500);
-		//$('#mymessage').focus();
-	},10);
+	$('body').animate({scrollTop: $('body').height() + 5000},1);
 }
 
 function scrollIfAtBottom(){
-
 	siab = Meteor.setInterval(function(){
 		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
 			//console.log('scrolling because at bottom');
 			scrollDown();
 		}
-	},1000);
+	},1500);
 }
 
 scrollIfAtBottom();
