@@ -16,7 +16,8 @@ var lastInsertId=0, //ID of the last inserted message
 	mSub = null, //Messages subscription
 	ouSub = null, //OnlineUsers subscription
 	keepaliveTime = 10000,
-	yoso=0;
+	siab=0,
+	firstRun=0;
 loggingOut = false;
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
@@ -450,9 +451,9 @@ function formatMessage(t) {
 	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
 	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a> ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-	t = t.replace(urlPatternWithProtocol, " <a href='$2' target='_blank'>$2</a> ");
+	t = t.replace(urlPatternWithProtocol, " <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' noindex,nofollow' target='_blank'>$2</a> ");
+	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
 	return t;
 }
 
@@ -471,6 +472,8 @@ Template.messages.events({
     		removeLastMessage();
     		return;
     	}
+
+    	text = text.substring(0,text.length -1);
 
     	/*
 		working in Chrome 28.0.1500.95
@@ -579,44 +582,35 @@ Template.messages.events({
 
 	    	}
     	}
-    	//console.log('scrollifatbottom keyup message');
-    	scrollIfAtBottom();
-    	// scrollAndFocus();
+    	scrollAndFocus();
 	}
 });
 
 Template.messages.rendered = function(){
-	//console.log('messages ============rendered=============');
-	
-	setTimeout(function(){
-		if( $(window).width() > 700 ){
-			// $(".message-image").colorbox({transition:'elastic',scrolling:false,rel:'nofollow',slideshow:false,fixed:true,returnFocus:true,scalePhotos:true,width:"80%"});
-		}
-		if($('.messages').length > 0){
-			//console.log('scrolling becuase messages > 0')
-			scrollIfAtBottom();
-		}else{
-			//console.log('not scrolling');
-		}
-	},10);
+	firstRun++;
+	if(firstRun < 3)
+		scrollAndFocus();
 }
 
 
 function scrollAndFocus(){
 	setTimeout(function(){
-		$('body').animate({scrollTop: $('body').height()},50);
+		$('body').animate({scrollTop: $('body').height()},500);
 		$('#mymessage').focus();
 	},100);
 }
 
 function scrollIfAtBottom(){
-	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100) {
-		//console.log('scrolling because at bottom');
-		setTimeout(function(){
+
+	siab = Meteor.setInterval(function(){
+		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
+			//console.log('scrolling because at bottom');
 			scrollAndFocus();
-		},1);
-	}
+		}
+	},1000);
 }
+
+scrollIfAtBottom();
 
 function positionFixedContent(){
 	//if the room hasn't been rendered (like on the welcome page)
@@ -644,12 +638,6 @@ Template.room.rendered = function(){
 	//console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
-
-	if(instnc.find('#mymessage') && !instnc.find('#nickname') && yoso < 5){
-		// console.log('found mymessage not found nickname')
-		yoso++;
-		scrollIfAtBottom();
-	}
 
 	if(this.find('#nickname')){
 		this.find('#nickname').focus();
@@ -691,7 +679,6 @@ Meteor.startup(function(){
 		if( $(window).width() < 700 ){
 			$.colorbox.remove();
 		}
-		$.colorbox.resize();
 
 		$(document).wipetouch({
 			preventDefault:false,
