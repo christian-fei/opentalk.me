@@ -24,8 +24,8 @@ var lastInsertId=0, //ID of the last inserted message
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 	//set default
-	Meteor._localStorage.setItem('realtimeEnabled',true);
-	Session.set('realtimeEnabled',true);
+	Meteor._localStorage.setItem('realtimeEnabled',false);
+	Session.set('realtimeEnabled',false);
 } else {
 	if(Meteor._localStorage.getItem('realtimeEnabled') === 'true')
 		Session.set('realtimeEnabled',true);
@@ -424,15 +424,15 @@ Template.messages.loggedIn=Template.room.loggedIn=function(){
 
 
 Template.messages.messages = function(){
-	if(Session.get('realtimeEnabled')) {
+	return Messages.find({_id: {$ne: Session.get('lastInsertId')}},{sort:{timestamp:1}});
+	/*if(Session.get('realtimeEnabled')) {
 		if( Session.get('lastInsertId') )
 			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
-		return Messages.find({},{sort:{timestamp:1}});
 
 	}
 	else{
 		return Messages.find({messageComplete:true},{sort:{timestamp:1}});
-	}
+	}*/
 };
 
 Template.messages.rendered = function(){
@@ -606,16 +606,18 @@ Template.messages.events({
 
 	    	}
     	}
-    	scrollDown();
+    	setTimeout(function(){
+    		scrollDown();
+    	},0);
 	}
 });
 
 
 
 function scrollDown(){
-	if($('.messages').children().length > 3){
-		$('html,body').animate({scrollTop: $('.messages').children().length*300 },1);
-	}
+	$('html,body').animate({scrollTop: 20000 },1);
+	// if($('.messages').children().length > 3){
+	// }
 }
 
 // function scrollIfAtBottom(){
