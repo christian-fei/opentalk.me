@@ -425,6 +425,11 @@ Template.messages.messages = function(){
 	}
 };
 
+Template.messages.rendered = function(){
+	if(Session.get(userid))
+		this.find('#mymessage').focus();
+}
+
 function removeLastMessage(){
     Messages.remove({_id:''+Session.get('lastInsertId')});
     Session.set('lastInsertId',null);
@@ -642,6 +647,7 @@ Template.room.rendered = function(){
 		this.find('#nickname').focus();
 	}
 };
+
 
 Template.welcome.rendered = function(){
 	goOffline();
