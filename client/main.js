@@ -453,7 +453,7 @@ function formatMessage (t) {
 	console.log(t);
 	t = escapeHtml(t);
 	console.log(t);
-	var imagePattern = /(https?:\/\/.*\.(?:png|jpg))/gi;
+	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
 	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image'><img src='$1'/></a> ");
 	var urlPattern = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 	t = t.replace(urlPattern, " <a href='$2'>$2</a> ");
