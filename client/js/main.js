@@ -17,8 +17,7 @@ var lastInsertId=0, //ID of the last inserted message
 	ouSub = null, //OnlineUsers subscription
 	keepaliveTime = 10000,
 	siab=0,
-	firstRun=0;
-loggingOut = false;
+	loggingOut = false;
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 	//set default
@@ -102,7 +101,11 @@ function unsubscribe(){
 }
 
 function subscribe(){
-	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'));
+	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
+		console.log('messages ready');
+		if(Session.get('userid'))
+			scrollAndFocus();
+	});
 	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 }
 
@@ -448,11 +451,11 @@ function unescapeHtml(escapedStr) {
 function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','');
-	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
+	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/g;
 	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a> ");
-	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/g;
 	t = t.replace(urlPatternWithProtocol, " <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
-	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/g;
 	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
 	return t;
 }
@@ -473,7 +476,7 @@ Template.messages.events({
     		return;
     	}
 
-    	text = text.substring(0,text.length -1);
+    	text = text.substring(0,text.length);
 
     	/*
 		working in Chrome 28.0.1500.95
@@ -539,7 +542,7 @@ Template.messages.events({
 				} else {
 					removeLastMessage();
 				}
-				mm.style.height = initialMessageHeight;
+				mm.style.height = initialMessageHeight + 'px';
 
 		    } else {
 
@@ -557,8 +560,10 @@ Template.messages.events({
 					);
 				} else {
 					removeLastMessage();
+					mm.style.height = initialMessageHeight + 'px';
 				}
 		    }
+
     	} else {
     		if(Session.get('lastInsertId') !== null){
 				Messages.remove({_id:Session.get('lastInsertId')});
@@ -577,7 +582,8 @@ Template.messages.events({
 					,useravatar:Session.get('avatar')
 					}
 				);
-				mm.style.height = initialMessageHeight;
+				mm.style.height = initialMessageHeight + 'px';
+				console.log('resetting textarea to ' + initialMessageHeight)
 				$('#mymessage').val('');
 
 	    	}
@@ -586,18 +592,13 @@ Template.messages.events({
 	}
 });
 
-Template.messages.rendered = function(){
-	firstRun++;
-	if(firstRun < 3)
-		scrollAndFocus();
-}
 
 
 function scrollAndFocus(){
 	setTimeout(function(){
-		$('body').animate({scrollTop: $('body').height()},500);
+		$('body').animate({scrollTop: $('body').height() + 5000},500);
 		$('#mymessage').focus();
-	},100);
+	},10);
 }
 
 function scrollIfAtBottom(){
