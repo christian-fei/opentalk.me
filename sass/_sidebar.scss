@@ -16,12 +16,11 @@
 
 	opacity: .7;
 
-
-	-webkit-transition: transform .4s ease-in-out;
-	-moz-transition: transform .4s ease-in-out;
-	-ms-transition: transform .4s ease-in-out;
-	-o-transition: transform .4s ease-in-out;
-	transition: transform .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: - $sidebar-width - 1em !important;
@@ -49,18 +48,12 @@
 		-ms-transform: translateX($sidebar-width + 1em);
 		transform: translateX($sidebar-width + 1em);
 	}
-	/*@media all and (max-width: $limit + $sidebar-width*2){
-		-webkit-transform: translateX(-$sidebar-width);
-		-moz-transform: translateX(-$sidebar-width);
-		-o-transform: translateX(-$sidebar-width);
-		-ms-transform: translateX(-$sidebar-width);
-		transform: translateX(-$sidebar-width);
-	}*/
 }
 
 .no-csstransforms .fixed-sidebar{
 	&.show{
 		left:0!important;
+
 	}
 }
 
