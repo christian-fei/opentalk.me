@@ -624,6 +624,7 @@ function positionFixedContent(){
 		$('.fixed-sidebar').css( 'left', l );
 		$('.online-users-count').css( 'left', l );
 
+		
 		if($('.fixed-sidebar').hasClass('show')){
 			$('.fixed-sidebar').toggleClass('show');
 			$('.main').toggleClass('under-modal');
