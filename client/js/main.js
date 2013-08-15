@@ -449,8 +449,10 @@ function formatMessage(t) {
 	t = t.replace('\n','');
 	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
 	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image'><img src='$1'/></a> ");
-	var urlPattern = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-	t = t.replace(urlPattern, " <a href='$2'>$2</a> ");
+	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+	t = t.replace(urlPatternWithProtocol, " <a href='$2' target='_blank'>$2</a> ");
+	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' target='_blank'>$2</a> ");
 	return t;
 }
 
