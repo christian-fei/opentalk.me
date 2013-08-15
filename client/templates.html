@@ -36,9 +36,7 @@
 
 <template name="message">
 	{{#if messageComplete}}
-		{{#constant}}
-			<li class='message fly-in-up'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
-		{{/constant}}
+			<li class='message'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{else}}
 		<li class='message realtime'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{/if}}

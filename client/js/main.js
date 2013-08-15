@@ -15,7 +15,8 @@ var lastInsertId=0, //ID of the last inserted message
 	tdiff=0. //difference between time on server and time on client
 	mSub = null, //Messages subscription
 	ouSub = null, //OnlineUsers subscription
-	keepaliveTime = 10000;
+	keepaliveTime = 10000,
+	yoso=0;
 loggingOut = false;
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
@@ -30,14 +31,14 @@ if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 }
 
 if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('username') && !loggingOut){
-	console.log('restoring session from localstorage');
+	//console.log('restoring session from localstorage');
 	Session.set('userid',Meteor._localStorage.getItem('userid'));
 	Session.set('username',Meteor._localStorage.getItem('username'));
 }
 
 Deps.autorun(function(){
 	if( Meteor.user() && !loggingOut) {
-		console.log('user logged in with services');
+		//console.log('user logged in with services');
 		var currentUser = Meteor.users.find().fetch()[0];
 		Meteor.subscribe('userData');
 	    setAvatar();
@@ -118,7 +119,7 @@ function goOffline(){
 
 function goOnline(){
 	if(!loggingOut && Session.get('userid') && Session.get('roomid') && OnlineUsers.find({userid:Session.get('userid'),roomid:Session.get('roomid')}).fetch().length === 0){  
-		console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
+		//console.log('going Online with ' + Session.get('userid') + ' ' + Session.get('roomid') );
 		setAvatar();
 		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
 		Meteor.call('setUserId',Session.get('userid'));
@@ -320,7 +321,7 @@ Template.pickNickname.events({
 
 Template.logout.events({
 	'click #logout' : function(evnt,tmplt){
-		console.log('logout clicked');
+		//console.log('logout clicked');
 		evnt.preventDefault();
 
 		loggingOut=true;
@@ -408,12 +409,6 @@ Template.messages.loggedIn=Template.room.loggedIn=function(){
 
 
 Template.messages.messages = function(){
-
-	//if in realtime, 
-		//if my last message has not been completed yet, don't display it.
-		//in other words, don't display message that are mine and not completed
-
-
 	if(Session.get('realtimeEnabled')) {
 		if( Session.get('lastInsertId') )
 			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
@@ -482,7 +477,7 @@ Template.messages.events({
     		hackOffset = 0;
     	if(navigator.userAgent.indexOf('Firefox') >=0){
     		hackOffset=32;
-    		console.log('firefox');
+    		//console.log('firefox');
     	}
     	if(initialMessageHeight===0)
     		initialMessageHeight = mm.offsetHeight;
@@ -520,7 +515,7 @@ Template.messages.events({
 				if(text.length){
 					//format message, strip tags and shit
 					
-					console.log(text);
+					//console.log(text);
 					Messages.update(
 						{
 							_id:''+Session.get('lastInsertId')
@@ -582,39 +577,42 @@ Template.messages.events({
 
 	    	}
     	}
-    	console.log('scrollifatbottom keyup message');
+    	//console.log('scrollifatbottom keyup message');
     	scrollIfAtBottom();
     	// scrollAndFocus();
 	}
 });
 
 Template.messages.rendered = function(){
-	console.log('messages ============rendered=============');
+	//console.log('messages ============rendered=============');
 	
 	setTimeout(function(){
 		if( $(window).width() > 700 ){
 			$(".message-image").colorbox({transition:'elastic',scrolling:false,rel:'nofollow',slideshow:false,fixed:true,returnFocus:true,scalePhotos:true,width:"80%"});
 		}
-		if(this.find('.messages').length > 0)
+		if($('.messages').length > 0){
+			//console.log('scrolling becuase messages > 0')
 			scrollIfAtBottom();
+		}else{
+			//console.log('not scrolling');
+		}
 	},10);
 }
 
 
 function scrollAndFocus(){
 	setTimeout(function(){
-		$('body').animate({scrollTop: $('body').height()},100);
+		$('body').animate({scrollTop: $('body').height()},50);
 		$('#mymessage').focus();
-	},200);
+	},100);
 }
 
 function scrollIfAtBottom(){
-	console.log('w scrollTop ' + $(window).scrollTop());
-	console.log('w height ' + $(window).height());
-	console.log('doc height ' +$(document).height());
 	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100) {
-		console.log('scrolling because at bottom');
-		scrollAndFocus();
+		//console.log('scrolling because at bottom');
+		setTimeout(function(){
+			scrollAndFocus();
+		},1);
 	}
 }
 
@@ -641,12 +639,13 @@ function positionFixedContent(){
 };
 
 Template.room.rendered = function(){
-	console.log('room ============rendered=============');
+	//console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 
-	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
+	if(instnc.find('#mymessage') && !instnc.find('#nickname') && yoso < 5){
 		// console.log('found mymessage not found nickname')
+		yoso++;
 		scrollIfAtBottom();
 	}
 
