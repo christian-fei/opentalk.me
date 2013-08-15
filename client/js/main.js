@@ -110,8 +110,10 @@ function subscribe(){
 	// 		//$('#mymessage').focus();
 	// 	}
 	// });
-	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 10);
-	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+	if(!mSub)
+		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 10);
+	if(!ouSub)
+		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 }
 
 /*

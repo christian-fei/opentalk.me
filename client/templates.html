@@ -45,24 +45,20 @@
 	{{/if}}
 </template>
 <template name='messages'>
-	{{#if messagesReady}}
-		{{#unless allMessagesLoaded}}
-			<a class="load-more" href="#">Load more</a>
-		{{/unless}}
+	{{#unless allMessagesLoaded}}
+		<a class="load-more" href="#">Load more</a>
+	{{/unless}}
 
-		<ul class='messages'>
-			{{#each messages}}
-					{{>message}}
-			{{/each}}
-			{{#if loggedIn}}
-				<li id='li-message'>
-					<textarea id="mymessage" rows='1' placeholder='your message'/>
-				</li>
-			{{/if}}
-		</ul>
-	{{else}}
-		<div> {{>spinner}}</div>
-	{{/if}}
+	<ul class='messages'>
+		{{#each messages}}
+				{{>message}}
+		{{/each}}
+		{{#if loggedIn}}
+			<li id='li-message'>
+				<textarea id="mymessage" rows='1' placeholder='your message'/>
+			</li>
+		{{/if}}
+	</ul>
 </template>
 
 
