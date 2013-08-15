@@ -431,8 +431,39 @@ function removeLastMessage(){
     $('#mymessage').val('');
 }
 
-var initialMessageHeight = 0;
 
+//http://shebang.brandonmintern.com/foolproof-html-escaping-in-javascript/
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+};
+ 
+// UNSAFE with unsafe strings; only use on previously-escaped ones!
+function unescapeHtml(escapedStr) {
+    var div = document.createElement('div');
+    div.innerHTML = escapedStr;
+    var child = div.childNodes[0];
+    return child ? child.nodeValue : '';
+};
+
+
+
+function formatMessage (t) {
+	console.log(t);
+	t = escapeHtml(t);
+	console.log(t);
+	var urlPattern = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+	//output = output.replace(regex, entry[properties[i]]);
+	return t.replace(urlPattern, " <a href='$2'>$2</a> ");
+}
+
+
+
+
+
+
+var initialMessageHeight = 0;
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
 	    text = tmplt.find('#mymessage').value;
@@ -485,7 +516,9 @@ Template.messages.events({
 		    if(evnt.keyCode === 13){
 
 				if(text.length){
-					//new Message
+					//format message, strip tags and shit
+					text = formatMessage(text);
+					console.log(text);
 					Messages.update(
 						{
 							_id:''+Session.get('lastInsertId')
@@ -498,6 +531,7 @@ Template.messages.events({
 							}
 						}
 					);
+					//new Message
 					Session.set('lastInsertId',null);
 					tmplt.find('#mymessage').value = '';
 				} else {

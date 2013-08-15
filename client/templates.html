@@ -35,7 +35,7 @@
 
 
 <template name="message">
-	<li class='message {{#unless messageComplete}}realtime{{/unless}}'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{text}}</span></li>
+	<li class='message {{#unless messageComplete}}realtime{{/unless}}'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 </template>
 <template name='messages'>
 	<ul class='messages'>
