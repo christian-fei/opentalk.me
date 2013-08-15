@@ -110,7 +110,7 @@ function subscribe(){
 	// 		//$('#mymessage').focus();
 	// 	}
 	// });
-	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 50);
+	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 10);
 	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 }
 
@@ -436,6 +436,7 @@ Template.messages.messages = function(){
 
 Template.messages.rendered = function(){
 	if(Session.get('userid') && Session.get('userid') && stick){
+		//console.log('scrolling because stick');
 		scrollDown();
 		//this.find('#mymessage').focus();
 	}
@@ -485,8 +486,8 @@ function formatMessage(t) {
 var initialMessageHeight = 0;
 Template.messages.events({
 	'click .load-more': function(evnt) {
-		console.log('loading more messages');
 		evnt.preventDefault();
+		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
 	},
 	'keyup #mymessage' : function(evnt,tmplt){
@@ -605,7 +606,7 @@ Template.messages.events({
 					}
 				);
 				mm.style.height = initialMessageHeight + 'px';
-				console.log('resetting textarea to ' + initialMessageHeight)
+				//console.log('resetting textarea to ' + initialMessageHeight)
 				$('#mymessage').val('');
 
 	    	}
@@ -619,7 +620,7 @@ Template.messages.events({
 
 
 function scrollDown(){
-	$('html,body').animate({scrollTop: 20000 },1);
+	$('html,body').animate({scrollTop: $('html').height() +500 },1);
 	// if($('.messages').children().length > 3){
 	// }
 }
@@ -692,6 +693,12 @@ Meteor.startup(function(){
 		
 		$('body,html').bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
 			if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
+				//console.log('scrolling because of '+ e.type);
+				if($(window).scrollTop() + $(window).height()  < $(document).height() && (e.type == 'mousedown' || e.type == 'mousewheel') ){
+					stick = false;
+				}else{
+					stick=true;
+				}
 				$("html,body").stop();
 			}
 		});		
