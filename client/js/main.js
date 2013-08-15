@@ -19,7 +19,8 @@ var lastInsertId=0, //ID of the last inserted message
 	ouSub = null, //OnlineUsers subscription
 	keepaliveTime = 10000,
 	siab=0,
-	loggingOut = false;
+	loggingOut = false,
+	stick=true;
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 	//set default
@@ -61,6 +62,14 @@ Deps.autorun(function(){
 		}
 		Session.set('username',username);
 		goOnline();
+	}
+});
+
+Messages.find().observe({
+	added: function(doc){
+		if( Session.get('userid') && Session.get('roomid') && stick ){
+			scrollDown();
+		}
 	}
 });
 
@@ -106,8 +115,7 @@ function subscribe(){
 	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
 		console.log('messages ready');
 		if(Session.get('roomid') && Session.get('userid')) {
-			scrollDown();
-			$('#mymessage').focus();
+			//$('#mymessage').focus();
 		}
 	});
 	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
@@ -428,8 +436,10 @@ Template.messages.messages = function(){
 };
 
 Template.messages.rendered = function(){
-	if(Session.get(userid))
+	if(Session.get('userid') && Session.get('userid') && stick){
+		scrollDown();
 		this.find('#mymessage').focus();
+	}
 }
 
 function removeLastMessage(){
@@ -603,19 +613,20 @@ Template.messages.events({
 
 
 function scrollDown(){
-	$('body').animate({scrollTop: $('body').height() + 5000},1);
+	if($('.messages').children().length > 3){
+		$('html,body').animate({scrollTop: $('.messages').children().length*300 },1);
+	}
 }
 
-function scrollIfAtBottom(){
-	siab = Meteor.setInterval(function(){
-		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
-			//console.log('scrolling because at bottom');
-			scrollDown();
-		}
-	},1500);
-}
+// function scrollIfAtBottom(){
+// 	siab = Meteor.setInterval(function(){
+// 		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
+// 			//console.log('scrolling because at bottom');
+// 			scrollDown();
+// 		}
+// 	},1500);
+// }
 
-scrollIfAtBottom();
 
 function positionFixedContent(){
 	//if the room hasn't been rendered (like on the welcome page)
@@ -654,7 +665,7 @@ Template.room.rendered = function(){
 Template.welcome.rendered = function(){
 	goOffline();
 
-	$('#roomid').focus();
+	this.find('#roomid').focus();
 
 	$('.blanket').on('click',function(){
 		$('#roomid').focus();
