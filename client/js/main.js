@@ -677,9 +677,6 @@ Meteor.startup(function(){
 		$(window).resize(function(){
 			positionFixedContent();
 		});
-		if( $(window).width() < 700 ){
-			$.colorbox.remove();
-		}
 
 		$(document).wipetouch({
 			preventDefault:false,
