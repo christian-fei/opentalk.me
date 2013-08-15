@@ -18,11 +18,13 @@
 
 
 
-<template name='pickNickname'>
-	<div class="blanket-white">
-		<span class="vam">Pick a nickname to join </span> <input type="text" id='nickname' placeholder='trasher666'>
-		{{loginButtons}}
-	</div>
+<template name='loginForm'>
+	{{#unless loggingIn}}
+		<div class="blanket-white">
+			<span class="vam">Pick a nickname to join </span> <input type="text" id='nickname' placeholder='trasher666'>
+			{{loginButtons}}
+		</div>
+	{{/unless}}
 </template>
 
 
@@ -40,7 +42,6 @@
 	{{else}}
 		<li class='message realtime'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{/if}}
-
 </template>
 <template name='messages'>
 	<ul class='messages'>
@@ -89,7 +90,7 @@
 	<div class="main">
 		
 		{{#unless loggedIn}}
-			{{>pickNickname}}
+			{{>loginForm}}
 		{{/unless}}
 		
 		{{>messages}}

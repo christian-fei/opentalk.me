@@ -103,8 +103,10 @@ function unsubscribe(){
 function subscribe(){
 	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
 		console.log('messages ready');
-		if(Session.get('userid'))
-			scrollAndFocus();
+		if(Session.get('userid')) {
+			scrollDown();
+			$('#mymessage').focus();
+		}
 	});
 	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 }
@@ -294,7 +296,7 @@ function toggleSidebar(){
 
 
 
-Template.pickNickname.events({
+Template.loginForm.events({
 	'keyup #nickname': function(evnt,tmplt){
 	  if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 	    var nickname = tmplt.find('#nickname').value;
@@ -378,9 +380,6 @@ Template.room.onlineUsersCount =function(){
 	return OnlineUsers.find().fetch().length;
 }
 Template.room.realtimeEnabled = function(){
-	/*if(Session.equals('realtimeEnabled','true'))
-		return 'on';
-	return 'off';*/
 	return Session.get('realtimeEnabled') ? 'on' : 'off';
 }
 /*username and userid, either from accounts or nickname*/
@@ -395,6 +394,7 @@ Template.room.roomSelected = function(){
 		return true;
 	return false;
 }
+
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click #toggleRealtime' : function(evnt,tmplt){
@@ -451,12 +451,12 @@ function unescapeHtml(escapedStr) {
 function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','');
-	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/g;
-	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a> ");
-	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/g;
-	t = t.replace(urlPatternWithProtocol, " <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
-	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/g;
-	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a> ");
+	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
+	t = t.replace(imagePattern, "  <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a>  ");
+	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	t = t.replace(urlPatternWithoutProtocol, "  <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
 	return t;
 }
 
@@ -588,16 +588,16 @@ Template.messages.events({
 
 	    	}
     	}
-    	scrollAndFocus();
+    	scrollDown();
 	}
 });
 
 
 
-function scrollAndFocus(){
+function scrollDown(){
 	setTimeout(function(){
 		$('body').animate({scrollTop: $('body').height() + 5000},500);
-		$('#mymessage').focus();
+		//$('#mymessage').focus();
 	},10);
 }
 
@@ -606,7 +606,7 @@ function scrollIfAtBottom(){
 	siab = Meteor.setInterval(function(){
 		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
 			//console.log('scrolling because at bottom');
-			scrollAndFocus();
+			scrollDown();
 		}
 	},1000);
 }
