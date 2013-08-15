@@ -582,16 +582,21 @@ Template.messages.events({
 
 	    	}
     	}
-    	scrollAndFocus();
+    	console.log('scrollifatbottom keyup message');
+    	scrollIfAtBottom();
+    	// scrollAndFocus();
 	}
 });
 
 Template.messages.rendered = function(){
+	console.log('messages ============rendered=============');
+	
 	setTimeout(function(){
 		if( $(window).width() > 700 ){
-			$(".message-image").colorbox({scrolling:false,returnFocus:true,scalePhotos:true,width:"80%"});
+			$(".message-image").colorbox({transition:'elastic',scrolling:false,rel:'nofollow',slideshow:false,fixed:true,returnFocus:true,scalePhotos:true,width:"80%"});
 		}
-		scrollIfAtBottom();
+		if(this.find('.messages').length > 0)
+			scrollIfAtBottom();
 	},10);
 }
 
@@ -604,11 +609,12 @@ function scrollAndFocus(){
 }
 
 function scrollIfAtBottom(){
-	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
-		//console.log('scrolling because at bottom');
-		$('body').animate({scrollTop: $('body').height()},25);
-		//$('html,body').animate({scrollTop: 50000},20);
-		$('#mymessage').focus();
+	console.log('w scrollTop ' + $(window).scrollTop());
+	console.log('w height ' + $(window).height());
+	console.log('doc height ' +$(document).height());
+	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100) {
+		console.log('scrolling because at bottom');
+		scrollAndFocus();
 	}
 }
 
@@ -635,12 +641,13 @@ function positionFixedContent(){
 };
 
 Template.room.rendered = function(){
-	//console.log('room ============rendered=============');
+	console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 
 	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
-		scrollAndFocus();
+		// console.log('found mymessage not found nickname')
+		scrollIfAtBottom();
 	}
 
 	if(this.find('#nickname')){
