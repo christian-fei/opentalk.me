@@ -588,6 +588,9 @@ Template.messages.events({
 
 Template.messages.rendered = function(){
 	setTimeout(function(){
+		if( $(window).width() > 700 ){
+			$(".message-image").colorbox({scrolling:false,returnFocus:true,scalePhotos:true,width:"80%"});
+		}
 		scrollIfAtBottom();
 	},10);
 }
@@ -595,15 +598,15 @@ Template.messages.rendered = function(){
 
 function scrollAndFocus(){
 	setTimeout(function(){
-		$('html,body').animate({scrollTop: $('html,body').outerHeight()},1000);
+		$('body').animate({scrollTop: $('body').height()},100);
 		$('#mymessage').focus();
 	},200);
 }
 
 function scrollIfAtBottom(){
-	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 150) {
+	if( $(window).scrollTop() + $(window).height()  > $(document).height() - 200) {
 		//console.log('scrolling because at bottom');
-		$('html,body').animate({scrollTop: $('html,body').height()},25);
+		$('body').animate({scrollTop: $('body').height()},25);
 		//$('html,body').animate({scrollTop: 50000},20);
 		$('#mymessage').focus();
 	}
@@ -631,19 +634,17 @@ function positionFixedContent(){
 	}
 };
 
-var firstRun = 0;
 Template.room.rendered = function(){
 	//console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 
-	if(instnc.find('#mymessage') && !instnc.find('#nickname') && firstRun < 2 ){
+	if(instnc.find('#mymessage') && !instnc.find('#nickname')){
 		scrollAndFocus();
 	}
-	firstRun++;
 
-	if($('#nickname')){
-		$('#nickname').focus();
+	if(this.find('#nickname')){
+		this.find('#nickname').focus();
 	}
 };
 
@@ -679,6 +680,10 @@ Meteor.startup(function(){
 		$(window).resize(function(){
 			positionFixedContent();
 		});
+		if( $(window).width() < 700 ){
+			$.colorbox.remove();
+		}
+		$.colorbox.resize();
 
 		$(document).wipetouch({
 			preventDefault:false,

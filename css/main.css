@@ -1100,3 +1100,290 @@ input {
   background: #ffbb00;
   color: inherit;
 }
+
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+/* line 5, ../sass/_colorbox.scss */
+#colorbox, #cboxOverlay, #cboxWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* line 6, ../sass/_colorbox.scss */
+#cboxOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 7, ../sass/_colorbox.scss */
+#cboxMiddleLeft, #cboxBottomLeft {
+  clear: left;
+}
+
+/* line 8, ../sass/_colorbox.scss */
+#cboxContent {
+  position: relative;
+}
+
+/* line 9, ../sass/_colorbox.scss */
+#cboxLoadedContent {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* line 10, ../sass/_colorbox.scss */
+#cboxTitle {
+  margin: 0;
+}
+
+/* line 11, ../sass/_colorbox.scss */
+#cboxLoadingOverlay, #cboxLoadingGraphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 12, ../sass/_colorbox.scss */
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
+  cursor: pointer;
+}
+
+/* line 13, ../sass/_colorbox.scss */
+.cboxPhoto {
+  float: left;
+  margin: auto;
+  border: 0;
+  display: block;
+  max-width: none;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* line 14, ../sass/_colorbox.scss */
+.cboxIframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+/* line 15, ../sass/_colorbox.scss */
+#colorbox, #cboxContent, #cboxLoadedContent {
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+/* line 22, ../sass/_colorbox.scss */
+#cboxOverlay {
+  background: url(images/overlay.png) repeat 0 0;
+}
+
+/* line 23, ../sass/_colorbox.scss */
+#colorbox {
+  outline: 0;
+}
+
+/* line 24, ../sass/_colorbox.scss */
+#cboxTopLeft {
+  width: 21px;
+  height: 21px;
+  background: url(images/controls.png) no-repeat -101px 0;
+}
+
+/* line 25, ../sass/_colorbox.scss */
+#cboxTopRight {
+  width: 21px;
+  height: 21px;
+  background: url(images/controls.png) no-repeat -130px 0;
+}
+
+/* line 26, ../sass/_colorbox.scss */
+#cboxBottomLeft {
+  width: 21px;
+  height: 21px;
+  background: url(images/controls.png) no-repeat -101px -29px;
+}
+
+/* line 27, ../sass/_colorbox.scss */
+#cboxBottomRight {
+  width: 21px;
+  height: 21px;
+  background: url(images/controls.png) no-repeat -130px -29px;
+}
+
+/* line 28, ../sass/_colorbox.scss */
+#cboxMiddleLeft {
+  width: 21px;
+  background: url(images/controls.png) left top repeat-y;
+}
+
+/* line 29, ../sass/_colorbox.scss */
+#cboxMiddleRight {
+  width: 21px;
+  background: url(images/controls.png) right top repeat-y;
+}
+
+/* line 30, ../sass/_colorbox.scss */
+#cboxTopCenter {
+  height: 21px;
+  background: url(images/border.png) 0 0 repeat-x;
+}
+
+/* line 31, ../sass/_colorbox.scss */
+#cboxBottomCenter {
+  height: 21px;
+  background: url(images/border.png) 0 -29px repeat-x;
+}
+
+/* line 32, ../sass/_colorbox.scss */
+#cboxContent {
+  background: #fff;
+  overflow: hidden;
+}
+
+/* line 33, ../sass/_colorbox.scss */
+.cboxIframe {
+  background: #fff;
+}
+
+/* line 34, ../sass/_colorbox.scss */
+#cboxError {
+  padding: 50px;
+  border: 1px solid #ccc;
+}
+
+/* line 35, ../sass/_colorbox.scss */
+#cboxLoadedContent {
+  margin-bottom: 28px;
+}
+
+/* line 36, ../sass/_colorbox.scss */
+#cboxTitle {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  color: #949494;
+}
+
+/* line 37, ../sass/_colorbox.scss */
+#cboxCurrent {
+  position: absolute;
+  bottom: 4px;
+  left: 58px;
+  color: #949494;
+}
+
+/* line 38, ../sass/_colorbox.scss */
+#cboxLoadingOverlay {
+  background: url(images/loading_background.png) no-repeat center center;
+}
+
+/* line 39, ../sass/_colorbox.scss */
+#cboxLoadingGraphic {
+  background: url(images/loading.gif) no-repeat center center;
+}
+
+/* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+/* line 42, ../sass/_colorbox.scss */
+#cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  width: auto;
+  background: none;
+}
+
+/* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+/* line 45, ../sass/_colorbox.scss */
+#cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {
+  outline: 0;
+}
+
+/* line 47, ../sass/_colorbox.scss */
+#cboxSlideshow {
+  position: absolute;
+  bottom: 4px;
+  right: 30px;
+  color: #0092ef;
+}
+
+/* line 48, ../sass/_colorbox.scss */
+#cboxPrevious {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url(images/controls.png) no-repeat -75px 0;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+}
+
+/* line 49, ../sass/_colorbox.scss */
+#cboxPrevious:hover {
+  background-position: -75px -25px;
+}
+
+/* line 50, ../sass/_colorbox.scss */
+#cboxNext {
+  position: absolute;
+  bottom: 0;
+  left: 27px;
+  background: url(images/controls.png) no-repeat -50px 0;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+}
+
+/* line 51, ../sass/_colorbox.scss */
+#cboxNext:hover {
+  background-position: -50px -25px;
+}
+
+/* line 52, ../sass/_colorbox.scss */
+#cboxClose {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: url(images/controls.png) no-repeat -25px 0;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+}
+
+/* line 53, ../sass/_colorbox.scss */
+#cboxClose:hover {
+  background-position: -25px -25px;
+}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
+*/
+/* line 67, ../sass/_colorbox.scss */
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
