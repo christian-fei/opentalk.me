@@ -395,6 +395,7 @@ Template.room.roomSelected = function(){
 	return false;
 }
 
+
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click #toggleRealtime' : function(evnt,tmplt){
