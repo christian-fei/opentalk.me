@@ -565,6 +565,7 @@ Template.messages.events({
 				Session.set('lastInsertId',null);
     		}
     		if(evnt.keyCode === 13){
+    			text = formatMessage(text);
 	    		Messages.insert(
 					{
 					userid:Session.get('userid')
