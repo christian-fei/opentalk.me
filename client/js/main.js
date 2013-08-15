@@ -448,11 +448,11 @@ function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','');
 	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
-	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image'><img src='$1'/></a> ");
+	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a> ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 	t = t.replace(urlPatternWithProtocol, " <a href='$2' target='_blank'>$2</a> ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' target='_blank'>$2</a> ");
+	t = t.replace(urlPatternWithoutProtocol, " <a href='http://$2' noindex,nofollow' target='_blank'>$2</a> ");
 	return t;
 }
 
@@ -590,7 +590,7 @@ Template.messages.rendered = function(){
 	
 	setTimeout(function(){
 		if( $(window).width() > 700 ){
-			$(".message-image").colorbox({transition:'elastic',scrolling:false,rel:'nofollow',slideshow:false,fixed:true,returnFocus:true,scalePhotos:true,width:"80%"});
+			// $(".message-image").colorbox({transition:'elastic',scrolling:false,rel:'nofollow',slideshow:false,fixed:true,returnFocus:true,scalePhotos:true,width:"80%"});
 		}
 		if($('.messages').length > 0){
 			//console.log('scrolling becuase messages > 0')
