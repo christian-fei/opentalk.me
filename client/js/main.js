@@ -639,6 +639,8 @@ Template.room.rendered = function(){
 
 	if(this.find('#nickname')){
 		this.find('#nickname').focus();
+	}else{
+		this.find('#mymessage').focus();
 	}
 };
 
