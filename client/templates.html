@@ -17,14 +17,15 @@
 </template>
 
 
-
 <template name='loginForm'>
-	{{#unless loggingIn}}
+	{{#if loggingIn}}
+		{{> spinner}}
+	{{else}}
 		<div class="blanket-white">
 			<span class="vam">Pick a nickname to join </span> <input type="text" id='nickname' placeholder='trasher666'>
 			{{loginButtons}}
 		</div>
-	{{/unless}}
+	{{/if}}
 </template>
 
 
