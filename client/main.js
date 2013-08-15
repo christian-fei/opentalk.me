@@ -449,10 +449,9 @@ function unescapeHtml(escapedStr) {
 
 
 
-function formatMessage (t) {
-	console.log(t);
+function formatMessage(t) {
 	t = escapeHtml(t);
-	console.log(t);
+	t = t.replace('\n','');
 	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gi;
 	t = t.replace(imagePattern, " <a href='$1' rel='noindex,nofollow' class='message-image'><img src='$1'/></a> ");
 	var urlPattern = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
@@ -515,11 +514,12 @@ Template.messages.events({
 				);
 		      	return;
 		    }
+		    text = formatMessage(text);
 		    if(evnt.keyCode === 13){
 
 				if(text.length){
 					//format message, strip tags and shit
-					text = formatMessage(text);
+					
 					console.log(text);
 					Messages.update(
 						{
