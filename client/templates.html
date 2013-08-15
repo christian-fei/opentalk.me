@@ -38,23 +38,31 @@
 <template name="message">
 	{{#if messageComplete}}
 		{{#constant}}
-			<li class='message'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 		{{/constant}}
+			<li class='message'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{else}}
 		<li class='message realtime'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{/if}}
 </template>
 <template name='messages'>
-	<ul class='messages'>
-		{{#each messages}}
-				{{>message}}
-		{{/each}}
-		{{#if loggedIn}}
-			<li id='li-message'>
-				<textarea id="mymessage" rows='1' placeholder='your message'/>
-			</li>
-		{{/if}}
-	</ul>
+	{{#if messagesReady}}
+		{{#unless allMessagesLoaded}}
+			<a class="load-more" href="#">Load more</a>
+		{{/unless}}
+
+		<ul class='messages'>
+			{{#each messages}}
+					{{>message}}
+			{{/each}}
+			{{#if loggedIn}}
+				<li id='li-message'>
+					<textarea id="mymessage" rows='1' placeholder='your message'/>
+				</li>
+			{{/if}}
+		</ul>
+	{{else}}
+		<div> {{>spinner}}</div>
+	{{/if}}
 </template>
 
 

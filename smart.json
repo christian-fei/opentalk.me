@@ -2,6 +2,8 @@
   "packages": {
     "router": {},
     "HTML5-History-API": {},
-    "presence": {}
+    "presence": {},
+    "paginated-subscription": {},
+    "spin": {}
   }
 }

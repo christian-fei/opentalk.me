@@ -1,5 +1,3 @@
-var Messages = new Meteor.Collection('Messages');
-var OnlineUsers = new Meteor.Collection('OnlineUsers');
 Messages.allow({
   insert : function(userId,doc){
     //console.log(userId + ' attempts to insert a doc');
@@ -18,6 +16,10 @@ Meteor.publish('MessagesChatroom',function(roomid){
       roomid:roomid
     },{sort:{timestamp:1}}
   );
+});
+
+Meteor.publish('paginatedMessages', function(roomid,limit) {
+  return Messages.find({roomid:roomid}, {sort: {timestamp: -1}, limit: limit});
 });
 
 Meteor.publish('usersOnlineInThisRoom',function(roomid){

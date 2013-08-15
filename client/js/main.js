@@ -1,7 +1,3 @@
-
-
-var Messages = new Meteor.Collection('Messages');
-var OnlineUsers = new Meteor.Collection('OnlineUsers');
 /*
 set absoluteUrl for setting up the accounts system for the right domain
 edit:obsolete now, since no account-system is implemented anymore
@@ -73,10 +69,6 @@ Messages.find().observe({
 	}
 });
 
-function setMeteorUserName(){
-
-}
-
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
 
@@ -112,12 +104,13 @@ function unsubscribe(){
 }
 
 function subscribe(){
-	mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
-		console.log('messages ready');
-		if(Session.get('roomid') && Session.get('userid')) {
-			//$('#mymessage').focus();
-		}
-	});
+	// mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
+	// 	console.log('messages ready');
+	// 	if(Session.get('roomid') && Session.get('userid')) {
+	// 		//$('#mymessage').focus();
+	// 	}
+	// });
+	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 50);
 	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 }
 
@@ -421,6 +414,12 @@ Template.messages.loggedIn=Template.room.loggedIn=function(){
 		return true;
 	return false;
 };
+Template.messages.messagesReady = function() {
+	return ! mSub.loading();
+}
+Template.messages.allMessagesLoaded = function() {
+	return ! mSub.loading() && Messages.find().count() < mSub.loaded();
+}
 
 
 Template.messages.messages = function(){
@@ -438,7 +437,7 @@ Template.messages.messages = function(){
 Template.messages.rendered = function(){
 	if(Session.get('userid') && Session.get('userid') && stick){
 		scrollDown();
-		this.find('#mymessage').focus();
+		//this.find('#mymessage').focus();
 	}
 }
 
@@ -485,6 +484,11 @@ function formatMessage(t) {
 
 var initialMessageHeight = 0;
 Template.messages.events({
+	'click .load-more': function(evnt) {
+		console.log('loading more messages');
+		evnt.preventDefault();
+		mSub.loadNextPage();
+	},
 	'keyup #mymessage' : function(evnt,tmplt){
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
