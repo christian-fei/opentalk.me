@@ -1,3 +1,5 @@
+
+
 var Messages = new Meteor.Collection('Messages');
 var OnlineUsers = new Meteor.Collection('OnlineUsers');
 /*
