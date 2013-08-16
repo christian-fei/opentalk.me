@@ -108,12 +108,14 @@ setTimeout(function(){
 			if(before === null) {
 				message.hide();
 				$('#mymessage').before(message);
-				message.fadeIn(1000);
+				message.fadeIn(500);
 			}else{
 				message.hide();
 				$('#'+before).before(message);
-				message.fadeIn(1000);
+				message.fadeIn(500);
 			}
+			if(stick)
+				scrollDown();
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id + ' to ' + fields.text);
@@ -124,24 +126,26 @@ setTimeout(function(){
 			if( $('#'+id).length ){
 				// console.log('there is a message with id ' + id + ' in the dom');
 				if(fields.text !== undefined)
-					$('#'+id+' .text').html(formatMessage( fields.text ));
+					$('#'+id+' .text').html( fields.text );
 			}else if(fields.messageComplete ===true){
 				//my last message has been marked as completed
 				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+formatMessage( $('#mymessage').val() )+'</span></li>');
 				message.hide();
 				$('#mymessage').before(message);
-				message.fadeIn(1000);				
+				message.fadeIn(500);				
 			}
+			if(stick)
+				scrollDown();
 		},
 		removed: function(id){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
 			console.log('removing ' + id);
-			$('#'+id).slideUp(500);
+			$('#'+id).remove();
 		}
 	});
 
-},500);
+},1000);
 Meteor.startup(function(){
 });
 
@@ -682,7 +686,7 @@ Template.room.events({
 
 
 function scrollDown(){
-	$('html,body').animate({scrollTop: $('html').height() +500 },1);
+	$('html,body').animate({scrollTop: $('html').height() + 5000 },1);
 	// if($('.messages').children().length > 3){
 	// }
 }
@@ -756,7 +760,7 @@ Meteor.startup(function(){
 		$('body,html').bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
 			if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
 				//console.log('scrolling because of '+ e.type);
-				if($(window).scrollTop() + $(window).height()  < $(document).height() && (e.type == 'mousedown' || e.type == 'mousewheel') ){
+				if($(window).scrollTop() + $(window).height()  < $(document).height() - 200 && (e.type == 'mousedown' || e.type == 'mousewheel') ){
 					stick = false;
 				}else{
 					stick=true;
