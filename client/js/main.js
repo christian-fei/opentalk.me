@@ -496,6 +496,7 @@ Template.messages.events({
 		evnt.preventDefault();
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
+		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 	},
 	'keyup #mymessage' : function(evnt,tmplt){
 	    text = tmplt.find('#mymessage').value;
