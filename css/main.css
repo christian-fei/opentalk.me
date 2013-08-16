@@ -619,6 +619,12 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
+/* line 56, ../sass/_room.scss */
+.load-more {
+  position: fixed;
+  top: 1em;
+}
+
 /* line 1, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;

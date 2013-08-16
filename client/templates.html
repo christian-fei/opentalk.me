@@ -38,8 +38,8 @@
 <template name="message">
 	{{#if messageComplete}}
 		{{#constant}}
-		{{/constant}}
 			<li class='message'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
+		{{/constant}}
 	{{else}}
 		<li class='message realtime'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{/if}}

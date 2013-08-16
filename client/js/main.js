@@ -11,12 +11,16 @@ var lastInsertId=0, //ID of the last inserted message
 	clientt= Date.now(),
 	servert=0,
 	tdiff=0. //difference between time on server and time on client
-	mSub = null, //Messages subscription
-	ouSub = null, //OnlineUsers subscription
 	keepaliveTime = 10000,
 	siab=0,
 	loggingOut = false,
-	stick=true;
+	stick=true,
+	messagesLimit=30;
+
+Deps.autorun(function(){
+	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+});
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 	//set default
@@ -37,11 +41,12 @@ if(Meteor._localStorage.getItem('userid') && Meteor._localStorage.getItem('usern
 
 Deps.autorun(function(){
 	if( Meteor.user() && !loggingOut) {
+	    //unsubscribe();
 		//console.log('user logged in with services');
 		var currentUser = Meteor.users.find().fetch()[0];
 		Meteor.subscribe('userData');
-	    setAvatar();
 	    subscribe();
+	    setAvatar();
 		Session.set('userid',currentUser._id);
 		// Session.set('username',currentUser.profile.name);
 		//setMeteorUserName();
@@ -97,10 +102,10 @@ UTILITY FUNCTIONS
 unsubscribe from subscriptions
 */
 function unsubscribe(){
-	if(mSub)
-	  mSub.stop();
-	if(ouSub)
-	  ouSub.stop();
+	// if(mSub)
+	//   mSub.stop();
+	// if(ouSub)
+	//   ouSub.stop();
 }
 
 function subscribe(){
@@ -110,10 +115,9 @@ function subscribe(){
 	// 		//$('#mymessage').focus();
 	// 	}
 	// });
-	if(!mSub)
-		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), 10);
-	if(!ouSub)
-		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+	// if(mSub && mSub._limit < messagesLimit)
+	// if(!ouSub)
+		
 }
 
 /*
@@ -189,7 +193,7 @@ function joinRoom(r){
 	*/
 
 	goOffline();
-	unsubscribe();
+	//unsubscribe();
 	//Session.set('roomid',null);
 
 	if(r === ''){
@@ -338,6 +342,7 @@ Template.logout.events({
 		loggingOut=true;
 
 		goOffline();
+		// unsubscribe();
 		Session.set('userid',null);
 		Session.set('username',null);
 		Meteor._localStorage.removeItem('avatar');
