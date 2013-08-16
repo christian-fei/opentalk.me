@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 /*
 SUPER SLICK TRANSFORMS
 */
-/* line 7, ../sass/_transforms.scss */
+/* line 8, ../sass/_transforms.scss */
 .fly-in-down, .fly-in-up, .fly-in-right, .fly-in-left {
   -webkit-transition: opacity 300ms 200ms ease;
   -moz-transition: opacity 300ms 200ms ease;
@@ -140,50 +140,50 @@ SUPER SLICK TRANSFORMS
   animation-fill-mode: forwards !important;
 }
 
-/* line 19, ../sass/_transforms.scss */
+/* line 20, ../sass/_transforms.scss */
 .fly-in-down {
   opacity: 0.85;
-  -webkit-animation: flyindown 400ms ease;
-  -moz-animation: flyindown 400ms ease;
-  -o-animation: flyindown 400ms ease;
-  animation: flyindown 400ms ease;
+  -webkit-animation: flyindown 1000ms ease;
+  -moz-animation: flyindown 1000ms ease;
+  -o-animation: flyindown 1000ms ease;
+  animation: flyindown 1000ms ease;
 }
 
-/* line 27, ../sass/_transforms.scss */
+/* line 28, ../sass/_transforms.scss */
 .fly-in-up {
   opacity: 0.85;
-  -webkit-animation: flyinup 400ms ease;
-  -moz-animation: flyinup 400ms ease;
-  -o-animation: flyinup 400ms ease;
-  animation: flyinup 400ms ease;
+  -webkit-animation: flyinup 1000ms ease;
+  -moz-animation: flyinup 1000ms ease;
+  -o-animation: flyinup 1000ms ease;
+  animation: flyinup 1000ms ease;
 }
 
-/* line 35, ../sass/_transforms.scss */
+/* line 36, ../sass/_transforms.scss */
 .fly-in-right {
   opacity: 0 0.85;
-  -webkit-animation: flyinright 400ms ease;
-  -moz-animation: flyinright 400ms ease;
-  -o-animation: flyinright 400ms ease;
-  animation: flyinright 400ms ease;
+  -webkit-animation: flyinright 1000ms ease;
+  -moz-animation: flyinright 1000ms ease;
+  -o-animation: flyinright 1000ms ease;
+  animation: flyinright 1000ms ease;
 }
 
-/* line 43, ../sass/_transforms.scss */
+/* line 44, ../sass/_transforms.scss */
 .fly-in-left {
   opacity: 0.85;
-  -webkit-animation: flyinleft 400ms ease;
-  -moz-animation: flyinleft 400ms ease;
-  -o-animation: flyinleft 400ms ease;
-  animation: flyinleft 400ms ease;
+  -webkit-animation: flyinleft 1000ms ease;
+  -moz-animation: flyinleft 1000ms ease;
+  -o-animation: flyinleft 1000ms ease;
+  animation: flyinleft 1000ms ease;
 }
 
 /*flyindown*/
 @-webkit-keyframes flyindown {
-  /* line 58, ../sass/_transforms.scss */
+  /* line 59, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(0, 0.2em);
   }
 
-  /* line 59, ../sass/_transforms.scss */
+  /* line 60, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -191,12 +191,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyindown {
-  /* line 62, ../sass/_transforms.scss */
+  /* line 63, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(0, 0.2em);
   }
 
-  /* line 63, ../sass/_transforms.scss */
+  /* line 64, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -204,12 +204,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyindown {
-  /* line 66, ../sass/_transforms.scss */
+  /* line 67, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(0, 0.2em);
   }
 
-  /* line 67, ../sass/_transforms.scss */
+  /* line 68, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -217,12 +217,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyindown {
-  /* line 70, ../sass/_transforms.scss */
+  /* line 71, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(0, 0.2em);
   }
 
-  /* line 71, ../sass/_transforms.scss */
+  /* line 72, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -230,12 +230,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyindown {
-  /* line 74, ../sass/_transforms.scss */
+  /* line 75, ../sass/_transforms.scss */
   0% {
     transform: translate(0, 0.2em);
   }
 
-  /* line 75, ../sass/_transforms.scss */
+  /* line 76, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -244,12 +244,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinup*/
 @-webkit-keyframes flyinup {
-  /* line 80, ../sass/_transforms.scss */
+  /* line 81, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(0, -0.2em);
   }
 
-  /* line 81, ../sass/_transforms.scss */
+  /* line 82, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -257,12 +257,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinup {
-  /* line 84, ../sass/_transforms.scss */
+  /* line 85, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(0, -0.2em);
   }
 
-  /* line 85, ../sass/_transforms.scss */
+  /* line 86, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -270,12 +270,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinup {
-  /* line 88, ../sass/_transforms.scss */
+  /* line 89, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(0, -0.2em);
   }
 
-  /* line 89, ../sass/_transforms.scss */
+  /* line 90, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -283,12 +283,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinup {
-  /* line 92, ../sass/_transforms.scss */
+  /* line 93, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(0, -0.2em);
   }
 
-  /* line 93, ../sass/_transforms.scss */
+  /* line 94, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -296,12 +296,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinup {
-  /* line 96, ../sass/_transforms.scss */
+  /* line 97, ../sass/_transforms.scss */
   0% {
     transform: translate(0, -0.2em);
   }
 
-  /* line 97, ../sass/_transforms.scss */
+  /* line 98, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -310,12 +310,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinright*/
 @-webkit-keyframes flyinright {
-  /* line 102, ../sass/_transforms.scss */
+  /* line 103, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(-0.2em, 0);
   }
 
-  /* line 103, ../sass/_transforms.scss */
+  /* line 104, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -323,12 +323,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinright {
-  /* line 106, ../sass/_transforms.scss */
+  /* line 107, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(-0.2em, 0);
   }
 
-  /* line 107, ../sass/_transforms.scss */
+  /* line 108, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -336,12 +336,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinright {
-  /* line 110, ../sass/_transforms.scss */
+  /* line 111, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(-0.2em, 0);
   }
 
-  /* line 112, ../sass/_transforms.scss */
+  /* line 113, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -349,12 +349,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinright {
-  /* line 115, ../sass/_transforms.scss */
+  /* line 116, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(-0.2em, 0);
   }
 
-  /* line 116, ../sass/_transforms.scss */
+  /* line 117, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -362,12 +362,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinright {
-  /* line 119, ../sass/_transforms.scss */
+  /* line 120, ../sass/_transforms.scss */
   0% {
     transform: translate(-0.2em, 0);
   }
 
-  /* line 120, ../sass/_transforms.scss */
+  /* line 121, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -376,12 +376,12 @@ SUPER SLICK TRANSFORMS
 
 /*flyinleft*/
 @-webkit-keyframes flyinleft {
-  /* line 125, ../sass/_transforms.scss */
+  /* line 126, ../sass/_transforms.scss */
   0% {
     -webkit-transform: translate(0.2em, 0);
   }
 
-  /* line 126, ../sass/_transforms.scss */
+  /* line 127, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -389,12 +389,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-moz-keyframes flyinleft {
-  /* line 129, ../sass/_transforms.scss */
+  /* line 130, ../sass/_transforms.scss */
   0% {
     -moz-transform: translate(0.2em, 0);
   }
 
-  /* line 130, ../sass/_transforms.scss */
+  /* line 131, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -moz-transform: translate(0, 0);
@@ -402,12 +402,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-ms-keyframes flyinleft {
-  /* line 133, ../sass/_transforms.scss */
+  /* line 134, ../sass/_transforms.scss */
   0% {
     -ms-transform: translate(0.2em, 0);
   }
 
-  /* line 135, ../sass/_transforms.scss */
+  /* line 136, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -ms-transform: translate(0, 0);
@@ -415,12 +415,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @-o-keyframes flyinleft {
-  /* line 138, ../sass/_transforms.scss */
+  /* line 139, ../sass/_transforms.scss */
   0% {
     -o-transform: translate(0.2em, 0);
   }
 
-  /* line 139, ../sass/_transforms.scss */
+  /* line 140, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     -o-transform: translate(0, 0);
@@ -428,12 +428,12 @@ SUPER SLICK TRANSFORMS
 }
 
 @keyframes flyinleft {
-  /* line 142, ../sass/_transforms.scss */
+  /* line 143, ../sass/_transforms.scss */
   0% {
     transform: translate(0.2em, 0);
   }
 
-  /* line 143, ../sass/_transforms.scss */
+  /* line 144, ../sass/_transforms.scss */
   100% {
     opacity: 1;
     transform: translate(0, 0);
@@ -880,20 +880,18 @@ SUPER SLICK TRANSFORMS
 
 /* line 46, ../sass/_messages.scss */
 .realtime {
-  -webkit-animation: realtime-anim 5s ease-in-out;
-  -moz-animation: realtime-anim 5s ease-in-out;
-  -o-animation: realtime-anim 5s ease-in-out;
-  animation: realtime-anim 5s ease-in-out;
-  border-left: 2px solid #ffbb00;
-  margin-left: -2px;
+  -webkit-animation: realtime-anim 7s ease-in-out;
+  -moz-animation: realtime-anim 7s ease-in-out;
+  -o-animation: realtime-anim 7s ease-in-out;
+  animation: realtime-anim 7s ease-in-out;
 }
 
-/* line 57, ../sass/_messages.scss */
+/* line 54, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 60, ../sass/_messages.scss */
+/* line 57, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -910,60 +908,60 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 91, ../sass/_messages.scss */
+  /* line 88, ../sass/_messages.scss */
   0% {
     background: #fffaeb;
   }
 
-  /* line 92, ../sass/_messages.scss */
+  /* line 89, ../sass/_messages.scss */
   100% {
     background: white;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 95, ../sass/_messages.scss */
+  /* line 92, ../sass/_messages.scss */
   0% {
     background: #fffaeb;
   }
 
-  /* line 96, ../sass/_messages.scss */
+  /* line 93, ../sass/_messages.scss */
   100% {
     background: white;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 99, ../sass/_messages.scss */
+  /* line 96, ../sass/_messages.scss */
   0% {
     background: #fffaeb;
   }
 
-  /* line 100, ../sass/_messages.scss */
+  /* line 97, ../sass/_messages.scss */
   100% {
     background: white;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 103, ../sass/_messages.scss */
+  /* line 100, ../sass/_messages.scss */
   0% {
     background: #fffaeb;
   }
 
-  /* line 104, ../sass/_messages.scss */
+  /* line 101, ../sass/_messages.scss */
   100% {
     background: white;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 107, ../sass/_messages.scss */
+  /* line 104, ../sass/_messages.scss */
   0% {
     background: #fffaeb;
   }
 
-  /* line 108, ../sass/_messages.scss */
+  /* line 105, ../sass/_messages.scss */
   100% {
     background: white;
   }

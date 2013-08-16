@@ -15,7 +15,9 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=50;
+	messagesLimit=50,
+	lastMessageAtStartup=0;
+
 
 Deps.autorun(function(){
 	if(Session.get('roomid')){
@@ -27,6 +29,9 @@ Deps.autorun(function(){
 });
 function watchMessages(){
 	setTimeout(function(){
+		lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
+		console.log(lastMessageAtStartup);
+
 		Messages.find({},{sort:{timestamp:1}}).observeChanges({
 			addedBefore: function(id, fields,before){
 				if( Session.get('userid') && Session.get('roomid') && stick ){
@@ -48,13 +53,17 @@ function watchMessages(){
 				var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 				//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 				if(before === null) {
+					if(fields.timestamp>lastMessageAtStartup)
 					message.hide();
 					$('#mymessage').before(message);
-					message.fadeIn(50);
+					if(fields.timestamp>lastMessageAtStartup)
+					message.addClass('realtime fly-in-right').show();
 				}else{
+					if(fields.timestamp>lastMessageAtStartup)
 					message.hide();
 					$('#'+before).before(message);
-					message.fadeIn(50);
+					if(fields.timestamp>lastMessageAtStartup)
+					message.addClass('realtime fly-in-right').show();
 				}
 				if(stick)
 					scrollDown();
@@ -69,8 +78,7 @@ function watchMessages(){
 					//update existing message
 					if(fields.text !== undefined)
 						$('#'+id+' .text').html( fields.text );
-				}
-				if(fields.messageComplete === true){
+				}else if(fields.messageComplete === true){
 					console.log('message completed');
 					var textFromDB = Messages.find({_id:id}).fetch()[0].text;
 					var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+formatMessage( textFromDB )+'</span></li>');

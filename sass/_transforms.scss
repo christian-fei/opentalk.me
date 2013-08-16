@@ -3,6 +3,7 @@
 SUPER SLICK TRANSFORMS
 */
 $opacity:.85;
+$duration: 1000ms;
 
 %transform-base{
   -webkit-transition: opacity 300ms 200ms ease;
@@ -19,34 +20,34 @@ $opacity:.85;
 .fly-in-down{
   @extend %transform-base;
   opacity:$opacity;
-  -webkit-animation: flyindown 400ms ease;
-  -moz-animation: flyindown 400ms ease;
-  -o-animation: flyindown 400ms ease;
-  animation: flyindown 400ms ease;
+  -webkit-animation: flyindown $duration ease;
+  -moz-animation: flyindown $duration ease;
+  -o-animation: flyindown $duration ease;
+  animation: flyindown $duration ease;
 }
 .fly-in-up{
   @extend %transform-base;
   opacity:$opacity;
-  -webkit-animation: flyinup 400ms ease;
-  -moz-animation: flyinup 400ms ease;
-  -o-animation: flyinup 400ms ease;
-  animation: flyinup 400ms ease;
+  -webkit-animation: flyinup $duration ease;
+  -moz-animation: flyinup $duration ease;
+  -o-animation: flyinup $duration ease;
+  animation: flyinup $duration ease;
 }
 .fly-in-right{
   @extend %transform-base;
   opacity:0$opacity;
-  -webkit-animation: flyinright 400ms ease;
-  -moz-animation: flyinright 400ms ease;
-  -o-animation: flyinright 400ms ease;
-  animation: flyinright 400ms ease;
+  -webkit-animation: flyinright $duration ease;
+  -moz-animation: flyinright $duration ease;
+  -o-animation: flyinright $duration ease;
+  animation: flyinright $duration ease;
 }
 .fly-in-left{
   @extend %transform-base;
   opacity:$opacity;
-  -webkit-animation: flyinleft 400ms ease;
-  -moz-animation: flyinleft 400ms ease;
-  -o-animation: flyinleft 400ms ease;
-  animation: flyinleft 400ms ease;
+  -webkit-animation: flyinleft $duration ease;
+  -moz-animation: flyinleft $duration ease;
+  -o-animation: flyinleft $duration ease;
+  animation: flyinleft $duration ease;
 }
 
 
