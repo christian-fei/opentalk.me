@@ -16,7 +16,8 @@ var lastInsertId=0, //ID of the last inserted message
 	loggingOut = false,
 	stick=true,
 	messagesLimit=50,
-	lastMessageAtStartup=0;
+	lastMessageAtStartup=0,
+	messagesHandle=null;
 
 
 Deps.autorun(function(){
@@ -24,15 +25,19 @@ Deps.autorun(function(){
 		console.log('subscribing ' + Session.get('roomid'));
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-		watchMessages();
+		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
+			console.log('messages ready');
+			watchMessages();
+		});
 	}
 });
-function watchMessages(){
-	setTimeout(function(){
-		lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
-		console.log(lastMessageAtStartup);
 
-		Messages.find({},{sort:{timestamp:1}}).observeChanges({
+
+function watchMessages(){
+	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
+	console.log(lastMessageAtStartup);
+	if(messagesHandle===null){
+		messagesHandle=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 			addedBefore: function(id, fields,before){
 				if( Session.get('userid') && Session.get('roomid') && stick ){
 					scrollDown();
@@ -69,19 +74,19 @@ function watchMessages(){
 					scrollDown();
 			},
 			changed: function(id,fields){
-				console.log('changed ' + id + ' to ' + fields.text);
+				// console.log('changed ' + id + ' to ' + fields.text);
 				// console.log( $('#mymessage').val() );
 				// console.log('lid ' +Session.get('lastInsertId'));
-				console.log(fields);
+				// console.log(fields);
 
 				if( $('#'+id).length ){
 					//update existing message
 					if(fields.text !== undefined)
 						$('#'+id+' .text').html( fields.text );
 				}else if(fields.messageComplete === true){
-					console.log('message completed');
+					// console.log('message completed');
 					var textFromDB = Messages.find({_id:id}).fetch()[0].text;
-					var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+formatMessage( textFromDB )+'</span></li>');
+					var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
 					message.hide();
 					$('#mymessage').before(message);
 					message.fadeIn(50);				
@@ -92,12 +97,11 @@ function watchMessages(){
 			removed: function(id){
 				// if(id === $('.messages li').first().attr('id'))
 				// 	return;
-				console.log('removing ' + id);
+				// console.log('removing ' + id);
 				$('#'+id).remove();
 			}
 		});
-		
-	},500);
+	}	
 }
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
@@ -183,7 +187,7 @@ function unsubscribe(){
 }
 
 function subscribe(){
-	// mSub=Meteor.subscribe('MessagesChatroom',Session.get('roomid'),function(){
+	// mSub=Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
 	// 	console.log('messages ready');
 	// 	if(Session.get('roomid') && Session.get('userid')) {
 	// 		//$('#mymessage').focus();

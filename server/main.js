@@ -7,14 +7,13 @@ Messages.allow({
   ,remove : function(userId,doc){return true}
 });
 
-/*Meteor.users.deny({
-  update: function () { return true; }
-});*/
-Meteor.publish('MessagesChatroom',function(roomid){
+
+/*only used to determine if collection is ready*/
+Meteor.publish('MessagesReady',function(roomid){
   return Messages.find(
     {
       roomid:roomid
-    },{sort:{timestamp:1}}
+    },{limit:1}
   );
 });
 
