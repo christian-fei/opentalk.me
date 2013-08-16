@@ -15,7 +15,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=30;
+	messagesLimit=50;
 
 Deps.autorun(function(){
 	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -66,13 +66,6 @@ Deps.autorun(function(){
 	}
 });
 
-Messages.find().observe({
-	added: function(doc){
-		if( Session.get('userid') && Session.get('roomid') && stick ){
-			scrollDown();
-		}
-	}
-});
 
 var pathRoot = window.location.pathname,
   	room = pathRoot.substring(1); //path must be trimmed (no slash at beginning)
@@ -93,10 +86,71 @@ Meteor.setInterval(function () {
 }, keepaliveTime);
 
 
+setTimeout(function(){
+	Messages.find({},{sort:{timestamp:1}}).observeChanges({
+		addedBefore: function(id, fields,before){
+			if( Session.get('userid') && Session.get('roomid') && stick ){
+				scrollDown();
+			}
+			// console.log('id ' +id);
+			// console.log('lastInsertId ' + Session.get('lastInsertId'));
+			// console.log(fields);
+			// console.log('before ' +before);
+			/*the document has been added at the end of the collection*/
+			//$('#mymessage').before('fdsa');
+			//$('#mymessage').before(fields.text);
+			// setTimeout(function(){
+			// },1500);
+			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
+
+			var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
+			if(before === null) {
+				message.hide();
+				$('#mymessage').before(message);
+				message.fadeIn(1000);
+			}else{
+				message.hide();
+				$('#'+before).before(message);
+				message.fadeIn(1000);
+			}
+		},
+		changed: function(id,fields){
+			// console.log('changed ' + id + ' to ' + fields.text);
+			// console.log( $('#mymessage').val() );
+			// console.log('lid ' +Session.get('lastInsertId'));
+			// console.log(fields);
+
+			if( $('#'+id).length ){
+				// console.log('there is a message with id ' + id + ' in the dom');
+				if(fields.text !== undefined)
+					$('#'+id+' .text').html(formatMessage( fields.text ));
+			}else if(fields.messageComplete ===true){
+				//my last message has been marked as completed
+				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+formatMessage( $('#mymessage').val() )+'</span></li>');
+				message.hide();
+				$('#mymessage').before(message);
+				message.fadeIn(1000);				
+			}
+		},
+		removed: function(id){
+			// if(id === $('.messages li').first().attr('id'))
+			// 	return;
+			console.log('removing ' + id);
+			$('#'+id).slideUp(500);
+		}
+	});
+
+},500);
+Meteor.startup(function(){
+});
+
+
+
 
 /*
 UTILITY FUNCTIONS
-*/
+
 
 /*
 unsubscribe from subscriptions
@@ -430,7 +484,7 @@ Template.messages.allMessagesLoaded = function() {
 
 
 Template.messages.messages = function(){
-	return Messages.find({_id: {$ne: Session.get('lastInsertId')}},{sort:{timestamp:1}});
+	//return Messages.find({_id: {$ne: Session.get('lastInsertId')}},{sort:{timestamp:1}});
 	/*if(Session.get('realtimeEnabled')) {
 		if( Session.get('lastInsertId') )
 			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
@@ -491,7 +545,7 @@ function formatMessage(t) {
 
 
 var initialMessageHeight = 0;
-Template.messages.events({
+Template.room.events({
 	'click .load-more': function(evnt) {
 		evnt.preventDefault();
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
@@ -753,4 +807,13 @@ Meteor.startup(function(){
 		});
 	}
 
+});
+
+Template.debug.helpers({
+	lastInsertId: function(){return Session.get('lastInsertId')},
+	userid: function(){return Session.get('userid')},
+	username: function(){return Session.get('username')},
+	roomid: function(){return Session.get('roomid')},
+	realtimeEnabled: function(){return Session.get('realtimeEnabled')},
+	avatar: function(){return Session.get('avatar')}
 });

@@ -45,19 +45,8 @@
 	{{/if}}
 </template>
 <template name='messages'>
-	{{#unless allMessagesLoaded}}
-		<a class="load-more" href="#">Load more</a>
-	{{/unless}}
-	<ul class='messages'>
-		{{#each messages}}
-				{{>message}}
-		{{/each}}
-		{{#if loggedIn}}
-			<li id='li-message'>
-				<textarea id="mymessage" rows='1' placeholder='your message'/>
-			</li>
-		{{/if}}
-	</ul>
+
+
 </template>
 
 
@@ -96,6 +85,32 @@
 			{{>loginForm}}
 		{{/unless}}
 		
-		{{>messages}}
+
+		{{#unless allMessagesLoaded}}
+			<a class="load-more" href="#">Load more</a>
+		{{/unless}}
+		<ul class='messages'>
+			<li id='li-message'>
+				<textarea id="mymessage" rows='1' placeholder='your message'/>
+			</li>
+		</ul>
+	</div>
+
+	{{>debug}}
+</template>
+
+<template name="debug">
+	<div class="debug">
+		<b>lastInsertId</b> {{lastInsertId}}
+		<br>
+		<b>userid</b> {{userid}}
+		<br>
+		<b>username</b> {{username}}
+		<br>
+		<b>roomid</b> {{roomid}}
+		<br>
+		<b>realtimeEnabled</b> {{realtimeEnabled}}
+		<br>
+		<b>avatar</b> {{avatar}}
 	</div>
 </template>

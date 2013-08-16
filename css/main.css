@@ -1106,3 +1106,11 @@ input {
   background: #ffbb00;
   color: inherit;
 }
+
+/* line 33, ../sass/_general.scss */
+.debug {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
