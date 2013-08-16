@@ -180,7 +180,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes flyindown {
   /* line 59, ../sass/_transforms.scss */
   0% {
-    -webkit-transform: translate(0, 0.2em);
+    -webkit-transform: translate(0, 1em);
   }
 
   /* line 60, ../sass/_transforms.scss */
@@ -193,7 +193,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes flyindown {
   /* line 63, ../sass/_transforms.scss */
   0% {
-    -moz-transform: translate(0, 0.2em);
+    -moz-transform: translate(0, 1em);
   }
 
   /* line 64, ../sass/_transforms.scss */
@@ -206,7 +206,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes flyindown {
   /* line 67, ../sass/_transforms.scss */
   0% {
-    -ms-transform: translate(0, 0.2em);
+    -ms-transform: translate(0, 1em);
   }
 
   /* line 68, ../sass/_transforms.scss */
@@ -219,7 +219,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes flyindown {
   /* line 71, ../sass/_transforms.scss */
   0% {
-    -o-transform: translate(0, 0.2em);
+    -o-transform: translate(0, 1em);
   }
 
   /* line 72, ../sass/_transforms.scss */
@@ -232,7 +232,7 @@ SUPER SLICK TRANSFORMS
 @keyframes flyindown {
   /* line 75, ../sass/_transforms.scss */
   0% {
-    transform: translate(0, 0.2em);
+    transform: translate(0, 1em);
   }
 
   /* line 76, ../sass/_transforms.scss */
@@ -246,7 +246,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes flyinup {
   /* line 81, ../sass/_transforms.scss */
   0% {
-    -webkit-transform: translate(0, -0.2em);
+    -webkit-transform: translate(0, -1em);
   }
 
   /* line 82, ../sass/_transforms.scss */
@@ -259,7 +259,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes flyinup {
   /* line 85, ../sass/_transforms.scss */
   0% {
-    -moz-transform: translate(0, -0.2em);
+    -moz-transform: translate(0, -1em);
   }
 
   /* line 86, ../sass/_transforms.scss */
@@ -272,7 +272,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes flyinup {
   /* line 89, ../sass/_transforms.scss */
   0% {
-    -ms-transform: translate(0, -0.2em);
+    -ms-transform: translate(0, -1em);
   }
 
   /* line 90, ../sass/_transforms.scss */
@@ -285,7 +285,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes flyinup {
   /* line 93, ../sass/_transforms.scss */
   0% {
-    -o-transform: translate(0, -0.2em);
+    -o-transform: translate(0, -1em);
   }
 
   /* line 94, ../sass/_transforms.scss */
@@ -298,7 +298,7 @@ SUPER SLICK TRANSFORMS
 @keyframes flyinup {
   /* line 97, ../sass/_transforms.scss */
   0% {
-    transform: translate(0, -0.2em);
+    transform: translate(0, -1em);
   }
 
   /* line 98, ../sass/_transforms.scss */
@@ -312,7 +312,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes flyinright {
   /* line 103, ../sass/_transforms.scss */
   0% {
-    -webkit-transform: translate(-0.2em, 0);
+    -webkit-transform: translate(-1em, 0);
   }
 
   /* line 104, ../sass/_transforms.scss */
@@ -325,7 +325,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes flyinright {
   /* line 107, ../sass/_transforms.scss */
   0% {
-    -moz-transform: translate(-0.2em, 0);
+    -moz-transform: translate(-1em, 0);
   }
 
   /* line 108, ../sass/_transforms.scss */
@@ -338,7 +338,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes flyinright {
   /* line 111, ../sass/_transforms.scss */
   0% {
-    -ms-transform: translate(-0.2em, 0);
+    -ms-transform: translate(-1em, 0);
   }
 
   /* line 113, ../sass/_transforms.scss */
@@ -351,7 +351,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes flyinright {
   /* line 116, ../sass/_transforms.scss */
   0% {
-    -o-transform: translate(-0.2em, 0);
+    -o-transform: translate(-1em, 0);
   }
 
   /* line 117, ../sass/_transforms.scss */
@@ -364,7 +364,7 @@ SUPER SLICK TRANSFORMS
 @keyframes flyinright {
   /* line 120, ../sass/_transforms.scss */
   0% {
-    transform: translate(-0.2em, 0);
+    transform: translate(-1em, 0);
   }
 
   /* line 121, ../sass/_transforms.scss */
@@ -378,7 +378,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes flyinleft {
   /* line 126, ../sass/_transforms.scss */
   0% {
-    -webkit-transform: translate(0.2em, 0);
+    -webkit-transform: translate(1em, 0);
   }
 
   /* line 127, ../sass/_transforms.scss */
@@ -391,7 +391,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes flyinleft {
   /* line 130, ../sass/_transforms.scss */
   0% {
-    -moz-transform: translate(0.2em, 0);
+    -moz-transform: translate(1em, 0);
   }
 
   /* line 131, ../sass/_transforms.scss */
@@ -404,7 +404,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes flyinleft {
   /* line 134, ../sass/_transforms.scss */
   0% {
-    -ms-transform: translate(0.2em, 0);
+    -ms-transform: translate(1em, 0);
   }
 
   /* line 136, ../sass/_transforms.scss */
@@ -417,7 +417,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes flyinleft {
   /* line 139, ../sass/_transforms.scss */
   0% {
-    -o-transform: translate(0.2em, 0);
+    -o-transform: translate(1em, 0);
   }
 
   /* line 140, ../sass/_transforms.scss */
@@ -430,7 +430,7 @@ SUPER SLICK TRANSFORMS
 @keyframes flyinleft {
   /* line 143, ../sass/_transforms.scss */
   0% {
-    transform: translate(0.2em, 0);
+    transform: translate(1em, 0);
   }
 
   /* line 144, ../sass/_transforms.scss */
@@ -880,10 +880,10 @@ SUPER SLICK TRANSFORMS
 
 /* line 46, ../sass/_messages.scss */
 .realtime {
-  -webkit-animation: realtime-anim 7s ease-in-out;
-  -moz-animation: realtime-anim 7s ease-in-out;
-  -o-animation: realtime-anim 7s ease-in-out;
-  animation: realtime-anim 7s ease-in-out;
+  -webkit-animation: realtime-anim 5s ease-in-out;
+  -moz-animation: realtime-anim 5s ease-in-out;
+  -o-animation: realtime-anim 5s ease-in-out;
+  animation: realtime-anim 5s ease-in-out;
 }
 
 /* line 54, ../sass/_messages.scss */
@@ -910,60 +910,60 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes realtime-anim {
   /* line 88, ../sass/_messages.scss */
   0% {
-    background: #fffaeb;
+    background: #fff1cc;
   }
 
   /* line 89, ../sass/_messages.scss */
   100% {
-    background: white;
+    background: none;
   }
 }
 
 @-moz-keyframes realtime-anim {
   /* line 92, ../sass/_messages.scss */
   0% {
-    background: #fffaeb;
+    background: #fff1cc;
   }
 
   /* line 93, ../sass/_messages.scss */
   100% {
-    background: white;
+    background: none;
   }
 }
 
 @-ms-keyframes realtime-anim {
   /* line 96, ../sass/_messages.scss */
   0% {
-    background: #fffaeb;
+    background: #fff1cc;
   }
 
   /* line 97, ../sass/_messages.scss */
   100% {
-    background: white;
+    background: none;
   }
 }
 
 @-o-keyframes realtime-anim {
   /* line 100, ../sass/_messages.scss */
   0% {
-    background: #fffaeb;
+    background: #fff1cc;
   }
 
   /* line 101, ../sass/_messages.scss */
   100% {
-    background: white;
+    background: none;
   }
 }
 
 @keyframes realtime-anim {
   /* line 104, ../sass/_messages.scss */
   0% {
-    background: #fffaeb;
+    background: #fff1cc;
   }
 
   /* line 105, ../sass/_messages.scss */
   100% {
-    background: white;
+    background: none;
   }
 }
 

@@ -17,18 +17,21 @@ var lastInsertId=0, //ID of the last inserted message
 	stick=true,
 	messagesLimit=50,
 	lastMessageAtStartup=0,
-	messagesHandle=null;
+	messagesHandle=null,
+	mSub=ouSub=mPagination=null,
+	animationDuration=300;
 
-
+setTimeout(function(){
+	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+	Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
+		console.log('messages ready for');
+		watchMessages();
+	});
+},100);
 Deps.autorun(function(){
 	if(Session.get('roomid')){
 		console.log('subscribing ' + Session.get('roomid'));
-		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
-			console.log('messages ready');
-			watchMessages();
-		});
 	}
 });
 
@@ -36,8 +39,9 @@ Deps.autorun(function(){
 function watchMessages(){
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
-	if(messagesHandle===null){
-		messagesHandle=Messages.find({},{sort:{timestamp:1}}).observeChanges({
+	if(mPagination)
+		mPagination.stop();
+	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 			addedBefore: function(id, fields,before){
 				if( Session.get('userid') && Session.get('roomid') && stick ){
 					scrollDown();
@@ -62,16 +66,15 @@ function watchMessages(){
 					message.hide();
 					$('#mymessage').before(message);
 					if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime fly-in-right').show();
+					message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
 				}else{
 					if(fields.timestamp>lastMessageAtStartup)
 					message.hide();
 					$('#'+before).before(message);
 					if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime fly-in-right').show();
+					message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
 				}
-				if(stick)
-					scrollDown();
+				
 
 			},
 			changed: function(id,fields){
@@ -99,10 +102,9 @@ function watchMessages(){
 				// if(id === $('.messages li').first().attr('id'))
 				// 	return;
 				// console.log('removing ' + id);
-				$('#'+id).hide(300);
+				$('#'+id).remove();
 			}
 		});
-	}	
 }
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
