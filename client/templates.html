@@ -80,7 +80,11 @@
 		{{/isolate}}
 	</aside>
 	<div class="main">
-		
+		{{#if loadingMessages}}
+			<div class="loading">LOADINGGG</div>
+		{{/if}}
+
+
 		{{#unless loggedIn}}
 			{{>loginForm}}
 		{{/unless}}
