@@ -1,7 +1,3 @@
-/*
-set absoluteUrl for setting up the accounts system for the right domain
-edit:obsolete now, since no account-system is implemented anymore
-*/
 Meteor.absoluteUrl({rootUrl:'http://opentalk.me'})
 
 
