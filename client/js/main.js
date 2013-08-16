@@ -34,8 +34,8 @@ Deps.autorun(function(){
 
 
 function watchMessages(){
+	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
-	console.log(lastMessageAtStartup);
 	if(messagesHandle===null){
 		messagesHandle=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 			addedBefore: function(id, fields,before){
@@ -72,6 +72,7 @@ function watchMessages(){
 				}
 				if(stick)
 					scrollDown();
+
 			},
 			changed: function(id,fields){
 				// console.log('changed ' + id + ' to ' + fields.text);
@@ -98,7 +99,7 @@ function watchMessages(){
 				// if(id === $('.messages li').first().attr('id'))
 				// 	return;
 				// console.log('removing ' + id);
-				$('#'+id).remove();
+				$('#'+id).hide(300);
 			}
 		});
 	}	

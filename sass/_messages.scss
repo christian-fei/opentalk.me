@@ -42,12 +42,12 @@
 			-moz-hyphens: auto;
 			hyphens: auto;
 		}
-
+	$realtime-duration: 5s;
 	.realtime{
-		-webkit-animation: realtime-anim 7s ease-in-out;
-		-moz-animation: realtime-anim 7s ease-in-out;
-		-o-animation: realtime-anim 7s ease-in-out;
-		animation: realtime-anim 7s ease-in-out;
+		-webkit-animation: realtime-anim $realtime-duration ease-in-out;
+		-moz-animation: realtime-anim $realtime-duration ease-in-out;
+		-o-animation: realtime-anim $realtime-duration ease-in-out;
+		animation: realtime-anim $realtime-duration ease-in-out;
 	}
 	
 
