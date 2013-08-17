@@ -56,7 +56,7 @@ function watchMessages(){
 	latestTimestampAtLoad = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
-	var lastMessageUser=null;
+	var prevUser=prevId=null;
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
@@ -71,18 +71,20 @@ function watchMessages(){
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			// console.log('lmu ' + lastMessageUser);
+			// console.log('lmu ' + prevUser);
 			// console.log('fields.username ' + fields.username);
 
 			var message;
-			if(lastMessageUser===fields.username)
+			if(prevUser===fields.username)
 				message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 			else{
+				$('#'+prevId).addClass('lastOfUser');
 				message = $('<li class="message diffUser" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-				// lastMessageUser=null;
+				// prevUser=null;
 			}
-			//init lastMessageUser after creating the first message
-			lastMessageUser=fields.username;
+			//init prevUser after creating the first message
+			prevUser=fields.username;
+			prevId=id;
 			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 			if(before === null) {
 				if(fields.timestamp>latestTimestampAtLoad)
@@ -111,7 +113,7 @@ function watchMessages(){
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
-			// console.log('changed & lmu ' + lastMessageUser);
+			// console.log('changed & lmu ' + prevUser);
 			if( $('#'+id).length ){
 				//update existing message
 				if(fields.text !== undefined)
@@ -121,15 +123,17 @@ function watchMessages(){
 				console.log('message completed');
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				console.log(mfdb);
-				if(lastMessageUser===mfdb.username){
+				if(prevUser===mfdb.username){
 					message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
 				}
 				else{
+					$('#'+prevId).addClass('lastOfUser');
 					message = $('<li class="message diffUser" id="'+id+'"><img src="'+mfdb.useravatar+'" class="useravatar"/><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
-					// lastMessageUser=null;
+					// prevUser=null;
 				}
-				lastMessageUser=mfdb.username;
-				// if(!lastMessageUser)lastMessageUser=fields.username;
+				prevUser=mfdb.username;
+				prevId=id;
+				// if(!prevUser)prevUser=fields.username;
 				
 				message.hide();
 				$('#last').before(message);
@@ -143,7 +147,8 @@ function watchMessages(){
 			// 	return;
 			// console.log('removed ' + id);
 			$('#'+id).remove();
-			// lastMessageUser=null;
+			//DON'T
+			// prevUser=null;
 		}
 	});
 }

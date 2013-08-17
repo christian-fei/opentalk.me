@@ -894,9 +894,11 @@ SUPER SLICK TRANSFORMS
 /* line 62, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
+  border-bottom-right-radius: .5em;
+  border-bottom-left-radius: .5em;
 }
 
-/* line 67, ../sass/_messages.scss */
+/* line 69, ../sass/_messages.scss */
 .cssanimations.csstransitions .realtime {
   -webkit-animation: realtime-anim 5s ease-out;
   -moz-animation: realtime-anim 5s ease-out;
@@ -904,12 +906,12 @@ SUPER SLICK TRANSFORMS
   animation: realtime-anim 5s ease-out;
 }
 
-/* line 75, ../sass/_messages.scss */
+/* line 77, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 78, ../sass/_messages.scss */
+/* line 80, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -926,62 +928,62 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 109, ../sass/_messages.scss */
+  /* line 111, ../sass/_messages.scss */
   0% {
-    border-left: 2px solid #ffbb00;
+    border-left: 1px solid #ffbb00;
   }
 
-  /* line 110, ../sass/_messages.scss */
+  /* line 112, ../sass/_messages.scss */
   100% {
-    border-left: 2px solid lightgrey;
+    border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 113, ../sass/_messages.scss */
+  /* line 115, ../sass/_messages.scss */
   0% {
-    border-left: 2px solid #ffbb00;
+    border-left: 1px solid #ffbb00;
   }
 
-  /* line 114, ../sass/_messages.scss */
+  /* line 116, ../sass/_messages.scss */
   100% {
-    border-left: 2px solid lightgrey;
+    border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 117, ../sass/_messages.scss */
+  /* line 119, ../sass/_messages.scss */
   0% {
-    border-left: 2px solid #ffbb00;
+    border-left: 1px solid #ffbb00;
   }
 
-  /* line 118, ../sass/_messages.scss */
+  /* line 120, ../sass/_messages.scss */
   100% {
-    border-left: 2px solid lightgrey;
+    border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 121, ../sass/_messages.scss */
+  /* line 123, ../sass/_messages.scss */
   0% {
-    border-left: 2px solid #ffbb00;
+    border-left: 1px solid #ffbb00;
   }
 
-  /* line 122, ../sass/_messages.scss */
+  /* line 124, ../sass/_messages.scss */
   100% {
-    border-left: 2px solid lightgrey;
+    border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 125, ../sass/_messages.scss */
+  /* line 127, ../sass/_messages.scss */
   0% {
-    border-left: 2px solid #ffbb00;
+    border-left: 1px solid #ffbb00;
   }
 
-  /* line 126, ../sass/_messages.scss */
+  /* line 128, ../sass/_messages.scss */
   100% {
-    border-left: 2px solid lightgrey;
+    border-left: 1px solid lightgrey;
   }
 }
 

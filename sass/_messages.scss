@@ -61,6 +61,8 @@
 		}
 		.lastOfUser{
 			border-bottom:1px solid $color-border;
+			border-bottom-right-radius: .5em;
+			border-bottom-left-radius: .5em;
 		}
 		
 		$realtime-duration: 5s;
@@ -106,22 +108,22 @@
 
 
 @-webkit-keyframes realtime-anim{
-	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid $color-border; }
+	0% { border-left:1px solid $color-main; }
+	100% { border-left:1px solid $color-border; }
 }
 @-moz-keyframes realtime-anim{
-	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid $color-border; }
+	0% { border-left:1px solid $color-main; }
+	100% { border-left:1px solid $color-border; }
 }
 @-ms-keyframes realtime-anim{
-	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid $color-border; }
+	0% { border-left:1px solid $color-main; }
+	100% { border-left:1px solid $color-border; }
 }
 @-o-keyframes realtime-anim{
-	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid $color-border; }
+	0% { border-left:1px solid $color-main; }
+	100% { border-left:1px solid $color-border; }
 }
 @keyframes realtime-anim{
-	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid $color-border; }
+	0% { border-left:1px solid $color-main; }
+	100% { border-left:1px solid $color-border; }
 }
