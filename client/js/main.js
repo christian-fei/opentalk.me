@@ -38,6 +38,10 @@ Deps.autorun(function(){
 	console.log('userid ' + Session.get('userid'));
 	if(Session.get('roomid'))
 		getMessages();
+	else{
+		if(mSub)mSub.stop();
+		$('.message').not('#mymessage').remove();
+	}
 });
 
 
@@ -67,21 +71,25 @@ function watchMessages(){
 			var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 			if(before === null) {
-				// if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
-				$('#li-message').before(message);
-				// if(fields.timestamp>lastMessageAtStartup)
-				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});
+				$('#last').before(message);
+				if(fields.timestamp>lastMessageAtStartup)
+					message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				else
+					message.slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				// if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
 				$('#'+before).before(message);
-				// if(fields.timestamp>lastMessageAtStartup)
-				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});
+				if(fields.timestamp>lastMessageAtStartup)
+					message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				else
+					message.slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}
 		},
 		changed: function(id,fields){
-			// console.log('changed ' + id + ' to ' + fields.text);
+			console.log('changed ' + id + ' to ' + fields.text);
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
@@ -90,21 +98,22 @@ function watchMessages(){
 				//update existing message
 				if(fields.text !== undefined)
 					$('#'+id+' .text').html( fields.text );
-			}else if(fields.messageComplete === true){
+			}else 
+			if(fields.messageComplete === true){
 				// console.log('message completed');
 				var textFromDB = Messages.find({_id:id}).fetch()[0].text;
 				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
 				message.hide();
-				$('#li-message').before(message);
-				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});	
+				$('#last').before(message);
+				message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
-			if(stick)
+			if(stick && Session.get('userid'))
 				scrollDown();
 		},
 		removed: function(id){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
-			console.log('removing ' + id);
+			console.log('removed ' + id);
 			$('#'+id).remove();
 		}
 	});
@@ -496,7 +505,7 @@ Template.room.roomSelected = function(){
 
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
-	'click #toggleRealtime' : function(){
+	'click #toggleRealtime' : function(evnt){
 		evnt.preventDefault();
 		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));
 		Session.set('realtimeEnabled' , !Session.get('realtimeEnabled'));
@@ -522,7 +531,11 @@ Template.messages.messagesReady = function() {
 Template.messages.allMessagesLoaded = function() {
 	return ! mSub.loading() && Messages.find().count() < mSub.loaded();
 }
-
+Template.messages.mymessageDisabled = function(){
+	if(Session.get('userid'))
+		return '';
+	return 'disabled';
+}
 
 Template.messages.messages = function(){
 	//return Messages.find({_id: {$ne: Session.get('lastInsertId')}},{sort:{timestamp:1}});
@@ -592,7 +605,9 @@ Template.room.events({
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
-	},
+	}
+});
+Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
@@ -723,7 +738,9 @@ Template.room.events({
 
 
 function scrollDown(){
-	$('html,body').animate({scrollTop: $('html').height() + 5000 },1);
+	setTimeout(function(){
+		$('html,body').animate({scrollTop: $('html').height() + 5000 },1);
+	});
 	// if($('.messages').children().length > 3){
 	// }
 }

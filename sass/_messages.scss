@@ -7,10 +7,12 @@
 	box-shadow: 3px 3px 25px lightgrey;
 
 	border-radius: .5em;
+	margin-bottom: 2em;
 }
 	.message{
 		padding: 0em 0.5em;
 		border-bottom:1px dotted #EFEFEF;
+		border-left:2px solid transparent;
 	}
 		.useravatar{
 			height:1em;
@@ -49,12 +51,14 @@
 		}
 		
 
-	$realtime-duration: 3s;
-	.realtime{
+	$realtime-duration: 5s;
+	.cssanimations.csstransitions .realtime{
 		-webkit-animation: realtime-anim $realtime-duration ease-in-out;
 		-moz-animation: realtime-anim $realtime-duration ease-in-out;
 		-o-animation: realtime-anim $realtime-duration ease-in-out;
 		animation: realtime-anim $realtime-duration ease-in-out;
+		
+		
 	}
 	
 
@@ -92,22 +96,22 @@
 
 
 @-webkit-keyframes realtime-anim{
-	0% { background:lighten($color-main,40%); }
-	100% { background:none; }
+	0% { border-left:2px solid $color-main; }
+	100% { border-left:2px solid transparent; }
 }
 @-moz-keyframes realtime-anim{
-	0% { background:lighten($color-main,40%); }
-	100% { background:none; }
+	0% { border-left:2px solid $color-main; }
+	100% { border-left:2px solid transparent; }
 }
 @-ms-keyframes realtime-anim{
-	0% { background:lighten($color-main,40%); }
-	100% { background:none; }
+	0% { border-left:2px solid $color-main; }
+	100% { border-left:2px solid transparent; }
 }
 @-o-keyframes realtime-anim{
-	0% { background:lighten($color-main,40%); }
-	100% { background:none; }
+	0% { border-left:2px solid $color-main; }
+	100% { border-left:2px solid transparent; }
 }
 @keyframes realtime-anim{
-	0% { background:lighten($color-main,40%); }
-	100% { background:none; }
+	0% { border-left:2px solid $color-main; }
+	100% { border-left:2px solid transparent; }
 }

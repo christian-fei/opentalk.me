@@ -44,9 +44,16 @@
 		<li class='message realtime'><img src="{{useravatar}}" alt="" class="useravatar"><b class='username'>{{username}}:</b><span class='text'>{{{text}}}</span></li>
 	{{/if}}
 </template>
+
 <template name='messages'>
-
-
+	<ul class='messages'>
+		<li id="last"></li>
+		{{#unless mymessageDisabled}}
+		<li id='li-message'>
+			<textarea id="mymessage" rows='1' placeholder='your message'/>
+		</li>
+		{{/unless}}
+	</ul>
 </template>
 
 
@@ -94,11 +101,7 @@
 			<a class="load-more" href="#">Load more</a>
 		{{/unless}}
 
-		<ul class='messages'>
-			<li id='li-message'>
-				<textarea id="mymessage" rows='1' placeholder='your message'/>
-			</li>
-		</ul>
+		{{>messages}}
 		
 	</div>
 
