@@ -3,8 +3,8 @@
 	//padding: 0.5em 0em 0em;
 	max-width: $limit - 1em;
 
-	background: rgba(255,255,255,.6);
-	box-shadow: 3px 3px 25px lightgrey;
+	// background: rgba(255,255,255,.6);
+	// box-shadow: 3px 3px 25px $color-border;
 
 	border-radius: .5em;
 	margin-bottom: 2em;
@@ -14,7 +14,10 @@
 		border-bottom:1px dotted #EFEFEF;
 		border-left:2px solid transparent;
 		overflow: visible!important;//because jQuery add overflow:hidden when hiding stuff
-
+		background:#FDFDFD;
+		// background: rgba(255,255,255,.8);
+		border-left:1px solid $color-border;
+		border-right:1px solid $color-border;
 	}
 		.useravatar,.sameUser{
 			height:1.8em;
@@ -46,20 +49,27 @@
 		}
 		
 		.message-image{
-			max-width: 100%;
+			// width: 100%;
 			max-height: 5em;
 		}
 		
-
-	$realtime-duration: 5s;
-	.cssanimations.csstransitions .realtime{
-		-webkit-animation: realtime-anim $realtime-duration ease-in-out;
-		-moz-animation: realtime-anim $realtime-duration ease-in-out;
-		-o-animation: realtime-anim $realtime-duration ease-in-out;
-		animation: realtime-anim $realtime-duration ease-in-out;
+		.diffUser{
+			margin-top:1em;
+			border-top-right-radius: .5em;
+			border-top-left-radius: .5em;
+			border-top:1px solid $color-border;
+		}
+		.lastOfUser{
+			border-bottom:1px solid $color-border;
+		}
 		
-		
-	}
+		$realtime-duration: 5s;
+		.cssanimations.csstransitions .realtime{
+			-webkit-animation: realtime-anim $realtime-duration ease-out;
+			-moz-animation: realtime-anim $realtime-duration ease-out;
+			-o-animation: realtime-anim $realtime-duration ease-out;
+			animation: realtime-anim $realtime-duration ease-out;		
+		}
 	
 
 #li-message{
@@ -97,21 +107,21 @@
 
 @-webkit-keyframes realtime-anim{
 	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid transparent; }
+	100% { border-left:2px solid $color-border; }
 }
 @-moz-keyframes realtime-anim{
 	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid transparent; }
+	100% { border-left:2px solid $color-border; }
 }
 @-ms-keyframes realtime-anim{
 	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid transparent; }
+	100% { border-left:2px solid $color-border; }
 }
 @-o-keyframes realtime-anim{
 	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid transparent; }
+	100% { border-left:2px solid $color-border; }
 }
 @keyframes realtime-anim{
 	0% { border-left:2px solid $color-main; }
-	100% { border-left:2px solid transparent; }
+	100% { border-left:2px solid $color-border; }
 }

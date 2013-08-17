@@ -75,7 +75,7 @@ function watchMessages(){
 			if(lastMessageUser===fields.username)
 				message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 			else{
-				message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+				message = $('<li class="message diffUser" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 				// lastMessageUser=null;
 			}
 			//init lastMessageUser after creating the first message
@@ -119,7 +119,7 @@ function watchMessages(){
 					message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
 				}
 				else{
-					message = $('<li class="message" id="'+id+'"><img src="'+mfdb.useravatar+'" class="useravatar"/><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><img src="'+mfdb.useravatar+'" class="useravatar"/><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
 					// lastMessageUser=null;
 				}
 				lastMessageUser=mfdb.username;
@@ -608,7 +608,7 @@ function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','');
 	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
-	t = t.replace(imagePattern, "  <a href='$1' rel='noindex,nofollow' class='message-image' target='_blank'><img src='$1'/></a>  ");
+	t = t.replace(imagePattern, "  <a href='$1' rel='noindex,nofollow' target='_blank'><img src='$1' class='message-image'/></a>  ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
 	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
