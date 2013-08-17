@@ -11,11 +11,11 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=3,
+	messagesLimit=5,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
-	firstNewMessageAfterMore=false;
+	firstRunAfterMore=true;
 
 function getMessages(){
 	setTimeout(function(){
@@ -87,21 +87,35 @@ function watchMessages(){
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				//items of load-more
+				//items of load-more+
 				message.hide();
 				$('#'+before).before(message);
-				if(fields.timestamp>latestTimestampAtLoad)
-					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				else
-					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				//it is at the bottom of the list, so add lastOfUser class
+			
+				console.log('=========');
+				console.log(fields.username);
+				console.log(prevUser);
+				console.log('=========');
+				if(firstRunAfterMore){
+					message.addClass('lastOfUser');
+					message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+				}else{
+					if(prevUser!==fields.username){
+						message.addClass('lastOfUser diffUser');
+						// message.css({'background':'red'});
+						message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+						message.next().addClass('diffUser');
+						// message.next()[0].addClass('diffUser');
+					}else{
+						message.addClass('diffUser');
+						message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+						message.next()[0].firstChild.style.backgroundImage='none';
+						message.next().removeClass('diffUser');
+					}
+				}
+				message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				firstRunAfterMore=false;
 			}
-
-
-
-
-
-
-
 
 			prevUser=fields.username;
 			prevId=id;
@@ -635,6 +649,8 @@ var initialMessageHeight = 0;
 Template.room.events({
 	'click .load-more': function(evnt) {
 		evnt.preventDefault();
+		// prevUser=prevId=null;
+		firstRunAfterMore=true;
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
