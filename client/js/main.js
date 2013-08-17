@@ -76,6 +76,7 @@ function watchMessages(){
 				if(prevUser!==fields.username){
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
+					message[0].firstChild.classList.add('avatar-border');
 					$('#'+prevId).addClass('lastOfUser');
 				}
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
@@ -90,19 +91,19 @@ function watchMessages(){
 				// console.log(fields.username);
 				// console.log(prevUser);
 				// console.log('=========');
+				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+				message[0].firstChild.classList.add('avatar-border');
+
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
-					message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
 				}else{
 					if(prevUser!==fields.username){
 						message.addClass('lastOfUser diffUser');
 						// message.css({'background':'red'});
-						message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
 						message.next().addClass('diffUser');
 						// message.next()[0].addClass('diffUser');
 					}else{
 						message.addClass('diffUser');
-						message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
 						message.next()[0].firstChild.style.backgroundImage='none';
 						message.next().removeClass('diffUser');
 					}
@@ -135,7 +136,7 @@ function watchMessages(){
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
 					// prevUser=null;
 				}
 				prevUser=mfdb.username;
