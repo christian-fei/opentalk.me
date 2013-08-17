@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=75,
+	messagesLimit=3,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250;
@@ -59,7 +59,7 @@ function watchMessages(){
 	var prevUser=prevId=null;
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			// console.log('added id ' +id + ' before ' + before);
+			console.log('added id ' +id + ' before ' + before);
 			// console.log('lastInsertId ' + Session.get('lastInsertId'));
 			// console.log(fields);
 			 // console.log('before ' +before);
@@ -76,10 +76,10 @@ function watchMessages(){
 
 			var message;
 			if(prevUser===fields.username)
-				message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+				message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 			else{
 				$('#'+prevId).addClass('lastOfUser');
-				message = $('<li class="message diffUser" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+				message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+fields.useravatar+')"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 				// prevUser=null;
 			}
 			//init prevUser after creating the first message
@@ -109,7 +109,7 @@ function watchMessages(){
 			// console.log(Session.get('userid'));
 		},
 		changed: function(id,fields){
-			// console.log('changed ' + id + ' to ' + fields.text);
+			console.log('changed ' + id + ' to ' + fields.text);
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
@@ -128,7 +128,7 @@ function watchMessages(){
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><img src="'+mfdb.useravatar+'" class="useravatar"/><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
 					// prevUser=null;
 				}
 				prevUser=mfdb.username;
@@ -145,7 +145,7 @@ function watchMessages(){
 		removed: function(id){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
-			// console.log('removed ' + id);
+			console.log('removed ' + id);
 			$('#'+id).remove();
 			//DON'T
 			// prevUser=null;

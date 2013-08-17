@@ -71,8 +71,8 @@
 		{{#isolate}}
 			{{#if loggedIn}}
 				<div class="userinfo">
-					<img class="avatar" src="{{avatar}}"/>
-					<span class="nickname">{{username}}</span>
+					<img class="user-avatar" src="{{avatar}}"/>
+					<span class="user-username">{{username}}</span>
 				</div>
 				{{>logout}}
 				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'><span class="status-badge {{realtimeEnabled}}"></span><img src="/images/realtime.png" alt="realtime" class='realtime-image'></a>

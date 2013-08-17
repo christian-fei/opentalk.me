@@ -59,21 +59,21 @@
 
 .userinfo{
 	text-align: center;
+	.user-avatar{
+		height:3em;
+		border: 1px solid black;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.user-username{
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	    overflow: hidden;
+	    display: block;
+	}
 }
 
-.avatar{
-	height:3em;
-	border: 1px solid black;
-	border-radius: 50%;
-	overflow: hidden;
-}
-
- .nickname{
-	text-overflow: ellipsis;
-	white-space: nowrap;
-    overflow: hidden;
-    display: block;
-}
 #logout,#toggleRealtime{
 	float:left;
 	//clear:right;
