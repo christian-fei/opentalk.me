@@ -131,7 +131,7 @@ function watchMessages(){
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				console.log(mfdb);
 				if(prevUser===mfdb.username){
-					message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
+					message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
@@ -162,9 +162,12 @@ function watchMessages(){
 
 			console.log('removed ' + id);
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
-			var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
-			$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
-			$('#'+id).next().addClass('diffUser');
+
+			if($('#'+id).next()[0] !== undefined && id !== $('.messages li:nth-child(2)').attr('id') && $('#'+id + ' .username').html() === $('#wmPykvm3WMPt23xQe').next()[0].querySelector('.username').innerHTML ){
+				var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
+				$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
+				$('#'+id).next().addClass('diffUser');
+			}
 
 			$('#'+id).remove();
 			//DON'T
