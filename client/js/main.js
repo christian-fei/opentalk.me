@@ -14,8 +14,8 @@ var lastInsertId=0, //ID of the last inserted message
 	messagesLimit=3,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
-	animationDuration=250;
-
+	animationDuration=250,
+	firstNewMessageAfterMore=false;
 
 function getMessages(){
 	setTimeout(function(){
@@ -60,43 +60,34 @@ function watchMessages(){
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 			console.log('added id ' +id + ' before ' + before);
-			// console.log('lastInsertId ' + Session.get('lastInsertId'));
-			// console.log(fields);
-			 // console.log('before ' +before);
-			/*the document has been added at the end of the collection*/
-			//$('#mymessage').before('fdsa');
-			//$('#mymessage').before(fields.text);
-			// setTimeout(function(){
-			// },1500);
+
+			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
+			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
+			
+			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			// message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+fields.useravatar+')"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 
-			// console.log('lmu ' + prevUser);
-			// console.log('fields.username ' + fields.username);
 
-			var message;
-			if(prevUser===fields.username)
-				message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-			else{
-				$('#'+prevId).addClass('lastOfUser');
-				message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+fields.useravatar+')"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-				// prevUser=null;
-			}
-			//init prevUser after creating the first message
-			prevUser=fields.username;
-			prevId=id;
-			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
+
+
+
+
 			if(before === null) {
-				if(fields.timestamp>latestTimestampAtLoad)
+				//items of first load
 				message.hide();
 				$('#last').before(message);
-				if(fields.timestamp>latestTimestampAtLoad)
-					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				else
-					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				message.show();
+
+				if(prevUser!==fields.username){
+					message.addClass('diffUser');
+					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
+					$('#'+prevId).addClass('lastOfUser');
+				}
+				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
+				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				if(fields.timestamp>latestTimestampAtLoad)
+				//items of load-more
 				message.hide();
 				$('#'+before).before(message);
 				if(fields.timestamp>latestTimestampAtLoad)
@@ -104,9 +95,17 @@ function watchMessages(){
 				else
 					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}
-			//probably senseless, as everything else
+
+
+
+
+
+
+
+
+			prevUser=fields.username;
+			prevId=id;
 			if(stick && Session.get('userid'))scrollDown();
-			// console.log(Session.get('userid'));
 		},
 		changed: function(id,fields){
 			console.log('changed ' + id + ' to ' + fields.text);
