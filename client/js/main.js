@@ -14,7 +14,7 @@ var lastInsertId=0, //ID of the last inserted message
 	messagesLimit=75,
 	lastMessageAtStartup=0,
 	mSub=ouSub=mPagination=null,
-	animationDuration=300;
+	animationDuration=250;
 
 
 function getMessages(){
@@ -762,7 +762,8 @@ Template.messages.events({
 
 function scrollDown(){
 	setTimeout(function(){
-		$('html,body').animate({scrollTop: $('html').height() + 5000 },1);
+		$("html, body").scrollTop($('html').height()+2000);
+		// $('html,body').animate({scrollTop: $('html').height() + 5000 },1);
 	});
 	// if($('.messages').children().length > 3){
 	// }

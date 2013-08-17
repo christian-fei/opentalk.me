@@ -18,10 +18,9 @@ $duration: 1000ms;
   animation-fill-mode: forwards !important;
 }
 .fly-in-down{
-  @extend %transform-base;
-  opacity:$opacity;
   -webkit-animation: flyindown $duration ease;
   -moz-animation: flyindown $duration ease;
+  -ms-animation: flyindown $duration ease;
   -o-animation: flyindown $duration ease;
   animation: flyindown $duration ease;
 }
