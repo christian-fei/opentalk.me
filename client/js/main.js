@@ -12,7 +12,7 @@ var lastInsertId=0, //ID of the last inserted message
 	loggingOut = false,
 	stick=true,
 	messagesLimit=75,
-	lastMessageAtStartup=0,
+	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250;
 
@@ -36,8 +36,11 @@ function getMessages(){
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
 	console.log('userid ' + Session.get('userid'));
-	if(Session.get('roomid'))
+	if(Session.get('roomid')){
 		getMessages();
+		setTimeout(scrollDown,0);
+		scrollDown();
+	}
 	else{
 		if(mSub)mSub.stop();
 		$('.message').not('#mymessage').remove();
@@ -50,7 +53,7 @@ function watchMessages(){
 	setTimeout(function(){
 	},1000);
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
-	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
+	latestTimestampAtLoad = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
 	var lastMessageUser=null;
@@ -68,8 +71,8 @@ function watchMessages(){
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			console.log('lmu ' + lastMessageUser);
-			console.log('fields.username ' + fields.username);
+			// console.log('lmu ' + lastMessageUser);
+			// console.log('fields.username ' + fields.username);
 
 			var message;
 			if(lastMessageUser===fields.username)
@@ -82,30 +85,33 @@ function watchMessages(){
 			lastMessageUser=fields.username;
 			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 			if(before === null) {
-				if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>latestTimestampAtLoad)
 				message.hide();
 				$('#last').before(message);
-				if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>latestTimestampAtLoad)
 					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 				else
 					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 				message.show();
 			}else{
-				if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>latestTimestampAtLoad)
 				message.hide();
 				$('#'+before).before(message);
-				if(fields.timestamp>lastMessageAtStartup)
+				if(fields.timestamp>latestTimestampAtLoad)
 					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 				else
 					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}
+			//probably senseless, as everything else
+			if(stick && Session.get('userid'))scrollDown();
+			// console.log(Session.get('userid'));
 		},
 		changed: function(id,fields){
-			console.log('changed ' + id + ' to ' + fields.text);
+			// console.log('changed ' + id + ' to ' + fields.text);
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
-			console.log('changed & lmu ' + lastMessageUser);
+			// console.log('changed & lmu ' + lastMessageUser);
 			if( $('#'+id).length ){
 				//update existing message
 				if(fields.text !== undefined)
@@ -135,7 +141,7 @@ function watchMessages(){
 		removed: function(id){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
-			console.log('removed ' + id);
+			// console.log('removed ' + id);
 			$('#'+id).remove();
 			// lastMessageUser=null;
 		}
