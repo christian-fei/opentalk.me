@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=50,
+	messagesLimit=5,
 	lastMessageAtStartup=0,
 	messagesHandle=null,
 	mSub=ouSub=mPagination=null,
@@ -20,8 +20,6 @@ var lastInsertId=0, //ID of the last inserted message
 
 function getMessages(){
 	if(mSub)mSub.stop();
-	$('.message').not('#mymessage').remove();
-
 	setTimeout(function(){
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
@@ -29,7 +27,7 @@ function getMessages(){
 			console.log('messages ready for');
 			watchMessages();
 		});
-	},100);
+	},1000);
 }
 
 
@@ -42,74 +40,77 @@ Deps.autorun(function(){
 
 
 function watchMessages(){
+		$('.message').not('#mymessage').remove();
+	setTimeout(function(){
+	},10);
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
-			addedBefore: function(id, fields,before){
-				if( Session.get('userid') && Session.get('roomid') && stick ){
-					scrollDown();
-				}
-				// console.log('id ' +id);
-				// console.log('lastInsertId ' + Session.get('lastInsertId'));
-				// console.log(fields);
-				// console.log('before ' +before);
-				/*the document has been added at the end of the collection*/
-				//$('#mymessage').before('fdsa');
-				//$('#mymessage').before(fields.text);
-				// setTimeout(function(){
-				// },1500);
-				if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
-				if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
-
-
-				var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-				//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
-				if(before === null) {
-					if(fields.timestamp>lastMessageAtStartup)
-					message.hide();
-					$('#mymessage').before(message);
-					if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
-				}else{
-					if(fields.timestamp>lastMessageAtStartup)
-					message.hide();
-					$('#'+before).before(message);
-					if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
-				}
-				
-
-			},
-			changed: function(id,fields){
-				// console.log('changed ' + id + ' to ' + fields.text);
-				// console.log( $('#mymessage').val() );
-				// console.log('lid ' +Session.get('lastInsertId'));
-				// console.log(fields);
-
-				if( $('#'+id).length ){
-					//update existing message
-					if(fields.text !== undefined)
-						$('#'+id+' .text').html( fields.text );
-				}else if(fields.messageComplete === true){
-					// console.log('message completed');
-					var textFromDB = Messages.find({_id:id}).fetch()[0].text;
-					var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
-					message.hide();
-					$('#mymessage').before(message);
-					message.fadeIn(50);				
-				}
-				if(stick)
-					scrollDown();
-			},
-			removed: function(id){
-				// if(id === $('.messages li').first().attr('id'))
-				// 	return;
-				// console.log('removing ' + id);
-				$('#'+id).remove();
+		addedBefore: function(id, fields,before){
+			if( Session.get('userid') && Session.get('roomid') && stick ){
+				scrollDown();
 			}
-		});
+			console.log('added id ' +id + ' before ' + before);
+			// console.log('lastInsertId ' + Session.get('lastInsertId'));
+			// console.log(fields);
+			 // console.log('before ' +before);
+			/*the document has been added at the end of the collection*/
+			//$('#mymessage').before('fdsa');
+			//$('#mymessage').before(fields.text);
+			// setTimeout(function(){
+			// },1500);
+			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
+			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
+
+
+			var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
+			if(before === null) {
+				if(fields.timestamp>lastMessageAtStartup)
+				message.hide();
+				$('#li-message').before(message);
+				if(fields.timestamp>lastMessageAtStartup)
+				message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
+			}else{
+				if(fields.timestamp>lastMessageAtStartup)
+				message.hide();
+				$('#'+before).before(message);
+				if(fields.timestamp>lastMessageAtStartup)
+				message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
+			}
+			
+
+		},
+		changed: function(id,fields){
+			// console.log('changed ' + id + ' to ' + fields.text);
+			// console.log( $('#mymessage').val() );
+			// console.log('lid ' +Session.get('lastInsertId'));
+			// console.log(fields);
+
+			if( $('#'+id).length ){
+				//update existing message
+				if(fields.text !== undefined)
+					$('#'+id+' .text').html( fields.text );
+			}else if(fields.messageComplete === true){
+				// console.log('message completed');
+				var textFromDB = Messages.find({_id:id}).fetch()[0].text;
+				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
+				message.hide();
+				$('#li-message').before(message);
+				message.fadeIn(50);				
+			}
+			if(stick)
+				scrollDown();
+		},
+		removed: function(id){
+			// if(id === $('.messages li').first().attr('id'))
+			// 	return;
+			console.log('removing ' + id);
+			$('#'+id).remove();
+		}
+	});
 }
 
 if(Meteor._localStorage.getItem('realtimeEnabled') === null){
@@ -753,7 +754,7 @@ function positionFixedContent(){
 };
 
 Template.room.rendered = function(){
-	console.log('room ============rendered=============');
+	// console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 

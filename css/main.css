@@ -847,16 +847,16 @@ SUPER SLICK TRANSFORMS
 
 /* line 11, ../sass/_messages.scss */
 .message {
-  padding: 0.2em 0.5em;
+  padding: 0em 0.5em;
   border-bottom: 1px dotted #EFEFEF;
 }
 
 /* line 15, ../sass/_messages.scss */
 .useravatar {
-  height: 1.5em;
-  width: 1.5em;
-  margin-top: .2em;
-  margin-bottom: .2em;
+  height: 1em;
+  width: 1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
   margin-left: .5em;
   border-radius: 35%;
   border-bottom-right-radius: 0px;
