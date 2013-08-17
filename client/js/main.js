@@ -17,18 +17,27 @@ var lastInsertId=0, //ID of the last inserted message
 	mSub=ouSub=mPagination=null,
 	animationDuration=300;
 
-setTimeout(function(){
-	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-	Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
-		console.log('messages ready for');
-		watchMessages();
-	});
-},100);
+
+function getMessages(){
+	if(mSub)mSub.stop();
+	$('.message').not('#mymessage').remove();
+
+	setTimeout(function(){
+		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
+			console.log('messages ready for');
+			watchMessages();
+		});
+	},100);
+}
+
+
+
 Deps.autorun(function(){
-	if(Session.get('roomid')){
-		console.log('subscribing ' + Session.get('roomid'));
-	}
+	console.log('roomid ' + Session.get('roomid'));
+	console.log('userid ' + Session.get('userid'));
+	getMessages();
 });
 
 
@@ -744,7 +753,7 @@ function positionFixedContent(){
 };
 
 Template.room.rendered = function(){
-	//console.log('room ============rendered=============');
+	console.log('room ============rendered=============');
 	positionFixedContent();
 	var instnc = this;
 
