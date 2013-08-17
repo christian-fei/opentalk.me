@@ -59,7 +59,7 @@ function watchMessages(){
 	var prevUser=prevId=null;
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			console.log('added id ' +id + ' before ' + before);
+			// console.log('added id ' +id + ' before ' + before);
 
 			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
@@ -67,12 +67,6 @@ function watchMessages(){
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
 			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-			// message = $('<li class="message diffUser" id="'+id+'"><span class="avatar" style="background:url('+fields.useravatar+')"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
-
-
-
-
-
 
 			if(before === null) {
 				//items of first load
@@ -92,10 +86,10 @@ function watchMessages(){
 				$('#'+before).before(message);
 				//it is at the bottom of the list, so add lastOfUser class
 			
-				console.log('=========');
-				console.log(fields.username);
-				console.log(prevUser);
-				console.log('=========');
+				// console.log('=========');
+				// console.log(fields.username);
+				// console.log(prevUser);
+				// console.log('=========');
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
 					message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
@@ -155,10 +149,23 @@ function watchMessages(){
 			if(stick && Session.get('userid'))
 				scrollDown();
 		},
+		movedBefore: function(id,before){
+			console.log(id + ' changed position to ' + before);
+			//kinda works, but only if the moved element has an avatar, else it's moved withouth
+			// if(before===null){
+			// 	$('#'+id).slideUp(animationDuration, function(){ $(this).insertBefore($('#last')) }).slideDown(animationDuration);
+			// }
+		},
 		removed: function(id){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
+
 			console.log('removed ' + id);
+			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
+			var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
+			$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
+			$('#'+id).next().addClass('diffUser');
+
 			$('#'+id).remove();
 			//DON'T
 			// prevUser=null;
