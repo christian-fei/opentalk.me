@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=5,
+	messagesLimit=1,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -84,7 +84,10 @@ function addMoreMessages(){
 				
 			i--;
 		}
+		$('#first').after( messageChain );
 		console.log(messageChain);
+		newMessages=[];
+		newMessagesCount=0;
 	}
 }
 
