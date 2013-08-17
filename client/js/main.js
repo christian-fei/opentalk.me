@@ -11,20 +11,21 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=5,
+	messagesLimit=75,
 	lastMessageAtStartup=0,
-	messagesHandle=null,
 	mSub=ouSub=mPagination=null,
 	animationDuration=300;
 
 
 function getMessages(){
-	if(mSub)mSub.stop();
+	setTimeout(function(){
+		if(mSub)mSub.stop();
+	},1000);
 	setTimeout(function(){
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
-			console.log('messages ready for');
+			console.log('messages ready');
 			watchMessages();
 		});
 	},1000);
@@ -35,23 +36,21 @@ function getMessages(){
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
 	console.log('userid ' + Session.get('userid'));
-	getMessages();
+	if(Session.get('roomid'))
+		getMessages();
 });
 
 
 function watchMessages(){
-		$('.message').not('#mymessage').remove();
+	$('.message').not('#mymessage').remove();
 	setTimeout(function(){
-	},10);
+	},1000);
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			if( Session.get('userid') && Session.get('roomid') && stick ){
-				scrollDown();
-			}
 			console.log('added id ' +id + ' before ' + before);
 			// console.log('lastInsertId ' + Session.get('lastInsertId'));
 			// console.log(fields);
@@ -68,20 +67,18 @@ function watchMessages(){
 			var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 			if(before === null) {
-				if(fields.timestamp>lastMessageAtStartup)
+				// if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
 				$('#li-message').before(message);
-				if(fields.timestamp>lastMessageAtStartup)
-				message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
+				// if(fields.timestamp>lastMessageAtStartup)
+				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});
 			}else{
-				if(fields.timestamp>lastMessageAtStartup)
+				// if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
 				$('#'+before).before(message);
-				if(fields.timestamp>lastMessageAtStartup)
-				message.addClass('realtime fly-in-right').slideDown(animationDuration,function(){if(stick)scrollDown()});
+				// if(fields.timestamp>lastMessageAtStartup)
+				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});
 			}
-			
-
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id + ' to ' + fields.text);
@@ -99,7 +96,7 @@ function watchMessages(){
 				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
 				message.hide();
 				$('#li-message').before(message);
-				message.fadeIn(50);				
+				message.addClass('realtime').slideDown(animationDuration,function(){if(stick)scrollDown()});	
 			}
 			if(stick)
 				scrollDown();
@@ -281,10 +278,12 @@ function joinRoom(r){
 
 	goOffline();
 	//unsubscribe();
-	//Session.set('roomid',null);
+	Session.set('roomid',null);
 
 	if(r === ''){
 		Meteor.Router.to('/');
+		goOffline();
+		Session.set('roomid',null);
 	}
 	if(isValidRoom(r)) {
 	  //console.log('valid path\nrouting to /' + r);
@@ -316,7 +315,7 @@ Session.set('lastInsertId',null);
 SET UP BASIC ROUTING
 */
 Meteor.Router.add({'/about':'about'});
-Meteor.Router.add({'/':'welcome'});
+Meteor.Router.add({'/': function(){goOffline();Session.set('roomid',null); return 'welcome';}});
 /*
 there aren't no 404's
 except the user types an invalid URL, then he will be redirected to /
@@ -459,6 +458,8 @@ Template.selectChatRoom.events({
 		if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 			var room = tmplt.find('#roomid').value;
 			if(isValidRoom(room)){
+				$('.message').not('#mymessage').remove();
+				setTimeout(function(){},1000);
 				joinRoom(room);
 			} else {
 				//notify
@@ -495,10 +496,17 @@ Template.room.roomSelected = function(){
 
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
-	'click #toggleRealtime' : function(evnt,tmplt){
+	'click #toggleRealtime' : function(){
 		evnt.preventDefault();
 		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));
 		Session.set('realtimeEnabled' , !Session.get('realtimeEnabled'));
+	},
+	'click .go-home-you-are-drunk' : function(evnt,tmplt){
+		evnt.preventDefault();
+		Session.set('roomid',null);
+		$('.message').not('#mymessage').remove();
+		setTimeout(function(){},1000);
+		Meteor.Router.to('/');
 	}
 });
 

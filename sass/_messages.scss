@@ -42,7 +42,14 @@
 			-moz-hyphens: auto;
 			hyphens: auto;
 		}
-	$realtime-duration: 5s;
+		
+		.message-image{
+			max-width: 100%;
+			max-height: 5em;
+		}
+		
+
+	$realtime-duration: 3s;
 	.realtime{
 		-webkit-animation: realtime-anim $realtime-duration ease-in-out;
 		-moz-animation: realtime-anim $realtime-duration ease-in-out;

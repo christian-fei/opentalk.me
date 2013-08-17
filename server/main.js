@@ -12,13 +12,17 @@ Messages.allow({
 Meteor.publish('MessagesReady',function(roomid){
   return Messages.find(
     {
-      roomid:roomid
+      roomid:roomid,
+      _id:'this is an id that will never exist'
     },{limit:1}
   );
 });
 
 Meteor.publish('paginatedMessages', function(roomid,limit) {
   return Messages.find({roomid:roomid}, {sort: {timestamp: -1}, limit: limit});
+});
+Meteor.publish('paginatedMessagesTroll', function(roomid,limit) {
+  return Messages.find({roomid:roomid,_id:'this is an id that will never exist'}, {sort: {timestamp: -1}, limit: 1});
 });
 
 Meteor.publish('usersOnlineInThisRoom',function(roomid){

@@ -639,11 +639,11 @@ SUPER SLICK TRANSFORMS
   margin-bottom: -2em;
   overflow-y: auto;
   opacity: .7;
-  -webkit-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 @media all and (max-width: 56em) {
   /* line 1, ../sass/_sidebar.scss */
@@ -879,19 +879,25 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 46, ../sass/_messages.scss */
-.realtime {
-  -webkit-animation: realtime-anim 5s ease-in-out;
-  -moz-animation: realtime-anim 5s ease-in-out;
-  -o-animation: realtime-anim 5s ease-in-out;
-  animation: realtime-anim 5s ease-in-out;
+.message-image {
+  max-width: 100%;
+  max-height: 5em;
 }
 
-/* line 54, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
+.realtime {
+  -webkit-animation: realtime-anim 3s ease-in-out;
+  -moz-animation: realtime-anim 3s ease-in-out;
+  -o-animation: realtime-anim 3s ease-in-out;
+  animation: realtime-anim 3s ease-in-out;
+}
+
+/* line 61, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 57, ../sass/_messages.scss */
+/* line 64, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -908,60 +914,60 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 88, ../sass/_messages.scss */
+  /* line 95, ../sass/_messages.scss */
   0% {
     background: #fff1cc;
   }
 
-  /* line 89, ../sass/_messages.scss */
+  /* line 96, ../sass/_messages.scss */
   100% {
     background: none;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 92, ../sass/_messages.scss */
+  /* line 99, ../sass/_messages.scss */
   0% {
     background: #fff1cc;
   }
 
-  /* line 93, ../sass/_messages.scss */
+  /* line 100, ../sass/_messages.scss */
   100% {
     background: none;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 96, ../sass/_messages.scss */
+  /* line 103, ../sass/_messages.scss */
   0% {
     background: #fff1cc;
   }
 
-  /* line 97, ../sass/_messages.scss */
+  /* line 104, ../sass/_messages.scss */
   100% {
     background: none;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 100, ../sass/_messages.scss */
+  /* line 107, ../sass/_messages.scss */
   0% {
     background: #fff1cc;
   }
 
-  /* line 101, ../sass/_messages.scss */
+  /* line 108, ../sass/_messages.scss */
   100% {
     background: none;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 104, ../sass/_messages.scss */
+  /* line 111, ../sass/_messages.scss */
   0% {
     background: #fff1cc;
   }
 
-  /* line 105, ../sass/_messages.scss */
+  /* line 112, ../sass/_messages.scss */
   100% {
     background: none;
   }
@@ -1112,4 +1118,5 @@ input {
   top: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.5);
+  max-width: 15em;
 }
