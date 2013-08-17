@@ -53,9 +53,10 @@ function watchMessages(){
 	lastMessageAtStartup = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
+	var lastMessageUser=null;
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			console.log('added id ' +id + ' before ' + before);
+			// console.log('added id ' +id + ' before ' + before);
 			// console.log('lastInsertId ' + Session.get('lastInsertId'));
 			// console.log(fields);
 			 // console.log('before ' +before);
@@ -67,25 +68,36 @@ function watchMessages(){
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
+			console.log('lmu ' + lastMessageUser);
+			console.log('fields.username ' + fields.username);
 
-			var message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			var message;
+			if(lastMessageUser===fields.username)
+				message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			else{
+				message = $('<li class="message" id="'+id+'"><img src="'+fields.useravatar+'" class="useravatar"/><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+				// lastMessageUser=null;
+			}
+			//init lastMessageUser after creating the first message
+			lastMessageUser=fields.username;
 			//if(fields.userid === Session.get('userid') && fields.messageComplete === false)return;
 			if(before === null) {
 				if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
 				$('#last').before(message);
 				if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 				else
-					message.slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				message.show();
 			}else{
 				if(fields.timestamp>lastMessageAtStartup)
 				message.hide();
 				$('#'+before).before(message);
 				if(fields.timestamp>lastMessageAtStartup)
-					message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+					message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 				else
-					message.slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+					message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}
 		},
 		changed: function(id,fields){
@@ -93,19 +105,29 @@ function watchMessages(){
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
-
+			console.log('changed & lmu ' + lastMessageUser);
 			if( $('#'+id).length ){
 				//update existing message
 				if(fields.text !== undefined)
 					$('#'+id+' .text').html( fields.text );
 			}else 
 			if(fields.messageComplete === true){
-				// console.log('message completed');
-				var textFromDB = Messages.find({_id:id}).fetch()[0].text;
-				var message = $('<li class="message" id="'+id+'"><img src="'+Session.get('avatar')+'" class="useravatar"/><b class="username">'+Session.get('username')+'</b><span class="text">'+ textFromDB +'</span></li>');
+				console.log('message completed');
+				var mfdb = Messages.find({_id:id}).fetch()[0];
+				console.log(mfdb);
+				if(lastMessageUser===mfdb.username){
+					message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
+				}
+				else{
+					message = $('<li class="message" id="'+id+'"><img src="'+mfdb.useravatar+'" class="useravatar"/><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					// lastMessageUser=null;
+				}
+				lastMessageUser=mfdb.username;
+				// if(!lastMessageUser)lastMessageUser=fields.username;
+				
 				message.hide();
 				$('#last').before(message);
-				message.addClass('realtime').slideDown(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
+				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
 			if(stick && Session.get('userid'))
 				scrollDown();
@@ -115,6 +137,7 @@ function watchMessages(){
 			// 	return;
 			console.log('removed ' + id);
 			$('#'+id).remove();
+			// lastMessageUser=null;
 		}
 	});
 }

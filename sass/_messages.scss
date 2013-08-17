@@ -13,18 +13,22 @@
 		padding: 0em 0.5em;
 		border-bottom:1px dotted #EFEFEF;
 		border-left:2px solid transparent;
+		overflow: visible!important;//because jQuery add overflow:hidden when hiding stuff
+
 	}
-		.useravatar{
-			height:1em;
-			width: 1em;
-			margin-top:.5em;
-			margin-bottom:.5em;
-			margin-left:.5em;
+		.useravatar,.sameUser{
+			height:1.8em;
+			width: 1.8em;
+			margin-top:.2em;
+			margin-bottom:.2em;
+			margin-left: -1.5em;
 			border-radius: 35%;
 			//border-top-right-radius: 0px;
 			border-bottom-right-radius: 0px;
 
 			vertical-align: top;
+			display: inline-block;
+
 		}
 		.username,.text{
 			display: inline-block;
