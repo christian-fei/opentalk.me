@@ -90,9 +90,7 @@ Meteor.methods({
   },
 
   setUserId: function(userId) {
-    //console.log('previous userId ' + this.userid);
     this.setUserId(userId)
-    //console.log('setting user id ' + this.userId);
   }
 });
 

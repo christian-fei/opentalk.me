@@ -11,26 +11,13 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=75,
+	messagesLimit=5,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
-	animationDuration=250;
-
-
-function getMessages(){
-	setTimeout(function(){
-		if(mSub)mSub.stop();
-	},1000);
-	setTimeout(function(){
-		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
-			console.log('messages ready');
-			watchMessages();
-		});
-	},1000);
-}
-
+	animationDuration=250,
+	prevUser=prevId=null,
+	newMessages=[],
+	newMessagesCount=0;
 
 
 Deps.autorun(function(){
@@ -47,6 +34,59 @@ Deps.autorun(function(){
 	}
 });
 
+function getMessages(){
+	setTimeout(function(){
+		if(mSub)mSub.stop();
+	},1000);
+	setTimeout(function(){
+		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+		Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
+			console.log('messages ready');
+			watchMessages();
+		});
+	},1000);
+}
+
+
+function addMoreMessages(){
+	newMessagesCount++;
+	console.log(newMessagesCount);
+	if(newMessagesCount===messagesLimit){
+		console.log('now we can add those shitty messages');
+		console.log(newMessages);
+		var i = newMessagesCount-2,
+			//first Message must have an avatar
+			messageChain = $('<li class="message diffUser" id="'+newMessages[i+1].id+'"><img src="'+newMessages[i+1].useravatar+'" class="useravatar"/><b class="username">'+newMessages[i+1].username+'</b><span class="text">'+newMessages[i+1].text+'</span></li>');
+		while(i>=0){
+			console.log('running');
+			var tmpMsg;
+			//check if different or same user
+
+			//same user
+			if(newMessages[i+1].userid === newMessages[i].userid  ){
+				/*check if last of user*/
+				if(newMessages[i-1] === undefined || newMessages[i-1].userid !== newMessages[i].userid ){
+					tmpMsg = $('<li class="message lastOfUser" id="'+newMessages[i].id+'"><span class="sameUser"></span><b class="username">'+newMessages[i].username+'</b><span class="text">'+newMessages[i].text+'</span></li>');
+				}else{
+					tmpMsg = $('<li class="message" id="'+newMessages[i].id+'"><span class="sameUser"></span><b class="username">'+newMessages[i].username+'</b><span class="text">'+newMessages[i].text+'</span></li>');
+				}
+			}
+			//different user
+			else{
+				if(newMessages[i-1] === undefined || newMessages[i-1].userid !== newMessages[i].userid ){
+					tmpMsg = $('<li class="message lastOfUser" id="'+newMessages[i].id+'"><img src="'+newMessages[i].useravatar+'" class="useravatar"/><b class="username">'+newMessages[i].username+'</b><span class="text">'+newMessages[i].text+'</span></li>');
+				}else{
+					tmpMsg = $('<li class="message" id="'+newMessages[i].id+'"><img src="'+newMessages[i].useravatar+'" class="useravatar"/><b class="username">'+newMessages[i].username+'</b><span class="text">'+newMessages[i].text+'</span></li>');
+				}
+			}
+			messageChain.after( tmpMsg );
+				
+			i--;
+		}
+		console.log(messageChain);
+	}
+}
 
 function watchMessages(){
 	$('.message').not('#mymessage').remove();
@@ -56,10 +96,20 @@ function watchMessages(){
 	latestTimestampAtLoad = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
 		mPagination.stop();
-	var prevUser=prevId=null;
-	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
+	
+	mPagination=Messages.find({},{ sort:{timestamp:1} }).observeChanges({
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
+
+			if(before !== null){
+				// console.log('this message is going in the newMessages object');
+				var tmp={'id':id,'userid':fields.userid,'username':fields.username,'useravatar':fields.useravatar,'text':fields.text};
+				newMessages.push(tmp);
+				addMoreMessages();
+				return;
+			}
+
+
 			// console.log('lastInsertId ' + Session.get('lastInsertId'));
 			// console.log(fields);
 			 // console.log('before ' +before);
@@ -120,9 +170,9 @@ function watchMessages(){
 					$('#'+id+' .text').html( fields.text );
 			}else 
 			if(fields.messageComplete === true){
-				console.log('message completed');
+				// console.log('message completed');
 				var mfdb = Messages.find({_id:id}).fetch()[0];
-				console.log(mfdb);
+				// console.log(mfdb);
 				if(prevUser===mfdb.username){
 					message = $('<li class="message" id="'+id+'"><span class="sameUser"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
 				}
@@ -143,9 +193,15 @@ function watchMessages(){
 				scrollDown();
 		},
 		removed: function(id){
+			// if(id == $('.messages li').first().attr('id')){
+			// 	//load more
+			// 	if(mSub.loaded() !== mSub.limit())
+			// 	return;
+			// 		mSub.loadNextPage();
+			// }
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
-			// console.log('removed ' + id);
+			console.log('removed ' + id);
 			$('#'+id).remove();
 			//DON'T
 			// prevUser=null;
@@ -636,6 +692,11 @@ var initialMessageHeight = 0;
 Template.room.events({
 	'click .load-more': function(evnt) {
 		evnt.preventDefault();
+		setTimeout(function(){
+			// loadingNextPage=true;
+			prevUser=null;
+			prevId=null;
+		},0);
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
