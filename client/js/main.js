@@ -163,7 +163,7 @@ function watchMessages(){
 			console.log('removed ' + id);
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 
-			if($('#'+id).next()[0] !== undefined && id !== $('.messages li:nth-child(2)').attr('id') && $('#'+id + ' .username').html() === $('#wmPykvm3WMPt23xQe').next()[0].querySelector('.username').innerHTML ){
+			if($('#'+id).next()[0] !== undefined && $('#'+id).next()[0] && $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
 				var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
 				$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
 				$('#'+id).next().addClass('diffUser');
