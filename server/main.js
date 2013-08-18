@@ -7,6 +7,7 @@ Messages.allow({
   ,remove : function(userId,doc){return true}
 });
 
+//console.log(process.env);
 
 /*only used to determine if collection is ready*/
 Meteor.publish('MessagesReady',function(roomid){
@@ -43,6 +44,10 @@ var idleTime = 20*1000,
     killCheck = killTime/2;
 
 Meteor.methods({
+  calltest:function(arg1){
+    console.log(arg1);
+    return arg1;
+  },
   serverTime : function(){
     //console.log('requested serverTime');
     return Date.now();

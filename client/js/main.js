@@ -32,7 +32,9 @@ function getMessages(){
 	},1000);
 }
 
-
+Meteor.call('calltest','======================',function(error,result){
+	console.log(result);
+});
 
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
