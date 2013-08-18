@@ -11,7 +11,8 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=5,
+	messagesLimit=50
+	,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -66,7 +67,7 @@ function watchMessages(){
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span>'+id+'<b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 
 			if(before === null) {
 				//items of first load and recently typed ones
@@ -699,6 +700,10 @@ Template.room.events({
 });
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
+
+		console.log(evnt.keyCode);
+		console.log(evnt.which);
+
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
 
