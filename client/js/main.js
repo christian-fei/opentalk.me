@@ -82,7 +82,11 @@ function watchMessages(){
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
 					message[0].firstChild.classList.add('avatar-border');
+					message[0].firstChild.classList.add('tip');
+					message[0].firstChild.setAttribute('data-tip',fields.username);
+
 					$('#'+prevId).addClass('lastOfUser');
+					$('.tip').tipr();
 				}
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
@@ -119,6 +123,7 @@ function watchMessages(){
 
 			prevUser=fields.username;
 			prevId=id;
+			
 			if(stick && Session.get('userid'))scrollDown();
 		},
 		changed: function(id,fields){
@@ -141,8 +146,9 @@ function watchMessages(){
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+fields.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
 					// prevUser=null;
+					$('.tip').tipr();
 				}
 				prevUser=mfdb.username;
 				prevId=id;
@@ -193,19 +199,19 @@ function watchMessages(){
 			// 	// console.log('setting prevId ' + prevId + ' prevUser ' +prevUser);
 
 			// }
+			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
 				if( $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
 					var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
 					$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
 					$('#'+id).next()[0].firstChild.classList.add('avatar-border');
 					$('#'+id).next().addClass('diffUser');
+					$('#'+id).next()[0].firstChild.classList.add('tip');
+					$('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
+					$('.tip').tipr();
 				}
 			}
-			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
-
-
 			$('#'+id).remove();
-			//DON'T
 		}
 	});
 }
@@ -677,7 +683,7 @@ function formatMessage(t) {
 	t = t.replace('\n','');
 	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
 	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
-	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' target='_blank'><img src='$2' class='message-image'/></a>  ");
+	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' title='open in a new page' target='_blank'><img src='$2' class='message-image'/></a>  ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
 	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;

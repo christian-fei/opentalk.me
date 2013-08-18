@@ -69,6 +69,10 @@
 			clear:left;
 			margin-top: .2em;
 			margin-top: .2em;
+			&.exp{
+				max-width: 100%;
+				max-height: auto!important;
+			}
 		}
 		
 		.diffUser{
