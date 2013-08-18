@@ -23,6 +23,7 @@ var lastInsertId=0, //ID of the last inserted message
 function getMessages(){
 	setTimeout(function(){
 		if(mSub)mSub.stop();
+		$('.message').not('#mymessage').remove();
 	},1000);
 	setTimeout(function(){
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -38,19 +39,13 @@ Meteor.call('calltest','======================',function(error,result){
 	console.log(result);
 });
 
-// Deps.autorun(function(){
-// 	console.log('roomid ' + Session.get('roomid'));
-// 	console.log('userid ' + Session.get('userid'));
-// 	if(Session.get('roomid')){
-// 		getMessages();
-// 		setTimeout(scrollDown,0);
-// 		scrollDown();
-// 	}
-// 	else{
-// 		if(mSub)mSub.stop();
-// 		$('.message').not('#mymessage').remove();
-// 	}
-// });
+Deps.autorun(function(){
+	console.log('roomid ' + Session.get('roomid'));
+	console.log('userid ' + Session.get('userid'));
+	if(Session.get('roomid')){
+		getMessages();
+	}
+});
 
 
 function tiprAll(){
@@ -334,7 +329,10 @@ USER GOES OFFLINE
 -remove user from OnlineUsers Collection (Meteor.call)
 */
 function goOffline(){
-	Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'offline');
+	if(Session.get('userid'))
+		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'offline');
+	else
+		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Meteor._localStorage.getItem('roomid'),'offline');
 }
 
 
@@ -405,12 +403,12 @@ function joinRoom(r){
 	if(r === ''){
 		Meteor.Router.to('/');
 		goOffline();
-		Session.set('roomid',null);
 	}
 	if(isValidRoom(r)) {
 	  //console.log('valid path\nrouting to /' + r);
 	  Meteor.Router.to('/'+r);
 	  Session.set('roomid',r);
+	  Meteor._localStorage.setItem('roomid',r);
 	  Meteor._localStorage.setItem('roomid',r);
 	  goOnline();
 	  subscribe();
@@ -625,9 +623,8 @@ Template.room.events({
 	},
 	'click .go-home-you-are-drunk' : function(evnt,tmplt){
 		evnt.preventDefault();
+		goOffline();
 		Session.set('roomid',null);
-		$('.message').not('#mymessage').remove();
-		setTimeout(function(){},1000);
 		Meteor.Router.to('/');
 	}
 });
