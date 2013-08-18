@@ -674,7 +674,7 @@ function unescapeHtml(escapedStr) {
 
 function formatMessage(t) {
 	t = escapeHtml(t);
-	t = t.replace('\n','');
+	t = t.replace('\n','</br>');
 	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
 	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
 	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' target='_blank'><img src='$2' class='message-image'/></a>  ");

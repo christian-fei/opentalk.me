@@ -58,8 +58,12 @@
 
 		
 		.message-image{
-			// width: 100%;
 			max-height: 5em;
+			display: inline-block;
+			float:left;
+			clear:left;
+			margin-top: .2em;
+			margin-top: .2em;
 		}
 		
 		.diffUser{
