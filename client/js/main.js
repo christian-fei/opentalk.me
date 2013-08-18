@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=75,
+	messagesLimit=5,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -54,8 +54,7 @@ function tiprAll(){
 
 function watchMessages(){
 	$('.message').not('#mymessage').remove();
-	setTimeout(function(){
-	},1000);
+	
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	latestTimestampAtLoad = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
@@ -76,8 +75,8 @@ function watchMessages(){
 				//items of first load and recently typed ones
 				message.hide();
 				$('#last').before(message);
-				console.log('prevUser ' +prevUser);
-				console.log('currUser ' +fields.username);
+				// console.log('prevUser ' +prevUser);
+				// console.log('currUser ' +fields.username);
 				if(prevUser===null || prevUser!==fields.username){
 					//A NEW USER
 					message.addClass('diffUser');
@@ -91,7 +90,7 @@ function watchMessages(){
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				console.log('old ' + id + ' prevUser ' + prevUser);
+				// console.log('old ' + id + ' prevUser ' + prevUser);
 				//items of load-more+
 				message.hide();
 				$('#'+before).before(message);
@@ -138,7 +137,7 @@ function watchMessages(){
 			if(stick && Session.get('userid'))scrollDown();
 		},
 		changed: function(id,fields){
-			console.log('changed ' + id + ' to ' + fields.text);
+			// console.log('changed ' + id + ' to ' + fields.text);
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
@@ -184,7 +183,7 @@ function watchMessages(){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
 
-			console.log('removed ' + id);
+			// console.log('removed ' + id);
 			// console.log('prevId ' + prevId);
 
 			// console.log( $('#last').prev().attr('id') );
@@ -639,7 +638,11 @@ Template.messages.messagesReady = function() {
 	return ! mSub.loading();
 }
 Template.messages.allMessagesLoaded = function() {
-	return ! mSub.loading() && Messages.find().count() < mSub.loaded();
+	console.log('========== ' + Messages.find().fetch().length);
+	if(Messages.find().fetch().length < mSub.loaded())
+		return true;
+	return false;
+	// return ! mSub.loading() && Messages.find().count() < mSub.loaded();
 }
 Template.messages.mymessageDisabled = function(){
 	if(Session.get('userid'))

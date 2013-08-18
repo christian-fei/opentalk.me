@@ -97,16 +97,9 @@
 			{{>loginForm}}
 		{{/unless}}
 		
-
-		{{#unless allMessagesLoaded}}
-			<a class="load-more" href="#">Load more</a>
-		{{/unless}}
-
 		{{>messages}}
 		
 	</div>
-
-	{{>debug}}
 </template>
 
 <template name="debug">
