@@ -146,9 +146,9 @@ function watchMessages(){
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+fields.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+mfdb.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
 					// prevUser=null;
-					$('.tip').tipr();
+					
 				}
 				prevUser=mfdb.username;
 				prevId=id;
@@ -156,6 +156,7 @@ function watchMessages(){
 				
 				message.hide();
 				$('#last').before(message);
+				$('.tip').tipr();
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
 			if(stick && Session.get('userid'))
@@ -173,15 +174,13 @@ function watchMessages(){
 			// 	return;
 
 			console.log('removed ' + id);
-			console.log('prevId ' + prevId);
+			// console.log('prevId ' + prevId);
 
-			console.log( $('#last').prev().attr('id') );
+			// console.log( $('#last').prev().attr('id') );
 
 			if(id === $('#last').prev().attr('id')){
 				prevUser=prevId=null;
 			}
-			
-
 
 			// //set prevUser and prevId respectively to the prev element
 			// if( $('#'+id).prev().attr('id') !== 'first' ){
