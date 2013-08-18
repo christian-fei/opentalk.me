@@ -97,7 +97,7 @@ function watchMessages(){
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				console.log('old ' + id);
+				console.log('old ' + id + ' prevUser ' + prevUser);
 				//items of load-more+
 				message.hide();
 				$('#'+before).before(message);
@@ -118,16 +118,19 @@ function watchMessages(){
 					firstRunAfterMore=false;
 				}else{
 					if(prevUser!==fields.username){
-						message.addClass('lastOfUser diffUser');
-						// message.css({'background':'red'});
+						/*NEW USER*/
+						message.addClass('lastOfUser');
 						message.next().addClass('diffUser');
-						message[0].firstChild.classList.add('avatar-border');
-						message[0].firstChild.classList.add('tip');
-						message[0].firstChild.addAttribute('data-tip');	
-
-						// message.next()[0].addClass('diffUser');
-					}else{			
+						message.next()[0].firstChild.classList.add('avatar-border');
+						message.next()[0].firstChild.classList.add('tip');
+						message.next()[0].firstChild.setAttribute('data-tip',message.next()[0].querySelector('.username').innerHTML );
+					}else{
+						/*SAME USER*/
+						message.next().removeClass('diffUser');
+						message.addClass('diffUser');
 						message.next()[0].firstChild.style.backgroundImage='none';
+						message.next()[0].firstChild.classList.remove('avatar-border');
+
 					}
 				}
 				message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
