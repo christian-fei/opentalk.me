@@ -18,12 +18,13 @@
 		// background: rgba(255,255,255,.8);
 		border-left:1px solid $color-border;
 		border-right:1px solid $color-border;
+		position:relative;
 	}
 		.avatar{
 			height:1.8em;
 			width: 1.8em;
-			margin-top:.2em;
-			margin-bottom:.2em;
+			// margin-top:.2em;
+			// margin-bottom:.2em;
 			margin-left: -1.5em;
 			border-radius: 50%;
 			// border-top-right-radius: 0px;
@@ -34,6 +35,10 @@
 			background: none;
 			background: transparent;
 			background-size:100%!important;
+
+			position: absolute;
+			left: 0.4em;
+			top: 0em;
 		}
 		.avatar-border{
 			border:1px solid darkgrey;
