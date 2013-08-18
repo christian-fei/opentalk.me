@@ -710,7 +710,6 @@ function formatMessage(t) {
 
 
 
-
 var initialMessageHeight = 0;
 Template.room.events({
 	'click .load-more': function(evnt) {
