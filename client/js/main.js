@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=50
+	messagesLimit=5
 	,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
@@ -51,6 +51,10 @@ Deps.autorun(function(){
 });
 
 
+function tiprAll(){
+	$('.tip').tipr({'speed':300,'mode':'top'});
+}
+
 function watchMessages(){
 	$('.message').not('#mymessage').remove();
 	setTimeout(function(){
@@ -86,7 +90,6 @@ function watchMessages(){
 					message[0].firstChild.setAttribute('data-tip',fields.username);
 
 					$('#'+prevId).addClass('lastOfUser');
-					$('.tip').tipr();
 				}
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
@@ -110,8 +113,9 @@ function watchMessages(){
 						message.addClass('lastOfUser diffUser');
 						// message.css({'background':'red'});
 						message.next().addClass('diffUser');
+
 						// message.next()[0].addClass('diffUser');
-					}else{
+					}else{						
 						message.addClass('diffUser');
 						message.next()[0].firstChild.style.backgroundImage='none';
 						message.next().removeClass('diffUser');
@@ -123,6 +127,8 @@ function watchMessages(){
 
 			prevUser=fields.username;
 			prevId=id;
+
+			tiprAll();
 			
 			if(stick && Session.get('userid'))scrollDown();
 		},
@@ -156,7 +162,7 @@ function watchMessages(){
 				
 				message.hide();
 				$('#last').before(message);
-				$('.tip').tipr();
+				tiprAll();
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
 			if(stick && Session.get('userid'))
@@ -207,7 +213,7 @@ function watchMessages(){
 					$('#'+id).next().addClass('diffUser');
 					$('#'+id).next()[0].firstChild.classList.add('tip');
 					$('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
-					$('.tip').tipr();
+					tiprAll();
 				}
 			}
 			$('#'+id).remove();

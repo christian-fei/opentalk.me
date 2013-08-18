@@ -624,7 +624,7 @@ SUPER SLICK TRANSFORMS
 @media all and (max-width: 32em) {
   /* line 1, ../sass/_room.scss */
   .main {
-    width: 100%;
+    width: 95%;
   }
 }
 /* line 26, ../sass/_room.scss */
@@ -1207,10 +1207,12 @@ http://www.tipue.com/tipr
   color: #333;
   background-color: #fff;
   color: #333;
-  padding: 9px 17px;
+  padding: .5em 1em;
+  font-weight: bold;
+  border-radius: .5em;
 }
 
-/* line 19, ../sass/_tipr.scss */
+/* line 21, ../sass/_tipr.scss */
 .tipr_container_bottom {
   display: none;
   position: absolute;
@@ -1218,22 +1220,26 @@ http://www.tipue.com/tipr
   z-index: 1000;
 }
 
-/* line 26, ../sass/_tipr.scss */
+/* line 28, ../sass/_tipr.scss */
 .tipr_container_top {
   display: none;
   position: absolute;
-  margin-top: -75px;
+  top: -3em;
   z-index: 1000;
+  left: -.5em;
+  margin-left: 0 !important;
+  border-radius: .5em;
 }
 
-/* line 33, ../sass/_tipr.scss */
+/* line 38, ../sass/_tipr.scss */
 .tipr_point_top, .tipr_point_bottom {
   position: relative;
   background: #fff;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #ddd;
+  border-radius: .5em;
 }
 
-/* line 39, ../sass/_tipr.scss */
+/* line 45, ../sass/_tipr.scss */
 .tipr_point_top:after, .tipr_point_top:before {
   position: absolute;
   pointer-events: none;
@@ -1244,23 +1250,24 @@ http://www.tipue.com/tipr
   width: 0;
 }
 
-/* line 49, ../sass/_tipr.scss */
+/* line 55, ../sass/_tipr.scss */
 .tipr_point_top:after {
   border-top-color: #fff;
-  border-width: 8px;
-  left: 50%;
-  margin-left: -8px;
+  border-width: .5em;
+  left: 1.1em;
+  left: 1.1em;
+  margin-left: -.5em;
 }
 
-/* line 56, ../sass/_tipr.scss */
+/* line 65, ../sass/_tipr.scss */
 .tipr_point_top:before {
   border-top-color: #dcdcdc;
-  border-width: 9px;
-  left: 50%;
-  margin-left: -9px;
+  border-width: .5em;
+  left: 1.1em;
+  margin-left: -.5em;
 }
 
-/* line 63, ../sass/_tipr.scss */
+/* line 72, ../sass/_tipr.scss */
 .tipr_point_bottom:after, .tipr_point_bottom:before {
   position: absolute;
   pointer-events: none;
@@ -1271,7 +1278,7 @@ http://www.tipue.com/tipr
   width: 0;
 }
 
-/* line 73, ../sass/_tipr.scss */
+/* line 82, ../sass/_tipr.scss */
 .tipr_point_bottom:after {
   border-bottom-color: #fff;
   border-width: 8px;
@@ -1279,10 +1286,10 @@ http://www.tipue.com/tipr
   margin-left: -8px;
 }
 
-/* line 80, ../sass/_tipr.scss */
+/* line 89, ../sass/_tipr.scss */
 .tipr_point_bottom:before {
   border-bottom-color: #dcdcdc;
-  border-width: 9px;
+  border-width: .5em;
   left: 50%;
-  margin-left: -9px;
+  margin-left: -.5em;
 }

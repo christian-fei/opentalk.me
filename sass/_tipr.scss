@@ -13,7 +13,9 @@ http://www.tipue.com/tipr
      color: #333; 
      background-color: #fff;
      color: #333;
-     padding: 9px 17px;
+     padding: .5em 1em;
+     font-weight: bold;
+    border-radius: .5em;
 }
 .tipr_container_bottom
 {
@@ -26,14 +28,18 @@ http://www.tipue.com/tipr
 {
      display: none;
      position: absolute;
-     margin-top: -75px;
+     top:-3em;
      z-index: 1000;
+     left:-.5em;
+     margin-left:0!important;
+    border-radius: .5em;
 }
 .tipr_point_top, .tipr_point_bottom 
 {
-     position: relative;
+    position: relative;
 	background: #fff;
-	border: 1px solid #dcdcdc;
+	border: 1px solid #ddd;
+    border-radius: .5em;
 }
 .tipr_point_top:after, .tipr_point_top:before
 {
@@ -48,16 +54,19 @@ http://www.tipue.com/tipr
 .tipr_point_top:after
 {
 	border-top-color: #fff;
-	border-width: 8px;
-	left: 50%;
-	margin-left: -8px;
+	// border-width: 8px;
+	border-width: .5em;
+	left: 1.1em;
+	left: 1.1em;
+	// margin-left: -8px;
+	margin-left: -.5em;
 }
 .tipr_point_top:before 
 {
 	border-top-color: #dcdcdc;
-	border-width: 9px;
-	left: 50%;
-	margin-left: -9px;
+	border-width: .5em;
+	left: 1.1em;
+	margin-left: -.5em;
 }
 .tipr_point_bottom:after, .tipr_point_bottom:before
 {
@@ -79,7 +88,7 @@ http://www.tipue.com/tipr
 .tipr_point_bottom:before 
 {
 	border-bottom-color: #dcdcdc;
-	border-width: 9px;
+	border-width: .5em;
 	left: 50%;
-	margin-left: -9px;
+	margin-left: -.5em;
 }
