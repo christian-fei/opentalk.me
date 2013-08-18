@@ -74,6 +74,7 @@ function watchMessages(){
 				$('#last').before(message);
 
 				if(prevUser!==fields.username){
+					//A NEW USER
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
 					message[0].firstChild.classList.add('avatar-border');
@@ -92,7 +93,7 @@ function watchMessages(){
 				// console.log(prevUser);
 				// console.log('=========');
 				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
-				message[0].firstChild.classList.add('avatar-border');
+				// message[0].firstChild.classList.add('avatar-border');
 
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
