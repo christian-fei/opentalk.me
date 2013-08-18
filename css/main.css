@@ -475,31 +475,34 @@ SUPER SLICK TRANSFORMS
 
 /* line 1, ../sass/_welcome.scss */
 .welcome-mast {
-  background: #ffbb00;
   color: white;
-  background: #f1c40f;
+  background: #e4582a;
   color: black;
   text-align: center;
   position: relative;
 }
 
-/* line 10, ../sass/_welcome.scss */
+/* line 9, ../sass/_welcome.scss */
 .welcome-mast-cont {
   padding: 5em;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
-  background-size: 400px;
-  -webkit-animation: welcome-mast-anim 20s infinite ease-in-out;
-  -moz-animation: welcome-mast-anim 20s infinite ease-in-out;
-  -o-animation: welcome-mast-anim 20s infinite ease-in-out;
-  animation: welcome-mast-anim 20s infinite ease-in-out;
+  -webkit-animation: welcome-mast-anim 10s infinite linear;
+  -moz-animation: welcome-mast-anim 10s infinite linear;
+  -o-animation: welcome-mast-anim 10s infinite linear;
+  animation: welcome-mast-anim 10s infinite linear;
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
   -o-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+/* line 23, ../sass/_welcome.scss */
+.welcome-mast-cont h1 {
+  color: #eee;
+  text-shadow: 5px 5px 20px 50px white;
+}
 
-/* line 25, ../sass/_welcome.scss */
+/* line 29, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -513,7 +516,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 42, ../sass/_welcome.scss */
+/* line 46, ../sass/_welcome.scss */
 .blanket, .blanket-white {
   position: relative;
   display: table;
@@ -525,85 +528,85 @@ SUPER SLICK TRANSFORMS
   border: 1px solid lightgrey;
 }
 @media all and (max-width: 32em) {
-  /* line 42, ../sass/_welcome.scss */
+  /* line 46, ../sass/_welcome.scss */
   .blanket, .blanket-white {
-    margin: 2.5em auto 2.5em;
+    margin: 2.5em 1em;
   }
 }
 
-/* line 56, ../sass/_welcome.scss */
+/* line 60, ../sass/_welcome.scss */
 .blanket-white {
   background: white;
 }
 
-/* line 61, ../sass/_welcome.scss */
+/* line 65, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 64, ../sass/_welcome.scss */
+/* line 68, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 71, ../sass/_welcome.scss */
-  0%,100% {
-    background-position: 0%;
+  /* line 76, ../sass/_welcome.scss */
+  from {
+    background-position: 0 0;
   }
 
-  /* line 72, ../sass/_welcome.scss */
-  50% {
-    background-position: 222px 222px;
+  /* line 77, ../sass/_welcome.scss */
+  to {
+    background-position: 0 -312px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 75, ../sass/_welcome.scss */
-  0%,100% {
-    background-position: 0%;
+  /* line 80, ../sass/_welcome.scss */
+  from {
+    background-position: 0 0;
   }
 
-  /* line 76, ../sass/_welcome.scss */
-  50% {
-    background-position: 222px 222px;
+  /* line 81, ../sass/_welcome.scss */
+  to {
+    background-position: 0 -312px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 79, ../sass/_welcome.scss */
-  0%,100% {
-    background-position: 0%;
+  /* line 84, ../sass/_welcome.scss */
+  from {
+    background-position: 0 0;
   }
 
-  /* line 80, ../sass/_welcome.scss */
-  50% {
-    background-position: 222px 222px;
+  /* line 85, ../sass/_welcome.scss */
+  to {
+    background-position: 0 -312px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 83, ../sass/_welcome.scss */
-  0%,100% {
-    background-position: 0%;
+  /* line 88, ../sass/_welcome.scss */
+  from {
+    background-position: 0 0;
   }
 
-  /* line 84, ../sass/_welcome.scss */
-  50% {
-    background-position: 222px 222px;
+  /* line 89, ../sass/_welcome.scss */
+  to {
+    background-position: 0 -312px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 87, ../sass/_welcome.scss */
-  0%,100% {
-    background-position: 0%;
+  /* line 92, ../sass/_welcome.scss */
+  from {
+    background-position: 0 0;
   }
 
-  /* line 88, ../sass/_welcome.scss */
-  50% {
-    background-position: 222px 222px;
+  /* line 93, ../sass/_welcome.scss */
+  to {
+    background-position: 0 -312px;
   }
 }
 
@@ -615,19 +618,15 @@ SUPER SLICK TRANSFORMS
   padding: .66em;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
-  -webkit-transition: all 333ms ease-in-out;
-  -moz-transition: all 333ms ease-in-out;
-  -ms-transition: all 333ms ease-in-out;
-  -o-transition: all 333ms ease-in-out;
-  transition: all 333ms ease-in-out;
 }
 @media all and (max-width: 32em) {
   /* line 1, ../sass/_room.scss */
   .main {
-    width: 95%;
+    width: 93%;
+    margin-right: .5em;
   }
 }
-/* line 26, ../sass/_room.scss */
+/* line 27, ../sass/_room.scss */
 .main.under-modal {
   -webkit-filter: blur(3px);
   -moz-filter: blur(3px);
@@ -637,7 +636,7 @@ SUPER SLICK TRANSFORMS
   opacity: 0.3;
 }
 
-/* line 38, ../sass/_room.scss */
+/* line 39, ../sass/_room.scss */
 #nickname {
   position: relative;
   padding: 1em;
@@ -652,7 +651,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 56, ../sass/_room.scss */
+/* line 57, ../sass/_room.scss */
 .load-more {
   position: fixed;
   top: 1em;
@@ -670,7 +669,6 @@ SUPER SLICK TRANSFORMS
   padding: 5em 1em 4em;
   margin-bottom: -2em;
   overflow-y: auto;
-  opacity: .7;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -696,8 +694,12 @@ SUPER SLICK TRANSFORMS
 .fixed-sidebar:hover {
   opacity: 1;
 }
+/* line 41, ../sass/_sidebar.scss */
+.fixed-sidebar:hover .online-users-count {
+  opacity: 1 !important;
+}
 
-/* line 44, ../sass/_sidebar.scss */
+/* line 47, ../sass/_sidebar.scss */
 .csstransforms .fixed-sidebar.show {
   -webkit-transform: translateX(13em);
   -moz-transform: translateX(13em);
@@ -706,23 +708,23 @@ SUPER SLICK TRANSFORMS
   transform: translateX(13em);
 }
 
-/* line 54, ../sass/_sidebar.scss */
+/* line 57, ../sass/_sidebar.scss */
 .no-csstransforms .fixed-sidebar.show {
   left: 0 !important;
 }
 
-/* line 60, ../sass/_sidebar.scss */
+/* line 63, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
 }
-/* line 62, ../sass/_sidebar.scss */
+/* line 65, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 69, ../sass/_sidebar.scss */
+/* line 72, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -730,14 +732,14 @@ SUPER SLICK TRANSFORMS
   display: block;
 }
 
-/* line 77, ../sass/_sidebar.scss */
+/* line 80, ../sass/_sidebar.scss */
 #logout, #toggleRealtime {
   float: left;
   margin-left: 0.3em;
   margin-top: 0.6em;
 }
 
-/* line 87, ../sass/_sidebar.scss */
+/* line 90, ../sass/_sidebar.scss */
 .realtime-image {
   height: 1.3em;
   width: 1.3em;
@@ -745,14 +747,14 @@ SUPER SLICK TRANSFORMS
   margin-bottom: -.325em;
 }
 
-/* line 95, ../sass/_sidebar.scss */
+/* line 98, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 2em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 100, ../sass/_sidebar.scss */
+/* line 103, ../sass/_sidebar.scss */
 .online-user {
   display: block;
   text-overflow: ellipsis;
@@ -761,30 +763,26 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 108, ../sass/_sidebar.scss */
+/* line 111, ../sass/_sidebar.scss */
 .online-users {
   float: right;
   width: 100%;
 }
 
-/* line 113, ../sass/_sidebar.scss */
+/* line 116, ../sass/_sidebar.scss */
 .online-users-count {
-  /*
-  color:#eee;
-  text-shadow: .1em .1em .2em #313131;
-  */
   color: white;
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
   padding: .5em .8em .5em;
-  background: #ffbb00;
+  background: #e4582a;
   display: inline-block;
   border-radius: 50%;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   position: fixed;
   left: 0em;
-  top: 4.3em;
+  top: 3.7em;
   z-index: 998;
   /*sadly no transition because it would be 
   	positioned *again* when a heartbeat happens,
@@ -799,9 +797,10 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 56em) {
-  /* line 113, ../sass/_sidebar.scss */
+  /* line 116, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
+    opacity: 1;
   }
 }
 
@@ -810,11 +809,11 @@ SUPER SLICK TRANSFORMS
   display: none;
   cursor: pointer;
   left: 0;
-  top: 1em;
+  top: .5em;
   position: fixed;
   height: 3.33em;
   width: 3.33em;
-  background: #ffbb00;
+  background: #e4582a;
   z-index: 1000;
   border-radius: 50%;
   border-top-left-radius: 0px;
@@ -863,7 +862,7 @@ SUPER SLICK TRANSFORMS
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   padding: 0.8325em;
-  background: #ffbb00;
+  background: #e4582a;
   display: inline-block;
 }
 
@@ -899,8 +898,8 @@ SUPER SLICK TRANSFORMS
   background-size: 100% !important;
   border-radius: 50%;
   position: absolute;
-  left: 0.4em;
-  top: 0em;
+  left: 0.5em;
+  top: -0.9em;
 }
 
 /* line 43, ../sass/_messages.scss */
@@ -966,12 +965,12 @@ SUPER SLICK TRANSFORMS
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 99, ../sass/_messages.scss */
+/* line 109, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 102, ../sass/_messages.scss */
+/* line 112, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -988,60 +987,60 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 133, ../sass/_messages.scss */
+  /* line 143, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #e4582a;
   }
 
-  /* line 134, ../sass/_messages.scss */
+  /* line 144, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 137, ../sass/_messages.scss */
+  /* line 147, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #e4582a;
   }
 
-  /* line 138, ../sass/_messages.scss */
+  /* line 148, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 141, ../sass/_messages.scss */
+  /* line 151, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #e4582a;
   }
 
-  /* line 142, ../sass/_messages.scss */
+  /* line 152, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 145, ../sass/_messages.scss */
+  /* line 155, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #e4582a;
   }
 
-  /* line 146, ../sass/_messages.scss */
+  /* line 156, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 149, ../sass/_messages.scss */
+  /* line 159, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #e4582a;
   }
 
-  /* line 150, ../sass/_messages.scss */
+  /* line 160, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
@@ -1176,13 +1175,13 @@ input {
 }
 /* line 29, ../sass/_general.scss */
 ::selection {
-  background: #ffbb00;
+  background: #e4582a;
   color: inherit;
 }
 
 /* line 30, ../sass/_general.scss */
 ::-moz-selection {
-  background: #ffbb00;
+  background: #e4582a;
   color: inherit;
 }
 
@@ -1207,7 +1206,7 @@ http://www.tipue.com/tipr
   color: #333;
   background-color: #fff;
   color: #333;
-  padding: .5em 1em;
+  padding: .3em 1em;
   font-weight: bold;
   border-radius: .5em;
 }

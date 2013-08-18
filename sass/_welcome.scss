@@ -1,7 +1,6 @@
 .welcome-mast{
-	background:$color-main;
 	color:white;
-	background:$color-secondary;
+	background:$color-main;
 	color:black;
 	text-align:center;
 	// font-size: 2em;
@@ -11,15 +10,20 @@
 		padding:5em;
 		background:url('/images/opentalk_bg_opaque.png');
 		background:url('/images/pattern-white.png');
-		background-size: 400px;
-		-webkit-animation: welcome-mast-anim 20s infinite ease-in-out;
-		-moz-animation: welcome-mast-anim 20s infinite ease-in-out;
-		-o-animation: welcome-mast-anim 20s infinite ease-in-out;
-		animation: welcome-mast-anim 20s infinite ease-in-out;
+		// background-size: 400px;
+		-webkit-animation: welcome-mast-anim 10s infinite linear;
+		-moz-animation: welcome-mast-anim 10s infinite linear;
+		-o-animation: welcome-mast-anim 10s infinite linear;
+		animation: welcome-mast-anim 10s infinite linear;
 		-webkit-animation-fill-mode: both;
 		-moz-animation-fill-mode: both;
 		-o-animation-fill-mode: both;
-		animation-fill-mode: both;		
+		animation-fill-mode: both;
+
+		h1{
+			color:#eee;
+			text-shadow: 5px 5px 20px 50px white;
+		}
 	}
 
 #roomid {
@@ -50,7 +54,7 @@
 	border: 1px solid lightgrey;
 
 	@media all and(max-width: $limit){
-		margin: 2.5em auto 2.5em;
+		margin: 2.5em 1em;
 	}
 }
 .blanket-white{
@@ -66,24 +70,25 @@
 	display:table-cell;
 }
 
-$offset:222px;
+$offset-x:-489px;
+$offset-y:-312px;
 @-webkit-keyframes welcome-mast-anim{
-	0%,100% { background-position:0%; }
-	50% { background-position:$offset $offset; }
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
 }
 @-moz-keyframes welcome-mast-anim{
-	0%,100% { background-position:0%; }
-	50% { background-position:$offset $offset; }
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
 }
 @-ms-keyframes welcome-mast-anim{
-	0%,100% { background-position:0%; }
-	50% { background-position:$offset $offset; }
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
 }
 @-o-keyframes welcome-mast-anim{
-	0%,100% { background-position:0%; }
-	50% { background-position:$offset $offset; }
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
 }
 @keyframes welcome-mast-anim{
-	0%,100% { background-position:0%; }
-	50% { background-position:$offset $offset; }
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
 }

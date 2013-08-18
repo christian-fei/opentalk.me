@@ -37,8 +37,8 @@
 			border-radius: 50%;
 
 			position: absolute;
-			left: 0.4em;
-			top: 0em;
+			left: 0.5em;
+			top: -0.9em;
 		}
 		.avatar-border{
 			border:1px solid darkgrey;
@@ -92,7 +92,17 @@
 			-webkit-animation: realtime-anim $realtime-duration ease-out;
 			-moz-animation: realtime-anim $realtime-duration ease-out;
 			-o-animation: realtime-anim $realtime-duration ease-out;
-			animation: realtime-anim $realtime-duration ease-out;		
+			animation: realtime-anim $realtime-duration ease-out;
+
+			// @for $i from 1 through 75{
+			// 	&:nth-last-child(#{$i}){
+			// 		-webkit-animation-delay: $i * 20ms;
+			// 		-moz-animation-delay: $i * 20ms;
+			// 		-ms-animation-delay: $i * 20ms;
+			// 		-o-animation-delay: $i * 20ms;
+			// 		animation-delay: $i * 20ms;
+			// 	}
+			// }		
 		}
 	
 

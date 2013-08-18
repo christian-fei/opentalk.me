@@ -14,7 +14,7 @@
 
 	overflow-y:auto;
 
-	opacity: .7;
+	// opacity: .7;
 
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -38,6 +38,9 @@
 
 	&:hover{
 		opacity:1;
+		& .online-users-count{
+			opacity: 1!important;
+		}
 	}
 }
 .csstransforms .fixed-sidebar{
@@ -111,10 +114,6 @@
 }
 
 .online-users-count{
-	/*
-	color:#eee;
-	text-shadow: .1em .1em .2em #313131;
-	*/
 	color:white;
 	font-weight: bold;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -127,7 +126,7 @@
 
 	position:fixed;
 	left:0em;
-	top:4.3em;
+	top:3.7em;
 	z-index: 998;
 
 	/*sadly no transition because it would be 
@@ -144,6 +143,7 @@
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: 0!important;
+		opacity: 1;
 	}
 }
 
@@ -152,7 +152,7 @@
 	display:none;
 	cursor: pointer;
 	left:0;
-	top:1em;
+	top:.5em;
 	position:fixed;
 	height:$toggle-size;
 	width:$toggle-size;

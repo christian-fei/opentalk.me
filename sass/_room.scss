@@ -14,14 +14,15 @@
 	border-top-left-radius:0px;
 	
 	@media all and(max-width:$limit){
-		width: 95%;
+		width: 93%;
+		margin-right:.5em;
 	}
 
-	-webkit-transition: all 333ms ease-in-out;
-	-moz-transition: all 333ms ease-in-out;
-	-ms-transition: all 333ms ease-in-out;
-	-o-transition: all 333ms ease-in-out;
-	transition: all 333ms ease-in-out;
+	// -webkit-transition: all 333ms ease-in-out;
+	// -moz-transition: all 333ms ease-in-out;
+	// -ms-transition: all 333ms ease-in-out;
+	// -o-transition: all 333ms ease-in-out;
+	// transition: all 333ms ease-in-out;
 
 	&.under-modal{
 		$blur:3px;

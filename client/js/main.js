@@ -38,23 +38,23 @@ Meteor.call('calltest','======================',function(error,result){
 	console.log(result);
 });
 
-Deps.autorun(function(){
-	console.log('roomid ' + Session.get('roomid'));
-	console.log('userid ' + Session.get('userid'));
-	if(Session.get('roomid')){
-		getMessages();
-		setTimeout(scrollDown,0);
-		scrollDown();
-	}
-	else{
-		if(mSub)mSub.stop();
-		$('.message').not('#mymessage').remove();
-	}
-});
+// Deps.autorun(function(){
+// 	console.log('roomid ' + Session.get('roomid'));
+// 	console.log('userid ' + Session.get('userid'));
+// 	if(Session.get('roomid')){
+// 		getMessages();
+// 		setTimeout(scrollDown,0);
+// 		scrollDown();
+// 	}
+// 	else{
+// 		if(mSub)mSub.stop();
+// 		$('.message').not('#mymessage').remove();
+// 	}
+// });
 
 
 function tiprAll(){
-	$('.tip').tipr({'speed':300,'mode':'top'});
+	$('.tip').tipr({'speed':100,'mode':'top'});
 }
 
 function watchMessages(){
@@ -860,6 +860,7 @@ Template.messages.events({
 function scrollDown(){
 	setTimeout(function(){
 		$("html, body").scrollTop($('html').height()+2000);
+		$('#mymessage').focus();
 		// $('html,body').animate({scrollTop: $('html').height() + 5000 },1);
 	});
 	// if($('.messages').children().length > 3){
