@@ -476,7 +476,7 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_welcome.scss */
 .welcome-mast {
   color: white;
-  background: #e4582a;
+  background: #ff7200;
   color: black;
   text-align: center;
   position: relative;
@@ -775,11 +775,9 @@ SUPER SLICK TRANSFORMS
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
   padding: .5em .8em .5em;
-  background: #e4582a;
+  background: #ff7200;
   display: inline-block;
   border-radius: 50%;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
   position: fixed;
   left: 0em;
   top: 3.7em;
@@ -799,6 +797,8 @@ SUPER SLICK TRANSFORMS
 @media all and (max-width: 56em) {
   /* line 116, ../sass/_sidebar.scss */
   .online-users-count {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     left: 0 !important;
     opacity: 1;
   }
@@ -813,7 +813,7 @@ SUPER SLICK TRANSFORMS
   position: fixed;
   height: 3.33em;
   width: 3.33em;
-  background: #e4582a;
+  background: #ff7200;
   z-index: 1000;
   border-radius: 50%;
   border-top-left-radius: 0px;
@@ -862,7 +862,7 @@ SUPER SLICK TRANSFORMS
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   padding: 0.8325em;
-  background: #e4582a;
+  background: #ff7200;
   display: inline-block;
 }
 
@@ -990,7 +990,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes realtime-anim {
   /* line 144, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #e4582a;
+    border-left: 1px solid #ff7200;
   }
 
   /* line 145, ../sass/_messages.scss */
@@ -1002,7 +1002,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes realtime-anim {
   /* line 148, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #e4582a;
+    border-left: 1px solid #ff7200;
   }
 
   /* line 149, ../sass/_messages.scss */
@@ -1014,7 +1014,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes realtime-anim {
   /* line 152, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #e4582a;
+    border-left: 1px solid #ff7200;
   }
 
   /* line 153, ../sass/_messages.scss */
@@ -1026,7 +1026,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes realtime-anim {
   /* line 156, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #e4582a;
+    border-left: 1px solid #ff7200;
   }
 
   /* line 157, ../sass/_messages.scss */
@@ -1038,7 +1038,7 @@ SUPER SLICK TRANSFORMS
 @keyframes realtime-anim {
   /* line 160, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #e4582a;
+    border-left: 1px solid #ff7200;
   }
 
   /* line 161, ../sass/_messages.scss */
@@ -1176,13 +1176,13 @@ input {
 }
 /* line 29, ../sass/_general.scss */
 ::selection {
-  background: #e4582a;
+  background: #ff7200;
   color: inherit;
 }
 
 /* line 30, ../sass/_general.scss */
 ::-moz-selection {
-  background: #e4582a;
+  background: #ff7200;
   color: inherit;
 }
 

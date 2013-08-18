@@ -121,8 +121,6 @@
 	background: $color-main;
 	display: inline-block;
 	border-radius: 50%;
-	border-top-left-radius:0px;
-	border-bottom-left-radius:0px;
 
 	position:fixed;
 	left:0em;
@@ -142,6 +140,8 @@
 	*/
 
 	@media all and (max-width: $limit + $sidebar-width*2){
+		border-top-left-radius:0px;
+		border-bottom-left-radius:0px;
 		left: 0!important;
 		opacity: 1;
 	}
