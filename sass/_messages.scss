@@ -38,7 +38,7 @@
 		.avatar-border{
 			border:1px solid darkgrey;
 		}
-		.username,.text{
+		.text{
 			display: inline-block;
 			vertical-align: middle;
 			margin-left:.5em;
@@ -52,6 +52,10 @@
 			-moz-hyphens: auto;
 			hyphens: auto;
 		}
+		.username{
+			display:none;
+		}
+
 		
 		.message-image{
 			// width: 100%;

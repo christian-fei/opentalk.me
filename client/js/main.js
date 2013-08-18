@@ -72,7 +72,8 @@ function watchMessages(){
 				//items of first load
 				message.hide();
 				$('#last').before(message);
-
+				console.log('prevUser ' +prevUser);
+				console.log('currUser ' +fields.username);
 				if(prevUser!==fields.username){
 					//A NEW USER
 					message.addClass('diffUser');
@@ -163,17 +164,34 @@ function watchMessages(){
 			// 	return;
 
 			console.log('removed ' + id);
+
+			//set prevUser and prevId respectively to the prev element
+			console.log( $('#'+prevId)[0].id );
+			// console.log( $('#'+id).prev().attr('id') !== 'first' );
+			if( $('#'+id).prev().attr('id') !== 'first' ){
+				console.log('an user canceled his message');
+				//there is at least one message, because there are already these fix elements first,last,li-message
+				if( $('.messages').children().length > 3 ){
+					console.log('restore prevUser and prevId');
+					// prevId = $('#'+prevId)[0].id;
+					prevUser = $('#'+prevId + ' .username').html();
+					console.log('prevId ' + prevId + ' prevUser ' +prevUser);
+				}
+
+			}
+			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
+				if( $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
+					var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
+					$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
+					$('#'+id).next().addClass('diffUser');
+				}
+			}
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 
-			if($('#'+id).next()[0] !== undefined && $('#'+id).next()[0] && $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
-				var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
-				$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
-				$('#'+id).next().addClass('diffUser');
-			}
 
 			$('#'+id).remove();
 			//DON'T
-			// prevUser=null;
+			// prevUser=prevId=null;
 		}
 	});
 }

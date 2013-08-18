@@ -869,7 +869,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 41, ../sass/_messages.scss */
-.username, .text {
+.text {
   display: inline-block;
   vertical-align: middle;
   margin-left: .5em;
@@ -883,12 +883,17 @@ SUPER SLICK TRANSFORMS
   hyphens: auto;
 }
 
-/* line 56, ../sass/_messages.scss */
+/* line 55, ../sass/_messages.scss */
+.username {
+  display: none;
+}
+
+/* line 60, ../sass/_messages.scss */
 .message-image {
   max-height: 5em;
 }
 
-/* line 61, ../sass/_messages.scss */
+/* line 65, ../sass/_messages.scss */
 .diffUser {
   margin-top: 1em;
   border-top-right-radius: .5em;
@@ -896,14 +901,14 @@ SUPER SLICK TRANSFORMS
   border-top: 1px solid lightgrey;
 }
 
-/* line 67, ../sass/_messages.scss */
+/* line 71, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
   border-bottom-right-radius: .5em;
   border-bottom-left-radius: .5em;
 }
 
-/* line 74, ../sass/_messages.scss */
+/* line 78, ../sass/_messages.scss */
 .cssanimations.csstransitions .realtime {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -911,12 +916,12 @@ SUPER SLICK TRANSFORMS
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 82, ../sass/_messages.scss */
+/* line 86, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 85, ../sass/_messages.scss */
+/* line 89, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -933,18 +938,6 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 116, ../sass/_messages.scss */
-  0% {
-    border-left: 1px solid #ffbb00;
-  }
-
-  /* line 117, ../sass/_messages.scss */
-  100% {
-    border-left: 1px solid lightgrey;
-  }
-}
-
-@-moz-keyframes realtime-anim {
   /* line 120, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
@@ -956,7 +949,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-@-ms-keyframes realtime-anim {
+@-moz-keyframes realtime-anim {
   /* line 124, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
@@ -968,7 +961,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-@-o-keyframes realtime-anim {
+@-ms-keyframes realtime-anim {
   /* line 128, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
@@ -980,13 +973,25 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-@keyframes realtime-anim {
+@-o-keyframes realtime-anim {
   /* line 132, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
   /* line 133, ../sass/_messages.scss */
+  100% {
+    border-left: 1px solid lightgrey;
+  }
+}
+
+@keyframes realtime-anim {
+  /* line 136, ../sass/_messages.scss */
+  0% {
+    border-left: 1px solid #ffbb00;
+  }
+
+  /* line 137, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
