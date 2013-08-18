@@ -18,6 +18,9 @@ var lastInsertId=0, //ID of the last inserted message
 	animationDuration=250,
 	firstRunAfterMore=true;
 
+
+
+
 function getMessages(){
 	setTimeout(function(){
 		if(mSub)mSub.stop();
@@ -94,6 +97,7 @@ function watchMessages(){
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
+				console.log('old ' + id);
 				//items of load-more+
 				message.hide();
 				$('#'+before).before(message);
@@ -105,24 +109,28 @@ function watchMessages(){
 				// console.log('=========');
 				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
 				// message[0].firstChild.classList.add('avatar-border');
+				// message[0].firstChild.classList.add('tip');
+				// message[0].firstChild.setAttribute('data-tip',fields.username);				
+				// message[0].firstChild.classList.add('avatar-border');
 
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
+					firstRunAfterMore=false;
 				}else{
 					if(prevUser!==fields.username){
 						message.addClass('lastOfUser diffUser');
 						// message.css({'background':'red'});
 						message.next().addClass('diffUser');
+						message[0].firstChild.classList.add('avatar-border');
+						message[0].firstChild.classList.add('tip');
+						message[0].firstChild.addAttribute('data-tip');	
 
 						// message.next()[0].addClass('diffUser');
-					}else{						
-						message.addClass('diffUser');
+					}else{			
 						message.next()[0].firstChild.style.backgroundImage='none';
-						message.next().removeClass('diffUser');
 					}
 				}
 				message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				firstRunAfterMore=false;
 			}
 
 			prevUser=fields.username;
@@ -146,7 +154,7 @@ function watchMessages(){
 			if(fields.messageComplete === true){
 				console.log('message completed');
 				var mfdb = Messages.find({_id:id}).fetch()[0];
-				console.log(mfdb);
+				// console.log(mfdb);
 				if(prevUser===mfdb.username){
 					message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
 				}
@@ -202,7 +210,6 @@ function watchMessages(){
 			// } else{
 			// 	// prevUser=prevId=null;
 			// 	// console.log('setting prevId ' + prevId + ' prevUser ' +prevUser);
-
 			// }
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
@@ -214,6 +221,8 @@ function watchMessages(){
 					$('#'+id).next()[0].firstChild.classList.add('tip');
 					$('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
 					tiprAll();
+				}else{
+					console.log('strange behaviour');
 				}
 			}
 			$('#'+id).remove();
@@ -706,7 +715,7 @@ var initialMessageHeight = 0;
 Template.room.events({
 	'click .load-more': function(evnt) {
 		evnt.preventDefault();
-		// prevUser=prevId=null;
+		prevUser=prevId=null;
 		firstRunAfterMore=true;
 		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
