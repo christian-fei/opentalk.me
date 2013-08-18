@@ -4,11 +4,11 @@
 	background:$color-secondary;
 	color:black;
 	text-align:center;
-	font-size: 2em;
+	// font-size: 2em;
 	position: relative;
 }
 	.welcome-mast-cont{
-		padding:3em;
+		padding:5em;
 		background:url('/images/opentalk_bg_opaque.png');
 		background:url('/images/pattern-white.png');
 		background-size: 400px;
@@ -19,9 +19,7 @@
 		-webkit-animation-fill-mode: both;
 		-moz-animation-fill-mode: both;
 		-o-animation-fill-mode: both;
-		animation-fill-mode: both;
-
-		
+		animation-fill-mode: both;		
 	}
 
 #roomid {

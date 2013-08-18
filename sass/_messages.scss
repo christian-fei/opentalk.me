@@ -22,9 +22,6 @@
 		.avatar{
 			height:1.8em;
 			width: 1.8em;
-			margin-top:.2em;
-			margin-bottom:.2em;
-			margin-left: -1.5em;
 			border-radius: 50%;
 			// border-top-right-radius: 0px;
 			// border-bottom-right-radius: 0px;
@@ -34,6 +31,10 @@
 			background: none;
 			background: transparent;
 			background-size:100%!important;
+
+			position: absolute;
+			left: -0.1em;
+			top: 2.1em;
 		}
 		.avatar-border{
 			border:1px solid darkgrey;

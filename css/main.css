@@ -118,6 +118,36 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
+/* line 13, ../sass/_typography.scss */
+h1 {
+  font-size: 3em;
+}
+
+/* line 14, ../sass/_typography.scss */
+h2 {
+  font-size: 2.7em;
+}
+
+/* line 15, ../sass/_typography.scss */
+h3 {
+  font-size: 2.4em;
+}
+
+/* line 16, ../sass/_typography.scss */
+h4 {
+  font-size: 2em;
+}
+
+/* line 17, ../sass/_typography.scss */
+h5 {
+  font-size: 1.5em;
+}
+
+/* line 18, ../sass/_typography.scss */
+h6 {
+  font-size: 1.2em;
+}
+
 /*
 SUPER SLICK TRANSFORMS
 */
@@ -441,13 +471,12 @@ SUPER SLICK TRANSFORMS
   background: #f1c40f;
   color: black;
   text-align: center;
-  font-size: 2em;
   position: relative;
 }
 
 /* line 10, ../sass/_welcome.scss */
 .welcome-mast-cont {
-  padding: 3em;
+  padding: 5em;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
   background-size: 400px;
@@ -461,7 +490,7 @@ SUPER SLICK TRANSFORMS
   animation-fill-mode: both;
 }
 
-/* line 27, ../sass/_welcome.scss */
+/* line 25, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -475,7 +504,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 44, ../sass/_welcome.scss */
+/* line 42, ../sass/_welcome.scss */
 .blanket, .blanket-white {
   position: relative;
   display: table;
@@ -487,83 +516,83 @@ SUPER SLICK TRANSFORMS
   border: 1px solid lightgrey;
 }
 @media all and (max-width: 32em) {
-  /* line 44, ../sass/_welcome.scss */
+  /* line 42, ../sass/_welcome.scss */
   .blanket, .blanket-white {
     margin: 2.5em auto 2.5em;
   }
 }
 
-/* line 58, ../sass/_welcome.scss */
+/* line 56, ../sass/_welcome.scss */
 .blanket-white {
   background: white;
 }
 
-/* line 63, ../sass/_welcome.scss */
+/* line 61, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 66, ../sass/_welcome.scss */
+/* line 64, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 73, ../sass/_welcome.scss */
+  /* line 71, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 74, ../sass/_welcome.scss */
+  /* line 72, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 77, ../sass/_welcome.scss */
+  /* line 75, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 78, ../sass/_welcome.scss */
+  /* line 76, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 81, ../sass/_welcome.scss */
+  /* line 79, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 82, ../sass/_welcome.scss */
+  /* line 80, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 85, ../sass/_welcome.scss */
+  /* line 83, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 86, ../sass/_welcome.scss */
+  /* line 84, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 89, ../sass/_welcome.scss */
+  /* line 87, ../sass/_welcome.scss */
   0%,100% {
     background-position: 0%;
   }
 
-  /* line 90, ../sass/_welcome.scss */
+  /* line 88, ../sass/_welcome.scss */
   50% {
     background-position: 222px 222px;
   }
@@ -852,23 +881,23 @@ SUPER SLICK TRANSFORMS
 .avatar {
   height: 1.8em;
   width: 1.8em;
-  margin-top: .2em;
-  margin-bottom: .2em;
-  margin-left: -1.5em;
   border-radius: 50%;
   vertical-align: top;
   display: inline-block;
   background: none;
   background: transparent;
   background-size: 100% !important;
+  position: absolute;
+  left: -0.1em;
+  top: 2.1em;
 }
 
-/* line 38, ../sass/_messages.scss */
+/* line 39, ../sass/_messages.scss */
 .avatar-border {
   border: 1px solid darkgrey;
 }
 
-/* line 41, ../sass/_messages.scss */
+/* line 42, ../sass/_messages.scss */
 .text {
   display: inline-block;
   vertical-align: middle;
@@ -883,12 +912,12 @@ SUPER SLICK TRANSFORMS
   hyphens: auto;
 }
 
-/* line 55, ../sass/_messages.scss */
+/* line 56, ../sass/_messages.scss */
 .username {
   display: none;
 }
 
-/* line 60, ../sass/_messages.scss */
+/* line 61, ../sass/_messages.scss */
 .message-image {
   max-height: 5em;
   display: inline-block;
@@ -898,7 +927,7 @@ SUPER SLICK TRANSFORMS
   margin-top: .2em;
 }
 
-/* line 69, ../sass/_messages.scss */
+/* line 70, ../sass/_messages.scss */
 .diffUser {
   margin-top: 1em;
   border-top-right-radius: .5em;
@@ -906,14 +935,14 @@ SUPER SLICK TRANSFORMS
   border-top: 1px solid lightgrey;
 }
 
-/* line 75, ../sass/_messages.scss */
+/* line 76, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
   border-bottom-right-radius: .5em;
   border-bottom-left-radius: .5em;
 }
 
-/* line 82, ../sass/_messages.scss */
+/* line 83, ../sass/_messages.scss */
 .cssanimations.csstransitions .realtime {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -921,12 +950,12 @@ SUPER SLICK TRANSFORMS
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 90, ../sass/_messages.scss */
+/* line 91, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 93, ../sass/_messages.scss */
+/* line 94, ../sass/_messages.scss */
 #mymessage {
   vertical-align: middle;
   resize: none;
@@ -943,60 +972,60 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 124, ../sass/_messages.scss */
+  /* line 125, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 125, ../sass/_messages.scss */
+  /* line 126, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 128, ../sass/_messages.scss */
+  /* line 129, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 129, ../sass/_messages.scss */
+  /* line 130, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 132, ../sass/_messages.scss */
+  /* line 133, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 133, ../sass/_messages.scss */
+  /* line 134, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 136, ../sass/_messages.scss */
+  /* line 137, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 137, ../sass/_messages.scss */
+  /* line 138, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 140, ../sass/_messages.scss */
+  /* line 141, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 141, ../sass/_messages.scss */
+  /* line 142, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }

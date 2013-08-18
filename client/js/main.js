@@ -32,9 +32,9 @@ function getMessages(){
 	},1000);
 }
 
-Meteor.call('calltest','======================',function(error,result){
-	console.log(result);
-});
+// Meteor.call('calltest','======================',function(error,result){
+// 	console.log(result);
+// });
 
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
@@ -675,13 +675,13 @@ function unescapeHtml(escapedStr) {
 function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','</br>');
-	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
-	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
-	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' target='_blank'><img src='$2' class='message-image'/></a>  ");
-	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
-	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
-	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
-	t = t.replace(urlPatternWithoutProtocol, "  <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	// var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
+	// t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' target='_blank'><img src='$2' class='message-image'/></a>  ");
+	// var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	// t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	// var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	// t = t.replace(urlPatternWithoutProtocol, "  <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	t = markdown.parse(t);
 	return t;
 }
 
