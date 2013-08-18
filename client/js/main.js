@@ -675,8 +675,9 @@ function unescapeHtml(escapedStr) {
 function formatMessage(t) {
 	t = escapeHtml(t);
 	t = t.replace('\n','');
-	var imagePattern = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
-	t = t.replace(imagePattern, "  <a href='$1' rel='noindex,nofollow' target='_blank'><img src='$1' class='message-image'/></a>  ");
+	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
+	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
+	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' target='_blank'><img src='$2' class='message-image'/></a>  ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
 	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
