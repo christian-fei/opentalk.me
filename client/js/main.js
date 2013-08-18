@@ -66,15 +66,15 @@ function watchMessages(){
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span>'+id+'<b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
 
 			if(before === null) {
-				//items of first load
+				//items of first load and recently typed ones
 				message.hide();
 				$('#last').before(message);
 				console.log('prevUser ' +prevUser);
 				console.log('currUser ' +fields.username);
-				if(prevUser!==fields.username){
+				if(prevUser===null || prevUser!==fields.username){
 					//A NEW USER
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
@@ -164,25 +164,37 @@ function watchMessages(){
 			// 	return;
 
 			console.log('removed ' + id);
+			console.log('prevId ' + prevId);
 
-			//set prevUser and prevId respectively to the prev element
-			console.log( $('#'+prevId)[0].id );
-			// console.log( $('#'+id).prev().attr('id') !== 'first' );
-			if( $('#'+id).prev().attr('id') !== 'first' ){
-				console.log('an user canceled his message');
-				//there is at least one message, because there are already these fix elements first,last,li-message
-				if( $('.messages').children().length > 3 ){
-					console.log('restore prevUser and prevId');
-					// prevId = $('#'+prevId)[0].id;
-					prevUser = $('#'+prevId + ' .username').html();
-					console.log('prevId ' + prevId + ' prevUser ' +prevUser);
-				}
+			console.log( $('#last').prev().attr('id') );
 
+			if(id === $('#last').prev().attr('id')){
+				prevUser=prevId=null;
 			}
+			
+
+
+			// //set prevUser and prevId respectively to the prev element
+			// if( $('#'+id).prev().attr('id') !== 'first' ){
+			// 	console.log('an user canceled his message');
+			// 	//there is at least one message, because there are already these fix elements first,last,li-message
+			// 	if( $('.messages').children().length > 3 && !Session.get('lastInsertId') ){
+			// 		console.log('restore prevUser and prevId');
+			// 		// prevId = $('#'+prevId)[0].id;
+			// 		prevUser = $('#'+prevId + ' .username').html();
+			// 		console.log('prevId ' + prevId + ' prevUser ' +prevUser);
+			// 	}
+			// 	prevUser=prevId=null;
+			// } else{
+			// 	// prevUser=prevId=null;
+			// 	// console.log('setting prevId ' + prevId + ' prevUser ' +prevUser);
+
+			// }
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
 				if( $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
 					var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
 					$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
+					$('#'+id).next()[0].firstChild.classList.add('avatar-border');
 					$('#'+id).next().addClass('diffUser');
 				}
 			}
@@ -191,7 +203,6 @@ function watchMessages(){
 
 			$('#'+id).remove();
 			//DON'T
-			// prevUser=prevId=null;
 		}
 	});
 }
