@@ -476,7 +476,7 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_welcome.scss */
 .welcome-mast {
   color: white;
-  background: #f78f1e;
+  background: #f6ba00;
   color: black;
   text-align: center;
   position: relative;
@@ -498,7 +498,7 @@ SUPER SLICK TRANSFORMS
 }
 /* line 23, ../sass/_welcome.scss */
 .welcome-mast-cont h1 {
-  color: #eee;
+  color: #222;
   text-shadow: 5px 5px 20px 50px white;
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -771,7 +771,7 @@ SUPER SLICK TRANSFORMS
   margin-top: 3em;
   text-align: center;
   padding: .5em;
-  color: #904e05;
+  color: #765a00;
 }
 
 /* line 130, ../sass/_sidebar.scss */
@@ -786,14 +786,14 @@ SUPER SLICK TRANSFORMS
   cursor: pointer;
   font-weight: bold;
   padding: .5em .8em .5em;
-  background: #f78f1e;
+  background: #f6ba00;
   display: inline-block;
   border-radius: 50%;
   position: fixed;
   left: 0em;
   top: 4.9em;
   z-index: 998;
-  border: 0.1em solid #da7508;
+  border: 0.1em solid #c39300;
   box-shadow: .05em 0em .5em 0em lightgrey;
   /*sadly no transition because it would be 
   	positioned *again* when a heartbeat happens,
@@ -826,12 +826,12 @@ SUPER SLICK TRANSFORMS
   position: fixed;
   height: 3.33em;
   width: 3.33em;
-  background: #f78f1e;
+  background: #f6ba00;
   z-index: 1000;
   border-radius: 50%;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border: 0.1em solid #da7508;
+  border: 0.1em solid #c39300;
   box-shadow: .05em 0em .5em 0em lightgrey;
 }
 @media all and (max-width: 60em) {
@@ -876,9 +876,9 @@ SUPER SLICK TRANSFORMS
   width: 3.33em;
   border-radius: 50%;
   padding: 0.8325em;
-  background: #f78f1e;
+  background: #f6ba00;
   display: inline-block;
-  border: 0.1em solid #da7508;
+  border: 0.1em solid #c39300;
   box-shadow: .05em 0em .5em 0em lightgrey;
 }
 
@@ -1006,7 +1006,7 @@ SUPER SLICK TRANSFORMS
 @-webkit-keyframes realtime-anim {
   /* line 144, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #f78f1e;
+    border-left: 1px solid #f6ba00;
   }
 
   /* line 145, ../sass/_messages.scss */
@@ -1018,7 +1018,7 @@ SUPER SLICK TRANSFORMS
 @-moz-keyframes realtime-anim {
   /* line 148, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #f78f1e;
+    border-left: 1px solid #f6ba00;
   }
 
   /* line 149, ../sass/_messages.scss */
@@ -1030,7 +1030,7 @@ SUPER SLICK TRANSFORMS
 @-ms-keyframes realtime-anim {
   /* line 152, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #f78f1e;
+    border-left: 1px solid #f6ba00;
   }
 
   /* line 153, ../sass/_messages.scss */
@@ -1042,7 +1042,7 @@ SUPER SLICK TRANSFORMS
 @-o-keyframes realtime-anim {
   /* line 156, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #f78f1e;
+    border-left: 1px solid #f6ba00;
   }
 
   /* line 157, ../sass/_messages.scss */
@@ -1054,7 +1054,7 @@ SUPER SLICK TRANSFORMS
 @keyframes realtime-anim {
   /* line 160, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #f78f1e;
+    border-left: 1px solid #f6ba00;
   }
 
   /* line 161, ../sass/_messages.scss */
@@ -1213,13 +1213,13 @@ html {
 }
 /* line 32, ../sass/_general.scss */
 ::selection {
-  background: #f78f1e;
+  background: #f6ba00;
   color: inherit;
 }
 
 /* line 33, ../sass/_general.scss */
 ::-moz-selection {
-  background: #f78f1e;
+  background: #f6ba00;
   color: inherit;
 }
 

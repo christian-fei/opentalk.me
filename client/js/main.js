@@ -614,6 +614,12 @@ Template.room.events({
 		//console.log('logout clicked');
 		evnt.preventDefault();
 
+		if(Meteor.status().connected === false){
+			alert("Please sign out once you are connected to the internet again, sorry for that :(");
+			Meteor.reconnect();
+			return;
+		}
+
 		loggingOut=true;
 
 		goOffline();
