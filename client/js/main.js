@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=10,
+	messagesLimit=50,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -91,7 +91,6 @@ function watchMessages(){
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
 				var offsetBottom = $('body').height() - $('body').scrollTop();
-				console.log( 'before ' + $('body').height() + ' ' + $('body').scrollTop());
 
 				// console.log('old ' + id + ' prevUser ' + prevUser);
 				//items of load-more+
@@ -130,9 +129,7 @@ function watchMessages(){
 					}
 				}
 				// message.delay(100).fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				console.log( 'after ' + $('body').height() + ' ' + $('body').scrollTop());
 				$('body').scrollTop( $('body').height() - offsetBottom );
-				console.log( 'scrollTop now ' + $('body').height() + ' ' + $('body').scrollTop());
 			}
 
 			prevUser=fields.username;
@@ -733,16 +730,18 @@ function formatMessage(t) {
 
 
 
-
+function loadMore(){
+	if(mSub){
+		prevUser=prevId=null;
+		firstRunAfterMore=true;
+		mSub.loadNextPage();
+	}
+}
 var initialMessageHeight = 0;
 Template.room.events({
 	'click .load-more': function(evnt) {
 		evnt.preventDefault();
-		prevUser=prevId=null;
-		firstRunAfterMore=true;
-		// console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
-		mSub.loadNextPage();
-		// console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
+		loadMore();
 	}
 });
 Template.messages.events({
@@ -968,6 +967,11 @@ Meteor.startup(function(){
 			}
 		});		
 		
+		$('#first').waypoint(function(direction) {
+			// alert('Top of thing hit top of viewport.');
+			console.log(direction);
+			loadMore();
+		},{ offset: 200 });
 
 		$(window).resize(function(){
 			positionFixedContent();
