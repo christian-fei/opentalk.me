@@ -18,14 +18,11 @@ var lastInsertId=0, //ID of the last inserted message
 	firstRunAfterMore=true;
 
 
-
-
 function getMessages(){
 	setTimeout(function(){
 		if(mSub)mSub.stop();
 		if(ouSub)ouSub.stop();
 		$('.message').not('#mymessage').remove();
-
 	},100);
 	setTimeout(function(){
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -94,6 +91,7 @@ function watchMessages(){
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
 				var offsetBottom = $('body').height() - $('body').scrollTop();
+				console.log( 'before ' + $('body').height() + ' ' + $('body').scrollTop());
 
 				// console.log('old ' + id + ' prevUser ' + prevUser);
 				//items of load-more+
@@ -132,7 +130,9 @@ function watchMessages(){
 					}
 				}
 				// message.delay(100).fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				$('body').scrollTop($('body').height() - offsetBottom);
+				console.log( 'after ' + $('body').height() + ' ' + $('body').scrollTop());
+				$('body').scrollTop( $('body').height() - offsetBottom );
+				console.log( 'scrollTop now ' + $('body').height() + ' ' + $('body').scrollTop());
 			}
 
 			prevUser=fields.username;
@@ -282,7 +282,7 @@ var pathRoot = window.location.pathname,
 
 
 var limit = 32, //same as CSS _vars.scss
-	sidebarWidth = 14; //same as CSS _room.scss
+	sidebarWidth = 15; //same as CSS _room.scss
 
 Meteor.call('serverTime',function(error, result){
 	servert=result;
@@ -959,7 +959,7 @@ Meteor.startup(function(){
 		$('body,html').bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
 			if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
 				//console.log('scrolling because of '+ e.type);
-				if($(window).scrollTop() + $(window).height()  < $(document).height() - 200 && (e.type == 'mousedown' || e.type == 'mousewheel') ){
+				if($(window).scrollTop() + $(window).height()  < $(document).height() - 100 && (e.type == 'mousedown' || e.type == 'mousewheel') ){
 					stick = false;
 				}else{
 					stick=true;

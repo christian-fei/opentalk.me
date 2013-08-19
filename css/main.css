@@ -674,7 +674,7 @@ SUPER SLICK TRANSFORMS
 /* line 1, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;
-  width: 14em;
+  width: 15em;
   top: 0;
   bottom: 0;
   z-index: 99;
@@ -694,10 +694,10 @@ SUPER SLICK TRANSFORMS
   backface-visibility: hidden;
   box-shadow: -0.3em 0 .4em lightgrey inset;
 }
-@media all and (max-width: 60em) {
+@media all and (max-width: 62em) {
   /* line 1, ../sass/_sidebar.scss */
   .fixed-sidebar {
-    left: -15em !important;
+    left: -16em !important;
     padding: 5em 2em 4em;
   }
 }
@@ -707,7 +707,7 @@ SUPER SLICK TRANSFORMS
   opacity: 1;
   box-shadow: 1em 0 1em lightgrey;
 }
-@media all and (max-width: 60em) {
+@media all and (max-width: 62em) {
   /* line 1, ../sass/_sidebar.scss */
   .fixed-sidebar {
     background: #444444;
@@ -727,18 +727,18 @@ SUPER SLICK TRANSFORMS
   opacity: 1 !important;
 }
 
-@media all and (max-width: 60em) {
+@media all and (max-width: 62em) {
   /* line 64, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
-    -webkit-transform: translate3d(15em, 0, 0);
-    -moz-transform: translate3d(15em, 0, 0);
-    -o-transform: translate3d(15em, 0, 0);
-    -ms-transform: translate3d(15em, 0, 0);
-    transform: translate3d(15em, 0, 0);
+    -webkit-transform: translate3d(16em, 0, 0);
+    -moz-transform: translate3d(16em, 0, 0);
+    -o-transform: translate3d(16em, 0, 0);
+    -ms-transform: translate3d(16em, 0, 0);
+    transform: translate3d(16em, 0, 0);
   }
 }
 
-@media all and (max-width: 60em) {
+@media all and (max-width: 62em) {
   /* line 76, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.show {
     left: 0 !important;
@@ -771,22 +771,14 @@ SUPER SLICK TRANSFORMS
   margin-top: 0.6em;
 }
 
-/* line 109, ../sass/_sidebar.scss */
-.realtime-image {
-  height: 1.3em;
-  width: 1.3em;
-  margin-top: -.325em;
-  margin-bottom: -.325em;
-}
-
-/* line 117, ../sass/_sidebar.scss */
+/* line 112, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1.5em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 122, ../sass/_sidebar.scss */
+/* line 117, ../sass/_sidebar.scss */
 .online-user {
   display: block;
   text-overflow: ellipsis;
@@ -795,7 +787,7 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 130, ../sass/_sidebar.scss */
+/* line 125, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -803,13 +795,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 136, ../sass/_sidebar.scss */
+/* line 131, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 141, ../sass/_sidebar.scss */
+/* line 136, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -834,8 +826,8 @@ SUPER SLICK TRANSFORMS
   transition: all .4s ease-in-out;
   */
 }
-@media all and (max-width: 60em) {
-  /* line 141, ../sass/_sidebar.scss */
+@media all and (max-width: 62em) {
+  /* line 136, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -843,7 +835,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 181, ../sass/_sidebar.scss */
+/* line 176, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -859,21 +851,21 @@ SUPER SLICK TRANSFORMS
   border-bottom-left-radius: 0px;
   border: 0.1em solid #cc9600;
 }
-@media all and (max-width: 60em) {
-  /* line 181, ../sass/_sidebar.scss */
+@media all and (max-width: 62em) {
+  /* line 176, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 206, ../sass/_sidebar.scss */
+/* line 201, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 215, ../sass/_sidebar.scss */
+/* line 210, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -883,16 +875,16 @@ SUPER SLICK TRANSFORMS
   float: left;
   opacity: .5;
 }
-/* line 226, ../sass/_sidebar.scss */
+/* line 221, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 229, ../sass/_sidebar.scss */
+/* line 224, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 235, ../sass/_sidebar.scss */
+/* line 230, ../sass/_sidebar.scss */
 .logo {
   position: absolute;
   top: 1.5em;
@@ -1165,7 +1157,27 @@ input[type='text'].change:focus {
   transform: rotateZ(0deg);
 }
 
-/* line 22, ../sass/_icons.scss */
+/* line 21, ../sass/_icons.scss */
+.icon-logout {
+  background: url("/images/logout.png") no-repeat;
+  background-size: 100%;
+  height: 1.3em;
+  width: 1.3em;
+  margin-top: -.325em;
+  margin-bottom: -.325em;
+}
+
+/* line 30, ../sass/_icons.scss */
+.icon-realtime {
+  background: url("/images/realtime.png") no-repeat;
+  background-size: 100%;
+  height: 1.3em;
+  width: 1.3em;
+  margin-top: -.325em;
+  margin-bottom: -.325em;
+}
+
+/* line 39, ../sass/_icons.scss */
 .toggle-sidebar.left .icon-arrow {
   -webkit-transform: rotateZ(-180deg) !important;
   -moz-transform: rotateZ(-180deg) !important;
@@ -1174,7 +1186,7 @@ input[type='text'].change:focus {
   transform: rotateZ(-180deg) !important;
 }
 
-/* line 30, ../sass/_icons.scss */
+/* line 47, ../sass/_icons.scss */
 .toggle-sidebar:hover .icon-arrow {
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
