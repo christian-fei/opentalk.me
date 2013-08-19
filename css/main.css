@@ -1178,7 +1178,7 @@ input[type='text'].change:focus {
   margin-bottom: -.325em;
 }
 
-/* line 39, ../sass/_icons.scss */
+/* line 40, ../sass/_icons.scss */
 .toggle-sidebar.left .icon-arrow {
   -webkit-transform: rotateZ(-180deg) !important;
   -moz-transform: rotateZ(-180deg) !important;
@@ -1187,13 +1187,40 @@ input[type='text'].change:focus {
   transform: rotateZ(-180deg) !important;
 }
 
-/* line 47, ../sass/_icons.scss */
+/* line 48, ../sass/_icons.scss */
 .toggle-sidebar:hover .icon-arrow {
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
   -o-transform: rotateZ(-45deg);
   -ms-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
+}
+
+/* line 56, ../sass/_icons.scss */
+.icon-twitter, .icon-facebook, .icon-github, .icon-google {
+  background-size: 100%;
+  width: 1em;
+  height: 1em;
+}
+
+/* line 61, ../sass/_icons.scss */
+.icon-twitter {
+  background: url("/images/social/twitter.png") no-repeat;
+}
+
+/* line 64, ../sass/_icons.scss */
+.icon-facebook {
+  background: url("/images/social/facebook.png") no-repeat;
+}
+
+/* line 67, ../sass/_icons.scss */
+.icon-github {
+  background: url("/images/social/github.png") no-repeat;
+}
+
+/* line 70, ../sass/_icons.scss */
+.icon-google {
+  background: url("/images/social/google.png") no-repeat;
 }
 
 /* line 1, ../sass/_general.scss */
@@ -1347,4 +1374,32 @@ http://www.tipue.com/tipr
   border-width: .5em;
   left: 50%;
   margin-left: -.5em;
+}
+
+/* line 1, ../sass/_loginButtons.scss */
+.serviceLogin {
+  display: inline-block;
+  padding: 1em;
+  margin: .2em;
+  width: 4em;
+}
+
+/* line 7, ../sass/_loginButtons.scss */
+.twitter {
+  background: #0092CB;
+}
+
+/* line 8, ../sass/_loginButtons.scss */
+.facebook {
+  background: #0092CB;
+}
+
+/* line 9, ../sass/_loginButtons.scss */
+.google {
+  background: #0092CB;
+}
+
+/* line 10, ../sass/_loginButtons.scss */
+.github {
+  background: #0092CB;
 }

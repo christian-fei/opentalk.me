@@ -6,10 +6,10 @@
 preserve-inputs
 localstorage
 jquery
-accounts-ui
 accounts-twitter
 accounts-github
 accounts-google
 accounts-facebook
 spiderable
 jquery-waypoints
+accounts-ui

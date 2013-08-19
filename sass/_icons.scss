@@ -36,6 +36,7 @@
 	margin-bottom: -.325em;
 }
 
+
 .toggle-sidebar.left .icon-arrow{
 	-webkit-transform:rotateZ(-180deg)!important;
 	-moz-transform:rotateZ(-180deg)!important;
@@ -50,4 +51,22 @@
 	-o-transform:rotateZ(-45deg);
 	-ms-transform:rotateZ(-45deg);
 	transform:rotateZ(-45deg);
+}
+
+.icon-twitter,.icon-facebook,.icon-github,.icon-google{
+	background-size:100%;
+	width:1em;
+	height:1em;
+}
+.icon-twitter{
+	background:url('/images/social/twitter.png') no-repeat;
+}
+.icon-facebook{
+	background:url('/images/social/facebook.png') no-repeat;
+}
+.icon-github{
+	background:url('/images/social/github.png') no-repeat;
+}
+.icon-google{
+	background:url('/images/social/google.png') no-repeat;
 }
