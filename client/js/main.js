@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=75,
+	messagesLimit=10,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -34,7 +34,7 @@ function getMessages(){
 			console.log('messages ready');
 			watchMessages();
 		});
-		if( $('.loading') ) $('.loading').fadeOut(1000);
+		if( $('.loading') ) $('.loading').removeClass('show-loading');
 	},1000);
 }
 
@@ -76,7 +76,7 @@ function watchMessages(){
 
 			if(before === null) {
 				//items of first load and recently typed ones
-				message.hide();
+				// message.hide();
 				$('#last').before(message);
 				// console.log('prevUser ' +prevUser);
 				// console.log('currUser ' +fields.username);
@@ -91,11 +91,13 @@ function watchMessages(){
 					$('#'+prevId).addClass('lastOfUser');
 				}
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
-				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
+				var offsetBottom = $('body').height() - $('body').scrollTop();
+
 				// console.log('old ' + id + ' prevUser ' + prevUser);
 				//items of load-more+
-				message.hide();
+				// message.hide();
 				$('#'+before).before(message);
 				//it is at the bottom of the list, so add lastOfUser class
 			
@@ -129,7 +131,8 @@ function watchMessages(){
 
 					}
 				}
-				message.fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				// message.delay(100).fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
+				$('body').scrollTop($('body').height() - offsetBottom);
 			}
 
 			prevUser=fields.username;
@@ -167,10 +170,10 @@ function watchMessages(){
 				prevId=id;
 				// if(!prevUser)prevUser=fields.username;
 				
-				message.hide();
+				// message.hide();
 				$('#last').before(message);
 				tiprAll();
-				message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
+				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
 			if(stick && Session.get('userid'))
 				scrollDown();
@@ -737,9 +740,9 @@ Template.room.events({
 		evnt.preventDefault();
 		prevUser=prevId=null;
 		firstRunAfterMore=true;
-		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
+		// console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 		mSub.loadNextPage();
-		console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
+		// console.log('loading more messages, current scrollTop ' + $('body').scrollTop() );
 	}
 });
 Template.messages.events({
