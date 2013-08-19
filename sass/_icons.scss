@@ -12,12 +12,25 @@
 	-ms-transition: all .3s ease-in;
 	-o-transition: all .3s ease-in;
 	transition: all .3s ease-in;
+	-webkit-transform:rotateZ(0deg);
+	-moz-transform:rotateZ(0deg);
+	-o-transform:rotateZ(0deg);
+	-ms-transform:rotateZ(0deg);
+	transform:rotateZ(0deg);
 }
 
 .toggle-sidebar.left .icon-arrow{
-	-webkit-transform:rotateZ(-180deg);
-	-moz-transform:rotateZ(-180deg);
-	-o-transform:rotateZ(-180deg);
-	-ms-transform:rotateZ(-180deg);
-	transform:rotateZ(-180deg);
+	-webkit-transform:rotateZ(-180deg)!important;
+	-moz-transform:rotateZ(-180deg)!important;
+	-o-transform:rotateZ(-180deg)!important;
+	-ms-transform:rotateZ(-180deg)!important;
+	transform:rotateZ(-180deg)!important;
+}
+
+.toggle-sidebar:hover .icon-arrow{
+	-webkit-transform:rotateZ(-45deg);
+	-moz-transform:rotateZ(-45deg);
+	-o-transform:rotateZ(-45deg);
+	-ms-transform:rotateZ(-45deg);
+	transform:rotateZ(-45deg);
 }

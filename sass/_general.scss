@@ -25,9 +25,9 @@ html{
 	overflow-x:hidden;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0){
-	::-webkit-scrollbar{width:.777em;} 
+	::-webkit-scrollbar{width:.7em;background:#fff;} 
 	::-webkit-scrollbar-track{background-color: #999;} 
-	::-webkit-scrollbar-thumb{background:#666;}
+	::-webkit-scrollbar-thumb{border-radius: 12px;background-color: rgba(0,0,0,0.2); }
 }
 ::selection{background:$color-main;color:inherit;}
 ::-moz-selection{background:$color-main;color:inherit;}

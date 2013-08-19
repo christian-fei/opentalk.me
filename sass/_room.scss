@@ -18,21 +18,26 @@
 		margin-right:.5em;
 	}
 
-	-webkit-transition: all 333ms linear;
-	-moz-transition: all 333ms linear;
-	-ms-transition: all 333ms linear;
-	-o-transition: all 333ms linear;
-	transition: all 333ms linear;
+	// -webkit-transition: all 333ms linear;
+	// -moz-transition: all 333ms linear;
+	// -ms-transition: all 333ms linear;
+	// -o-transition: all 333ms linear;
+	// transition: all 333ms linear;
 
 	&.under-modal{
-		$blur:3px;
-		-webkit-filter: blur($blur);
-	    -moz-filter: blur($blur);
-	    -o-filter: blur($blur);
-	    -ms-filter: blur($blur);
-	    filter: blur($blur);
-	    
-	    opacity: 0.5;
+		$blur:5px;
+		// -webkit-filter: blur($blur);
+	 //    -moz-filter: blur($blur);
+	 //    -o-filter: blur($blur);
+	 //    -ms-filter: blur($blur);
+	 //    filter: blur($blur);
+	    opacity: 0.3;
+
+	    // -webkit-transform: translateX(1em);
+		// -moz-transform: translateX(1em);
+		// -ms-transform: translateX(1em);
+		// -o-transform: translateX(1em);
+		// transform: translateX(1em);
 	}
 }
 

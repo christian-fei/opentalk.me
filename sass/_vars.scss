@@ -1,7 +1,7 @@
 $limit:32em;
 $limit-extend:40em;
 
-$sidebar-width:12em;
+$sidebar-width:14em;
 
 $color-main:lighten(#2980b9,10%);
 
@@ -12,6 +12,8 @@ $color-main:#FF7200;//orange
 $color-main:#E4582A;//red
 $color-main:#59A029;//dark green
 $color-main:#6EC633;//green
+$color-main:#F0BF00;//yellow
+$color-main:#F78F1E;//orange
 
 
 
@@ -19,7 +21,7 @@ $color-secondary: #f1c40f;
 
 $color-border:lightgrey;
 
-$transition-duration:.25s;
+$animation-duration:.2s;
 
 $toggle-size:3.33em;
 

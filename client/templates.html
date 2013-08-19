@@ -30,7 +30,7 @@
 
 
 <template name='logout'>
-	<a href="#" id='logout' class='button silver' title='Log out'>Log out</span></a>
+	
 </template>
 
 
@@ -75,18 +75,25 @@
 					<img class="user-avatar" src="{{avatar}}"/>
 					<span class="user-username">{{username}}</span>
 				</div>
-				{{>logout}}
-				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'><span class="status-badge {{realtimeEnabled}}"></span><img src="/images/realtime.png" alt="realtime" class='realtime-image'></a>
+				
+				<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
+				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
+					<span class="status-badge {{realtimeEnabled}}"></span><img src="/images/realtime.png" alt="realtime" class='realtime-image'>
+				</a>
 			{{/if}}
 		{{/isolate}}
 		{{#isolate}}
 			<ul class="online-users">
-				<li class='online-users-heading'>
-					people
-				</li>
-				{{#each onlineUsers}}
-					<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
-				{{/each}}
+				{{#if moreThanOneUserOnline}}
+					<li class='online-users-heading'>
+						{{onlineUsersCount}} user online
+					</li>
+					{{#each onlineUsers}}
+						<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
+					{{/each}}
+				{{else}}
+					<li>:( nobody is online right now</li>
+				{{/if}}
 			</ul>
 		{{/isolate}}
 	</aside>

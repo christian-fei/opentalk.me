@@ -14,25 +14,36 @@
 	overflow-y:auto;
 
 
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
+	-webkit-transition: all $animation-duration ease-in-out;
+	-moz-transition: all $animation-duration ease-in-out;
+	-ms-transition: all $animation-duration ease-in-out;
+	-o-transition: all $animation-duration ease-in-out;
+	transition: all $animation-duration ease-in-out;
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: - $sidebar-width - 1em !important;
 		padding:5em 2em 4em;
 	}
+	
+	/*prevent flicker*/
+	// -webkit-backface-visibility: hidden;
+	// -moz-backface-visibility: hidden;
+	// -ms-backface-visibility: hidden;
+	// backface-visibility: hidden;
 
 	&.show{
-		width:15em;
+		// width:15em;
+		// width: 16em;
+
 		//left:0!important;
 		z-index:900;
 		opacity:1;
 		
 		// box-shadow: 0em .3em 2.5em lightgrey;
 		// box-shadow: 3em 0em 4em 0em lightgrey;
+	}
+	@media all and (max-width: $limit + $sidebar-width*2){
+		background:white;
 	}
 
 	&:hover{
@@ -45,12 +56,11 @@
 .csstransforms .fixed-sidebar{
 	@media all and (max-width: $limit + $sidebar-width*2){
 		&.show{
-			-webkit-transform: translateX($sidebar-width + 1em);
-			-moz-transform: translateX($sidebar-width + 1em);
-			-o-transform: translateX($sidebar-width + 1em);
-			-ms-transform: translateX($sidebar-width + 1em);
-			transform: translateX($sidebar-width + 1em);
-			background:white;
+			-webkit-transform: translate3d($sidebar-width + 1em,0,0);
+			-moz-transform: translate3d($sidebar-width + 1em,0,0);
+			-o-transform: translate3d($sidebar-width + 1em,0,0);
+			-ms-transform: translate3d($sidebar-width + 1em,0,0);
+			transform: translate3d($sidebar-width + 1em,0,0);
 		}
 	}
 }
@@ -59,7 +69,6 @@
 	@media all and (max-width: $limit + $sidebar-width*2){
 		&.show{
 			left:0!important;
-			background:white;
 		}
 	}
 }
@@ -84,7 +93,7 @@
 #logout,#toggleRealtime{
 	float:left;
 	//clear:right;
-	margin-left:0.3em;
+	margin-left:0.8em;
 	margin-top:0.6em;
 }
 
@@ -100,7 +109,7 @@
 
 
 .online-users{
-	margin-top: 2em;
+	margin-top: 1.5em;
 	text-align: left;
 	list-style-type: none;
 }
@@ -112,15 +121,21 @@
 	    color:#444;
 	}
 
-.online-users{
+.roomid{
+	margin-top:3em;
+	text-align: center;
+	padding:.5em;
+	color:darken($color-main,25%);
+}
+.online-users,.roomid{
 	float:right;
 	width:100%;
 }
 
 .online-users-count{
 	color:white;
+	cursor: pointer;
 	font-weight: bold;
-	font-family: 'Source Sans Pro', sans-serif;
 	padding: .5em .8em .5em;
 	background: $color-main;
 	display: inline-block;
@@ -128,7 +143,7 @@
 
 	position:fixed;
 	left:0em;
-	top:4.8em;
+	top:4.9em;
 	z-index: 998;
 
 	border:.1em solid darken($color-main,10%);

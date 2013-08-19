@@ -11,7 +11,7 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=5,
+	messagesLimit=75,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
@@ -277,7 +277,7 @@ var pathRoot = window.location.pathname,
 
 
 var limit = 32, //same as CSS _vars.scss
-	sidebarWidth = 12; //same as CSS _room.scss
+	sidebarWidth = 14; //same as CSS _room.scss
 
 Meteor.call('serverTime',function(error, result){
 	servert=result;
@@ -542,35 +542,7 @@ Template.loginForm.events({
 });
 
 
-Template.logout.events({
-	'click #logout' : function(evnt,tmplt){
-		//console.log('logout clicked');
-		evnt.preventDefault();
 
-		loggingOut=true;
-
-		goOffline();
-		// unsubscribe();
-		Session.set('userid',null);
-		Session.set('username',null);
-		Meteor._localStorage.removeItem('avatar');
-		Meteor._localStorage.removeItem('userid');
-		Meteor._localStorage.removeItem('username');
-		if(Meteor.user())
-			Meteor.logout(function(){
-				Session.set('userid',null);
-				Session.set('username',null);
-			});
-		setTimeout(function(){
-			loggingOut=false;
-		},50);
-		//loggingOut=false;
-		//Session.set('roomid',null);
-
-		//redirect user to /
-		//Meteor.Router.to('/');
-	}
-});
 
 
 
@@ -599,6 +571,14 @@ Template.room.onlineUsers =function(){
 Template.room.onlineUsersCount =function(){
 	return OnlineUsers.find().fetch().length;
 }
+Template.room.moreThanOneUserOnline =function(){
+	return OnlineUsers.find().fetch().length > 0 ? true : false;
+}
+
+Template.room.roomid =function(){
+	return Session.get('roomid');
+}
+
 Template.room.realtimeEnabled = function(){
 	return Session.get('realtimeEnabled') ? 'on' : 'off';
 }
@@ -618,6 +598,7 @@ Template.room.roomSelected = function(){
 
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
+	'click .online-users-count' : toggleSidebar,
 	'click #toggleRealtime' : function(evnt){
 		evnt.preventDefault();
 		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));
@@ -628,6 +609,33 @@ Template.room.events({
 		goOffline();
 		Session.set('roomid',null);
 		Meteor.Router.to('/');
+	},
+	'click #logout' : function(evnt,tmplt){
+		//console.log('logout clicked');
+		evnt.preventDefault();
+
+		loggingOut=true;
+
+		goOffline();
+		// unsubscribe();
+		Session.set('userid',null);
+		Session.set('username',null);
+		Meteor._localStorage.removeItem('avatar');
+		Meteor._localStorage.removeItem('userid');
+		Meteor._localStorage.removeItem('username');
+		if(Meteor.user())
+			Meteor.logout(function(){
+				Session.set('userid',null);
+				Session.set('username',null);
+			});
+		setTimeout(function(){
+			loggingOut=false;
+		},50);
+		//loggingOut=false;
+		//Session.set('roomid',null);
+
+		//redirect user to /
+		//Meteor.Router.to('/');
 	}
 });
 
@@ -865,7 +873,7 @@ function scrollDown(){
 		$("html, body").scrollTop($('html').height()+2000);
 		$('#mymessage').focus();
 		// $('html,body').animate({scrollTop: $('html').height() + 5000 },1);
-	});
+	},0);
 	// if($('.messages').children().length > 3){
 	// }
 }
