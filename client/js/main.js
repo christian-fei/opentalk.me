@@ -23,6 +23,7 @@ var lastInsertId=0, //ID of the last inserted message
 function getMessages(){
 	setTimeout(function(){
 		if(mSub)mSub.stop();
+		if(ouSub)ouSub.stop();
 		$('.message').not('#mymessage').remove();
 	},1000);
 	setTimeout(function(){
