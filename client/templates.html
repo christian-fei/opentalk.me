@@ -103,14 +103,14 @@
 	</aside>
 	<div class="main">
 
-		{{#unless loggedIn}}
-			{{>loginForm}}
-		{{/unless}}
 
 		<div class="loading show-loading">One sec, fetching your messages..</div>
 		
 		{{>messages}}
 		
+		{{#unless loggedIn}}
+			{{>loginForm}}
+		{{/unless}}
 	</div>
 </template>
 

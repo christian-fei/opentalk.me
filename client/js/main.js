@@ -137,7 +137,7 @@ function watchMessages(){
 
 			tiprAll();
 			
-			if(stick && Session.get('userid'))scrollDown();
+			if(stick)scrollDown();
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id + ' to ' + fields.text);
@@ -172,7 +172,7 @@ function watchMessages(){
 				tiprAll();
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
-			if(stick && Session.get('userid'))
+			if(stick)
 				scrollDown();
 		},
 		movedBefore: function(id,before){
@@ -681,8 +681,9 @@ Template.messages.messages = function(){
 	}*/
 };
 
+/*this should get called if no messages have been added, which trigger scrolltobottom*/
 Template.messages.rendered = function(){
-	if(Session.get('userid') && Session.get('userid') && stick){
+	if(stick){
 		//console.log('scrolling because stick');
 		scrollDown();
 		//this.find('#mymessage').focus();
@@ -969,9 +970,8 @@ Meteor.startup(function(){
 		
 		$('#first').waypoint(function(direction) {
 			// alert('Top of thing hit top of viewport.');
-			console.log(direction);
 			loadMore();
-		},{ offset: 200 });
+		},{ offset: 50 });
 
 		$(window).resize(function(){
 			positionFixedContent();
