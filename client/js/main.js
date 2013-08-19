@@ -480,7 +480,8 @@ function nicknameAvailable(n){
 
 
 function showSidebar(){
-	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
+	// && $(window).width() < limit*16 + sidebarWidth*2*16
+	if( !$('.fixed-sidebar').hasClass('show')  ){
 		$('.fixed-sidebar').addClass('show');
 		$('.main').addClass('under-modal');
 		$('.toggle-sidebar').addClass('left');
@@ -491,7 +492,8 @@ function showSidebar(){
 	}
 }
 function hideSidebar(){
-	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
+	// && $(window).width() < limit*16 + sidebarWidth*2*16
+	if( $('.fixed-sidebar').hasClass('show')  ){
 		$('.fixed-sidebar').removeClass('show');
 		$('.main').removeClass('under-modal');
 		$('.toggle-sidebar').removeClass('left');
@@ -888,6 +890,7 @@ function positionFixedContent(){
 		var l = $('.main').offset().left - sidebarWidth*16;
 		$('.fixed-sidebar').css( 'left', l );
 		$('.online-users-count').css( 'left', l );
+		$('.toggle-sidebar').css( 'left', l );
 
 		
 		if($('.fixed-sidebar').hasClass('show')){
