@@ -1,18 +1,3 @@
-.body-half{
-	position:fixed;
-	top:0;bottom:0;
-	left:0;
-	right:50%;
-	z-index: 0;
-	background: url('/images/opentalk_bg.png');
-	background:url('/images/pattern-black.png');
-
-	background-size: 800px;
-}
-
-body > * {
-	position:relative;
-}
 body{
 	background:#F0F0F0;
 }

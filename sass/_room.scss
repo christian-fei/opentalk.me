@@ -53,12 +53,18 @@
 	border:0px;
 	box-shadow: none;
 
-	background:none;
+	// background:none;
 
 	font-size: 1.1rem;
 	font-family: 'Questrial', sans-serif;
 	margin-top: -.3em;
 }
+
+.login-form{
+	text-align: center;
+	margin-top:0;
+}
+
 
 .loading{
 	display: block;

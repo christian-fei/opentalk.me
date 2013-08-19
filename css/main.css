@@ -527,6 +527,7 @@ SUPER SLICK TRANSFORMS
   margin: 4em auto 4em;
   border-radius: 5px;
   border: 1px solid lightgrey;
+  background: url("/images/pattern-black.png");
 }
 @media all and (max-width: 32em) {
   /* line 47, ../sass/_welcome.scss */
@@ -535,77 +536,72 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 61, ../sass/_welcome.scss */
-.blanket-white {
-  background: white;
-}
-
-/* line 66, ../sass/_welcome.scss */
+/* line 67, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 69, ../sass/_welcome.scss */
+/* line 70, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 77, ../sass/_welcome.scss */
+  /* line 78, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 78, ../sass/_welcome.scss */
+  /* line 79, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 81, ../sass/_welcome.scss */
+  /* line 82, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 82, ../sass/_welcome.scss */
+  /* line 83, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 85, ../sass/_welcome.scss */
+  /* line 86, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 86, ../sass/_welcome.scss */
+  /* line 87, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 89, ../sass/_welcome.scss */
+  /* line 90, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 90, ../sass/_welcome.scss */
+  /* line 91, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 93, ../sass/_welcome.scss */
+  /* line 94, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 94, ../sass/_welcome.scss */
+  /* line 95, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
@@ -641,13 +637,18 @@ SUPER SLICK TRANSFORMS
   outline: none;
   border: 0px;
   box-shadow: none;
-  background: none;
   font-size: 1.1rem;
   font-family: 'Questrial', sans-serif;
   margin-top: -.3em;
 }
 
 /* line 63, ../sass/_room.scss */
+.login-form {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* line 69, ../sass/_room.scss */
 .loading {
   display: block;
   width: 100%;
@@ -663,7 +664,7 @@ SUPER SLICK TRANSFORMS
   -o-transition: all 333ms linear;
   transition: all 333ms linear;
 }
-/* line 79, ../sass/_room.scss */
+/* line 85, ../sass/_room.scss */
 .loading.show-loading {
   height: auto;
   padding: 1em;
@@ -1196,69 +1197,51 @@ input[type='text'].change:focus {
 }
 
 /* line 1, ../sass/_general.scss */
-.body-half {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 50%;
-  z-index: 0;
-  background: url("/images/opentalk_bg.png");
-  background: url("/images/pattern-black.png");
-  background-size: 800px;
-}
-
-/* line 13, ../sass/_general.scss */
-body > * {
-  position: relative;
-}
-
-/* line 16, ../sass/_general.scss */
 body {
   background: #F0F0F0;
 }
 
-/* line 20, ../sass/_general.scss */
+/* line 5, ../sass/_general.scss */
 input {
   background: none;
 }
 
-/* line 24, ../sass/_general.scss */
+/* line 9, ../sass/_general.scss */
 html {
   overflow-x: hidden;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 28, ../sass/_general.scss */
+  /* line 13, ../sass/_general.scss */
   ::-webkit-scrollbar {
     width: .7em;
     background: #fff;
   }
 
-  /* line 29, ../sass/_general.scss */
+  /* line 14, ../sass/_general.scss */
   ::-webkit-scrollbar-track {
     background-color: #999;
   }
 
-  /* line 30, ../sass/_general.scss */
+  /* line 15, ../sass/_general.scss */
   ::-webkit-scrollbar-thumb {
     border-radius: 12px;
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
-/* line 32, ../sass/_general.scss */
+/* line 17, ../sass/_general.scss */
 ::selection {
   background: #ffbb00;
   color: inherit;
 }
 
-/* line 33, ../sass/_general.scss */
+/* line 18, ../sass/_general.scss */
 ::-moz-selection {
   background: #ffbb00;
   color: inherit;
 }
 
-/* line 36, ../sass/_general.scss */
+/* line 21, ../sass/_general.scss */
 .debug {
   position: fixed;
   top: 0;

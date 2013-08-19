@@ -69,7 +69,7 @@ function watchMessages(){
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><span class="text">'+fields.text+'</span></li>');
+			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><p class="text">'+fields.text+'</p></li>');
 
 			if(before === null) {
 				//items of first load and recently typed ones
@@ -158,11 +158,11 @@ function watchMessages(){
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				// console.log(mfdb);
 				if(prevUser===mfdb.username){
-					message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><span class="text">'+mfdb.text+'</span></li>');
+					message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><p class="text">'+mfdb.text+'</p></li>');
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+mfdb.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><span class="text">'+ mfdb.text +'</span></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+mfdb.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
 					// prevUser=null;
 					
 				}

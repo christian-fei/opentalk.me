@@ -19,8 +19,12 @@
 
 <template name='loginForm'>
 	{{#unless loggingIn}}
-		<div class="blanket-white">
-			<span class="vam">Pick a nickname to join </span> <input type="text" id='nickname' placeholder='trasher666'>
+		<div class="blanket login-form">
+			<span class="">Choose a nickname </span> <input type="text" id='nickname' placeholder='trasher666'>
+			<br>
+			<h4>or</h4>
+			<h6>sign in with</h6>
+			<br>
 			{{loginButtons}}
 		</div>
 	{{/unless}}
@@ -98,12 +102,14 @@
 		{{/isolate}}
 	</aside>
 	<div class="main">
-		<div class="load-more">older messages</div>
-		<div class="loading show-loading">One sec, fetching your messages..</div>
 
 		{{#unless loggedIn}}
 			{{>loginForm}}
 		{{/unless}}
+		
+		<div class="load-more">older messages</div>
+
+		<div class="loading show-loading">One sec, fetching your messages..</div>
 		
 		{{>messages}}
 		

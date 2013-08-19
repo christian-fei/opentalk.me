@@ -53,6 +53,7 @@
 	margin: 4em auto 4em;
 	border-radius: 5px;
 	border: 1px solid lightgrey;
+	background:url('/images/pattern-black.png');
 
 	@media all and(max-width: $limit){
 		margin: 2.5em 1em;
@@ -60,7 +61,7 @@
 }
 .blanket-white{
 	@extend .blanket;
-	background:white;
+	// background:white;
 }
 
 .medium-text{
