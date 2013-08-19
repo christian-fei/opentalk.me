@@ -691,7 +691,6 @@ SUPER SLICK TRANSFORMS
   width: 15em;
   z-index: 900;
   opacity: 1;
-  box-shadow: 3em 0em 4em 0em lightgrey;
 }
 /* line 38, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
