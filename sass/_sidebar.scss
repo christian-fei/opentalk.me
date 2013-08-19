@@ -6,7 +6,6 @@
 	top:0;bottom:0;
 	z-index: 99;
 
-	overflow: hidden;
 	
 	/*padding top 5em to  push it away from .toggle-*/
 	padding:5em 1em 4em;
@@ -14,7 +13,6 @@
 
 	overflow-y:auto;
 
-	opacity: 0;
 
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -38,9 +36,9 @@
 	}
 
 	&:hover{
-		// opacity:1;
+		opacity:1;
 		& .online-users-count{
-			// opacity: 1!important;
+			opacity: 1!important;
 		}
 	}
 }
@@ -130,8 +128,12 @@
 
 	position:fixed;
 	left:0em;
-	top:3.7em;
+	top:4.8em;
 	z-index: 998;
+
+	border:.1em solid darken($color-main,10%);
+
+	box-shadow: .05em 0em .5em 0em lightgrey;
 
 	/*sadly no transition because it would be 
 		positioned *again* when a heartbeat happens,
@@ -155,10 +157,10 @@
 
 
 .toggle-sidebar{
-	// display:none;
+	display:none;
 	cursor: pointer;
 	left:0;
-	top:.5em;
+	top:1.5em;
 	position:fixed;
 	height:$toggle-size;
 	width:$toggle-size;
@@ -168,17 +170,23 @@
 	border-radius: 50%;
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
+
+	border:.1em solid darken($color-main,10%);
 	
 	@media all and(max-width: $limit + $sidebar-width*2){
-		// display:block;
+		display:block;
 		left: 0!important;
 	}
+	
+	
+	box-shadow: .05em 0em .5em 0em lightgrey;
 
 	.icon-arrow{
 		width:$toggle-size/2;
 		height:$toggle-size/2;
+		$offset:$toggle-size/4 - .1em;
 
-		margin:$toggle-size/4 0 0 $toggle-size/4;
+		margin:$offset 0 0 $offset;
 	}
 
 }
@@ -205,14 +213,18 @@
 
 .logo{
 	position:absolute;
-	top:1em;
-	right:0;
+	top:1.5em;
+	right:1em;
 	height:$toggle-size;
 	width:$toggle-size;
 	border-radius: 50%;
-	border-top-right-radius:0;
-	border-bottom-right-radius:0;
+	// border-top-right-radius:0;
+	// border-bottom-right-radius:0;
 	padding:$toggle-size/4;
 	background:$color-main;
 	display: inline-block;
+
+	border:.1em solid darken($color-main,10%);
+
+	box-shadow: .05em 0em .5em 0em lightgrey;
 }

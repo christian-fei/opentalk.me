@@ -890,7 +890,7 @@ function positionFixedContent(){
 		var l = $('.main').offset().left - sidebarWidth*16;
 		$('.fixed-sidebar').css( 'left', l );
 		$('.online-users-count').css( 'left', l );
-		$('.toggle-sidebar').css( 'left', l );
+		// $('.toggle-sidebar').css( 'left', l );
 
 		
 		if($('.fixed-sidebar').hasClass('show')){
