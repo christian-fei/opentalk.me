@@ -34,10 +34,8 @@ function getMessages(){
 			console.log('messages ready');
 			watchMessages();
 		});
-	},100);
-	setTimeout(function(){
 		if( $('.loading') ) $('.loading').fadeOut(1000);
-	},100);
+	},1000);
 }
 
 Meteor.call('calltest','======================',function(error,result){
