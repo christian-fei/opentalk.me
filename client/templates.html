@@ -67,7 +67,7 @@
 	{{/isolate}}
 	<aside class="fixed-sidebar">
 		<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
-			<img src="/images/logo_even_white.png" alt="" class="logo">
+			<img src="/images/logo_even_dark.png" alt="" class="logo">
 		</a>
 		{{#isolate}}
 			{{#if loggedIn}}
@@ -86,7 +86,7 @@
 			<ul class="online-users">
 				{{#if moreThanOneUserOnline}}
 					<li class='online-users-heading'>
-						{{onlineUsersCount}} user online
+						{{onlineUsersCount}} online
 					</li>
 					{{#each onlineUsers}}
 						<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
@@ -98,10 +98,7 @@
 		{{/isolate}}
 	</aside>
 	<div class="main">
-		{{#if loadingMessages}}
-			<div class="loading">LOADINGGG</div>
-		{{/if}}
-
+		<div class="loading">One sec, fetching your messages..</div>
 
 		{{#unless loggedIn}}
 			{{>loginForm}}

@@ -26,11 +26,13 @@
 	}
 	
 	/*prevent flicker*/
-	// -webkit-backface-visibility: hidden;
-	// -moz-backface-visibility: hidden;
-	// -ms-backface-visibility: hidden;
-	// backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
 
+
+	box-shadow: -0.3em 0 .4em lightgrey inset;
 	&.show{
 		// width:15em;
 		// width: 16em;
@@ -39,11 +41,15 @@
 		z-index:900;
 		opacity:1;
 		
-		// box-shadow: 0em .3em 2.5em lightgrey;
-		// box-shadow: 3em 0em 4em 0em lightgrey;
+		box-shadow: 1em 0 1em lightgrey;
 	}
 	@media all and (max-width: $limit + $sidebar-width*2){
-		background:white;
+		background:$color-secondary;
+		color:#eee;
+
+		.online-user{
+			color:#eee;
+		}
 	}
 
 	&:hover{
@@ -133,8 +139,8 @@
 }
 
 .online-users-count{
-	color:white;
-	cursor: pointer;
+	color:$color-secondary;
+	
 	font-weight: bold;
 	padding: .5em .8em .5em;
 	background: $color-main;
@@ -148,7 +154,7 @@
 
 	border:.1em solid darken($color-main,10%);
 
-	box-shadow: .05em 0em .5em 0em lightgrey;
+	// box-shadow: .05em 0em .5em 0em lightgrey;
 
 	/*sadly no transition because it would be 
 		positioned *again* when a heartbeat happens,
@@ -163,10 +169,11 @@
 	*/
 
 	@media all and (max-width: $limit + $sidebar-width*2){
-		border-top-left-radius:0px;
-		border-bottom-left-radius:0px;
+		// border-top-left-radius:0px;
+		// border-bottom-left-radius:0px;
 		left: 0!important;
 		opacity: 1;
+		cursor: pointer;
 	}
 }
 
@@ -194,7 +201,7 @@
 	}
 	
 	
-	box-shadow: .05em 0em .5em 0em lightgrey;
+	// box-shadow: .05em 0em .5em 0em lightgrey;
 
 	.icon-arrow{
 		width:$toggle-size/2;
@@ -203,7 +210,6 @@
 
 		margin:$offset 0 0 $offset;
 	}
-
 }
 
 .status-badge{
@@ -241,5 +247,5 @@
 
 	border:.1em solid darken($color-main,10%);
 
-	box-shadow: .05em 0em .5em 0em lightgrey;
+	// box-shadow: .05em 0em .5em 0em lightgrey;
 }

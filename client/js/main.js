@@ -25,7 +25,8 @@ function getMessages(){
 		if(mSub)mSub.stop();
 		if(ouSub)ouSub.stop();
 		$('.message').not('#mymessage').remove();
-	},1000);
+
+	},100);
 	setTimeout(function(){
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
@@ -33,7 +34,10 @@ function getMessages(){
 			console.log('messages ready');
 			watchMessages();
 		});
-	},1000);
+	},100);
+	setTimeout(function(){
+		if( $('.loading') ) $('.loading').fadeOut(1000);
+	},100);
 }
 
 Meteor.call('calltest','======================',function(error,result){
@@ -480,8 +484,8 @@ function nicknameAvailable(n){
 
 
 function showSidebar(){
-	// && $(window).width() < limit*16 + sidebarWidth*2*16
-	if( !$('.fixed-sidebar').hasClass('show')  ){
+	// 
+	if( !$('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
 		$('.fixed-sidebar').addClass('show');
 		$('.main').addClass('under-modal');
 		$('.toggle-sidebar').addClass('left');
@@ -492,8 +496,8 @@ function showSidebar(){
 	}
 }
 function hideSidebar(){
-	// && $(window).width() < limit*16 + sidebarWidth*2*16
-	if( $('.fixed-sidebar').hasClass('show')  ){
+	// 
+	if( $('.fixed-sidebar').hasClass('show') && $(window).width() < limit*16 + sidebarWidth*2*16 ){
 		$('.fixed-sidebar').removeClass('show');
 		$('.main').removeClass('under-modal');
 		$('.toggle-sidebar').removeClass('left');
