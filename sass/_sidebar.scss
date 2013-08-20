@@ -13,7 +13,7 @@
 
 	overflow-y:auto;
 	
-	background: url('/images/pattern-black-1.png');
+	
 
 	-webkit-transition: all $animation-duration ease-in-out;
 	-moz-transition: all $animation-duration ease-in-out;
@@ -43,6 +43,9 @@
 		opacity:1;
 		
 		box-shadow: 1em 0 1em lightgrey;
+	}
+	@media all and (max-width: $limit + $sidebar-width*2){
+		background: url('/images/pattern-black-1.png');
 	}
 	
 	&:hover{

@@ -683,7 +683,6 @@ SUPER SLICK TRANSFORMS
   padding: 5em 1em 4em;
   margin-bottom: -2em;
   overflow-y: auto;
-  background: url("/images/pattern-black-1.png");
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -ms-transition: all 0.2s ease-in-out;
@@ -709,17 +708,23 @@ SUPER SLICK TRANSFORMS
   opacity: 1;
   box-shadow: 1em 0 1em lightgrey;
 }
-/* line 48, ../sass/_sidebar.scss */
+@media all and (max-width: 62em) {
+  /* line 1, ../sass/_sidebar.scss */
+  .fixed-sidebar {
+    background: url("/images/pattern-black-1.png");
+  }
+}
+/* line 51, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 50, ../sass/_sidebar.scss */
+/* line 53, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 
 @media all and (max-width: 62em) {
-  /* line 57, ../sass/_sidebar.scss */
+  /* line 60, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(16em, 0, 0);
     -moz-transform: translate3d(16em, 0, 0);
@@ -730,24 +735,24 @@ SUPER SLICK TRANSFORMS
 }
 
 @media all and (max-width: 62em) {
-  /* line 69, ../sass/_sidebar.scss */
+  /* line 72, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.show {
     left: 0 !important;
   }
 }
 
-/* line 75, ../sass/_sidebar.scss */
+/* line 78, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
 }
-/* line 77, ../sass/_sidebar.scss */
+/* line 80, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 84, ../sass/_sidebar.scss */
+/* line 87, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -755,7 +760,7 @@ SUPER SLICK TRANSFORMS
   display: block;
 }
 
-/* line 92, ../sass/_sidebar.scss */
+/* line 95, ../sass/_sidebar.scss */
 #logout, #toggleRealtime {
   float: left;
   margin-left: 0.8em;
@@ -764,14 +769,14 @@ SUPER SLICK TRANSFORMS
   border: 1px solid darkgrey;
 }
 
-/* line 108, ../sass/_sidebar.scss */
+/* line 111, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1.5em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 113, ../sass/_sidebar.scss */
+/* line 116, ../sass/_sidebar.scss */
 .online-user {
   display: block;
   text-overflow: ellipsis;
@@ -780,7 +785,7 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 121, ../sass/_sidebar.scss */
+/* line 124, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -788,13 +793,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 127, ../sass/_sidebar.scss */
+/* line 130, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 132, ../sass/_sidebar.scss */
+/* line 135, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -820,7 +825,7 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 62em) {
-  /* line 132, ../sass/_sidebar.scss */
+  /* line 135, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -828,7 +833,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 172, ../sass/_sidebar.scss */
+/* line 175, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -845,20 +850,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 62em) {
-  /* line 172, ../sass/_sidebar.scss */
+  /* line 175, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 197, ../sass/_sidebar.scss */
+/* line 200, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 206, ../sass/_sidebar.scss */
+/* line 209, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -868,16 +873,16 @@ SUPER SLICK TRANSFORMS
   float: left;
   opacity: .5;
 }
-/* line 217, ../sass/_sidebar.scss */
+/* line 220, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 220, ../sass/_sidebar.scss */
+/* line 223, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 226, ../sass/_sidebar.scss */
+/* line 229, ../sass/_sidebar.scss */
 .logo {
   position: absolute;
   top: 1.5em;
