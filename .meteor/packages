@@ -13,9 +13,19 @@ accounts-facebook
 jquery-waypoints
 accounts-ui
 standard-app-packages
+<<<<<<< HEAD
 page-js-ie-support
 router
 presence
 spin
 HTML5-History-API
 paginated-subscription
+=======
+phantomjs
+HTML5-History-API
+paginated-subscription
+page-js-ie-support
+presence
+spin
+router
+>>>>>>> b47d60491be941969388395f47f8de1772297df2
