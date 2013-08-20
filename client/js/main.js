@@ -52,6 +52,18 @@ function tiprAll(){
 	$('.tip').tipr({'speed':100,'mode':'top'});
 }
 
+function imageExp(){
+	$('.message-image').on('click',function(){
+		console.log('exp');
+		console.log( $(this) );
+		$(this).toggleClass('exp');
+		// if( $(this).hasClass('exp') )
+		// 	$(this).removeClass('exp');
+		// else
+		// 	$(this).addClass('exp');
+	})
+}
+
 function watchMessages(){
 	$('.message').not('#mymessage').remove();
 	
@@ -136,6 +148,7 @@ function watchMessages(){
 			prevId=id;
 
 			tiprAll();
+			imageExp();
 			
 			if(stick)scrollDown();
 		},
@@ -172,6 +185,7 @@ function watchMessages(){
 				tiprAll();
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
+			imageExp();
 			if(stick)
 				scrollDown();
 		},

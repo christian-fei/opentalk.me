@@ -45,10 +45,12 @@
 	}
 	@media all and (max-width: $limit + $sidebar-width*2){
 		background:$color-secondary;
+		background:#c4c4c4;
 		color:#eee;
+		color:#222;
 
 		.online-user{
-			color:#eee;
+			color:inherit;
 		}
 	}
 
@@ -101,6 +103,9 @@
 	//clear:right;
 	margin-left:0.8em;
 	margin-top:0.6em;
+
+	text-decoration: none;
+	border:1px solid darkgrey;
 }
 
 #toggleRealtime{

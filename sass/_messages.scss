@@ -42,12 +42,12 @@
 			border:1px solid darkgrey;
 		}
 		.text{
-			display: inline-block;
+			display: block;
 			vertical-align: middle;
 			margin-left:.5em;
 			margin-right:.5em;
-			margin-top:.2em;
-			margin-bottom:.2em;
+			// margin-top:.2em;
+			// margin-bottom:.2em;
 			-ms-word-break: break-all;
 			word-break: break-all;
 			// Non standard for webkit
@@ -62,28 +62,30 @@
 
 		.message-image-wrapper{
 			position: relative;
-
+			display: inline-block;
+			// float:left;
+			// clear:left;
 
 			.open-in-new-tab{
 				position: absolute;
-				top:0;
-				right:0;
-				height:1.5em;
-				width:1.5em;
+				top:.2em;
+				right:-1em;
+				height:1em;
+				width:1em;
 				background: url('/images/link.png') no-repeat;
 				background-size:100%;
 			}
 		}
 		.message-image{
-			max-height: 5em;
 			display: inline-block;
-			float:left;
-			clear:left;
+			max-height: 5em;
 			margin-top: .2em;
 			margin-top: .2em;
+
 			&.exp{
-				max-width: 100%;
-				max-height: auto!important;
+				max-width: $limit;
+				max-height: inherit;
+				width: 100%;
 			}
 		}
 		
