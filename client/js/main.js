@@ -127,6 +127,7 @@ function watchMessages(){
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
 					firstRunAfterMore=false;
+					
 				}else{
 					if(prevUser!==fields.username){
 						/*NEW USER*/
