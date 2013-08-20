@@ -77,7 +77,7 @@ function watchMessages(){
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
 
-			$('.load-more').removeClass('show-loading');
+			// $('.load-more').removeClass('show-loading');
 
 			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
 			if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
@@ -157,7 +157,7 @@ function watchMessages(){
 			prevUser=fields.username;
 			prevId=id;
 
-			tiprAll();
+			// tiprAll();
 			imageExp();
 			
 			if(stick)scrollDown();
@@ -192,7 +192,7 @@ function watchMessages(){
 				
 				// message.hide();
 				$('#last').before(message);
-				tiprAll();
+				// tiprAll();
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
 			imageExp();
@@ -243,7 +243,7 @@ function watchMessages(){
 					$('#'+id).next().addClass('diffUser');
 					$('#'+id).next()[0].firstChild.classList.add('tip');
 					$('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
-					tiprAll();
+					// tiprAll();
 				}else{
 					console.log('strange behaviour');
 				}
@@ -774,7 +774,7 @@ function loadMore(){
 	if(mSub){
 		prevUser=prevId=null;
 		firstRunAfterMore=true;
-		$('.load-more').addClass('show-loading');
+		// $('.load-more').addClass('show-loading');
 		mSub.loadNextPage();
 	}
 }
