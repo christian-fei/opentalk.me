@@ -4,7 +4,6 @@
     "HTML5-History-API": {},
     "presence": {},
     "paginated-subscription": {},
-    "spin": {},
-    "phantomjs": {}
+    "spin": {}
   }
 }

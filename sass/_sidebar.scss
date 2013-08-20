@@ -12,7 +12,8 @@
 	margin-bottom:-2em;
 
 	overflow-y:auto;
-
+	
+	
 
 	-webkit-transition: all $animation-duration ease-in-out;
 	-moz-transition: all $animation-duration ease-in-out;
@@ -44,16 +45,9 @@
 		box-shadow: 1em 0 1em lightgrey;
 	}
 	@media all and (max-width: $limit + $sidebar-width*2){
-		background:$color-secondary;
-		background:#c4c4c4;
-		color:#eee;
-		color:#222;
-
-		.online-user{
-			color:inherit;
-		}
+		background: url('/images/pattern-black-1.png');
 	}
-
+	
 	&:hover{
 		opacity:1;
 		& .online-users-count{
