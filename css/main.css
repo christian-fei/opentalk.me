@@ -1379,27 +1379,11 @@ http://www.tipue.com/tipr
 /* line 1, ../sass/_loginButtons.scss */
 .serviceLogin {
   display: inline-block;
-  padding: 1em;
-  margin: .2em;
+  padding: .5em;
+  margin: .5em;
   width: 4em;
 }
-
 /* line 7, ../sass/_loginButtons.scss */
-.twitter {
-  background: #0092CB;
-}
-
-/* line 8, ../sass/_loginButtons.scss */
-.facebook {
-  background: #0092CB;
-}
-
-/* line 9, ../sass/_loginButtons.scss */
-.google {
-  background: #0092CB;
-}
-
-/* line 10, ../sass/_loginButtons.scss */
-.github {
-  background: #0092CB;
+.serviceLogin img {
+  width: 100%;
 }
