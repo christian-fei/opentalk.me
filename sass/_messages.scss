@@ -60,7 +60,20 @@
 			display:none;
 		}
 
-		
+		.message-image-wrapper{
+			position: relative;
+
+
+			.open-in-new-tab{
+				position: absolute;
+				top:0;
+				right:0;
+				height:1.5em;
+				width:1.5em;
+				background: url('/images/link.png') no-repeat;
+				background-size:100%;
+			}
+		}
 		.message-image{
 			max-height: 5em;
 			display: inline-block;

@@ -734,7 +734,7 @@ function formatMessage(t) {
 	t = t.replace('\n','');
 	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
 	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
-	t = t.replace(imagePattern, "  <a href='$2' rel='noindex,nofollow' title='open in a new page' target='_blank'><img src='$2' class='message-image'/></a>  ");
+	t = t.replace(imagePattern, "  <div class='message-image-wrapper'><a href='$2' title='open in a new page' class='open-in-new-tab' target='_blank'></a><img src='$2' class='message-image'/></div>  ");
 	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
 	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
 	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
@@ -841,7 +841,6 @@ Template.messages.events({
 					removeLastMessage();
 				}
 				mm.style.height = initialMessageHeight + 'px';
-
 		    } else {
 
 				if(text.length){
