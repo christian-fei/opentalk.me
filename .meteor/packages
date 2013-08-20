@@ -10,6 +10,12 @@ accounts-twitter
 accounts-github
 accounts-google
 accounts-facebook
-spiderable
 jquery-waypoints
 accounts-ui
+standard-app-packages
+page-js-ie-support
+router
+presence
+spin
+HTML5-History-API
+paginated-subscription

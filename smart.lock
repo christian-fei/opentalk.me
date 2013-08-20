@@ -6,7 +6,8 @@
       "HTML5-History-API": {},
       "presence": {},
       "paginated-subscription": {},
-      "spin": {}
+      "spin": {},
+      "phantomjs": {}
     },
     "packages": {
       "router": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v0.2.0",
         "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
+      },
+      "phantomjs": {
+        "git": "https://github.com/gadicohen/meteor-phantomjs.git",
+        "tag": "v0.0.2",
+        "commit": "a72eb79af068dd5d5d617ac71a42bd74e0cb52a4"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
