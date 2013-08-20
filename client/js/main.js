@@ -44,6 +44,7 @@ Deps.autorun(function(){
 	console.log('userid ' + Session.get('userid'));
 	if(Session.get('roomid')){
 		getMessages();
+		$('#mymessage').focus();
 	}
 });
 
@@ -910,7 +911,7 @@ Template.messages.events({
 function scrollDown(){
 	setTimeout(function(){
 		$("html, body").scrollTop($('html').height()+2000);
-		$('#mymessage').focus();
+		// $('#mymessage').focus();
 		// $('html,body').animate({scrollTop: $('html').height() + 5000 },1);
 	},0);
 	// if($('.messages').children().length > 3){
@@ -996,10 +997,10 @@ Meteor.startup(function(){
 			}
 		});		
 		
-		$('#first').waypoint(function(direction) {
-			// alert('Top of thing hit top of viewport.');
+		$('.messages').waypoint(function(direction) {
+			console.log('Top of thing hit top of viewport.');
 			loadMore();
-		},{ offset: 50 });
+		},{offset:'-25%'});
 
 		$(window).resize(function(){
 			positionFixedContent();

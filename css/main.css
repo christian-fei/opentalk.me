@@ -683,6 +683,7 @@ SUPER SLICK TRANSFORMS
   padding: 5em 1em 4em;
   margin-bottom: -2em;
   overflow-y: auto;
+  background: url("/images/pattern-black-1.png");
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -ms-transition: all 0.2s ease-in-out;
@@ -702,36 +703,23 @@ SUPER SLICK TRANSFORMS
     padding: 5em 2em 4em;
   }
 }
-/* line 36, ../sass/_sidebar.scss */
+/* line 37, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: 1em 0 1em lightgrey;
 }
-@media all and (max-width: 62em) {
-  /* line 1, ../sass/_sidebar.scss */
-  .fixed-sidebar {
-    background: #444444;
-    background: #c4c4c4;
-    color: #eee;
-    color: #222;
-  }
-  /* line 52, ../sass/_sidebar.scss */
-  .fixed-sidebar .online-user {
-    color: inherit;
-  }
-}
-/* line 57, ../sass/_sidebar.scss */
+/* line 48, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 59, ../sass/_sidebar.scss */
+/* line 50, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 
 @media all and (max-width: 62em) {
-  /* line 66, ../sass/_sidebar.scss */
+  /* line 57, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(16em, 0, 0);
     -moz-transform: translate3d(16em, 0, 0);
@@ -742,24 +730,24 @@ SUPER SLICK TRANSFORMS
 }
 
 @media all and (max-width: 62em) {
-  /* line 78, ../sass/_sidebar.scss */
+  /* line 69, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.show {
     left: 0 !important;
   }
 }
 
-/* line 84, ../sass/_sidebar.scss */
+/* line 75, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
 }
-/* line 86, ../sass/_sidebar.scss */
+/* line 77, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 93, ../sass/_sidebar.scss */
+/* line 84, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -767,7 +755,7 @@ SUPER SLICK TRANSFORMS
   display: block;
 }
 
-/* line 101, ../sass/_sidebar.scss */
+/* line 92, ../sass/_sidebar.scss */
 #logout, #toggleRealtime {
   float: left;
   margin-left: 0.8em;
@@ -776,14 +764,14 @@ SUPER SLICK TRANSFORMS
   border: 1px solid darkgrey;
 }
 
-/* line 117, ../sass/_sidebar.scss */
+/* line 108, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1.5em;
   text-align: left;
   list-style-type: none;
 }
 
-/* line 122, ../sass/_sidebar.scss */
+/* line 113, ../sass/_sidebar.scss */
 .online-user {
   display: block;
   text-overflow: ellipsis;
@@ -792,7 +780,7 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 130, ../sass/_sidebar.scss */
+/* line 121, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -800,13 +788,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 136, ../sass/_sidebar.scss */
+/* line 127, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 141, ../sass/_sidebar.scss */
+/* line 132, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -832,7 +820,7 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 62em) {
-  /* line 141, ../sass/_sidebar.scss */
+  /* line 132, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -840,7 +828,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 181, ../sass/_sidebar.scss */
+/* line 172, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -857,20 +845,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 62em) {
-  /* line 181, ../sass/_sidebar.scss */
+  /* line 172, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 206, ../sass/_sidebar.scss */
+/* line 197, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 215, ../sass/_sidebar.scss */
+/* line 206, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -880,16 +868,16 @@ SUPER SLICK TRANSFORMS
   float: left;
   opacity: .5;
 }
-/* line 226, ../sass/_sidebar.scss */
+/* line 217, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 229, ../sass/_sidebar.scss */
+/* line 220, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 235, ../sass/_sidebar.scss */
+/* line 226, ../sass/_sidebar.scss */
 .logo {
   position: absolute;
   top: 1.5em;
@@ -914,7 +902,6 @@ SUPER SLICK TRANSFORMS
 /* line 12, ../sass/_messages.scss */
 .message {
   padding: 0em 0.7em;
-  border-bottom: 1px dotted rgba(250, 250, 250, 0.1);
   overflow: visible !important;
   background: #fefefe;
   border-left: 1px solid lightgrey;
@@ -922,7 +909,7 @@ SUPER SLICK TRANSFORMS
   position: relative;
 }
 
-/* line 21, ../sass/_messages.scss */
+/* line 20, ../sass/_messages.scss */
 .avatar {
   height: 1.8em;
   width: 1.8em;
@@ -938,17 +925,16 @@ SUPER SLICK TRANSFORMS
   top: -0.9em;
 }
 
-/* line 41, ../sass/_messages.scss */
+/* line 40, ../sass/_messages.scss */
 .avatar-border {
   border: 1px solid darkgrey;
 }
 
-/* line 44, ../sass/_messages.scss */
+/* line 43, ../sass/_messages.scss */
 .text {
-  display: block;
+  display: inline-block;
   vertical-align: middle;
-  margin-left: .5em;
-  margin-right: .5em;
+  margin: .2em .3em;
   -ms-word-break: break-all;
   word-break: break-all;
   word-break: break-word;
@@ -957,17 +943,17 @@ SUPER SLICK TRANSFORMS
   hyphens: auto;
 }
 
-/* line 59, ../sass/_messages.scss */
+/* line 57, ../sass/_messages.scss */
 .username {
   display: none;
 }
 
-/* line 63, ../sass/_messages.scss */
+/* line 61, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
   display: inline-block;
 }
-/* line 69, ../sass/_messages.scss */
+/* line 67, ../sass/_messages.scss */
 .message-image-wrapper .open-in-new-tab {
   position: absolute;
   top: .2em;
@@ -978,21 +964,21 @@ SUPER SLICK TRANSFORMS
   background-size: 100%;
 }
 
-/* line 79, ../sass/_messages.scss */
+/* line 77, ../sass/_messages.scss */
 .message-image {
   display: inline-block;
   max-height: 5em;
   margin-top: .2em;
   margin-top: .2em;
 }
-/* line 85, ../sass/_messages.scss */
+/* line 83, ../sass/_messages.scss */
 .message-image.exp {
   max-width: 32em;
   max-height: inherit;
   width: 100%;
 }
 
-/* line 92, ../sass/_messages.scss */
+/* line 90, ../sass/_messages.scss */
 .diffUser {
   margin-top: .8em;
   border-top-right-radius: .5em;
@@ -1000,14 +986,14 @@ SUPER SLICK TRANSFORMS
   border-top: 1px solid lightgrey;
 }
 
-/* line 98, ../sass/_messages.scss */
+/* line 96, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
   border-bottom-right-radius: .5em;
   border-bottom-left-radius: .5em;
 }
 
-/* line 105, ../sass/_messages.scss */
+/* line 103, ../sass/_messages.scss */
 .cssanimations.csstransitions .realtime {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -1015,12 +1001,12 @@ SUPER SLICK TRANSFORMS
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 123, ../sass/_messages.scss */
+/* line 121, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 126, ../sass/_messages.scss */
+/* line 124, ../sass/_messages.scss */
 #mymessage {
   resize: none !important;
   width: 100%;
@@ -1037,60 +1023,60 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 156, ../sass/_messages.scss */
+  /* line 154, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 157, ../sass/_messages.scss */
+  /* line 155, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 160, ../sass/_messages.scss */
+  /* line 158, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 161, ../sass/_messages.scss */
+  /* line 159, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 164, ../sass/_messages.scss */
+  /* line 162, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 165, ../sass/_messages.scss */
+  /* line 163, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 168, ../sass/_messages.scss */
+  /* line 166, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 169, ../sass/_messages.scss */
+  /* line 167, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 172, ../sass/_messages.scss */
+  /* line 170, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 173, ../sass/_messages.scss */
+  /* line 171, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
