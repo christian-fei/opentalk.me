@@ -1382,8 +1382,5 @@ http://www.tipue.com/tipr
   padding: .5em;
   margin: .5em;
   width: 4em;
-}
-/* line 7, ../sass/_loginButtons.scss */
-.serviceLogin img {
-  width: 100%;
+  cursor: pointer;
 }
