@@ -49,10 +49,6 @@ Deps.autorun(function(){
 });
 
 
-function tiprAll(){
-	$('.tip').tipr({'speed':100,'mode':'top'});
-}
-
 function imageExp(){
 	$('.message-image').on('click',function(){
 		// console.log('exp');
@@ -98,7 +94,7 @@ function watchMessages(){
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
 					message[0].firstChild.classList.add('avatar-border');
 					message[0].firstChild.classList.add('tip');
-					message[0].firstChild.setAttribute('data-tip',fields.username);
+					// message[0].firstChild.setAttribute('data-tip',fields.username);
 
 					$('#'+prevId).addClass('lastOfUser');
 				}
@@ -135,7 +131,7 @@ function watchMessages(){
 						message.next().addClass('diffUser');
 						message.next()[0].firstChild.classList.add('avatar-border');
 						message.next()[0].firstChild.classList.add('tip');
-						message.next()[0].firstChild.setAttribute('data-tip',message.next()[0].querySelector('.username').innerHTML );
+						// message.next()[0].firstChild.setAttribute('data-tip',message.next()[0].querySelector('.username').innerHTML );
 					}else{
 						/*SAME USER*/
 						message.next().removeClass('diffUser');
@@ -183,7 +179,7 @@ function watchMessages(){
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" data-tip="'+mfdb.username+'" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
+					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
 					// prevUser=null;
 					
 				}
@@ -243,7 +239,7 @@ function watchMessages(){
 					$('#'+id).next()[0].firstChild.classList.add('avatar-border');
 					$('#'+id).next().addClass('diffUser');
 					$('#'+id).next()[0].firstChild.classList.add('tip');
-					$('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
+					// $('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
 					// tiprAll();
 				}else{
 					console.log('strange behaviour');
@@ -1015,15 +1011,25 @@ Meteor.startup(function(){
 
 
 		/*seems to work on android too*/
-		window.onscroll = function(){
-			if(document.body.scrollTop < 200)
-				loadMore();
-			if(document.body.scrollTop  < document.body.offsetHeight - 150 ){
+		// window.onscroll = function(){
+		// 	if(document.body.scrollTop < 200)
+		// 		loadMore();
+		// 	if(document.body.scrollTop  < document.body.offsetHeight - 150 ){
+		// 		stick = false;
+		// 	}else{
+		// 		stick=true;
+		// 	}
+		// }
+
+
+		$(window).scroll(function (e) {
+			if($(window).scrollTop() + $(window).height()  < $(document).height() - 100){
 				stick = false;
 			}else{
 				stick=true;
 			}
-		}
+		});
+
 
 		$(window).resize(function(){
 			positionFixedContent();
