@@ -68,7 +68,7 @@ Deps.autorun(function(){
 	console.log('userid ' + Session.get('userid'));
 	if(Session.get('roomid')){
 		getMessages();
-		checkLoadMore();
+		// checkLoadMore();
 		$('#mymessage').focus();
 	}
 });
@@ -801,12 +801,6 @@ function loadMore(){
 	}
 }
 var initialMessageHeight = 0;
-Template.room.events({
-	'click .load-more': function(evnt) {
-		evnt.preventDefault();
-		loadMore();
-	}
-});
 Template.messages.events({
 	'keyup #mymessage' : function(evnt,tmplt){
 
@@ -1031,7 +1025,8 @@ Meteor.startup(function(){
 		
 		$('.messages').waypoint(function(direction) {
 			console.log('10%');
-			checkLoadMore();
+			// checkLoadMore();
+			loadMore();
 			
 		});
 
