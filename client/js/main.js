@@ -1022,12 +1022,6 @@ Meteor.startup(function(){
 		// 	}
 		// });		
 		
-		$('.messages').waypoint(function(direction) {
-			console.log('10%');
-			// checkLoadMore();
-			loadMore();
-			
-		});
 		// $('.messages').waypoint(function(direction) {
 		// 	console.log('10%');
 		// 	checkLoadMore();
