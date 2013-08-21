@@ -43,30 +43,30 @@ markdown = {
         // r = r.replace(new RegExp(' + ' + newline, 'g'), '<br>' + newline);
         
         // split on double-newlines, then add paragraph tags when the first tag isn't a block level element
-        if (newline != '') for (var p = r.split(newline + newline), i = 0; i < p.length; i++) {
-            var blockLevel = false;
-            if (p[i].length >= 1 && p[i].charAt(0) == '<') {
-                // check if the first tag is a block-level element
-                var firstSpace = p[i].indexOf(' '), firstCloseTag = p[i].indexOf('>');
-                var endIndex = firstSpace > -1 && firstCloseTag > -1 ? Math.min(firstSpace, firstCloseTag) : firstSpace > -1 ? firstSpace : firstCloseTag;
-                var tag = p[i].substring(1, endIndex).toLowerCase();
-                for (var j = 0; j < blockLevelElements.length; j++) if (blockLevelElements[j] == tag) blockLevel = true;
-            } else if (p[i].length >= 1 && p[i].charAt(0) == '|') {
-                // format the paragraph as a table
-                blockLevel = true;
-                p[i] = p[i].replace(/ \|= /g, '</th><th>').replace(/\|= /g, '<tr><th>').replace(/ \|=/g, '</th></tr>');
-                p[i] = p[i].replace(/ \| /g, '</td><td>').replace(/\| /g, '<tr><td>').replace(/ \|/g, '</td></tr>');
-                p[i] = '<table>' + p[i] + '</table>';
-            } else if (p[i].length >= 2 && p[i].charAt(0) == '>' && p[i].charAt(1) == ' ') {
-                // format the paragraph as a blockquote
-                blockLevel = true;
-                p[i] = '<blockquote>' + p[i].replace(/^> /gm, '') + '</blockquote>';
-            }
-            if (!blockLevel) p[i] = '<p>' + p[i] + '</p>';
-        }
+        // if (newline != '') for (var p = r.split(newline + newline), i = 0; i < p.length; i++) {
+        //     var blockLevel = false;
+        //     if (p[i].length >= 1 && p[i].charAt(0) == '<') {
+        //         // check if the first tag is a block-level element
+        //         var firstSpace = p[i].indexOf(' '), firstCloseTag = p[i].indexOf('>');
+        //         var endIndex = firstSpace > -1 && firstCloseTag > -1 ? Math.min(firstSpace, firstCloseTag) : firstSpace > -1 ? firstSpace : firstCloseTag;
+        //         var tag = p[i].substring(1, endIndex).toLowerCase();
+        //         for (var j = 0; j < blockLevelElements.length; j++) if (blockLevelElements[j] == tag) blockLevel = true;
+        //     } else if (p[i].length >= 1 && p[i].charAt(0) == '|') {
+        //         // format the paragraph as a table
+        //         blockLevel = true;
+        //         p[i] = p[i].replace(/ \|= /g, '</th><th>').replace(/\|= /g, '<tr><th>').replace(/ \|=/g, '</th></tr>');
+        //         p[i] = p[i].replace(/ \| /g, '</td><td>').replace(/\| /g, '<tr><td>').replace(/ \|/g, '</td></tr>');
+        //         p[i] = '<table>' + p[i] + '</table>';
+        //     } else if (p[i].length >= 2 && p[i].charAt(0) == '>' && p[i].charAt(1) == ' ') {
+        //         // format the paragraph as a blockquote
+        //         blockLevel = true;
+        //         p[i] = '<blockquote>' + p[i].replace(/^> /gm, '') + '</blockquote>';
+        //     }
+        //     if (!blockLevel) p[i] = '<p>' + p[i] + '</p>';
+        // }
         
-        // reassemble the paragraphs
-        if (newline != '') r = p.join(newline + newline);
+        // // reassemble the paragraphs
+        // if (newline != '') r = p.join(newline + newline);
         
         // restore the preformatted and unformatted blocks
         r = r.replace(new RegExp('<pre></pre>', 'g'), function (match) { return '<pre>' + pre2.shift() + '</pre>'; });
