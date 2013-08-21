@@ -7,7 +7,7 @@
 	// box-shadow: 3px 3px 25px $color-border;
 
 	border-radius: .5em;
-	margin-bottom: 2em;
+	// margin-bottom: 2em;
 }
 	.message{
 		padding: 0em 0.7em;
@@ -17,6 +17,10 @@
 		border-right:1px solid $color-border;
 		position:relative;
 	}
+
+		.new-message{
+			@extend .fly-in-down;
+		}
 		.avatar{
 			height:1.8em;
 			width: 1.8em;
@@ -56,6 +60,10 @@
 		}
 		.username{
 			display:none;
+			position:absolute;
+		}
+		.avatar:hover ~ .username{
+			display:block;
 		}
 
 		.message-image-wrapper{
@@ -100,24 +108,13 @@
 		}
 		
 		$realtime-duration: 10s;
-		.cssanimations.csstransitions .realtime{
+		.cssanimations.csstransitions .slick-realtime-shit{
 			-webkit-animation: realtime-anim $realtime-duration ease-out;
 			-moz-animation: realtime-anim $realtime-duration ease-out;
 			-o-animation: realtime-anim $realtime-duration ease-out;
-			animation: realtime-anim $realtime-duration ease-out;
-
-			// @for $i from 1 through 75{
-			// 	&:nth-last-child(#{$i}){
-			// 		-webkit-animation-delay: $i * 20ms;
-			// 		-moz-animation-delay: $i * 20ms;
-			// 		-ms-animation-delay: $i * 20ms;
-			// 		-o-animation-delay: $i * 20ms;
-			// 		animation-delay: $i * 20ms;
-			// 	}
-			// }		
+			animation: realtime-anim $realtime-duration ease-out;			
 		}
-	
-
+		
 #li-message{
 	width:100%;
 }
@@ -147,8 +144,6 @@
 		//border-bottom:1px solid #C8C8C8;
 	}
 }
-
-
 
 @-webkit-keyframes realtime-anim{
 	0% { border-left:1px solid $color-main;  }

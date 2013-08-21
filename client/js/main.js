@@ -11,11 +11,12 @@ var lastInsertId=0, //ID of the last inserted message
 	siab=0,
 	loggingOut = false,
 	stick=true,
-	messagesLimit=75,
+	messagesLimit=40,
 	latestTimestampAtLoad=0,
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
-	firstRunAfterMore=true;
+	firstRunAfterMore=true,
+	message=null;
 
 
 function getMessages(){
@@ -80,7 +81,7 @@ function watchMessages(){
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			var message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><p class="text">'+fields.text+'</p></li>');
+			message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><p class="text">'+fields.text+'</p></li>');
 
 			if(before === null) {
 				//items of first load and recently typed ones
@@ -98,6 +99,7 @@ function watchMessages(){
 
 					$('#'+prevId).addClass('lastOfUser');
 				}
+				message[0].classList.add('new-message');
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
@@ -115,6 +117,7 @@ function watchMessages(){
 				// console.log(prevUser);
 				// console.log('=========');
 				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+							
 				// message[0].firstChild.classList.add('avatar-border');
 				// message[0].firstChild.classList.add('tip');
 				// message[0].firstChild.setAttribute('data-tip',fields.username);				
@@ -175,18 +178,15 @@ function watchMessages(){
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				// console.log(mfdb);
 				if(prevUser===mfdb.username){
-					message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><p class="text">'+mfdb.text+'</p></li>');
+					message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><p class="text">'+mfdb.text+'</p></li>');
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
-					// prevUser=null;
-					
+					message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
 				}
 				prevUser=mfdb.username;
 				prevId=id;
 				// if(!prevUser)prevUser=fields.username;
-				
 				// message.hide();
 				$('#last').before(message);
 				// tiprAll();
@@ -1004,10 +1004,10 @@ Meteor.startup(function(){
 		// 	}
 		// });		
 		
-		// $('.messages').waypoint(function(direction) {
-		// 	console.log('10%');
-		// 	loadMore();
-		// });
+		$('.messages').waypoint(function(direction) {
+			console.log('10%');
+			loadMore();
+		});
 
 
 		/*seems to work on android too*/
