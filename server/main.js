@@ -14,7 +14,7 @@ Meteor.publish('MessagesReady',function(roomid){
   return Messages.find(
     {
       roomid:roomid,
-      _id:'this is an id that will never exist'
+      _id:'this is an id that will never exist, hopefully'
     },{limit:1}
   );
 });
@@ -23,7 +23,7 @@ Meteor.publish('paginatedMessages', function(roomid,limit) {
   return Messages.find({roomid:roomid}, {sort: {timestamp: -1}, limit: limit});
 });
 Meteor.publish('paginatedMessagesTroll', function(roomid,limit) {
-  return Messages.find({roomid:roomid,_id:'this is an id that will never exist'}, {sort: {timestamp: -1}, limit: 1});
+  return Messages.find({roomid:roomid,_id:'this is an id that will never exist, hopefully'}, {limit: 1});
 });
 
 Meteor.publish('usersOnlineInThisRoom',function(roomid){
@@ -47,6 +47,9 @@ Meteor.methods({
   calltest:function(arg1){
     console.log(arg1);
     return arg1;
+  },
+  messagesCount:function(roomid){
+    return Messages.find({roomid:roomid}).fetch().length;
   },
   serverTime : function(){
     //console.log('requested serverTime');

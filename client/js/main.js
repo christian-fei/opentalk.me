@@ -16,8 +16,14 @@ var lastInsertId=0, //ID of the last inserted message
 	mSub=ouSub=mPagination=null,
 	animationDuration=250,
 	firstRunAfterMore=true,
-	message=null;
+	message=null,
+	messagesCount=0,
+	addedMessages=0;
 
+Meteor.call('messagesCount',Session.get('roomid'),function(err,result){
+	messagesCount=result;
+});
+console.log(messagesCount);
 
 function getMessages(){
 	setTimeout(function(){
@@ -32,19 +38,37 @@ function getMessages(){
 			console.log('messages ready');
 			watchMessages();
 		});
-		if( $('.loading') ) $('.loading').removeClass('show-loading');
 	},1000);
 }
 
-Meteor.call('calltest','======================',function(error,result){
-	console.log(result);
-});
+
+function checkLoadMore(){
+	Meteor.call('messagesCount',Session.get('roomid'),function(err,result){
+		messagesCount=result;
+	});
+	console.log('is ' + messagesCount + ' > ' + addedMessages +'  ?');
+	if(messagesCount > addedMessages){
+		console.log('yes');
+		loadMore();
+		
+		if(messagesCount > messagesLimit)
+			if( $('.loading') ) $('.loading').addClass('show-loading');
+		else
+			if( $('.loading') ) $('.loading').removeClass('show-loading');
+	}else{
+		console.log('no');
+		console.log('no more messages');
+		if( $('.loading') ) $('.loading').removeClass('show-loading');
+	}
+}
+
 
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
 	console.log('userid ' + Session.get('userid'));
 	if(Session.get('roomid')){
 		getMessages();
+		checkLoadMore();
 		$('#mymessage').focus();
 	}
 });
@@ -72,6 +96,7 @@ function watchMessages(){
 	var prevUser=prevId=null;
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
+			addedMessages++;
 			// console.log('added id ' +id + ' before ' + before);
 
 			// $('.load-more').removeClass('show-loading');
@@ -1006,7 +1031,8 @@ Meteor.startup(function(){
 		
 		$('.messages').waypoint(function(direction) {
 			console.log('10%');
-			loadMore();
+			checkLoadMore();
+			
 		});
 
 
