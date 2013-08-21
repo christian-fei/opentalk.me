@@ -65,7 +65,7 @@ function checkLoadMore(){
 Deps.autorun(function(){
 	console.log('roomid ' + Session.get('roomid'));
 	console.log('userid ' + Session.get('userid'));
-	if(Session.get('roomid')){
+	if(Session.get('roomid') || Meteor.user() && $('.message').length === 0 ){
 		getMessages();
 		// checkLoadMore();
 		$('#mymessage').focus();
@@ -86,8 +86,6 @@ function imageExp(){
 }
 
 function watchMessages(){
-	$('.message').not('#mymessage').remove();
-	
 	if(Messages.find({},{sort:{timestamp:-1},limit:1}).fetch().length > 0)
 	latestTimestampAtLoad = Messages.find({},{sort:{timestamp:-1},limit:1}).fetch()[0].timestamp;
 	if(mPagination)
