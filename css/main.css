@@ -953,11 +953,6 @@ SUPER SLICK TRANSFORMS
   position: absolute;
 }
 
-/* line 65, ../sass/_messages.scss */
-.avatar:hover ~ .username {
-  display: block;
-}
-
 /* line 69, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
