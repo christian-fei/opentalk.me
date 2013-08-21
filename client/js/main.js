@@ -1022,19 +1022,16 @@ Meteor.startup(function(){
 		// 	}
 		// });		
 		
-<<<<<<< HEAD
 		$('.messages').waypoint(function(direction) {
 			console.log('10%');
 			// checkLoadMore();
 			loadMore();
 			
 		});
-=======
 		// $('.messages').waypoint(function(direction) {
 		// 	console.log('10%');
 		// 	checkLoadMore();
 		// });
->>>>>>> 528ceb982f34758d574e95a6885347993ba17a8a
 
 
 		/*seems to work on android too*/
