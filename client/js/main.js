@@ -1,5 +1,4 @@
-Meteor.absoluteUrl({rootUrl:'http://opentalk.me'})
-
+Meteor.absoluteUrl({},{secure:true,replaceLocalhost:true,rootUrl:'http://opentalk.me:3000'});
 
 var lastInsertId=0, //ID of the last inserted message
 	text='', //current message text
@@ -1029,11 +1028,10 @@ Meteor.startup(function(){
 		// 	}
 		// });		
 		
-		$('.messages').waypoint(function(direction) {
-			console.log('10%');
-			checkLoadMore();
-			
-		});
+		// $('.messages').waypoint(function(direction) {
+		// 	console.log('10%');
+		// 	checkLoadMore();
+		// });
 
 
 		/*seems to work on android too*/
@@ -1049,6 +1047,8 @@ Meteor.startup(function(){
 
 
 		$(window).scroll(function (e) {
+			if( $(window).scrollTop() < 200 )
+				checkLoadMore();
 			if($(window).scrollTop() + $(window).height()  < $(document).height() - 100){
 				stick = false;
 			}else{
