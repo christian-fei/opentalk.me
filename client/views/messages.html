@@ -1,0 +1,13 @@
+<template name='messages'>
+	{{#isolate}}
+		<ul class='messages'>
+			<li id="first"></li>
+			<li id="last"></li>
+			{{#if currentUser}}
+			<li id='li-message'>
+				<textarea id="mymessage" rows='1' placeholder='your message' tabindex='1'/>
+			</li>
+			{{/if}}
+		</ul>
+	{{/isolate}}
+</template>

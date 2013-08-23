@@ -15,11 +15,11 @@
 	
 	
 
-	-webkit-transition: all $animation-duration ease-in-out;
-	-moz-transition: all $animation-duration ease-in-out;
-	-ms-transition: all $animation-duration ease-in-out;
-	-o-transition: all $animation-duration ease-in-out;
-	transition: all $animation-duration ease-in-out;
+	// -webkit-transition: all $animation-duration ease-in-out;
+	// -moz-transition: all $animation-duration ease-in-out;
+	// -ms-transition: all $animation-duration ease-in-out;
+	// -o-transition: all $animation-duration ease-in-out;
+	// transition: all $animation-duration ease-in-out;
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: - $sidebar-width - 1em !important;

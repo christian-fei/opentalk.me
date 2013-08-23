@@ -1,0 +1,501 @@
+Meteor.absoluteUrl({},{secure:true,replaceLocalhost:true,rootUrl:'http://opentalk.me:3000'});
+
+var lastInsertId=0, //ID of the last inserted message
+	text='', //current message text
+	t=0, //current timestamp (synched with server)
+	clientt= Date.now(),
+	servert=0,
+	tdiff=0. //difference between time on server and time on client
+	keepaliveTime = 10000,
+	siab=0,
+	loggingOut = false,
+	stick=true,
+	messagesLimit=40,
+	latestTimestampAtLoad=0,
+	mSub=ouSub=mPagination=null,
+	animationDuration=250,
+	firstRunAfterMore=true,
+	message=null,
+	messagesCount=0,
+	addedMessages=0;
+
+
+Deps.autorun(function(){
+	console.log('roomid ' + Session.get('roomid'));
+	if( Meteor.user() ){
+		$('#mymessage').focus();
+	}
+});
+
+
+
+
+if(Meteor._localStorage.getItem('realtimeEnabled') === null){
+	//set default
+	Meteor._localStorage.setItem('realtimeEnabled',false);
+	Session.set('realtimeEnabled',false);
+} else {
+	if(Meteor._localStorage.getItem('realtimeEnabled') === 'true')
+		Session.set('realtimeEnabled',true);
+	else
+		Session.set('realtimeEnabled',false);
+}
+
+Deps.autorun(function(){
+	if( Meteor.user() && !loggingOut) {
+		Meteor.subscribe('userData');
+		
+
+	}
+});
+
+var limit = 32, //same as CSS _vars.scss
+	sidebarWidth = 15; //same as CSS _room.scss
+
+
+
+Meteor.setInterval(function () {
+	if(Session.get('roomid') && !loggingOut){
+		Meteor.call('setUserStatus',Session.get('userid'),Session.get('username'),Session.get('roomid'),'online');
+	}
+}, keepaliveTime);
+
+
+
+
+
+
+/*
+UTILITY FUNCTIONS
+
+
+/*
+unsubscribe from subscriptions
+*/
+function unsubscribe(){
+	// if(mSub)
+	//   mSub.stop();
+	// if(ouSub)
+	//   ouSub.stop();
+}
+
+function subscribe(){
+	// mSub=Meteor.subscribe('MessagesReady',Session.get('roomid'),function(){
+	// 	console.log('messages ready');
+	// 	if(Session.get('roomid') && Session.get('userid')) {
+	// 		//$('#mymessage').focus();
+	// 	}
+	// });
+	// if(mSub && mSub._limit < messagesLimit)
+	// if(!ouSub)
+		
+}
+
+
+
+
+
+/*
+RESET
+-lastInsertId = null, to reset the pointer of the current message //could be left blank, since Session resets after pageload
+*/
+
+
+
+
+
+
+
+
+
+// if(isValidRoom(room)) {
+	
+
+// 	joinRoom(room);
+// 	goOnline();
+// } else {
+
+// }
+
+
+
+
+/*
+going offline when the user closes the browser (also at page releod, but that's how onbeforeunload works)
+*/
+window.onbeforeunload = function(){
+	goOffline();
+	return null;
+}
+
+function validNickname(n){
+	if(n.length && n.length < 25 && n.charAt(n.length - 1) !== ' ' && n.trim().length && nicknameAvailable(n))
+		return true;
+	return false;
+}
+
+function nicknameAvailable(n){
+	if(OnlineUsers.find({nickname:n}).fetch().length === 0)
+		return true;
+	return false;
+}
+
+
+
+
+
+
+
+Template.messages.messagesReady = function() {
+	return ! mSub.loading();
+}
+Template.messages.allMessagesLoaded = function() {
+	console.log('========== ' + Messages.find().fetch().length);
+	if(Messages.find().fetch().length < mSub.loaded())
+		return true;
+	return false;
+	// return ! mSub.loading() && Messages.find().count() < mSub.loaded();
+}
+Template.messages.mymessageDisabled = function(){
+	if(Session.get('userid'))
+		return '';
+	return 'disabled';
+}
+
+Template.messages.messages = function(){
+	//return Messages.find({_id: {$ne: Session.get('lastInsertId')}},{sort:{timestamp:1}});
+	/*if(Session.get('realtimeEnabled')) {
+		if( Session.get('lastInsertId') )
+			return Messages.find( {_id: {$ne: Session.get('lastInsertId')} },{sort:{timestamp:1}} );
+
+	}
+	else{
+		return Messages.find({messageComplete:true},{sort:{timestamp:1}});
+	}*/
+};
+
+/*this should get called if no messages have been added, which trigger scrolltobottom*/
+Template.messages.rendered = function(){
+	console.log('rendered');
+	if(stick){
+		//console.log('scrolling because stick');
+		scrollDown();
+		//this.find('#mymessage').focus();
+	}
+}
+
+function removeLastMessage(){
+    Messages.remove({_id:''+Session.get('lastInsertId')});
+    Session.set('lastInsertId',null);
+    $('#mymessage').val('');
+}
+
+
+//http://shebang.brandonmintern.com/foolproof-html-escaping-in-javascript/
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+};
+ 
+// UNSAFE with unsafe strings; only use on previously-escaped ones!
+function unescapeHtml(escapedStr) {
+    var div = document.createElement('div');
+    div.innerHTML = escapedStr;
+    var child = div.childNodes[0];
+    return child ? child.nodeValue : '';
+};
+
+
+
+function formatMessage(t) {
+	t = escapeHtml(t);
+	t = t.replace('\n','');
+	var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
+	// var imagePattern = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/gm;
+	t = t.replace(imagePattern, "  <div class='message-image-wrapper'><a href='$2' title='open in a new page' class='open-in-new-tab' target='_blank'></a><img src='$2' class='message-image'/></div>  ");
+	var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	t = t.replace(urlPatternWithProtocol, "  <a href='$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	var urlPatternWithoutProtocol = /(^|\s)([\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
+	t = t.replace(urlPatternWithoutProtocol, "  <a href='http://$2' rel='noindex,nofollow' target='_blank'>$2</a>  ");
+	t = markdown.parse(t);
+	return t;
+}
+
+
+
+
+function loadMore(){
+	if(mSub){
+		prevUser=prevId=null;
+		firstRunAfterMore=true;
+		// $('.load-more').addClass('show-loading');
+		mSub.loadNextPage();
+	}
+}
+var initialMessageHeight = 0;
+Template.messages.events({
+	'keyup #mymessage' : function(evnt,tmplt){
+
+		console.log(evnt.keyCode);
+		console.log(evnt.which);
+
+	    text = tmplt.find('#mymessage').value;
+	    t= Date.now() + tdiff;
+
+    	if(!text.trim().length){
+    		removeLastMessage();
+    		return;
+    	}
+
+    	text = text.substring(0,text.length);
+
+    	/*
+		working in Chrome 28.0.1500.95
+    	*/
+    	var mm=$('#mymessage')[0],
+    		hackOffset = 0;
+    	if(navigator.userAgent.indexOf('Firefox') >=0){
+    		hackOffset=32;
+    		//console.log('firefox');
+    	}
+    	if(initialMessageHeight===0)
+    		initialMessageHeight = mm.offsetHeight;
+    	if(mm.scrollHeight > initialMessageHeight)
+	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
+    	
+    	// console.log('offsetheight ' + initialMessageHeight);
+    	// console.log('scrollheight ' + mm.scrollHeight);
+    	// console.log('offsetheight ' + mm.offsetHeight);
+
+
+
+    	if(Session.get('realtimeEnabled')) {
+    		/*First message/first keystroke being sent*/
+		    if(!Session.get('lastInsertId')){
+				Session.set(
+					'lastInsertId',
+					Messages.insert(
+						{
+						userid:Session.get('userid')
+						,username:Session.get('username')
+						,roomid:Session.get('roomid')
+						,text:text
+						,timestamp:t
+						,messageComplete:false
+						,useravatar:Session.get('avatar')
+						}
+					)
+				);
+		      	return;
+		    }
+		    text = formatMessage(text);
+		    if(evnt.keyCode === 13){
+
+				if(text.length){
+					//format message, strip tags and shit
+					
+					//console.log(text);
+					Messages.update(
+						{
+							_id:''+Session.get('lastInsertId')
+						}
+						,{$set : 
+							{
+								text:text
+								,timestamp:t
+								,messageComplete:true
+							}
+						}
+					);
+					//new Message
+					Session.set('lastInsertId',null);
+					tmplt.find('#mymessage').value = '';
+				} else {
+					removeLastMessage();
+				}
+				mm.style.height = initialMessageHeight + 'px';
+		    } else {
+
+				if(text.length){
+					Messages.update(
+						{
+							_id:''+Session.get('lastInsertId')
+						}
+						,{$set : 
+							{
+								text:text
+								,timestamp:t
+							}
+						}
+					);
+				} else {
+					removeLastMessage();
+					mm.style.height = initialMessageHeight + 'px';
+				}
+		    }
+
+    	} else {
+    		if(Session.get('lastInsertId') !== null){
+				Messages.remove({_id:Session.get('lastInsertId')});
+				Session.set('lastInsertId',null);
+    		}
+    		if(evnt.keyCode === 13){
+    			text = formatMessage(text);
+	    		Messages.insert(
+					{
+					userid:Session.get('userid')
+					,username:Session.get('username')
+					,roomid:Session.get('roomid')
+					,text:text
+					,timestamp:t
+					,messageComplete:true
+					,useravatar:Session.get('avatar')
+					}
+				);
+				mm.style.height = initialMessageHeight + 'px';
+				//console.log('resetting textarea to ' + initialMessageHeight)
+				$('#mymessage').val('');
+
+	    	}
+    	}
+    	setTimeout(function(){
+    		scrollDown();
+    	},0);
+	}
+});
+
+
+
+function scrollDown(){
+	setTimeout(function(){
+		$("html, body").scrollTop($('html').height()+2000);
+		// $('#mymessage').focus();
+		// $('html,body').animate({scrollTop: $('html').height() + 5000 },1);
+	},0);
+	// if($('.messages').children().length > 3){
+	// }
+}
+
+// function scrollIfAtBottom(){
+// 	siab = Meteor.setInterval(function(){
+// 		if( $(window).scrollTop() + $(window).height()  > $(document).height() - 100 && Session.get('userid')) {
+// 			//console.log('scrolling because at bottom');
+// 			scrollDown();
+// 		}
+// 	},1500);
+// }
+
+
+
+
+Template.room.rendered = function(){
+	// console.log('room ============rendered=============');
+	positionFixedContent();
+	var instnc = this;
+
+	if(this.find('#nickname')){
+		this.find('#nickname').focus();
+	}
+};
+
+
+Meteor.startup(function(){
+
+	FastClick.attach(document.body);
+
+	$(document).ready(function() {
+		
+		// $('body,html').bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
+		// 	if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
+		// 		//console.log('scrolling because of '+ e.type);
+		// 		if($(window).scrollTop() + $(window).height()  < $(document).height() - 100 && (e.type == 'mousedown' || e.type == 'mousewheel') ){
+		// 			stick = false;
+		// 		}else{
+		// 			stick=true;
+		// 		}
+		// 		$("html,body").stop();
+		// 	}
+		// });		
+		
+		// $('.messages').waypoint(function(direction) {
+		// 	console.log('10%');
+		// 	checkLoadMore();
+		// });
+
+
+		/*seems to work on android too*/
+		// window.onscroll = function(){
+		// 	if(document.body.scrollTop < 200)
+		// 		loadMore();
+		// 	if(document.body.scrollTop  < document.body.offsetHeight - 150 ){
+		// 		stick = false;
+		// 	}else{
+		// 		stick=true;
+		// 	}
+		// }
+
+
+
+		$(window).scroll(function (e) {
+			if( $(window).scrollTop() < 200 )
+				checkLoadMore();
+			if($(window).scrollTop() + $(window).height()  < $(document).height() - 100){
+				stick = false;
+			}else{
+				stick=true;
+			}
+		});
+
+
+		$(window).resize(function(){
+			positionFixedContent();
+		});
+
+		$(document).wipetouch({
+			preventDefault:false,
+			wipeLeft: function(result) {
+				hideSidebar();
+			},
+			wipeRight: function(result) {
+				showSidebar();
+			}
+		});
+	});
+
+
+	if(!Modernizr.input.placeholder){
+		//console.log('there ain\'t no placeholder support in your shitty browser, dude');
+		$('[placeholder]').focus(function() {
+		var input = $(this);
+		if (input.val() == input.attr('placeholder')) {
+			input.val('');
+			input.removeClass('placeholder');
+		}
+		}).blur(function() {
+			var input = $(this);
+			if (input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.addClass('placeholder');
+				input.val(input.attr('placeholder'));
+			}
+		}).blur();
+		$('[placeholder]').parents('form').submit(function() {
+			$(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+					input.val('');
+				}
+			})
+		});
+	}
+
+});
+
+Template.debug.helpers({
+	lastInsertId: function(){return Session.get('lastInsertId')},
+	userid: function(){return Session.get('userid')},
+	username: function(){return Session.get('username')},
+	roomid: function(){return Session.get('roomid')},
+	realtimeEnabled: function(){return Session.get('realtimeEnabled')},
+	avatar: function(){return Session.get('avatar')}
+});
