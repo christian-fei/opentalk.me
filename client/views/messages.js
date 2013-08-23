@@ -142,10 +142,9 @@ Template.messages.rendered=function(){
 		//this.find('#mymessage').focus();
 	}
 	if(!yoro){
-
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-		var prevUser=prevId=null;
+		var prevUserId=prevId=null;
 		console.log('observing');
 		mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 			addedBefore: function(id, fields,before){
@@ -154,7 +153,9 @@ Template.messages.rendered=function(){
 				// $('.load-more').removeClass('show-loading');
 
 				/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
-				if(fields.userid === Session.get('userid') && fields.messageComplete===false)return;
+				// console.log( typeof fields.userid );
+				// console.log( typeof Meteor.userId() );
+				if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
 				/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 				if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 				
@@ -164,9 +165,9 @@ Template.messages.rendered=function(){
 					//items of first load and recently typed ones
 					// message.hide();
 					$('#last').before(message);
-					// console.log('prevUser ' +prevUser);
+					// console.log('prevUserId ' +prevUserId);
 					// console.log('currUser ' +fields.username);
-					if(prevUser===null || prevUser!==fields.username){
+					if(prevUserId===null || prevUserId!==fields.userid){
 						//A NEW USER
 						message.addClass('diffUser');
 						message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
@@ -183,7 +184,7 @@ Template.messages.rendered=function(){
 					// var offsetBottom = $('body').height() - $('body').scrollTop();
 					var offsetBottom = document.body.offsetHeight - document.body.scrollTop;
 
-					// console.log('old ' + id + ' prevUser ' + prevUser);
+					// console.log('old ' + id + ' prevUserId ' + prevUserId);
 					//items of load-more+
 					// message.hide();
 					$('#'+before).before(message);
@@ -191,7 +192,7 @@ Template.messages.rendered=function(){
 				
 					// console.log('=========');
 					// console.log(fields.username);
-					// console.log(prevUser);
+					// console.log(prevUserId);
 					// console.log('=========');
 					message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
 								
@@ -205,7 +206,7 @@ Template.messages.rendered=function(){
 						firstRunAfterMore=false;
 						
 					}else{
-						if(prevUser!==fields.username){
+						if(prevUserId!==fields.userid){
 							/*NEW USER*/
 							message.addClass('lastOfUser');
 							if(message.next()[0]){
@@ -235,7 +236,7 @@ Template.messages.rendered=function(){
 					document.body.scrollTop = document.body.offsetHeight - offsetBottom;
 				}
 
-				prevUser=fields.username;
+				prevUserId=fields.userid;
 				prevId=id;
 
 				// tiprAll();
@@ -248,7 +249,7 @@ Template.messages.rendered=function(){
 				// console.log( $('#mymessage').val() );
 				// console.log('lid ' +Session.get('lastInsertId'));
 				// console.log(fields);
-				// console.log('changed & lmu ' + prevUser);
+				// console.log('changed & lmu ' + prevUserId);
 				if( $('#'+id).length ){
 					//update existing message
 					if(fields.text !== undefined)
@@ -258,16 +259,16 @@ Template.messages.rendered=function(){
 					console.log('message completed');
 					var mfdb = Messages.find({_id:id}).fetch()[0];
 					// console.log(mfdb);
-					if(prevUser===mfdb.username){
+					if(prevUserId===mfdb.userid){
 						message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><p class="text">'+mfdb.text+'</p></li>');
 					}
 					else{
 						$('#'+prevId).addClass('lastOfUser');
 						message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
 					}
-					prevUser=mfdb.username;
+					prevUserId=mfdb.userid;
 					prevId=id;
-					// if(!prevUser)prevUser=fields.username;
+					// if(!prevUserId)prevUserId=fields.username;
 					// message.hide();
 					$('#last').before(message);
 					// tiprAll();
@@ -294,7 +295,7 @@ Template.messages.rendered=function(){
 				// console.log( $('#last').prev().attr('id') );
 
 				if(id === $('#last').prev().attr('id')){
-					prevUser=prevId=null;
+					prevUserId=prevId=null;
 				}
 				//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 				if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
@@ -313,7 +314,10 @@ Template.messages.rendered=function(){
 				$('#'+id).remove();
 			}
 		});
-		yoro=true;
+		if(!loggingOut)
+			yoro=true;
+	}else{
+
 	}
 	$(window).scroll(function (e) {
 		if( $(window).scrollTop() < 300 ){

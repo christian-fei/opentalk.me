@@ -87,6 +87,10 @@ Template.room.events({
 		},0);
 
 		Meteor.call('setUserStatus', Meteor.userId(), Meteor.user().profile.name, Session.get('roomid'),'offline');
+		
+		yoro=false;
+		loggingOut=true;
+		console.log('yoro');
 
 		Meteor.logout(function(){
 			yoro=false;
@@ -104,7 +108,7 @@ Template.room.events({
 
 Deps.autorun(function(){
 	console.log('uid ' +Meteor.userId());
-
+	yoro=false;
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
