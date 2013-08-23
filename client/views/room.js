@@ -113,7 +113,7 @@ Deps.autorun(function(){
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-// ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 
 Template.room.rendered=function(){
 	positionFixedContent();
