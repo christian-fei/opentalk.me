@@ -26,6 +26,7 @@ Template.room.helpers({
 			if(u=s.twitter)
 				username=u.screenName;
 		}
+		Session.set('screenname',username);
 		return username;
 	},
 	'avatar':function(){
@@ -86,7 +87,7 @@ Template.room.events({
 						
 		},0);
 
-		Meteor.call('setUserStatus', Meteor.userId(), Meteor.user().profile.name, Session.get('roomid'),'offline');
+		goOffline();
 		
 		yoro=false;
 		loggingOut=true;
@@ -136,7 +137,7 @@ Template.room.rendered=function(){
 Meteor.setInterval(function () {
 	if(Session.get('roomid') && Meteor.user() && !loggingOut){
 		console.log('keepalive');
-		Meteor.call('setUserStatus', Meteor.userId(), Meteor.user().profile.name ,Session.get('roomid'),'online');
+		goOnline();
 	}
 }, keepaliveTime);
 
@@ -151,6 +152,15 @@ Meteor.call('serverTime',function(error, result){
 Deps.autorun(function(){
 	if( Meteor.user() ){
 		Meteor.subscribe('userData');
-		
+		goOnline();
+	}
+});
+
+Deps.autorun(function(){
+	if(Session.get('roomid')){
+		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+	}else{
+		if(ouSub)
+			ouSub.stop();
 	}
 });
