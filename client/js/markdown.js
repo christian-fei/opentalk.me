@@ -5,7 +5,7 @@ markdown = {
         var r = s, ii, pre1 = [], pre2 = [];
 
         // detect newline format
-        var newline = r.indexOf('\r\n') != -1 ? '\r\n' : r.indexOf('\n') != -1 ? '\n' : ''
+        // var newline = r.indexOf('\r\n') != -1 ? '\r\n' : r.indexOf('\n') != -1 ? '\n' : ''
         
         // store {{{ unformatted blocks }}} and <pre> pre-formatted blocks </pre>
         r = r.replace(/{{{([\s\S]*?)}}}/g, function (x) { pre1.push(x.substring(3, x.length - 3)); return '{{{}}}'; });
@@ -30,14 +30,14 @@ markdown = {
         r = r.replace(/(^|\s)\*\*\*[\s]?(.*)/gm, '<ul><ul><ul><li>$2</li></ul></ul></ul>');
         r = r.replace(/(^|\s)\*\*[\s]?(.*)/gm, '<ul><ul><li>$2</li></ul></ul>');
         r = r.replace(/(^|\s)\*[\s]?(.*)/gm, '<ul><li>$2</li></ul>');
-        for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ul>' + newline + '<ul>', 'g'), newline);
+        // for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ul>' + newline + '<ul>', 'g'), newline);
         
         // ordered lists
         r = r.replace(/(^|\s)====[\s]?(.*)/gm, '<ol><ol><ol><ol><li>$2</li></ol></ol></ol></ol>');
         r = r.replace(/(^|\s)===[\s]?(.*)/gm, '<ol><ol><ol><li>$2</li></ol></ol></ol>');
         r = r.replace(/(^|\s)==[\s]?(.*)/gm, '<ol><ol><li>$2</li></ol></ol>');
         r = r.replace(/(^|\s)=[\s]?(.*)/gm, '<ol><li>$2</li></ol>');
-        for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ol>' + newline + '<ol>', 'g'), newline);
+        // for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ol>' + newline + '<ol>', 'g'), newline);
  
         // hard linebreak if there are 2 or more spaces at the end of a line
         // r = r.replace(new RegExp(' + ' + newline, 'g'), '<br>' + newline);

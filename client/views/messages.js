@@ -13,8 +13,9 @@ Template.messages.events({
     		return;
     	}
 
-    	text = text.substring(0,text.length);
-
+    	//remove last /n
+    	text = text.substring(0,text.length -1);
+ 
     	/*
 		working in Chrome 28.0.1500.95
     	*/
@@ -155,7 +156,7 @@ function renderMessages(){
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><p class="text">'+fields.text+'</p></li>');
+			message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><div class="text">'+fields.text+'</div></li>');
 
 			if(before === null) {
 				//items of first load and recently typed ones
@@ -256,11 +257,11 @@ function renderMessages(){
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				// console.log(mfdb);
 				if(prevUserId===mfdb.userid){
-					message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><p class="text">'+mfdb.text+'</p></li>');
+					message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><div class="text">'+mfdb.text+'</div></li>');
 				}
 				else{
 					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><p class="text">'+ mfdb.text +'</p></li>');
+					message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><div class="text">'+ mfdb.text +'</div></li>');
 				}
 				prevUserId=mfdb.userid;
 				prevId=id;

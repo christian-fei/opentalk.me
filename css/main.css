@@ -936,9 +936,9 @@ SUPER SLICK TRANSFORMS
 
 /* line 47, ../sass/_messages.scss */
 .message .text, .message p {
-  display: inline-block;
   vertical-align: middle;
-  margin: .2em .3em;
+  margin: 0em .3em;
+  padding: .1em;
   -ms-word-break: break-all;
   word-break: break-all;
   word-break: break-word;
