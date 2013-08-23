@@ -139,7 +139,7 @@
 	font-weight: bold;
 	padding: .5em .8em .5em;
 	background: $color-main;
-	display: inline-block;
+	display: none;
 	border-radius: 50%;
 
 	position:fixed;
@@ -169,6 +169,7 @@
 		left: 0!important;
 		opacity: 1;
 		cursor: pointer;
+		display:inline-block;
 	}
 }
 

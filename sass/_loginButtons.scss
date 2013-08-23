@@ -1,10 +1,13 @@
 .serviceLogin{
 	display: inline-block;
-	padding:.5em;
-	margin:.5em;
-	width: 4em;
+	padding:.2em;
+	margin: .2em;
 
 	cursor: pointer;
+
+	img{
+		width: 3em;
+	}
 }
 	// .twitter{background: #0092CB;}
 	// .facebook{background: #0092CB;}

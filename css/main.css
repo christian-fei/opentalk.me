@@ -804,7 +804,7 @@ SUPER SLICK TRANSFORMS
   font-weight: bold;
   padding: .5em .8em .5em;
   background: #ffbb00;
-  display: inline-block;
+  display: none;
   border-radius: 50%;
   position: fixed;
   left: 0em;
@@ -829,10 +829,11 @@ SUPER SLICK TRANSFORMS
     left: 0 !important;
     opacity: 1;
     cursor: pointer;
+    display: inline-block;
   }
 }
 
-/* line 176, ../sass/_sidebar.scss */
+/* line 177, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -849,20 +850,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 62em) {
-  /* line 176, ../sass/_sidebar.scss */
+  /* line 177, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 201, ../sass/_sidebar.scss */
+/* line 202, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 210, ../sass/_sidebar.scss */
+/* line 211, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -872,16 +873,16 @@ SUPER SLICK TRANSFORMS
   float: left;
   opacity: .5;
 }
-/* line 221, ../sass/_sidebar.scss */
+/* line 222, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 224, ../sass/_sidebar.scss */
+/* line 225, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 230, ../sass/_sidebar.scss */
+/* line 231, ../sass/_sidebar.scss */
 .logo {
   position: absolute;
   top: 1.5em;
@@ -1387,8 +1388,11 @@ http://www.tipue.com/tipr
 /* line 1, ../sass/_loginButtons.scss */
 .serviceLogin {
   display: inline-block;
-  padding: .5em;
-  margin: .5em;
-  width: 4em;
+  padding: .2em;
+  margin: .2em;
   cursor: pointer;
+}
+/* line 8, ../sass/_loginButtons.scss */
+.serviceLogin img {
+  width: 3em;
 }
