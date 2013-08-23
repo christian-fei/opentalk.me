@@ -20,7 +20,7 @@ Meteor.publish('MessagesReady',function(roomid){
 });
 
 Meteor.publish('paginatedMessages', function(roomid,limit) {
-  return Messages.find({roomid:roomid}, {sort: {timestamp: -1}, limit: limit});
+  return Messages.find({roomid:roomid}, {sort: {timestamp: 1}, limit: limit});
 });
 Meteor.publish('paginatedMessagesTroll', function(roomid,limit) {
   return Messages.find({roomid:roomid,_id:'this is an id that will never exist, hopefully'}, {limit: 1});

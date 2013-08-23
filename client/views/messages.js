@@ -144,7 +144,7 @@ function renderMessages(){
 	console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			// console.log('added id ' +id + ' before ' + before);
+			console.log('added id ' +id + ' before ' + before);
 
 			// $('.load-more').removeClass('show-loading');
 
@@ -152,11 +152,14 @@ function renderMessages(){
 			// console.log( typeof fields.userid );
 			// console.log( typeof Meteor.userId() );
 			imageExp();
+
+			//Don't show my message until it's marked as complete..
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
-			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
+			
+			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			message = $('<li class="message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><div class="text">'+fields.text+'</div></li>');
+			message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><div class="text">'+fields.text+'</div></li>');
 
 			if(before === null) {
 				//items of first load and recently typed ones
@@ -174,7 +177,7 @@ function renderMessages(){
 
 					$('#'+prevId).addClass('lastOfUser');
 				}
-				message[0].classList.add('new-message');
+				// message[0].classList.add('new-message');
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
@@ -201,7 +204,6 @@ function renderMessages(){
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
 					firstRunAfterMore=false;
-					
 				}else{
 					if(prevUserId!==fields.userid){
 						/*NEW USER*/
