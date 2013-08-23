@@ -71,7 +71,7 @@ Template.room.events({
 	},
 	'click .go-home-you-are-drunk' : function(evnt,tmplt){
 		evnt.preventDefault();
-		Session.set('roomid',null);
+		ouSub.stop();
 		Meteor.Router.to('/');
 	},
 	'click #logout' : function(evnt,tmplt){
@@ -105,7 +105,7 @@ Template.room.events({
 
 
 
-
+ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 
 Deps.autorun(function(){
 	console.log('uid ' +Meteor.userId());
@@ -113,7 +113,7 @@ Deps.autorun(function(){
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+
 
 Template.room.rendered=function(){
 	positionFixedContent();
@@ -159,6 +159,7 @@ Deps.autorun(function(){
 Deps.autorun(function(){
 	if(Session.get('roomid')){
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+		
 	}else{
 		if(ouSub)
 			ouSub.stop();

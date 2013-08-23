@@ -133,8 +133,6 @@ Template.messages.events({
 
 yoro=false;
 Meteor.startup(function(){
-	mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-	ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 	mPagination=null;
 });
 

@@ -47,3 +47,5 @@ Meteor.startup(function(){
 		});
 	}
 });
+
+window.onbeforeunload=window.onunload=goOffline;
