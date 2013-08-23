@@ -150,6 +150,7 @@ function renderMessages(){
 			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
 			// console.log( typeof fields.userid );
 			// console.log( typeof Meteor.userId() );
+			imageExp();
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
 			/*if I don't want realtime messages why should I render them if they are not complete YET??! Huh?*/
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
