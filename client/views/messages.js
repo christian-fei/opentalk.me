@@ -34,6 +34,7 @@ Template.messages.events({
 			return;
 		}
 
+		keysPressed[evnt.keyCode] = false;
  
     	/*
 		working in Chrome 28.0.1500.95
@@ -148,7 +149,7 @@ Template.messages.events({
     		scrollDown();
     	},0);
 
-    	keysPressed[evnt.keyCode] = false;
+    	
 	}
 });
 

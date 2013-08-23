@@ -113,13 +113,25 @@
 	margin-top: 1.5em;
 	text-align: left;
 	list-style-type: none;
+	text-align: center;
+	
+	li{
+		margin-left: 0;
+	}
 }
+	.online-users-heading{
+		text-align: center;
+	}
 	.online-user{
-		display: block;
+		display: inline-block;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	    overflow: hidden;
 	    color:#444;
+	}
+	.online-user-wrapper{
+		text-align: left;
+		margin-left:3em!important;
 	}
 
 .roomid{
@@ -215,7 +227,7 @@
 	margin: .4em .5em 0 0;
 	border-radius: 70%;
 
-	float:left;
+	// float:left;
 	
 	opacity: .5;
 

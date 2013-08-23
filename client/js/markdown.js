@@ -12,12 +12,12 @@ markdown = {
         r = r.replace(new RegExp('<pre>([\\s\\S]*?)</pre>', 'gi'), function (x) { pre2.push(x.substring(5, x.length - 6)); return '<pre></pre>'; });
         
         // h1 - h4 and hr
-        r = r.replace(/(^|\s)######[\s]?(.*)/gm, '<h6>$2</h6>');
-        r = r.replace(/(^|\s)#####[\s]?(.*)/gm, '<h5>$2</h5>');
-        r = r.replace(/(^|\s)####[\s]?(.*)/gm, '<h4>$2</h4>');
-        r = r.replace(/(^|\s)###[\s]?(.*)/gm, '<h3>$2</h3>');
-        r = r.replace(/(^|\s)##[\s]?(.*)/gm, '<h2>$2</h2>');
-        r = r.replace(/(^|\s)#[\s]?(.*)/gm, '<h1>$2</h1>');
+        r = r.replace(/(^|\s)######[\s]?(.*)######/gm, '<h6>$2</h6>');
+        r = r.replace(/(^|\s)#####[\s]?(.*)#####/gm, '<h5>$2</h5>');
+        r = r.replace(/(^|\s)####[\s]?(.*)####/gm, '<h4>$2</h4>');
+        r = r.replace(/(^|\s)###[\s]?(.*)###/gm, '<h3>$2</h3>');
+        r = r.replace(/(^|\s)##[\s]?(.*)##/gm, '<h2>$2</h2>');
+        r = r.replace(/(^|\s)#[\s]?(.*)[#]?/gm, '<h1>$2</h1>');
         r = r.replace(/^[-*][-*][-*]+/gm, '<hr>');
         
         // bold, italics, and code formatting

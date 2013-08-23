@@ -19,6 +19,10 @@ Meteor.startup(function(){
 				showSidebar();
 			}
 		});
+
+
+		if( $('#mymessage') )
+			$('#mymessage').focus();
 	});
 
 
