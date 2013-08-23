@@ -89,14 +89,7 @@ Template.room.events({
 
 		goOffline();
 		
-		yoro=false;
-		loggingOut=true;
-		console.log('yoro');
-
 		Meteor.logout(function(){
-			yoro=false;
-
-			loggingOut=true;
 		});
 	}
 });
@@ -109,7 +102,6 @@ ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 
 Deps.autorun(function(){
 	console.log('uid ' +Meteor.userId());
-	yoro=false;
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -117,17 +109,7 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 	positionFixedContent();
-
 	console.log('room');
-	// if(!yoro) {
-	// if(mSub)
-	// 	mSub.stop();
-	// if(ouSub)
-	// 	ouSub.stop();
-	// if(mPagination)
-	// 	mPagination.stop();
-	
-	// }
 }
 
 
@@ -135,7 +117,7 @@ Template.room.rendered=function(){
 
 
 Meteor.setInterval(function () {
-	if(Session.get('roomid') && Meteor.user() && !loggingOut){
+	if(Session.get('roomid') && Meteor.user()){
 		console.log('keepalive');
 		goOnline();
 	}

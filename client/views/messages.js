@@ -131,7 +131,6 @@ Template.messages.events({
 });
 
 
-yoro=false;
 Meteor.startup(function(){
 	mPagination=null;
 });
