@@ -3,36 +3,38 @@
 	{{#isolate}}
 		<div class="online-users-count"><span>{{onlineUsersCount}}</span></div>
 	{{/isolate}}
-	{{#isolate}}
-		<aside class="fixed-sidebar">
-			<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
-				<img src="/images/logo_even_dark.png" alt="" class="logo">
-			</a>
-				{{#if currentUser}}
-					<div class="userinfo">
-						<img class="user-avatar" src="{{avatar}}"/>
-						<span class="user-username">{{username}}</span>
-					</div>
-					
-					<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
-					<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
-						<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
-					</a>
+	<aside class="fixed-sidebar">
+		<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
+			<img src="/images/logo_even_dark.png" alt="" class="logo">
+		</a>
+		{{#isolate}}
+			{{#if currentUser}}
+				<div class="userinfo">
+					<img class="user-avatar" src="{{avatar}}"/>
+					<span class="user-username">{{username}}</span>
+				</div>
+				
+				<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
+				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
+					<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
+				</a>
+			{{/if}}
+		{{/isolate}}
+		{{#isolate}}
+			<ul class="online-users">
+				{{#if moreThanOneUserOnline}}
+					<li class='online-users-heading'>
+						{{onlineUsersCount}} online
+					</li>
+					{{#each onlineUsers}}
+						<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
+					{{/each}}
+				{{else}}
+					<li>:( nobody is online right now</li>
 				{{/if}}
-				<ul class="online-users">
-					{{#if moreThanOneUserOnline}}
-						<li class='online-users-heading'>
-							{{onlineUsersCount}} online
-						</li>
-						{{#each onlineUsers}}
-							<li class="online"><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
-						{{/each}}
-					{{else}}
-						<li>:( nobody is online right now</li>
-					{{/if}}
-				</ul>
-		</aside>
-	{{/isolate}}
+			</ul>
+		{{/isolate}}
+	</aside>
 	<div class="main">
 
 		<div class="loading">One sec, fetching your messages..</div>
