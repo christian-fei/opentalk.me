@@ -14,7 +14,7 @@ Template.messages.events({
     	}
 
     	//remove last /n
-    	text = text.substring(0,text.length -1);
+    	text = text.substring(0,text.length);
  
     	/*
 		working in Chrome 28.0.1500.95
