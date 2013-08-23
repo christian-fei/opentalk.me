@@ -1,7 +1,17 @@
 var initialMessageHeight = 0;
-Template.messages.events({
-	'keyup #mymessage' : function(evnt,tmplt){
 
+
+keysPressed = [];
+Template.messages.events({
+	'keydown #mymessage' : function(evnt,tmplt){
+		// console.log('keydown');
+		keysPressed[evnt.keyCode] = true;
+		// console.log(keysPressed);
+	},
+	'keyup #mymessage' : function(evnt,tmplt){
+		// console.log('keyup');
+		
+		// console.log(keysPressed);
 		// console.log(evnt.keyCode);
 		// console.log(evnt.which);
 
@@ -14,7 +24,16 @@ Template.messages.events({
     	}
 
     	//remove last /n
-    	text = text.substring(0,text.length);
+    	// text = text.substring(0,text.length);
+
+		if(keysPressed[13] && keysPressed[16]){
+			//add a new line and then return
+			console.log('shift + enter');
+			text = text + '\n';
+			keysPressed[evnt.keyCode] = false;
+			return;
+		}
+
  
     	/*
 		working in Chrome 28.0.1500.95
@@ -128,6 +147,8 @@ Template.messages.events({
     	setTimeout(function(){
     		scrollDown();
     	},0);
+
+    	keysPressed[evnt.keyCode] = false;
 	}
 });
 
