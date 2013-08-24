@@ -52,8 +52,8 @@ Template.profile.helpers({
 			Session.set('userRoomsCount',result);
 		});
 		if(Session.get('userRoomsCount') > 1)
-			return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>rooms</h6>';
-		return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>room</h6>';
+			return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>chatrooms</h6>';
+		return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>chatroom</h6>';
 	},
 	userWordsCount:function(){
 		Meteor.call('userWordsCount',function(err,result){

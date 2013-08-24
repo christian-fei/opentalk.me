@@ -148,11 +148,21 @@ h6 {
   font-size: 1.2em;
 }
 
-/* line 23, ../sass/_typography.scss */
-ul li {
-  margin-left: 1em;
+/* line 21, ../sass/_typography.scss */
+a {
+  color: #2B2B2B;
 }
-/* line 26, ../sass/_typography.scss */
+
+/* line 24, ../sass/_typography.scss */
+a:visited {
+  color: #002b73;
+}
+
+/* line 29, ../sass/_typography.scss */
+ul li {
+  margin-left: 1.3em;
+}
+/* line 32, ../sass/_typography.scss */
 ul ul {
   margin-left: 1.5em;
 }
@@ -627,6 +637,14 @@ SUPER SLICK TRANSFORMS
   overflow: hidden;
   padding: 3em 2em !important;
   margin: auto !important;
+  color: #666;
+}
+
+/* line 136, ../sass/_welcome.scss */
+.tos {
+  margin: 4em auto;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
 }
 
 /* line 1, ../sass/_room.scss */
