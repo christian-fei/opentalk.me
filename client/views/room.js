@@ -98,7 +98,7 @@ Template.room.events({
 
 
 
-ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+
 
 Deps.autorun(function(){
 	console.log('uid ' +Meteor.userId());

@@ -8,35 +8,35 @@ markdown = {
         // var newline = r.indexOf('\r\n') != -1 ? '\r\n' : r.indexOf('\n') != -1 ? '\n' : ''
         
         // store {{{ unformatted blocks }}} and <pre> pre-formatted blocks </pre>
-        r = r.replace(/{{{([\s\S]*?)}}}/g, function (x) { pre1.push(x.substring(3, x.length - 3)); return '{{{}}}'; });
-        r = r.replace(new RegExp('<pre>([\\s\\S]*?)</pre>', 'gi'), function (x) { pre2.push(x.substring(5, x.length - 6)); return '<pre></pre>'; });
+        // r = r.replace(/{{{([\s\S]*?)}}}/g, function (x) { pre1.push(x.substring(3, x.length - 3)); return '{{{}}}'; });
+        // r = r.replace(new RegExp('<pre>([\\s\\S]*?)</pre>', 'gi'), function (x) { pre2.push(x.substring(5, x.length - 6)); return '<pre></pre>'; });
         
         // h1 - h4 and hr
-        r = r.replace(/(^|\s)######[\s]?(.*)######/gm, '<h6>$2</h6>');
-        r = r.replace(/(^|\s)#####[\s]?(.*)#####/gm, '<h5>$2</h5>');
-        r = r.replace(/(^|\s)####[\s]?(.*)####/gm, '<h4>$2</h4>');
-        r = r.replace(/(^|\s)###[\s]?(.*)###/gm, '<h3>$2</h3>');
-        r = r.replace(/(^|\s)##[\s]?(.*)##/gm, '<h2>$2</h2>');
-        r = r.replace(/(^|\s)#[\s]?(.*)[#]?/gm, '<h1>$2</h1>');
+        r = r.replace(/######[\s]?(.*)######/gm, '<h6>$1</h6>');
+        r = r.replace(/#####[\s]?(.*)#####/gm, '<h5>$1</h5>');
+        r = r.replace(/####[\s]?(.*)####/gm, '<h4>$1</h4>');
+        r = r.replace(/###[\s]?(.*)###/gm, '<h3>$1</h3>');
+        r = r.replace(/##[\s]?(.*)##/gm, '<h2>$1</h2>');
+        r = r.replace(/#[\s]?(.*)#/gm, '<h1>$1</h1>');
         r = r.replace(/^[-*][-*][-*]+/gm, '<hr>');
         
         // bold, italics, and code formatting
         r = r.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         r = r.replace(new RegExp('//(((?!https?://).)*?)//', 'g'), '<em>$1</em>');
-        r = r.replace(/``(.*?)``/g, '<code>$1</code>');
+        r = r.replace(/``(.*?)``/gm, '<code>$1</code>');
         
         // unordered lists with *
-        r = r.replace(/(^|\s)\*\*\*\*[\s]?(.*)/gm, '<ul><ul><ul><ul><li>$2</li></ul></ul></ul></ul>');
-        r = r.replace(/(^|\s)\*\*\*[\s]?(.*)/gm, '<ul><ul><ul><li>$2</li></ul></ul></ul>');
-        r = r.replace(/(^|\s)\*\*[\s]?(.*)/gm, '<ul><ul><li>$2</li></ul></ul>');
-        r = r.replace(/(^|\s)\*[\s]?(.*)/gm, '<ul><li>$2</li></ul>');
+        r = r.replace(/\*\*\*\*[\s]?(.*)/gm, '<ul><ul><ul><ul><li>$1</li></ul></ul></ul></ul>');
+        r = r.replace(/\*\*\*[\s]?(.*)/gm, '<ul><ul><ul><li>$1</li></ul></ul></ul>');
+        r = r.replace(/\*\*[\s]?(.*)/gm, '<ul><ul><li>$1</li></ul></ul>');
+        r = r.replace(/\*[\s]?(.*)/gm, '<ul><li>$1</li></ul>');
         // for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ul>' + newline + '<ul>', 'g'), newline);
         
         // ordered lists
-        r = r.replace(/(^|\s)====[\s]?(.*)/gm, '<ol><ol><ol><ol><li>$2</li></ol></ol></ol></ol>');
-        r = r.replace(/(^|\s)===[\s]?(.*)/gm, '<ol><ol><ol><li>$2</li></ol></ol></ol>');
-        r = r.replace(/(^|\s)==[\s]?(.*)/gm, '<ol><ol><li>$2</li></ol></ol>');
-        r = r.replace(/(^|\s)=[\s]?(.*)/gm, '<ol><li>$2</li></ol>');
+        r = r.replace(/====[\s]?(.*)/gm, '<ol><ol><ol><ol><li>$1</li></ol></ol></ol></ol>');
+        r = r.replace(/===[\s]?(.*)/gm, '<ol><ol><ol><li>$1</li></ol></ol></ol>');
+        r = r.replace(/==[\s]?(.*)/gm, '<ol><ol><li>$1</li></ol></ol>');
+        r = r.replace(/=[\s]?(.*)/gm, '<ol><li>$1</li></ol>');
         // for (ii = 0; ii < 3; ii++) r = r.replace(new RegExp('</ol>' + newline + '<ol>', 'g'), newline);
  
         // hard linebreak if there are 2 or more spaces at the end of a line
