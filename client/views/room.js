@@ -64,6 +64,11 @@ Template.room.helpers({
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click .online-users-count' : toggleSidebar,
+	'click #userstats' : function(){
+		goOffline();
+		ouSub.stop();
+		Meteor.Router.to('/profile');
+	},
 	'click #toggleRealtime' : function(evnt){
 		evnt.preventDefault();
 		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));

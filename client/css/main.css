@@ -619,50 +619,6 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 110, ../sass/_welcome.scss */
-.features, .stats {
-  background: white;
-  width: 100%;
-  float: left;
-  padding: 2em;
-}
-
-/* line 116, ../sass/_welcome.scss */
-.features-wrapper, .stats-wrapper {
-  max-width: 42em;
-  margin: auto;
-}
-
-/* line 120, ../sass/_welcome.scss */
-.feature, .stat {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  font-size: .9rem;
-  display: table;
-  width: 33.3%;
-  background: #F3F3F3;
-  padding: 2em;
-  float: left;
-  text-align: center;
-  border: 1px solid white;
-  height: 14em;
-}
-@media all and (max-width: 32em) {
-  /* line 120, ../sass/_welcome.scss */
-  .feature, .stat {
-    width: 50%;
-  }
-}
-/* line 138, ../sass/_welcome.scss */
-.feature h6, .stat h6 {
-  font-size: 1.3em;
-}
-/* line 142, ../sass/_welcome.scss */
-.feature img, .stat img {
-  width: 2em;
-  height: 2em;
-}
-
 /* line 1, ../sass/_room.scss */
 .main {
   z-index: 126;
@@ -821,7 +777,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 99, ../sass/_sidebar.scss */
-#logout, #toggleRealtime {
+#logout, #toggleRealtime, #userstats {
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-top: 0.6em;
@@ -1489,20 +1445,66 @@ http://www.tipue.com/tipr
   height: 4em;
   width: 4em;
   margin: .5em;
+  border-radius: 50%;
+  border: 1px solid #222;
 }
-/* line 14, ../sass/_profile.scss */
+/* line 16, ../sass/_profile.scss */
 .profile-mast-cont p {
   font-size: 1.5em;
 }
 
-/* line 26, ../sass/_profile.scss */
+/* line 28, ../sass/_profile.scss */
 .stat {
-  height: 12em;
+  height: 13em;
   width: 33.3%;
 }
 @media all and (max-width: 37em) {
-  /* line 26, ../sass/_profile.scss */
+  /* line 28, ../sass/_profile.scss */
   .stat {
     width: 50%;
   }
+}
+
+/* line 1, ../sass/_tiles.scss */
+.tiles, .features, .stats {
+  background: white;
+  width: 100%;
+  float: left;
+  padding: 2em;
+}
+
+/* line 7, ../sass/_tiles.scss */
+.tiles-wrapper, .features-wrapper, .stats-wrapper {
+  max-width: 42em;
+  margin: auto;
+}
+
+/* line 11, ../sass/_tiles.scss */
+.tile, .feature, .stat {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  font-size: .9rem;
+  display: table;
+  width: 33.3%;
+  background: #F3F3F3;
+  padding: 2em;
+  float: left;
+  text-align: center;
+  border: 2px solid white;
+  height: 14em;
+}
+@media all and (max-width: 32em) {
+  /* line 11, ../sass/_tiles.scss */
+  .tile, .feature, .stat {
+    width: 50%;
+  }
+}
+/* line 29, ../sass/_tiles.scss */
+.tile h6, .feature h6, .stat h6 {
+  font-size: 1.3em;
+}
+/* line 33, ../sass/_tiles.scss */
+.tile img, .feature img, .stat img {
+  width: 2em;
+  height: 2em;
 }

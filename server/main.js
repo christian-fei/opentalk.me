@@ -113,6 +113,17 @@ Meteor.methods({
       }
     }
     return count;
+  },
+  userCharacters:function(){
+    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
+        i=count=0;
+    while(m=mu[i++])
+      count+=m.text.length;
+    return count;
+  },
+  memberSince:function(){
+    var d = new Date(Meteor.user().createdAt).toDateString().substring(4);
+    return d;
   }
 });
 

@@ -1,5 +1,5 @@
 Template.profile.helpers({
-	'username':function(){
+	username:function(){
 		var username='';
 		if(s=Meteor.user().services){
 			if(u=s.facebook)
@@ -14,7 +14,7 @@ Template.profile.helpers({
 		Session.set('screenname',username);
 		return username;
 	},
-	'avatar':function(){
+	avatar:function(){
 		//TODO
 		var avatar='/images/avatar.png';
 		if(Meteor.user().services){
@@ -39,16 +39,30 @@ Template.profile.helpers({
 		Session.set('avatar',avatar);
 		return avatar;
 	},
-	'userMessagesCount':function(){
+	userMessagesCount:function(){
 		Meteor.call('userMessagesCount',function(err,result){
 			Session.set('userMessagesCount',result);
 		});
-		return Session.get('userMessagesCount');
+		return '<h1>' + Session.get('userMessagesCount') + '</h1>' + '<h5>messages</h5>';
 	},
-	'userRoomsCount':function(){
+	userRoomsCount:function(){
 		Meteor.call('userRoomsCount',function(err,result){
 			Session.set('userRoomsCount',result);
 		});
-		return Session.get('userRoomsCount');
+		if(Session.get('userRoomsCount') > 1)
+			return 'in <br/><h1>' + Session.get('userRoomsCount') + '</h1>' + '<h5>rooms</h5>';
+		return '<p>in</p><h1>' + Session.get('userRoomsCount') + '</h1>' + '<h5>room</h5>';
+	},
+	userCharacters:function(){
+		Meteor.call('userCharacters',function(err,result){
+			Session.set('userCharacters',result);
+		});
+		return '<h1>' + Session.get('userCharacters') + '</h1>' + '<h5>characters typed</h5>';
+	},
+	memberSince:function(){
+		Meteor.call('memberSince',function(err,result){
+			Session.set('memberSince',result);
+		});
+		return '<h5>member since</h5><h4>' + Session.get('memberSince') + '</h4>';
 	},
 });

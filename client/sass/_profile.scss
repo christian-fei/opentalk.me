@@ -9,6 +9,8 @@
 		height:4em;
 		width: 4em;
 		margin: .5em;
+		border-radius: 50%;
+		border:1px solid #222;
 	}
 
 	p{
@@ -18,14 +20,14 @@
 
 
 .stats{
-	@extend .features;
+	@extend .tiles;
 }
 .stats-wrapper{
-	@extend .features-wrapper;
+	@extend .tiles-wrapper;
 }
 .stat{
-	@extend .feature;
-	height:12em;
+	@extend .tile;
+	height:13em;
 	width:33.3%;
 
 	@media all and(max-width: $limit + 5em){

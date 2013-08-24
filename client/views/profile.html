@@ -2,6 +2,9 @@
 
 	<div class="profile-mast">
 		<div class="profile-mast-cont">
+			<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
+				<img src="/images/logo_even_dark.png" alt="" class="logo">
+			</a>
 			<img src="{{avatar}}" alt=""/>
 			<br/>
 			<p>{{username}}</p>
@@ -12,17 +15,28 @@
 		<div class="stats-wrapper">
 			<div class="stat">
 				<div class="vam">
-					<h2>{{userMessagesCount}}</h2>
-					<h4>messages</h4>
+					{{{userMessagesCount}}}
 				</div>
 			</div>
 		</div>
 		<div class="stats-wrapper">
 			<div class="stat">
 				<div class="vam">
-					in
-					<h2>{{userRoomsCount}}</h2>
-					<h4>rooms</h4>
+					{{{userRoomsCount}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{userCharacters}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{memberSince}}}
 				</div>
 			</div>
 		</div>
