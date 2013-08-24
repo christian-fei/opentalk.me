@@ -622,8 +622,15 @@ SUPER SLICK TRANSFORMS
   }
 }
 
+/* line 129, ../sass/_welcome.scss */
+.footer {
+  overflow: hidden;
+  padding: 3em 2em !important;
+  margin: auto !important;
+}
+
 /* line 1, ../sass/_room.scss */
-.main {
+.main, .footer {
   z-index: 126;
   margin: 6em auto 0.5em;
   max-width: 31em;
@@ -633,13 +640,13 @@ SUPER SLICK TRANSFORMS
 }
 @media all and (max-width: 32em) {
   /* line 1, ../sass/_room.scss */
-  .main {
+  .main, .footer {
     width: 93%;
     margin-right: .5em;
   }
 }
 /* line 27, ../sass/_room.scss */
-.main.under-modal {
+.main.under-modal, .under-modal.footer {
   opacity: 0.3;
 }
 
@@ -1499,12 +1506,11 @@ http://www.tipue.com/tipr
   font-size: .9rem;
   display: table;
   width: 33.3%;
-  background: #F3F3F3;
   padding: 2em;
   float: left;
   text-align: center;
   border: 2px solid white;
-  height: 14em;
+  height: 15em;
 }
 @media all and (max-width: 42em) {
   /* line 11, ../sass/_tiles.scss */
@@ -1514,10 +1520,14 @@ http://www.tipue.com/tipr
 }
 /* line 29, ../sass/_tiles.scss */
 .tile h6, .feature h6, .stat h6 {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 /* line 33, ../sass/_tiles.scss */
 .tile img, .feature img, .stat img {
   width: 2em;
   height: 2em;
+}
+/* line 38, ../sass/_tiles.scss */
+.tile a, .feature a, .stat a {
+  color: #444444;
 }

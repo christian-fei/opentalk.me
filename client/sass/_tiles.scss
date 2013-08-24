@@ -15,23 +15,27 @@
 			font-size: .9rem;
 			display:table;
 			width: 33.3%;
-			background:#F3F3F3;
+			// background: #F6F6F6;
 			padding:2em;
 			float:left;
 			text-align: center;
 			border:2px solid white;
-			height:14em;
+			height:15em;
 
 			@media all and(max-width: $limit + 10em){
 				width: 50%;
 			}
 			
 			h6{
-				font-size: 1.3em;
+				font-size: 1.2em;
 			}
 	
 			img{
 				width:2em;
 				height:2em;
+			}
+
+			a{
+				color:$color-secondary;
 			}
 		}

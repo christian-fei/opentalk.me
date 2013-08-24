@@ -29,7 +29,7 @@ function joinRoom(r){
 }
 
 Template.selectChatRoom.rendered = function(){
-	$('#roomid').focus();
+	// $('#roomid').focus();
 	$('.blanket').on('click',function(){
 		$('#roomid').focus();
 	});

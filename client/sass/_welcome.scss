@@ -125,3 +125,10 @@ $offset-y:-312px;
 .feature{
 	@extend .tile;
 }
+
+.footer{
+	@extend .main;
+	overflow: hidden;
+	padding: 3em 2em!important;
+	margin:auto!important;
+}
