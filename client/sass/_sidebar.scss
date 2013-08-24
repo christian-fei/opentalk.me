@@ -93,10 +93,14 @@
 	}
 }
 
+.buttons-wrapper{
+	text-align: center;
+}
 #logout,#toggleRealtime{
-	float:left;
+	// float:left;
 	//clear:right;
-	margin-left:0.8em;
+	margin-left:0.5em;
+	margin-right:0.5em;
 	margin-top:0.6em;
 
 	text-decoration: none;

@@ -14,10 +14,12 @@
 					<span class="user-username">{{username}}</span>
 				</div>
 				
-				<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
-				<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
-					<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
-				</a>
+				<div class='buttons-wrapper'>
+					<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
+					<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
+						<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
+					</a>
+				</div>
 			{{/if}}
 		{{/isolate}}
 		{{#isolate}}

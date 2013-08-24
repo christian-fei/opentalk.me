@@ -20,11 +20,21 @@
 		-o-animation-fill-mode: both;
 		animation-fill-mode: both;
 
+		@media all and(max-width:30em){
+			padding:5em 3em;
+		}
+
 		h1{
 			color:#222;
-			text-shadow: 5px 5px 20px 50px white;
-			font-family: 'Source Sans Pro', sans-serif;
+			// text-shadow: 1px 0 0 rgba(255,255,255,.2);
 		}
+	}
+	.logo-welcome{
+		display:block;
+		margin:1rem auto;
+		height:3.75rem;
+		width:3.75rem;
+		// margin-left:1rem;
 	}
 
 #roomid {
@@ -94,3 +104,23 @@ $offset-y:-312px;
 	from { background-position:0 0; }
 	to { background-position:0 $offset-y; }
 }
+
+
+
+.features{
+	background:white;
+	width: 100%;
+	float:left; //or overflow:hidden
+	padding: 2em;
+}
+	.features-wrapper{
+		max-width: $limit;
+		margin:auto;
+	}
+		.feature{
+			display:inline-block;
+			width: 33.3%;
+			background:grey;
+			padding:2em;
+			float:left;
+		}

@@ -1,5 +1,18 @@
 Meteor.startup(function(){
 
+	
+	if(Meteor._localStorage.getItem('realtimeEnabled') === null){
+		//set default
+		Meteor._localStorage.setItem('realtimeEnabled',false);
+		Session.set('realtimeEnabled',false);
+	} else {
+		if(Meteor._localStorage.getItem('realtimeEnabled') === 'true')
+			Session.set('realtimeEnabled',true);
+		else
+			Session.set('realtimeEnabled',false);
+	}
+
+
 	FastClick.attach(document.body);
 
 	$(document).ready(function() {
