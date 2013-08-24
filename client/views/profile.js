@@ -73,7 +73,9 @@ Template.profile.events({
 	'click .go-back-you-are-drunk':function(e,t){
 		e.preventDefault();
 		//i have no idea why this works
-		history.go(-2);
-		// history.back();
+		if(Session.get('roomid'))
+			window.location='http://opentalk.me/'+Session.get('roomid');
+		else
+			window.location='http://opentalk.me';
 	}
 });
