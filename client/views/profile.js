@@ -1,6 +1,7 @@
 Template.profile.helpers({
 	username:function(){
 		var username='';
+		if(!Meteor.user())return;
 		if(s=Meteor.user().services){
 			if(u=s.facebook)
 				username=u.username;
@@ -17,6 +18,7 @@ Template.profile.helpers({
 	avatar:function(){
 		//TODO
 		var avatar='/images/avatar.png';
+		if(!Meteor.user())return;
 		if(Meteor.user().services){
 			if(Meteor.user().services.twitter)
 				avatar = Meteor.user().services.twitter.profile_image_url;
@@ -65,4 +67,13 @@ Template.profile.helpers({
 		});
 		return '<h5>member since</h5><h4>' + Session.get('memberSince') + '</h4>';
 	},
+});
+
+Template.profile.events({
+	'click .go-back-you-are-drunk':function(e,t){
+		e.preventDefault();
+		//i have no idea why this works
+		history.go(-2);
+		// history.back();
+	}
 });

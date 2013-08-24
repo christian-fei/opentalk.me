@@ -71,3 +71,18 @@
 .icon-google{
 	background:url('/images/social/google.png') no-repeat;
 }
+
+
+
+.logo,.back{
+	height:$toggle-size;
+	width:$toggle-size;
+	border-radius: 50%;
+	// border-top-right-radius:0;
+	// border-bottom-right-radius:0;
+	padding:$toggle-size/4;
+	background:$color-main;
+	display: inline-block;
+	border:.1em solid darken($color-main,10%);
+	// box-shadow: .05em 0em .5em 0em lightgrey;
+}

@@ -914,18 +914,11 @@ SUPER SLICK TRANSFORMS
   background: #FF8200;
 }
 
-/* line 247, ../sass/_sidebar.scss */
-.logo {
+/* line 249, ../sass/_sidebar.scss */
+.fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
-  height: 3.33em;
-  width: 3.33em;
-  border-radius: 50%;
-  padding: 0.8325em;
-  background: #ffbb00;
-  display: inline-block;
-  border: 0.1em solid #cc9600;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -1275,6 +1268,17 @@ input[type='text'].change:focus {
   background: url("/images/social/google.png") no-repeat;
 }
 
+/* line 77, ../sass/_icons.scss */
+.logo, .back {
+  height: 3.33em;
+  width: 3.33em;
+  border-radius: 50%;
+  padding: 0.8325em;
+  background: #ffbb00;
+  display: inline-block;
+  border: 0.1em solid #cc9600;
+}
+
 /* line 1, ../sass/_general.scss */
 body {
   background: #F0F0F0;
@@ -1440,7 +1444,20 @@ http://www.tipue.com/tipr
   width: 3em;
 }
 
-/* line 8, ../sass/_profile.scss */
+/* line 4, ../sass/_profile.scss */
+.profile-mast .logo {
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+}
+/* line 9, ../sass/_profile.scss */
+.profile-mast .back {
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+}
+
+/* line 19, ../sass/_profile.scss */
 .profile-mast-cont img {
   height: 4em;
   width: 4em;
@@ -1448,18 +1465,18 @@ http://www.tipue.com/tipr
   border-radius: 50%;
   border: 1px solid #222;
 }
-/* line 16, ../sass/_profile.scss */
+/* line 27, ../sass/_profile.scss */
 .profile-mast-cont p {
   font-size: 1.5em;
 }
 
-/* line 28, ../sass/_profile.scss */
+/* line 39, ../sass/_profile.scss */
 .stat {
   height: 13em;
   width: 33.3%;
 }
 @media all and (max-width: 37em) {
-  /* line 28, ../sass/_profile.scss */
+  /* line 39, ../sass/_profile.scss */
   .stat {
     width: 50%;
   }
