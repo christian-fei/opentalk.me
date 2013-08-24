@@ -95,11 +95,6 @@ Template.room.events({
 });
 
 
-
-
-
-
-
 Deps.autorun(function(){
 	console.log('uid ' +Meteor.userId());
 });
@@ -135,15 +130,5 @@ Deps.autorun(function(){
 	if( Meteor.user() ){
 		Meteor.subscribe('userData');
 		goOnline();
-	}
-});
-
-Deps.autorun(function(){
-	if(Session.get('roomid')){
-		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-		
-	}else{
-		if(ouSub)
-			ouSub.stop();
 	}
 });
