@@ -1,3 +1,10 @@
+
+@mixin inset($light-shadow, $dark-shadow) {
+  text-shadow: 
+    0px 1px 3px rgba(255,255,255,$light-shadow),
+    -1px -1px 1px rgba(0,0,0,$dark-shadow);
+}
+
 .welcome-mast{
 	color:white;
 	background:$color-main;
@@ -11,23 +18,26 @@
 		background:url('/images/opentalk_bg_opaque.png');
 		background:url('/images/pattern-white.png');
 		// background-size: 400px;
-		-webkit-animation: welcome-mast-anim 10s infinite linear;
-		-moz-animation: welcome-mast-anim 10s infinite linear;
-		-o-animation: welcome-mast-anim 10s infinite linear;
-		animation: welcome-mast-anim 10s infinite linear;
-		-webkit-animation-fill-mode: both;
-		-moz-animation-fill-mode: both;
-		-o-animation-fill-mode: both;
-		animation-fill-mode: both;
+		
+		@media all and(min-width: $limit){
+			-webkit-animation: welcome-mast-anim 14s infinite linear;
+			-moz-animation: welcome-mast-anim 14s infinite linear;
+			-o-animation: welcome-mast-anim 15s infinite linear;
+			animation: welcome-mast-anim 15s infinite linear;
+			-webkit-animation-fill-mode: both;
+			-moz-animation-fill-mode: both;
+			-o-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
 
 		@media all and(max-width:30em){
 			padding:5em 3em;
 		}
 
 		h1{
-			color:#222;
-			// text-shadow: 1px 0 0 rgba(255,255,255,.2);
 		}
+			color:#222;
+		@include inset(.2,.2);
 	}
 	.logo-welcome{
 		display:block;

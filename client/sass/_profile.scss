@@ -39,9 +39,4 @@
 .stat{
 	@extend .tile;
 	height:13em;
-	width:33.3%;
-
-	@media all and(max-width: $limit + 5em){
-		width: 50%;
-	}
 }

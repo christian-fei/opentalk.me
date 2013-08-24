@@ -22,7 +22,7 @@
 			border:2px solid white;
 			height:14em;
 
-			@media all and(max-width: $limit){
+			@media all and(max-width: $limit + 10em){
 				width: 50%;
 			}
 			

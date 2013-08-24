@@ -45,27 +45,31 @@ Template.profile.helpers({
 		Meteor.call('userMessagesCount',function(err,result){
 			Session.set('userMessagesCount',result);
 		});
-		return '<h1>' + Session.get('userMessagesCount') + '</h1>' + '<h5>messages</h5>';
+		return '<h1>' + Session.get('userMessagesCount') + '</h1>' + '<h6>messages</h6>';
 	},
 	userRoomsCount:function(){
 		Meteor.call('userRoomsCount',function(err,result){
 			Session.set('userRoomsCount',result);
 		});
 		if(Session.get('userRoomsCount') > 1)
-			return 'in <br/><h1>' + Session.get('userRoomsCount') + '</h1>' + '<h5>rooms</h5>';
-		return '<p>in</p><h1>' + Session.get('userRoomsCount') + '</h1>' + '<h5>room</h5>';
+			return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>rooms</h6>';
+		return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>room</h6>';
 	},
-	userCharacters:function(){
-		Meteor.call('userCharacters',function(err,result){
-			Session.set('userCharacters',result);
+	userWordsCount:function(){
+		Meteor.call('userWordsCount',function(err,result){
+			Session.set('userWordsCount',result);
 		});
-		return '<h1>' + Session.get('userCharacters') + '</h1>' + '<h5>characters typed</h5>';
+		return '<h1>' + Session.get('userWordsCount') + '</h1>' + '<h6>words</h6>';
+	},
+	userCharactersCount:function(){
+		Meteor.call('userCharactersCount',function(err,result){
+			Session.set('userCharactersCount',result);
+		});
+		return '<h1>' + Session.get('userCharactersCount') + '</h1>' + '<h6>characters</h6>';
 	},
 	memberSince:function(){
-		Meteor.call('memberSince',function(err,result){
-			Session.set('memberSince',result);
-		});
-		return '<h5>member since</h5><h4>' + Session.get('memberSince') + '</h4>';
+		Session.set('memberSince',new Date(Meteor.user().createdAt).toDateString().substring(4));
+		return '<h3>' + Session.get('memberSince') + '</h3>' + '<h6>member since</h6>';
 	},
 });
 

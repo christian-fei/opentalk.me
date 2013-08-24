@@ -473,7 +473,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 1, ../sass/_welcome.scss */
+/* line 8, ../sass/_welcome.scss */
 .welcome-mast, .profile-mast {
   color: white;
   background: #ffbb00;
@@ -482,32 +482,35 @@ SUPER SLICK TRANSFORMS
   position: relative;
 }
 
-/* line 9, ../sass/_welcome.scss */
+/* line 16, ../sass/_welcome.scss */
 .welcome-mast-cont, .profile-mast-cont {
   padding: 5em;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
-  -webkit-animation: welcome-mast-anim 10s infinite linear;
-  -moz-animation: welcome-mast-anim 10s infinite linear;
-  -o-animation: welcome-mast-anim 10s infinite linear;
-  animation: welcome-mast-anim 10s infinite linear;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  -o-animation-fill-mode: both;
-  animation-fill-mode: both;
+  color: #222;
+  text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.2), -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+@media all and (min-width: 32em) {
+  /* line 16, ../sass/_welcome.scss */
+  .welcome-mast-cont, .profile-mast-cont {
+    -webkit-animation: welcome-mast-anim 14s infinite linear;
+    -moz-animation: welcome-mast-anim 14s infinite linear;
+    -o-animation: welcome-mast-anim 15s infinite linear;
+    animation: welcome-mast-anim 15s infinite linear;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
 }
 @media all and (max-width: 30em) {
-  /* line 9, ../sass/_welcome.scss */
+  /* line 16, ../sass/_welcome.scss */
   .welcome-mast-cont, .profile-mast-cont {
     padding: 5em 3em;
   }
 }
-/* line 27, ../sass/_welcome.scss */
-.welcome-mast-cont h1, .profile-mast-cont h1 {
-  color: #222;
-}
 
-/* line 32, ../sass/_welcome.scss */
+/* line 42, ../sass/_welcome.scss */
 .logo-welcome {
   display: block;
   margin: 1rem auto;
@@ -515,7 +518,7 @@ SUPER SLICK TRANSFORMS
   width: 3.75rem;
 }
 
-/* line 40, ../sass/_welcome.scss */
+/* line 50, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -529,7 +532,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 57, ../sass/_welcome.scss */
+/* line 67, ../sass/_welcome.scss */
 .blanket, .blanket-white {
   position: relative;
   display: table;
@@ -542,78 +545,78 @@ SUPER SLICK TRANSFORMS
   background: url("/images/pattern-black.png");
 }
 @media all and (max-width: 32em) {
-  /* line 57, ../sass/_welcome.scss */
+  /* line 67, ../sass/_welcome.scss */
   .blanket, .blanket-white {
     margin: 2.5em 1em;
   }
 }
 
-/* line 77, ../sass/_welcome.scss */
+/* line 87, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 80, ../sass/_welcome.scss */
+/* line 90, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 88, ../sass/_welcome.scss */
+  /* line 98, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 89, ../sass/_welcome.scss */
+  /* line 99, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 92, ../sass/_welcome.scss */
+  /* line 102, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 93, ../sass/_welcome.scss */
+  /* line 103, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 96, ../sass/_welcome.scss */
+  /* line 106, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 97, ../sass/_welcome.scss */
+  /* line 107, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 100, ../sass/_welcome.scss */
+  /* line 110, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 101, ../sass/_welcome.scss */
+  /* line 111, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 104, ../sass/_welcome.scss */
+  /* line 114, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 105, ../sass/_welcome.scss */
+  /* line 115, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
@@ -1473,13 +1476,6 @@ http://www.tipue.com/tipr
 /* line 39, ../sass/_profile.scss */
 .stat {
   height: 13em;
-  width: 33.3%;
-}
-@media all and (max-width: 37em) {
-  /* line 39, ../sass/_profile.scss */
-  .stat {
-    width: 50%;
-  }
 }
 
 /* line 1, ../sass/_tiles.scss */
@@ -1510,7 +1506,7 @@ http://www.tipue.com/tipr
   border: 2px solid white;
   height: 14em;
 }
-@media all and (max-width: 32em) {
+@media all and (max-width: 42em) {
   /* line 11, ../sass/_tiles.scss */
   .tile, .feature, .stat {
     width: 50%;

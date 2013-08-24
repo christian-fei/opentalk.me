@@ -7,25 +7,11 @@ Messages.allow({
   ,remove : function(userId,doc){return true}
 });
 
-//console.log(process.env);
-
-/*only used to determine if collection is ready*/
-Meteor.publish('MessagesReady',function(roomid){
-  return Messages.find(
-    {
-      roomid:roomid,
-      _id:'this is an id that will never exist, hopefully'
-    },{limit:1}
-  );
-});
+console.log(process.env);
 
 Meteor.publish('paginatedMessages', function(roomid,limit) {
   return Messages.find({roomid:roomid}, {sort: {timestamp: 1}, limit: limit});
 });
-Meteor.publish('paginatedMessagesTroll', function(roomid,limit) {
-  return Messages.find({roomid:roomid,_id:'this is an id that will never exist, hopefully'}, {limit: 1});
-});
-
 Meteor.publish('usersOnlineInThisRoom',function(roomid){
   return OnlineUsers.find(
     {
@@ -96,7 +82,7 @@ Meteor.methods({
       console.log('keep alive ' + userid + ' in  ' + roomid);
     }
   },
-
+  //not used anymore
   setUserId: function(userId) {
     this.setUserId(userId)
   },
@@ -114,16 +100,19 @@ Meteor.methods({
     }
     return count;
   },
-  userCharacters:function(){
+  userCharactersCount:function(){
     var mu=Messages.find({userid:Meteor.userId()}).fetch(),
         i=count=0;
     while(m=mu[i++])
       count+=m.text.length;
     return count;
   },
-  memberSince:function(){
-    var d = new Date(Meteor.user().createdAt).toDateString().substring(4);
-    return d;
+  userWordsCount:function(){
+    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
+        i=count=0;
+    while(m=mu[i++])
+      count+=m.text.trim().replace(/\s+/gi, ' ').split(' ').length;
+    return count;    
   }
 });
 
