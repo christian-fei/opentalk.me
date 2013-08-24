@@ -5,6 +5,8 @@ Meteor.Router.add({'/': function(){
 	}
 });
 
+Meteor.Router.add({'/profile':'profile'});
+
 Meteor.Router.add({'/:id': function(id){
 		Session.set('roomid',id);
 		goOnline();
@@ -16,5 +18,3 @@ Meteor.Router.add({'/:id': function(id){
 		return 'room';
 	}
 });
-
-Meteor.Router.add({'/about':'about'});

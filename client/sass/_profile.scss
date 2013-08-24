@@ -1,0 +1,34 @@
+.profile-mast{
+	@extend .welcome-mast;
+}
+
+.profile-mast-cont{
+	@extend .welcome-mast-cont;
+
+	img{
+		height:4em;
+		width: 4em;
+		margin: .5em;
+	}
+
+	p{
+		font-size: 1.5em;
+	}
+}
+
+
+.stats{
+	@extend .features;
+}
+.stats-wrapper{
+	@extend .features-wrapper;
+}
+.stat{
+	@extend .feature;
+	height:12em;
+	width:33.3%;
+
+	@media all and(max-width: $limit + 5em){
+		width: 50%;
+	}
+}

@@ -5,6 +5,7 @@
     "presence": {},
     "paginated-subscription": {},
     "spin": {},
-    "phantomjs": {}
+    "phantomjs": {},
+    "mongodb-aggregation": {}
   }
 }

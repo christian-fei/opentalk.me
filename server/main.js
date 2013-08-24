@@ -99,6 +99,20 @@ Meteor.methods({
 
   setUserId: function(userId) {
     this.setUserId(userId)
+  },
+  userMessagesCount:function(){
+    return Messages.find({userid:Meteor.userId()}).count();
+  },
+  userRoomsCount:function(){
+    var mu = Messages.find({userid:Meteor.userId()},{fields:{roomid:true}}).fetch();
+    var i=count=0,occ=[];
+    while(m=mu[i++]){
+      if(!occ[m.roomid]){
+        count++;
+        occ[m.roomid]=true;
+      }
+    }
+    return count;
   }
 });
 

@@ -474,7 +474,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 1, ../sass/_welcome.scss */
-.welcome-mast {
+.welcome-mast, .profile-mast {
   color: white;
   background: #ffbb00;
   color: black;
@@ -483,7 +483,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 9, ../sass/_welcome.scss */
-.welcome-mast-cont {
+.welcome-mast-cont, .profile-mast-cont {
   padding: 5em;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
@@ -498,12 +498,12 @@ SUPER SLICK TRANSFORMS
 }
 @media all and (max-width: 30em) {
   /* line 9, ../sass/_welcome.scss */
-  .welcome-mast-cont {
+  .welcome-mast-cont, .profile-mast-cont {
     padding: 5em 3em;
   }
 }
 /* line 27, ../sass/_welcome.scss */
-.welcome-mast-cont h1 {
+.welcome-mast-cont h1, .profile-mast-cont h1 {
   color: #222;
 }
 
@@ -620,7 +620,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 110, ../sass/_welcome.scss */
-.features {
+.features, .stats {
   background: white;
   width: 100%;
   float: left;
@@ -628,13 +628,13 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 116, ../sass/_welcome.scss */
-.features-wrapper {
+.features-wrapper, .stats-wrapper {
   max-width: 42em;
   margin: auto;
 }
 
 /* line 120, ../sass/_welcome.scss */
-.feature {
+.feature, .stat {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
   font-size: .9rem;
@@ -649,16 +649,16 @@ SUPER SLICK TRANSFORMS
 }
 @media all and (max-width: 32em) {
   /* line 120, ../sass/_welcome.scss */
-  .feature {
+  .feature, .stat {
     width: 50%;
   }
 }
 /* line 138, ../sass/_welcome.scss */
-.feature h6 {
+.feature h6, .stat h6 {
   font-size: 1.3em;
 }
 /* line 142, ../sass/_welcome.scss */
-.feature img {
+.feature img, .stat img {
   width: 2em;
   height: 2em;
 }
@@ -1482,4 +1482,27 @@ http://www.tipue.com/tipr
 /* line 8, ../sass/_loginButtons.scss */
 .serviceLogin img {
   width: 3em;
+}
+
+/* line 8, ../sass/_profile.scss */
+.profile-mast-cont img {
+  height: 4em;
+  width: 4em;
+  margin: .5em;
+}
+/* line 14, ../sass/_profile.scss */
+.profile-mast-cont p {
+  font-size: 1.5em;
+}
+
+/* line 26, ../sass/_profile.scss */
+.stat {
+  height: 12em;
+  width: 33.3%;
+}
+@media all and (max-width: 37em) {
+  /* line 26, ../sass/_profile.scss */
+  .stat {
+    width: 50%;
+  }
 }
