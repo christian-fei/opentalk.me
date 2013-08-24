@@ -629,17 +629,38 @@ SUPER SLICK TRANSFORMS
 
 /* line 116, ../sass/_welcome.scss */
 .features-wrapper {
-  max-width: 32em;
+  max-width: 42em;
   margin: auto;
 }
 
 /* line 120, ../sass/_welcome.scss */
 .feature {
-  display: inline-block;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  font-size: .9rem;
+  display: table;
   width: 33.3%;
-  background: grey;
+  background: #F3F3F3;
   padding: 2em;
   float: left;
+  text-align: center;
+  border: 1px solid white;
+  height: 14em;
+}
+@media all and (max-width: 32em) {
+  /* line 120, ../sass/_welcome.scss */
+  .feature {
+    width: 50%;
+  }
+}
+/* line 138, ../sass/_welcome.scss */
+.feature h6 {
+  font-size: 1.3em;
+}
+/* line 142, ../sass/_welcome.scss */
+.feature img {
+  width: 2em;
+  height: 2em;
 }
 
 /* line 1, ../sass/_room.scss */

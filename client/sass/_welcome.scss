@@ -114,13 +114,33 @@ $offset-y:-312px;
 	padding: 2em;
 }
 	.features-wrapper{
-		max-width: $limit;
+		max-width: $limit + 10em;
 		margin:auto;
 	}
 		.feature{
-			display:inline-block;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 300;
+
+			font-size: .9rem;
+			display:table;
 			width: 33.3%;
-			background:grey;
+			background:#F3F3F3;
 			padding:2em;
 			float:left;
+			text-align: center;
+			border:1px solid white;
+			height:14em;
+
+			@media all and(max-width: $limit){
+				width: 50%;
+			}
+			
+			h6{
+				font-size: 1.3em;
+			}
+	
+			img{
+				width:2em;
+				height:2em;
+			}
 		}
