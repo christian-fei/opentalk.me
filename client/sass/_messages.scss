@@ -69,12 +69,42 @@
 			display: block;
 		}
 
-		.username{
-			display:none;
-			position:absolute;
+		.tip:hover .username{
+			visibility: visible;
+			opacity: 1;
 		}
-		.avatar:hover ~ .username{
-			// display:block;
+
+		.username{
+			position:absolute;
+
+			visibility: hidden;
+			opacity: 0;
+			width:auto;
+			white-space: nowrap;//for text in one line
+			left:2.5em;
+			top: -.2em;
+			background: $color-secondary;
+			color:#fff;
+			padding:.4em;
+			border-radius:5px;
+
+			-webkit-transition: all .2s ease-in-out;
+			-moz-transition: all .2s ease-in-out;
+			-ms-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: .6em;
+				left: -.5em;
+				border-right: .7em solid $color-secondary;
+				border-top-color: inherit;
+				border-bottom: .5em solid transparent;
+				border-top: .5em solid transparent;
+			}
 		}
 
 		.message-image-wrapper{

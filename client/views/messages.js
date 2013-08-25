@@ -62,7 +62,7 @@ Template.messages.events({
 					Messages.insert(
 						{
 						userid:Meteor.userId()
-						,username:Meteor.user().profile.name
+						,username:Session.get('screenname')
 						,roomid:Session.get('roomid')
 						,text:text
 						,timestamp:t
@@ -129,7 +129,7 @@ Template.messages.events({
 	    		Messages.insert(
 					{
 					userid:Meteor.userId()
-					,username:Meteor.user().profile.name
+					,username:Session.get('screenname')
 					,roomid:Session.get('roomid')
 					,text:text
 					,timestamp:t
@@ -162,7 +162,7 @@ function renderMessages(){
 	// console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			// console.log('added id ' +id + ' before ' + before);
+			console.log('added id ' +id + ' before ' + before);
 
 			// $('.load-more').removeClass('show-loading');
 
@@ -177,10 +177,10 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+fields.username+'</b><div class="text">'+fields.text+'</div></li>');
+			message = $('<li class="message new-message" id="'+id+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
 
 			if(before === null) {
-				//items of first load and recently typed ones
+				//first item of first load and recently typed ones
 				// message.hide();
 				$('#last').before(message);
 				// console.log('prevUserId ' +prevUserId);
@@ -199,15 +199,11 @@ function renderMessages(){
 				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
 				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
-				// var offsetBottom = $('body').height() - $('body').scrollTop();
+				//stay at the same position
 				var offsetBottom = document.body.offsetHeight - document.body.scrollTop;
-
-				// console.log('old ' + id + ' prevUserId ' + prevUserId);
-				//items of load-more+
 				// message.hide();
 				$('#'+before).before(message);
 				//it is at the bottom of the list, so add lastOfUser class
-			
 				// console.log('=========');
 				// console.log(fields.username);
 				// console.log(prevUserId);
@@ -221,6 +217,8 @@ function renderMessages(){
 
 				if(firstRunAfterMore){
 					message.addClass('lastOfUser');
+					message.firstChild.classList.add('avatar-border');
+					message.firstChild.classList.add('tip');
 					firstRunAfterMore=false;
 				}else{
 					if(prevUserId!==fields.userid){
@@ -233,12 +231,15 @@ function renderMessages(){
 						}
 					}else{
 						/*SAME USER*/
+						//add the rounder top corner style class
+						//and remove the same class to the next item on the list, since it's of the same user
 						message.addClass('diffUser');
 						if(message.next()[0]){
 							message.next().removeClass('diffUser');
 							message.next()[0].firstChild.style.backgroundImage='none';
 							message.next()[0].firstChild.classList.remove('avatar-border');
 							message.next()[0].firstChild.classList.remove('tip');
+
 						}
 
 					}
@@ -267,30 +268,31 @@ function renderMessages(){
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
 			// console.log('changed & lmu ' + prevUserId);
+			//update other users message
 			if( $('#'+id).length ){
-				//update existing message
 				if(fields.text !== undefined)
 					$('#'+id+' .text').html( fields.text );
-			}else 
-			if(fields.messageComplete === true){
-				// console.log('message completed');
-				var mfdb = Messages.find({_id:id}).fetch()[0];
-				// console.log(mfdb);
-				if(prevUserId===mfdb.userid){
-					message = $('<li class="message new-message" id="'+id+'"><span class="avatar"></span><b class="username">'+mfdb.username+'</b><div class="text">'+mfdb.text+'</div></li>');
-				}
-				else{
-					$('#'+prevId).addClass('lastOfUser');
-					message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"></span><b class="username">'+mfdb.username+'</b><div class="text">'+ mfdb.text +'</div></li>');
-				}
-				prevUserId=mfdb.userid;
-				prevId=id;
-				// if(!prevUserId)prevUserId=fields.username;
-				// message.hide();
-				$('#last').before(message);
-				// tiprAll();
-				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 			}
+			else 
+				if(fields.messageComplete === true){
+					// console.log('message completed');
+					var mfdb = Messages.find({_id:id}).fetch()[0];
+					// console.log(mfdb);
+					if(prevUserId===mfdb.userid){
+						message = $('<li class="message new-message" id="'+id+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
+					}
+					else{
+						$('#'+prevId).addClass('lastOfUser');
+						message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
+					}
+					prevUserId=mfdb.userid;
+					prevId=id;
+					// if(!prevUserId)prevUserId=fields.username;
+					// message.hide();
+					$('#last').before(message);
+					// tiprAll();
+					// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
+				}
 			imageExp();
 			if(stick)
 				scrollDown();
@@ -312,7 +314,7 @@ function renderMessages(){
 			// console.log( $('#last').prev().attr('id') );
 
 			if(id === $('#last').prev().attr('id')){
-				prevUserId=prevId=null;
+				// prevUserId=prevId=null;
 			}
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
