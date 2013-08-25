@@ -497,6 +497,7 @@ SUPER SLICK TRANSFORMS
   padding: 5em;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
+  background: url("/images/pattern-white-high-res.png");
   color: #222;
   text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.2), -1px -1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -520,7 +521,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 42, ../sass/_welcome.scss */
+/* line 43, ../sass/_welcome.scss */
 .logo-welcome {
   display: block;
   margin: 1rem auto;
@@ -528,7 +529,7 @@ SUPER SLICK TRANSFORMS
   width: 3.75rem;
 }
 
-/* line 50, ../sass/_welcome.scss */
+/* line 51, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -542,7 +543,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 67, ../sass/_welcome.scss */
+/* line 68, ../sass/_welcome.scss */
 .blanket, .blanket-white {
   position: relative;
   display: table;
@@ -555,84 +556,84 @@ SUPER SLICK TRANSFORMS
   background: url("/images/pattern-black.png");
 }
 @media all and (max-width: 32em) {
-  /* line 67, ../sass/_welcome.scss */
+  /* line 68, ../sass/_welcome.scss */
   .blanket, .blanket-white {
     margin: 2.5em 1em;
   }
 }
 
-/* line 87, ../sass/_welcome.scss */
+/* line 88, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 90, ../sass/_welcome.scss */
+/* line 91, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 98, ../sass/_welcome.scss */
+  /* line 99, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 99, ../sass/_welcome.scss */
+  /* line 100, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 102, ../sass/_welcome.scss */
+  /* line 103, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 103, ../sass/_welcome.scss */
+  /* line 104, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 106, ../sass/_welcome.scss */
+  /* line 107, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 107, ../sass/_welcome.scss */
+  /* line 108, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 110, ../sass/_welcome.scss */
+  /* line 111, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 111, ../sass/_welcome.scss */
+  /* line 112, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 114, ../sass/_welcome.scss */
+  /* line 115, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 115, ../sass/_welcome.scss */
+  /* line 116, ../sass/_welcome.scss */
   to {
     background-position: 0 -312px;
   }
 }
 
-/* line 129, ../sass/_welcome.scss */
+/* line 130, ../sass/_welcome.scss */
 .footer {
   overflow: hidden;
   padding: 3em 2em !important;
@@ -640,7 +641,7 @@ SUPER SLICK TRANSFORMS
   color: #666;
 }
 
-/* line 136, ../sass/_welcome.scss */
+/* line 137, ../sass/_welcome.scss */
 .tos {
   margin: 4em auto;
   font-family: 'Source Sans Pro', sans-serif;
@@ -712,6 +713,22 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 1, ../sass/_sidebar.scss */
+.fixed-sidebar-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), white);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), white);
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0)), to(white));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white);
+  background: linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
+}
+
+/* line 17, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;
   width: 15em;
@@ -729,12 +746,12 @@ SUPER SLICK TRANSFORMS
   backface-visibility: hidden;
   box-shadow: -0.3em 0 .4em lightgrey inset;
 }
-/* line 16, ../sass/_sidebar.scss */
+/* line 32, ../sass/_sidebar.scss */
 .fixed-sidebar a {
   color: black;
 }
 @media all and (max-width: 62em) {
-  /* line 1, ../sass/_sidebar.scss */
+  /* line 17, ../sass/_sidebar.scss */
   .fixed-sidebar {
     left: -16em !important;
     padding: 5em 2em 4em;
@@ -745,29 +762,29 @@ SUPER SLICK TRANSFORMS
     transition: all 0.2s ease-in-out;
   }
 }
-/* line 38, ../sass/_sidebar.scss */
+/* line 54, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: 1em 0 1em lightgrey;
 }
 @media all and (max-width: 62em) {
-  /* line 1, ../sass/_sidebar.scss */
+  /* line 17, ../sass/_sidebar.scss */
   .fixed-sidebar {
     background: url("/images/pattern-black-1.png");
   }
 }
-/* line 52, ../sass/_sidebar.scss */
+/* line 68, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 54, ../sass/_sidebar.scss */
+/* line 70, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 
 @media all and (max-width: 62em) {
-  /* line 61, ../sass/_sidebar.scss */
+  /* line 77, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(16em, 0, 0);
     -moz-transform: translate3d(16em, 0, 0);
@@ -778,24 +795,24 @@ SUPER SLICK TRANSFORMS
 }
 
 @media all and (max-width: 62em) {
-  /* line 73, ../sass/_sidebar.scss */
+  /* line 89, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.show {
     left: 0 !important;
   }
 }
 
-/* line 79, ../sass/_sidebar.scss */
+/* line 95, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
 }
-/* line 81, ../sass/_sidebar.scss */
+/* line 97, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 88, ../sass/_sidebar.scss */
+/* line 104, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -803,12 +820,12 @@ SUPER SLICK TRANSFORMS
   display: block;
 }
 
-/* line 96, ../sass/_sidebar.scss */
+/* line 112, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
 }
 
-/* line 99, ../sass/_sidebar.scss */
+/* line 115, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #userstats {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -817,24 +834,24 @@ SUPER SLICK TRANSFORMS
   border: 1px solid darkgrey;
 }
 
-/* line 116, ../sass/_sidebar.scss */
+/* line 132, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1.5em;
   text-align: left;
   list-style-type: none;
   text-align: center;
 }
-/* line 122, ../sass/_sidebar.scss */
+/* line 138, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 126, ../sass/_sidebar.scss */
+/* line 142, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
 }
 
-/* line 129, ../sass/_sidebar.scss */
+/* line 145, ../sass/_sidebar.scss */
 .online-user {
   display: inline-block;
   text-overflow: ellipsis;
@@ -843,13 +860,13 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 136, ../sass/_sidebar.scss */
+/* line 152, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   margin-left: 3em !important;
 }
 
-/* line 141, ../sass/_sidebar.scss */
+/* line 157, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -857,13 +874,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 147, ../sass/_sidebar.scss */
+/* line 163, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 152, ../sass/_sidebar.scss */
+/* line 168, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -889,7 +906,7 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 62em) {
-  /* line 152, ../sass/_sidebar.scss */
+  /* line 168, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -898,7 +915,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 193, ../sass/_sidebar.scss */
+/* line 209, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -915,20 +932,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 62em) {
-  /* line 193, ../sass/_sidebar.scss */
+  /* line 209, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 218, ../sass/_sidebar.scss */
+/* line 234, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 227, ../sass/_sidebar.scss */
+/* line 243, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -937,16 +954,16 @@ SUPER SLICK TRANSFORMS
   border-radius: 70%;
   opacity: .5;
 }
-/* line 238, ../sass/_sidebar.scss */
+/* line 254, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 241, ../sass/_sidebar.scss */
+/* line 257, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 249, ../sass/_sidebar.scss */
+/* line 265, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;

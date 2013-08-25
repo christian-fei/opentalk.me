@@ -1,3 +1,19 @@
+.fixed-sidebar-background{
+	position: fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	// background: url('/images/pattern-lines-only.png');
+	background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 1)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background: linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
+}
+
 .fixed-sidebar{
 	position:fixed;
 	

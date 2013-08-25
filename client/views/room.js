@@ -46,8 +46,11 @@ Template.room.helpers({
 				$.ajax({
 				  url: gh_api_url
 				}).done(function ( data ) {
-				    if(data.avatar_url)
+				    if(data.avatar_url){
 				    	avatar = data.avatar_url;
+					    Session.set('avatar',avatar);
+					    console.log('success gh avatar');
+				    }
 				});
 			}
 		}
