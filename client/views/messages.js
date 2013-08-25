@@ -1,7 +1,5 @@
-var initialMessageHeight = 0;
-
-
-keysPressed = [];
+var initialMessageHeight = 0,
+	keysPressed = [];
 Template.messages.events({
 	'keydown #mymessage' : function(evnt,tmplt){
 		// console.log('keydown');
@@ -29,7 +27,7 @@ Template.messages.events({
 		if(keysPressed[13] && keysPressed[16]){
 			//add a new line and then return
 			console.log('shift + enter');
-			text = text + '\n';
+			text += '\n';
 			keysPressed[evnt.keyCode] = false;
 			return;
 		}
@@ -161,7 +159,7 @@ function renderMessages(){
 	if(mPagination)
 		mPagination.stop();
 	var prevUserId=prevId=null;
-	console.log('observing');
+	// console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
@@ -308,7 +306,7 @@ function renderMessages(){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
 
-			console.log('removed ' + id);
+			// console.log('removed ' + id);
 			// console.log('prevId ' + prevId);
 
 			// console.log( $('#last').prev().attr('id') );
@@ -330,7 +328,7 @@ function renderMessages(){
 					// console.log('strange behaviour');
 				}
 			}
-			console.log('removing ' + $('#'+id));
+			// console.log('removing ' + $('#'+id));
 			$('#'+id).remove();
 		}
 	});

@@ -101,7 +101,7 @@ Template.room.events({
 
 
 Deps.autorun(function(){
-	console.log('uid ' +Meteor.userId());
+	// console.log('uid ' +Meteor.userId());
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -118,7 +118,7 @@ Template.room.rendered=function(){
 
 Meteor.setInterval(function () {
 	if(Session.get('roomid') && Meteor.user()){
-		console.log('keepalive');
+		// console.log('keepalive');
 		goOnline();
 	}
 }, keepaliveTime);

@@ -7,7 +7,7 @@ Messages.allow({
   ,remove : function(userId,doc){return true}
 });
 
-console.log(process.env);
+// console.log(process.env);
 
 Meteor.publish('paginatedMessages', function(roomid,limit) {
   return Messages.find({roomid:roomid}, {sort: {timestamp:-1}, limit: limit});
@@ -54,7 +54,7 @@ Meteor.methods({
       return;
     if(status === 'offline'){
       OnlineUsers.remove({userid:userid});
-      console.log('offline ' + userid);
+      // console.log('offline ' + userid);
       /*mark all messages as complete*/
       Messages.update(
         {userid:userid,roomid:roomid}
@@ -75,11 +75,11 @@ Meteor.methods({
           lastSeen:now
         }
       );
-      console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
+      // console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
     }else{
       //keep alive
       OnlineUsers.update({userid:userid,roomid:roomid},{$set:{status:'online',lastSeen:now}});
-      console.log('keep alive ' + userid + ' in  ' + roomid);
+      // console.log('keep alive ' + userid + ' in  ' + roomid);
     }
   },
   //not used anymore

@@ -15,11 +15,7 @@
 
 	a{
 		color:black;
-	}
-	
-	
-
-	
+	}	
 
 	@media all and (max-width: $limit + $sidebar-width*2){
 		left: - $sidebar-width - 1em !important;
