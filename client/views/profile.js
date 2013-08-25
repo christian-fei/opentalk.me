@@ -42,29 +42,17 @@ Template.profile.helpers({
 		return avatar;
 	},
 	userMessagesCount:function(){
-		Meteor.call('userMessagesCount',function(err,result){
-			Session.set('userMessagesCount',result);
-		});
 		return '<h1>' + Session.get('userMessagesCount') + '</h1>' + '<h6>messages</h6>';
 	},
 	userRoomsCount:function(){
-		Meteor.call('userRoomsCount',function(err,result){
-			Session.set('userRoomsCount',result);
-		});
 		if(Session.get('userRoomsCount') > 1)
 			return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>chatrooms</h6>';
 		return '<h1>' + Session.get('userRoomsCount') + '</h1>' + '<h6>chatroom</h6>';
 	},
 	userWordsCount:function(){
-		Meteor.call('userWordsCount',function(err,result){
-			Session.set('userWordsCount',result);
-		});
 		return '<h1>' + Session.get('userWordsCount') + '</h1>' + '<h6>words</h6>';
 	},
 	userCharactersCount:function(){
-		Meteor.call('userCharactersCount',function(err,result){
-			Session.set('userCharactersCount',result);
-		});
 		return '<h1>' + Session.get('userCharactersCount') + '</h1>' + '<h6>characters</h6>';
 	},
 	memberSince:function(){
@@ -83,3 +71,11 @@ Template.profile.events({
 			window.location='http://opentalk.me';
 	}
 });
+
+
+Meteor.call('getUserStats',function(err,result){
+	Session.set('userMessagesCount',result.messagesCount);
+	Session.set('userRoomsCount',result.roomsCount);
+	Session.set('userWordsCount',result.wordsCount);
+	Session.set('userCharactersCount',result.charactersCount);
+});	

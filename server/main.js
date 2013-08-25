@@ -86,33 +86,24 @@ Meteor.methods({
   setUserId: function(userId) {
     this.setUserId(userId)
   },
-  userMessagesCount:function(){
-    return Messages.find({userid:Meteor.userId()}).count();
-  },
-  userRoomsCount:function(){
-    var mu = Messages.find({userid:Meteor.userId()},{fields:{roomid:true}}).fetch();
-    var i=count=0,occ=[];
+  getUserStats:function(){
+    var ret={};
+    ret.messagesCount = Messages.find({userid:Meteor.userId()}).count();
+    var roomsCount=charactersCount=wordsCount=0;
+    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
+        i=0,roomsOcc=[];
     while(m=mu[i++]){
-      if(!occ[m.roomid]){
-        count++;
-        occ[m.roomid]=true;
+      if(!roomsOcc[m.roomid]){
+        roomsCount++;
+        roomsOcc[m.roomid]=true;
       }
+      charactersCount+=m.text.length;
+      wordsCount+=m.text.trim().replace(/\s+/gi, ' ').split(' ').length;
     }
-    return count;
-  },
-  userCharactersCount:function(){
-    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
-        i=count=0;
-    while(m=mu[i++])
-      count+=m.text.length;
-    return count;
-  },
-  userWordsCount:function(){
-    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
-        i=count=0;
-    while(m=mu[i++])
-      count+=m.text.trim().replace(/\s+/gi, ' ').split(' ').length;
-    return count;    
+    ret.roomsCount=roomsCount;
+    ret.charactersCount=charactersCount;
+    ret.wordsCount=wordsCount;
+    return ret;
   }
 });
 
