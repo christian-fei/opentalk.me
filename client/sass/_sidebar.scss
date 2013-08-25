@@ -44,6 +44,11 @@
 		-ms-transition: all $animation-duration ease-in-out;
 		-o-transition: all $animation-duration ease-in-out;
 		transition: all $animation-duration ease-in-out;
+		-webkit-transition-property: transform,opacity;
+		-moz-transition-property: transform,opacity;
+		-ms-transition-property: transform,opacity;
+		-o-transition-property: transform,opacity;
+		transition-property: transform,opacity;
 	}
 	
 	/*prevent flicker*/
@@ -62,7 +67,8 @@
 		z-index:900;
 		opacity:1;
 		
-		box-shadow: 1em 0 1em lightgrey;
+		// box-shadow:  1em 0 1em lightgrey;
+		box-shadow: none;
 	}
 	@media all and (max-width: $limit + $sidebar-width*2){
 		background: url('/images/pattern-black-w.png');
@@ -134,9 +140,11 @@
 
 .online-users{
 	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 	text-align: left;
 	list-style-type: none;
 	text-align: center;
+	overflow: hidden;
 	
 	li{
 		margin-left: 0;
@@ -270,4 +278,13 @@
 		top:1.5em;
 		right:1em;
 	}
+}
+
+
+
+.markdown-cheatsheet{
+	margin:5em 0;
+	padding: 2em 0;
+	display:block;
+	text-align: center;
 }

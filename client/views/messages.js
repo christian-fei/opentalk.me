@@ -162,7 +162,7 @@ function renderMessages(){
 	// console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			console.log('added id ' +id + ' before ' + before);
+			// console.log('added id ' +id + ' before ' + before);
 
 			// $('.load-more').removeClass('show-loading');
 

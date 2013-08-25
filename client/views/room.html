@@ -40,6 +40,8 @@
 				{{/if}}
 			</ul>
 		{{/isolate}}
+
+		<a href="#mdc-modal" class="markdown-cheatsheet">Markdown Cheatsheet</a>
 	</aside>
 	<div class="main">
 
@@ -51,4 +53,54 @@
 			{{>loginForm}}
 		{{/unless}}
 	</div>
+
+	<section class="semantic-content" id="mdc-modal" tabindex="-1" role="dialog" aria-labelledby="mdc-modal" aria-hidden="true">
+	    <div class="modal-inner">
+	        <header id="modal-label">
+	        	<h3>Markdown Cheatsheet</h3>
+	        </header>
+	        <div class="modal-content">
+				<b>OpenTalk</b> supports your nerdy needs. <br/>
+				Basic Markdown parsing (in the <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Github fashion</a>), like: <br/>
+
+				<h4>Headings</h4>
+				# H1<br/>
+				## H2<br/>
+				### H3<br/>
+				#### H4<br/>
+				##### H5<br/>
+				###### H6<br/>
+
+				<h4>Emphasis</h4>
+				Emphasis, aka italics, with *asterisks* or _underscores_. <br/>
+				Strong emphasis, aka bold, with **asterisks** or __underscores__. <br/>
+				Combined emphasis with **asterisks and _underscores_**. <br/>
+				Strikethrough uses two tildes. ~~Scratch this.~~
+				
+				<h4>Lists</h4>
+				<small>currently only unordered lists are supported</small>
+				<br/>
+				* Unordered list can use asterisks <br/>
+				- Or minuses <br/>
+				+ Or pluses <br/>
+
+				<h4>Code</h4>
+				Code can be inline or multi-line (PS: shift+enter to create a new line)
+				<br>
+				Code is introduced <b>and</b> ended with two backticks, like this:
+				<br>
+				``<br>
+				    var s = "JavaScript syntax highlighting"; <br>
+				    alert(s); <br>
+				``
+				<br>
+				no syntax highlighting at the momemt, but will be integrated (soon?).
+				<br>
+				Do you have suggestions or want to contribute? <br>
+				That would be <a href="https://github.com/christian-fei/opentalk.me">awesome</a>
+	        </div>
+	    </div>
+	    <a href="#!" class="modal-close" title="Close" data-close="Close"
+	        data-dismiss="modal">×</a>
+	</section>
 </template>
