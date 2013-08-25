@@ -495,6 +495,7 @@ SUPER SLICK TRANSFORMS
 /* line 16, ../sass/_welcome.scss */
 .welcome-mast-cont, .profile-mast-cont {
   padding: 5em;
+  background-attachment: fixed;
   background: url("/images/opentalk_bg_opaque.png");
   background: url("/images/pattern-white.png");
   background: url("/images/pattern-white-high-res.png");
@@ -521,7 +522,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 43, ../sass/_welcome.scss */
+/* line 44, ../sass/_welcome.scss */
 .logo-welcome {
   display: block;
   margin: 1rem auto;
@@ -529,7 +530,7 @@ SUPER SLICK TRANSFORMS
   width: 3.75rem;
 }
 
-/* line 51, ../sass/_welcome.scss */
+/* line 52, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -543,7 +544,7 @@ SUPER SLICK TRANSFORMS
   margin-top: -.3em;
 }
 
-/* line 68, ../sass/_welcome.scss */
+/* line 69, ../sass/_welcome.scss */
 .blanket, .blanket-white {
   position: relative;
   display: table;
@@ -553,21 +554,21 @@ SUPER SLICK TRANSFORMS
   margin: 4em auto 4em;
   border-radius: 5px;
   border: 1px solid lightgrey;
-  background: url("/images/pattern-black.png");
+  background: url("/images/pattern-black-w.png");
 }
 @media all and (max-width: 32em) {
-  /* line 68, ../sass/_welcome.scss */
+  /* line 69, ../sass/_welcome.scss */
   .blanket, .blanket-white {
     margin: 2.5em 1em;
   }
 }
 
-/* line 88, ../sass/_welcome.scss */
+/* line 89, ../sass/_welcome.scss */
 .medium-text {
   font-size: 1.3em;
 }
 
-/* line 91, ../sass/_welcome.scss */
+/* line 92, ../sass/_welcome.scss */
 .vam {
   vertical-align: middle;
   display: table-cell;
@@ -581,7 +582,7 @@ SUPER SLICK TRANSFORMS
 
   /* line 100, ../sass/_welcome.scss */
   to {
-    background-position: 0 -312px;
+    background-position: 0 -400px;
   }
 }
 
@@ -593,7 +594,7 @@ SUPER SLICK TRANSFORMS
 
   /* line 104, ../sass/_welcome.scss */
   to {
-    background-position: 0 -312px;
+    background-position: 0 -400px;
   }
 }
 
@@ -605,7 +606,7 @@ SUPER SLICK TRANSFORMS
 
   /* line 108, ../sass/_welcome.scss */
   to {
-    background-position: 0 -312px;
+    background-position: 0 -400px;
   }
 }
 
@@ -617,7 +618,7 @@ SUPER SLICK TRANSFORMS
 
   /* line 112, ../sass/_welcome.scss */
   to {
-    background-position: 0 -312px;
+    background-position: 0 -400px;
   }
 }
 
@@ -629,7 +630,7 @@ SUPER SLICK TRANSFORMS
 
   /* line 116, ../sass/_welcome.scss */
   to {
-    background-position: 0 -312px;
+    background-position: 0 -400px;
   }
 }
 
@@ -728,8 +729,14 @@ SUPER SLICK TRANSFORMS
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
 }
+@media all and (min-width: 62em) {
+  /* line 1, ../sass/_sidebar.scss */
+  .fixed-sidebar-background {
+    border-left: 4px solid #ffbb00;
+  }
+}
 
-/* line 17, ../sass/_sidebar.scss */
+/* line 20, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;
   width: 15em;
@@ -747,12 +754,12 @@ SUPER SLICK TRANSFORMS
   backface-visibility: hidden;
   box-shadow: -0.3em 0 .4em lightgrey inset;
 }
-/* line 32, ../sass/_sidebar.scss */
+/* line 35, ../sass/_sidebar.scss */
 .fixed-sidebar a {
   color: black;
 }
 @media all and (max-width: 62em) {
-  /* line 17, ../sass/_sidebar.scss */
+  /* line 20, ../sass/_sidebar.scss */
   .fixed-sidebar {
     left: -16em !important;
     padding: 5em 2em 4em;
@@ -763,29 +770,29 @@ SUPER SLICK TRANSFORMS
     transition: all 0.2s ease-in-out;
   }
 }
-/* line 54, ../sass/_sidebar.scss */
+/* line 57, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: 1em 0 1em lightgrey;
 }
 @media all and (max-width: 62em) {
-  /* line 17, ../sass/_sidebar.scss */
+  /* line 20, ../sass/_sidebar.scss */
   .fixed-sidebar {
-    background: url("/images/pattern-black-1.png");
+    background: url("/images/pattern-black-w.png");
   }
 }
-/* line 68, ../sass/_sidebar.scss */
+/* line 71, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 70, ../sass/_sidebar.scss */
+/* line 73, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 
 @media all and (max-width: 62em) {
-  /* line 77, ../sass/_sidebar.scss */
+  /* line 80, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(16em, 0, 0);
     -moz-transform: translate3d(16em, 0, 0);
@@ -796,24 +803,24 @@ SUPER SLICK TRANSFORMS
 }
 
 @media all and (max-width: 62em) {
-  /* line 89, ../sass/_sidebar.scss */
+  /* line 92, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.show {
     left: 0 !important;
   }
 }
 
-/* line 95, ../sass/_sidebar.scss */
+/* line 98, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
 }
-/* line 97, ../sass/_sidebar.scss */
+/* line 100, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 104, ../sass/_sidebar.scss */
+/* line 107, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -821,12 +828,12 @@ SUPER SLICK TRANSFORMS
   display: block;
 }
 
-/* line 112, ../sass/_sidebar.scss */
+/* line 115, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
 }
 
-/* line 115, ../sass/_sidebar.scss */
+/* line 118, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #userstats {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -835,24 +842,24 @@ SUPER SLICK TRANSFORMS
   border: 1px solid darkgrey;
 }
 
-/* line 132, ../sass/_sidebar.scss */
+/* line 135, ../sass/_sidebar.scss */
 .online-users {
   margin-top: 1.5em;
   text-align: left;
   list-style-type: none;
   text-align: center;
 }
-/* line 138, ../sass/_sidebar.scss */
+/* line 141, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 142, ../sass/_sidebar.scss */
+/* line 145, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
 }
 
-/* line 145, ../sass/_sidebar.scss */
+/* line 148, ../sass/_sidebar.scss */
 .online-user {
   display: inline-block;
   text-overflow: ellipsis;
@@ -861,13 +868,13 @@ SUPER SLICK TRANSFORMS
   color: #444;
 }
 
-/* line 152, ../sass/_sidebar.scss */
+/* line 155, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   margin-left: 3em !important;
 }
 
-/* line 157, ../sass/_sidebar.scss */
+/* line 160, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -875,13 +882,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 163, ../sass/_sidebar.scss */
+/* line 166, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 168, ../sass/_sidebar.scss */
+/* line 171, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -907,7 +914,7 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 62em) {
-  /* line 168, ../sass/_sidebar.scss */
+  /* line 171, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -916,7 +923,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 209, ../sass/_sidebar.scss */
+/* line 212, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -933,20 +940,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 62em) {
-  /* line 209, ../sass/_sidebar.scss */
+  /* line 212, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 234, ../sass/_sidebar.scss */
+/* line 237, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 243, ../sass/_sidebar.scss */
+/* line 246, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -955,16 +962,16 @@ SUPER SLICK TRANSFORMS
   border-radius: 70%;
   opacity: .5;
 }
-/* line 254, ../sass/_sidebar.scss */
+/* line 257, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 257, ../sass/_sidebar.scss */
+/* line 260, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 265, ../sass/_sidebar.scss */
+/* line 268, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
@@ -990,8 +997,8 @@ SUPER SLICK TRANSFORMS
 
 /* line 24, ../sass/_messages.scss */
 .avatar {
-  height: 1.8em;
-  width: 1.8em;
+  height: 1.9em;
+  width: 1.9em;
   margin-left: -1.5em;
   vertical-align: top;
   display: inline-block;
@@ -1048,7 +1055,7 @@ code {
   opacity: 0;
   width: auto;
   white-space: nowrap;
-  left: -.1em;
+  left: .1em;
   top: -2.8em;
   background: #444444;
   color: #fff;
@@ -1239,6 +1246,16 @@ code {
   background: linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
   color: #444;
 }
+/* line 31, ../sass/_buttons.scss */
+.silver:active {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #d5d5d5), color-stop(1, #e5e5e5));
+  background: -webkit-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+  background: -moz-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+  background: -o-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+  background: -ms-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+  background: linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+  color: #444;
+}
 
 /* line 1, ../sass/_fields.scss */
 input[type='text'] {
@@ -1295,7 +1312,7 @@ input[type='text'].change:focus {
   margin-left: .325em;
 }
 
-/* line 31, ../sass/_icons.scss */
+/* line 30, ../sass/_icons.scss */
 .icon-realtime {
   background: url("/images/realtime.png") no-repeat;
   background-size: 100%;
@@ -1305,7 +1322,17 @@ input[type='text'].change:focus {
   margin-bottom: -.325em;
 }
 
-/* line 41, ../sass/_icons.scss */
+/* line 38, ../sass/_icons.scss */
+.icon-profile {
+  background: url("/images/avatar.png") no-repeat;
+  background-size: 100%;
+  height: 1.3em;
+  width: 1.3em;
+  margin-top: -.325em;
+  margin-bottom: -.325em;
+}
+
+/* line 48, ../sass/_icons.scss */
 .toggle-sidebar.left .icon-arrow {
   -webkit-transform: rotateZ(-180deg) !important;
   -moz-transform: rotateZ(-180deg) !important;
@@ -1314,7 +1341,7 @@ input[type='text'].change:focus {
   transform: rotateZ(-180deg) !important;
 }
 
-/* line 49, ../sass/_icons.scss */
+/* line 56, ../sass/_icons.scss */
 .toggle-sidebar:hover .icon-arrow {
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
@@ -1323,34 +1350,34 @@ input[type='text'].change:focus {
   transform: rotateZ(-45deg);
 }
 
-/* line 57, ../sass/_icons.scss */
+/* line 64, ../sass/_icons.scss */
 .icon-twitter, .icon-facebook, .icon-github, .icon-google {
   background-size: 100%;
   width: 1em;
   height: 1em;
 }
 
-/* line 62, ../sass/_icons.scss */
+/* line 69, ../sass/_icons.scss */
 .icon-twitter {
   background: url("/images/social/twitter.png") no-repeat;
 }
 
-/* line 65, ../sass/_icons.scss */
+/* line 72, ../sass/_icons.scss */
 .icon-facebook {
   background: url("/images/social/facebook.png") no-repeat;
 }
 
-/* line 68, ../sass/_icons.scss */
+/* line 75, ../sass/_icons.scss */
 .icon-github {
   background: url("/images/social/github.png") no-repeat;
 }
 
-/* line 71, ../sass/_icons.scss */
+/* line 78, ../sass/_icons.scss */
 .icon-google {
   background: url("/images/social/google.png") no-repeat;
 }
 
-/* line 77, ../sass/_icons.scss */
+/* line 84, ../sass/_icons.scss */
 .logo, .back {
   height: 3.33em;
   width: 3.33em;

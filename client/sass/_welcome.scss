@@ -15,6 +15,7 @@
 }
 	.welcome-mast-cont{
 		padding:5em;
+		background-attachment: fixed;
 		background:url('/images/opentalk_bg_opaque.png');
 		background:url('/images/pattern-white.png');
 		background:url('/images/pattern-white-high-res.png');
@@ -74,7 +75,7 @@
 	margin: 4em auto 4em;
 	border-radius: 5px;
 	border: 1px solid lightgrey;
-	background:url('/images/pattern-black.png');
+	background:url('/images/pattern-black-w.png');
 
 	@media all and(max-width: $limit){
 		margin: 2.5em 1em;
@@ -93,8 +94,7 @@
 	display:table-cell;
 }
 
-$offset-x:-489px;
-$offset-y:-312px;
+$offset-y:-400px;
 @-webkit-keyframes welcome-mast-anim{
 	from { background-position:0 0; }
 	to { background-position:0 $offset-y; }

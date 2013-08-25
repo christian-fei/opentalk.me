@@ -1,4 +1,7 @@
 .fixed-sidebar-background{
+	@media all and (min-width: $limit + $sidebar-width*2){
+		border-left: 4px solid $color-main;
+	}
 	position: fixed;
 	top:0;
 	bottom:0;
@@ -62,7 +65,7 @@
 		box-shadow: 1em 0 1em lightgrey;
 	}
 	@media all and (max-width: $limit + $sidebar-width*2){
-		background: url('/images/pattern-black-1.png');
+		background: url('/images/pattern-black-w.png');
 	}
 	
 	&:hover{

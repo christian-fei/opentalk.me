@@ -28,4 +28,13 @@
 		background: linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
 		color: #444;
 	}
+	&:active{
+		background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #d5d5d5), color-stop(1, #e5e5e5));
+		background: -webkit-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+		background: -moz-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+		background: -o-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+		background: -ms-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+		background: linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
+		color: #444;
+	}
 }
