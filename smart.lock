@@ -4,10 +4,8 @@
     "basePackages": {
       "router": {},
       "HTML5-History-API": {},
-      "presence": {},
       "paginated-subscription": {},
-      "spin": {},
-      "phantomjs": {}
+      "spin": {}
     },
     "packages": {
       "router": {
@@ -20,11 +18,6 @@
         "tag": "v4.0.0",
         "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
       },
-      "presence": {
-        "git": "https://github.com/tmeasday/meteor-presence.git",
-        "tag": "v0.2.4",
-        "commit": "e59a12739685972c970f70956c4d3e78c31818ec"
-      },
       "paginated-subscription": {
         "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
         "tag": "v0.1.2",
@@ -34,11 +27,6 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v0.2.0",
         "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
-      },
-      "phantomjs": {
-        "git": "https://github.com/gadicohen/meteor-phantomjs.git",
-        "tag": "v0.0.2",
-        "commit": "a72eb79af068dd5d5d617ac71a42bd74e0cb52a4"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

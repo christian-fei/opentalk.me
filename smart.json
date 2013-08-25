@@ -2,10 +2,7 @@
   "packages": {
     "router": {},
     "HTML5-History-API": {},
-    "presence": {},
     "paginated-subscription": {},
-    "spin": {},
-    "phantomjs": {},
-    "mongodb-aggregation": {}
+    "spin": {}
   }
 }
