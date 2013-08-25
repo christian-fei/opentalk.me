@@ -1,13 +1,22 @@
 Meteor.Router.add({'/': function(){
 		goOffline();
+		//reset
+		$('html').css({'overflow':'auto'});
 		Session.set('roomid',null);
 		return 'welcome';
 	}
 });
 
-Meteor.Router.add({'/profile':'profile'});
+Meteor.Router.add({'/profile':function(){
+		//reset
+		$('html').css({'overflow':'auto'});
+		return 'profile';
+	}
+});
 
 Meteor.Router.add({'/:id': function(id){
+		//reset
+		$('html').css({'overflow':'auto'});
 		Session.set('roomid',id);
 		goOnline();
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
