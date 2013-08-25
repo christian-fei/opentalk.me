@@ -27,6 +27,7 @@ Template.room.helpers({
 				username=u.screenName;
 		}
 		Session.set('screenname',username);
+		scrollDown();
 		return username;
 	},
 	'avatar':function(){
@@ -38,24 +39,20 @@ Template.room.helpers({
 			if(Meteor.user().services.google)
 				avatar = Meteor.user().services.google.picture;
 			if(Meteor.user().services.facebook)
-				avatar = 'https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture';
+				avatar = 'https://graph.facebook.com/'+Session.get('screenname')+'/picture';
 			if(Meteor.user().services.github){
 				//make ajax call to get profile image
-				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
+				var gh_api_url = 'https://api.github.com/users/' + Session.get('screenname');
 				//console.log('ajax to gh');
-				$.ajax({
-				  url: gh_api_url
-				}).done(function ( data ) {
-				    if(data.avatar_url){
-				    	avatar = data.avatar_url;
-					    Session.set('avatar',avatar);
-					    console.log('success gh avatar');
-				    }
+				HTTP.get(gh_api_url,{},function(err,result){
+					console.log(result.data.avatar_url);
+					avatar = result.avatar_url
 				});
 			}
 		}
 		Session.set('avatar',avatar);
-		return avatar;
+		scrollDown();
+		return Session.get('avatar');
 	},
 	'roomSelected':function(){
 		if(Session.get('roomid'))

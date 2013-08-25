@@ -849,12 +849,12 @@ SUPER SLICK TRANSFORMS
 
 /* line 141, ../sass/_sidebar.scss */
 .online-users {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  margin: 2em auto;
   text-align: left;
   list-style-type: none;
   text-align: center;
-  overflow: hidden;
+  overflow-y: auto;
+  height: 10em;
 }
 /* line 149, ../sass/_sidebar.scss */
 .online-users li {

@@ -66,9 +66,9 @@ Template.profile.events({
 		e.preventDefault();
 		//i have no idea why this works
 		if(Session.get('roomid'))
-			window.location='http://opentalk.me/'+Session.get('roomid');
+			window.location='/'+Session.get('roomid');
 		else
-			window.location='http://opentalk.me';
+			window.location='/';
 	}
 });
 
