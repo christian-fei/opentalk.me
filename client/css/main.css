@@ -640,10 +640,12 @@ SUPER SLICK TRANSFORMS
   padding: 3em 2em !important;
   margin: auto !important;
   color: #666;
+  text-align: center;
 }
 
-/* line 137, ../sass/_welcome.scss */
+/* line 138, ../sass/_welcome.scss */
 .tos {
+  text-align: left;
   margin: 4em auto;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
@@ -1662,22 +1664,22 @@ http://www.tipue.com/tipr
 /*
  * Configuration
  */
-/* line 26, ../sass/_modal.scss */
+/* line 28, ../sass/_modal.scss */
 html {
   overflow-y: scroll;
 }
 
-/* line 30, ../sass/_modal.scss */
+/* line 32, ../sass/_modal.scss */
 .has-overlay {
   overflow: hidden;
 }
-/* line 33, ../sass/_modal.scss */
+/* line 35, ../sass/_modal.scss */
 .has-overlay > body {
   height: 100%;
   overflow-y: scroll;
 }
 
-/* line 39, ../sass/_modal.scss */
+/* line 41, ../sass/_modal.scss */
 .semantic-content {
   -webkit-transform: translate(0, 100%);
   -moz-transform: translate(0, 100%);
@@ -1697,7 +1699,7 @@ html {
   line-height: 1.3;
   display: none\9;
 }
-/* line 63, ../sass/_modal.scss */
+/* line 65, ../sass/_modal.scss */
 .semantic-content:target {
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
@@ -1706,15 +1708,15 @@ html {
   transform: translate(0, 0);
   opacity: 1;
 }
-/* line 77, ../sass/_modal.scss */
+/* line 79, ../sass/_modal.scss */
 .is-active.semantic-content {
   display: block\9;
 }
-/* line 82, ../sass/_modal.scss */
+/* line 84, ../sass/_modal.scss */
 .semantic-content:target {
   display: block\9;
 }
-/* line 88, ../sass/_modal.scss */
+/* line 90, ../sass/_modal.scss */
 .semantic-content .modal-inner {
   position: absolute;
   top: 50px;
@@ -1728,7 +1730,7 @@ html {
   -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
-/* line 105, ../sass/_modal.scss */
+/* line 107, ../sass/_modal.scss */
 .semantic-content .modal-inner > img,
 .semantic-content .modal-inner > video,
 .semantic-content .modal-inner > iframe {
@@ -1736,21 +1738,21 @@ html {
   height: auto;
   min-height: 300px;
 }
-/* line 111, ../sass/_modal.scss */
+/* line 113, ../sass/_modal.scss */
 .semantic-content .modal-inner > img {
   width: auto;
   max-width: 100%;
 }
-/* line 118, ../sass/_modal.scss */
+/* line 120, ../sass/_modal.scss */
 .semantic-content header {
   border-bottom: 1px solid #dddddd;
   padding: 0 1.2em;
 }
-/* line 122, ../sass/_modal.scss */
+/* line 124, ../sass/_modal.scss */
 .semantic-content header > h2 {
   margin: 0.5em 0;
 }
-/* line 129, ../sass/_modal.scss */
+/* line 131, ../sass/_modal.scss */
 .semantic-content .modal-content {
   max-height: 400px;
   max-height: 70vh;
@@ -1759,24 +1761,24 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 137, ../sass/_modal.scss */
+/* line 139, ../sass/_modal.scss */
 .semantic-content .modal-content > * {
   max-width: 100%;
 }
-/* line 144, ../sass/_modal.scss */
+/* line 146, ../sass/_modal.scss */
 .semantic-content footer {
   border-top: 1px solid white;
   padding: 0 1.2em 18px;
   background: #f0f0f0;
   border-radius: 2px;
 }
-/* line 153, ../sass/_modal.scss */
+/* line 155, ../sass/_modal.scss */
 .semantic-content .modal-close {
   display: block;
   text-indent: -100px;
   overflow: hidden;
 }
-/* line 159, ../sass/_modal.scss */
+/* line 161, ../sass/_modal.scss */
 .semantic-content .modal-close:before {
   content: '';
   position: absolute;
@@ -1787,7 +1789,7 @@ html {
   z-index: 10;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AAAAAMwA0QDNTiUx4gAAAABJRU5ErkJggg==");
 }
-/* line 173, ../sass/_modal.scss */
+/* line 175, ../sass/_modal.scss */
 .semantic-content .modal-close:after {
   content: '\00d7';
   position: absolute;
@@ -1803,25 +1805,25 @@ html {
   text-indent: 0;
 }
 @media screen and (max-width: 690px) {
-  /* line 195, ../sass/_modal.scss */
+  /* line 197, ../sass/_modal.scss */
   .semantic-content .modal-inner {
     width: auto;
     left: 20px;
     right: 20px;
     margin-left: 0;
   }
-  /* line 202, ../sass/_modal.scss */
+  /* line 204, ../sass/_modal.scss */
   .semantic-content .modal-close {
     margin-right: 0;
   }
-  /* line 207, ../sass/_modal.scss */
+  /* line 209, ../sass/_modal.scss */
   .semantic-content .modal-close:after {
     margin-left: auto;
     right: 1em;
   }
 }
 @media screen and (max-width: 30em) {
-  /* line 39, ../sass/_modal.scss */
+  /* line 41, ../sass/_modal.scss */
   .semantic-content {
     -webkit-transform: translate(0, 400px);
     -webkit-transform: translate3d(0, 100%, 0);
@@ -1835,7 +1837,7 @@ html {
     height: 100%;
     bottom: auto;
   }
-  /* line 231, ../sass/_modal.scss */
+  /* line 233, ../sass/_modal.scss */
   .semantic-content:target {
     -webkit-transition: -webkit-transform .25s ease-in-out;
     -moz-transition: -moz-transform .25s ease-in-out;
@@ -1843,7 +1845,7 @@ html {
     -ms-transition: -ms-transform .25s ease-in-out;
     transition: transform .25s ease-in-out;
   }
-  /* line 239, ../sass/_modal.scss */
+  /* line 241, ../sass/_modal.scss */
   .semantic-content:before {
     background-color: #27aae2;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#27aae2), to(#1c9cd3));
@@ -1861,7 +1863,7 @@ html {
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   }
-  /* line 258, ../sass/_modal.scss */
+  /* line 260, ../sass/_modal.scss */
   .semantic-content .modal-inner {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1875,20 +1877,20 @@ html {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  /* line 273, ../sass/_modal.scss */
+  /* line 275, ../sass/_modal.scss */
   .semantic-content .modal-content {
     max-height: none;
   }
-  /* line 277, ../sass/_modal.scss */
+  /* line 279, ../sass/_modal.scss */
   .semantic-content .modal-close {
     right: auto;
     text-decoration: none;
   }
-  /* line 281, ../sass/_modal.scss */
+  /* line 283, ../sass/_modal.scss */
   .semantic-content .modal-close:before {
     display: none;
   }
-  /* line 285, ../sass/_modal.scss */
+  /* line 287, ../sass/_modal.scss */
   .semantic-content .modal-close:after {
     content: attr(data-close);
     top: 0.4em;
@@ -1900,14 +1902,14 @@ html {
   }
 }
 @media screen and (max-height: 46em) and (min-width: 30em) {
-  /* line 299, ../sass/_modal.scss */
+  /* line 301, ../sass/_modal.scss */
   .semantic-content .modal-content {
     max-height: 340px;
     max-height: 50vh;
   }
 }
 @media screen and (max-height: 36em) and (min-width: 30em) {
-  /* line 306, ../sass/_modal.scss */
+  /* line 308, ../sass/_modal.scss */
   .semantic-content .modal-content {
     max-height: 265px;
     max-height: 40vh;
@@ -1915,7 +1917,7 @@ html {
 }
 
 @media screen and (min-width: 30em) {
-  /* line 315, ../sass/_modal.scss */
+  /* line 317, ../sass/_modal.scss */
   .semantic-content {
     -webkit-transition: opacity 0.4s;
     -o-transition: opacity 0.4s;
