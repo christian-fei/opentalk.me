@@ -3,8 +3,8 @@ Meteor.startup(function(){
 	
 	if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 		//set default
-		Meteor._localStorage.setItem('realtimeEnabled',false);
-		Session.set('realtimeEnabled',false);
+		Meteor._localStorage.setItem('realtimeEnabled',true);
+		Session.set('realtimeEnabled',true);
 	} else {
 		if(Meteor._localStorage.getItem('realtimeEnabled') === 'true')
 			Session.set('realtimeEnabled',true);
