@@ -166,7 +166,7 @@ function renderMessages(){
 	console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			console.log('added id ' +id + ' before ' + before);
+			// console.log('added id ' +id + ' before ' + before);
 
 			// $('.load-more').removeClass('show-loading');
 
@@ -277,7 +277,7 @@ function renderMessages(){
 					$('#'+id+' .text').html( fields.text );
 			}else 
 			if(fields.messageComplete === true){
-				console.log('message completed');
+				// console.log('message completed');
 				var mfdb = Messages.find({_id:id}).fetch()[0];
 				// console.log(mfdb);
 				if(prevUserId===mfdb.userid){
@@ -310,7 +310,7 @@ function renderMessages(){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
 
-			console.log('removed ' + id);
+			// console.log('removed ' + id);
 			// console.log('prevId ' + prevId);
 
 			// console.log( $('#last').prev().attr('id') );
@@ -329,7 +329,7 @@ function renderMessages(){
 					// $('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
 					// tiprAll();
 				}else{
-					console.log('strange behaviour');
+					// console.log('strange behaviour');
 				}
 			}
 			$('#'+id).remove();
@@ -338,7 +338,7 @@ function renderMessages(){
 }
 
 Template.messages.rendered=function(){
-	console.log('messages rendered');
+	// console.log('messages rendered');
 	// console.log(mSub);
 	renderMessages();
 	if(stick){
@@ -349,10 +349,10 @@ Template.messages.rendered=function(){
 	$(window).scroll(function (e) {
 		if( $(window).scrollTop() < 300 ){
 			if(!mSub.loading() && Messages.find().count() < mSub.loaded() ) {
-				console.log('all messages loaded');
+				// console.log('all messages loaded');
 				$('.loading').removeClass('show-loading');
 			}else{
-				console.log('load more messages');
+				// console.log('load more messages');
 				mSub.loadNextPage();
 			}
 		}
