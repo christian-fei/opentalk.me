@@ -76,13 +76,15 @@
 
 		.username{
 			position:absolute;
+			
+			font-size: .9em;
 
 			visibility: hidden;
 			opacity: 0;
 			width:auto;
 			white-space: nowrap;//for text in one line
-			left:2.5em;
-			top: -.2em;
+			left:   -.1em;
+			top: -2.8em;
 			background: $color-secondary;
 			color:#fff;
 			padding:.4em;
@@ -98,12 +100,12 @@
 			&:after {
 				content: "";
 				position: absolute;
-				top: .6em;
-				left: -.5em;
-				border-right: .7em solid $color-secondary;
-				border-top-color: inherit;
-				border-bottom: .5em solid transparent;
-				border-top: .5em solid transparent;
+				top: 2em;
+				left: .5em;
+				border-top: .7em solid $color-secondary;
+				border-left-color: inherit;
+				border-right: .5em solid transparent;
+				border-left: .5em solid transparent;
 			}
 		}
 
