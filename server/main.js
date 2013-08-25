@@ -10,7 +10,7 @@ Messages.allow({
 console.log(process.env);
 
 Meteor.publish('paginatedMessages', function(roomid,limit) {
-  return Messages.find({roomid:roomid}, {sort: {timestamp: 1}, limit: limit});
+  return Messages.find({roomid:roomid}, {sort: {timestamp:-1}, limit: limit});
 });
 Meteor.publish('usersOnlineInThisRoom',function(roomid){
   return OnlineUsers.find(

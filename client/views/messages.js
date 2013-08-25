@@ -148,8 +148,6 @@ Template.messages.events({
     	setTimeout(function(){
     		scrollDown();
     	},0);
-
-    	
 	}
 });
 
@@ -310,7 +308,7 @@ function renderMessages(){
 			// if(id === $('.messages li').first().attr('id'))
 			// 	return;
 
-			// console.log('removed ' + id);
+			console.log('removed ' + id);
 			// console.log('prevId ' + prevId);
 
 			// console.log( $('#last').prev().attr('id') );
@@ -332,6 +330,7 @@ function renderMessages(){
 					// console.log('strange behaviour');
 				}
 			}
+			console.log('removing ' + $('#'+id));
 			$('#'+id).remove();
 		}
 	});
