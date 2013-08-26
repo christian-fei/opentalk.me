@@ -40,6 +40,18 @@
 				{{/constant}}
 			</ul>
 		{{/isolate}}
+		{{#isolate}}
+			<ul class="tags">
+				{{#each roomTags}}
+					<li class="tag">{{this}}</li>
+				{{/each}}
+				{{#if gimmeMoreTags}}
+					<li>
+						<input type="text" id="enter-tag"/>
+					</li>
+				{{/if}}
+			</ul>
+		{{/isolate}}
 
 		<a href="#mdc-modal" class="markdown-cheatsheet">Markdown Cheatsheet</a>
 	</aside>

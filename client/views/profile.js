@@ -75,9 +75,9 @@ Template.profile.events({
 		e.preventDefault();
 		//i have no idea why this works
 		if(Session.get('roomid'))
-			window.location='/'+Session.get('roomid');
+			Meteor.Router.to('/'+Session.get('roomid'));
 		else
-			window.location='/';
+			Meteor.Router.to('/');
 	}
 });
 

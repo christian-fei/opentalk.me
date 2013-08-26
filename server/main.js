@@ -8,7 +8,8 @@ Messages.allow({
 Rooms.allow({
   insert  : function(userId,doc){
     /*rooms can't contain more than 5 tags*/
-    
+    //TODO
+    console.log(userId === Meteor.userId());
     if(userId === Meteor.userId())return true; return false;
   }
   ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
@@ -29,8 +30,11 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
 Meteor.publish("userData", function () {
   return Meteor.users.find({_id: this.userId},{});
 });
-Meteor.publish('getRoomTags',function(roomid){
-  return Rooms.findOne({roomid:roomid}).fetch();
+Meteor.publish('roomTags',function(roomid){
+  //if there is no such room, create one
+  if( Rooms.find({roomid:roomid}).count() === 0 )
+    Rooms.insert({roomid:roomid,tags:[]});
+  return Rooms.find({roomid:roomid});
 });
 
 var idleTime = 20*1000,

@@ -31,33 +31,26 @@ Template.room.helpers({
 		return username;
 	},
 	'avatar':function(){
-		//TODO
-		var avatar='/images/avatar.png';
-		if(Meteor.user().services){
-			if(Meteor.user().services.twitter)
-				avatar = Meteor.user().services.twitter.profile_image_url;
-			if(Meteor.user().services.google)
-				avatar = Meteor.user().services.google.picture;
-			if(Meteor.user().services.facebook)
-				avatar = 'https://graph.facebook.com/'+Session.get('screenname')+'/picture';
-			if(Meteor.user().services.github){
-				//make ajax call to get profile image
-				var gh_api_url = 'https://api.github.com/users/' + Session.get('screenname');
-				//console.log('ajax to gh');
-				HTTP.get(gh_api_url,{},function(err,result){
-					console.log(result.data.avatar_url);
-					avatar = result.avatar_url
-				});
-			}
-		}
-		Session.set('avatar',avatar);
-		scrollDown();
 		return Session.get('avatar');
 	},
 	'roomSelected':function(){
 		if(Session.get('roomid'))
 		return true;
 	return false;
+	},
+	'roomTags':function(){
+		// console.log(Rooms.find().fetch());
+		if( Rooms.findOne() ){
+			console.log('returning tags array');
+			console.log(Rooms.findOne().tags);
+			return Rooms.findOne().tags;
+		}else
+			return [];
+	},
+	'gimmeMoreTags':function(){
+		if( Rooms.findOne() &&  (!Rooms.findOne().tags || Rooms.findOne().tags.length < 5) )
+			return true;
+		return false;
 	}
 });
 
@@ -118,6 +111,17 @@ Template.room.events({
 			evnt.target.classList.remove('strike');
 
 		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
+	},
+	'keyup #enter-tag' : function(evnt,tmplt){
+		if(evnt.keyCode === 13){
+			var txt = tmplt.find('#enter-tag').value.trim();
+			//enter tag only if string is not empty and has no spaces
+			if(txt.length > 0 &&  txt.indexOf(' ') <= 0){
+				//enter tag
+				console.log('enter tag');
+				Rooms.update({_id:Rooms.findOne()._id},{$addToSet:{tags:txt}});
+			}
+		}
 	}
 });
 
@@ -137,6 +141,33 @@ Meteor.startup(function(){
 			$('#'+id).remove();
 		}
 	});
+	var avatar='/images/avatar.png';
+	if(Meteor.user().services){
+		if(Meteor.user().services.twitter)
+			avatar = Meteor.user().services.twitter.profile_image_url;
+		if(Meteor.user().services.google)
+			avatar = Meteor.user().services.google.picture;
+		if(Meteor.user().services.facebook)
+			avatar = 'https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture';
+		if(Meteor.user().services.github){
+			//make ajax call to get profile image
+			var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
+			//console.log('ajax to gh');
+			$.ajax({
+			  url: gh_api_url
+			}).done(function ( data ) {
+			    if(data.avatar_url){
+			    	avatar = data.avatar_url;
+				    Session.set('avatar',avatar);
+			    }
+			});
+		}
+	}
+	Session.set('avatar',avatar);
+
+	Meteor.subscribe('roomTags',Session.get('roomid'));
+	console.log('=====');
+	console.log(Rooms.find().fetch());
 });
 
 
