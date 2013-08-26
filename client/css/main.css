@@ -665,7 +665,7 @@ SUPER SLICK TRANSFORMS
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
 }
-@media all and (min-width: 55em) {
+@media all and (min-width: 56em) {
   /* line 1, ../sass/_room.scss */
   .main, .footer .footer-wrapper {
     max-width: 37em;
@@ -734,14 +734,14 @@ SUPER SLICK TRANSFORMS
   bottom: 0;
   left: 0;
   background: white;
-  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), white);
-  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), white);
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0)), to(white));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white);
-  background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white);
-  background: linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background: -moz-linear-gradient(left, white, rgba(255, 255, 255, 0));
+  background: -ms-linear-gradient(left, white, rgba(255, 255, 255, 0));
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(left, white, rgba(255, 255, 255, 0));
+  background: -o-linear-gradient(left, white, rgba(255, 255, 255, 0));
+  background: linear-gradient(left, #ffffff, rgba(255, 255, 255, 0));
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 1)', endColorstr='rgba(255, 255, 255, 0)', GradientType=1);
 }
 @media all and (min-width: 56em) {
   /* line 1, ../sass/_sidebar.scss */

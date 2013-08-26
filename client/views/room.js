@@ -176,6 +176,7 @@ Meteor.startup(function(){
 
 Deps.autorun(function(){
 	// console.log('uid ' +Meteor.userId());
+	Meteor.subscribe('roomTags',Session.get('roomid'));
 });
 
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
@@ -183,7 +184,7 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 	positionFixedContent();
-	Meteor.subscribe('roomTags',Session.get('roomid'));
+	
 	// console.log('room');
 }
 

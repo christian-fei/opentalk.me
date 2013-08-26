@@ -5,7 +5,7 @@
 	
 	max-width: $limit;
 
-	@media all and (min-width: $limit + $offset-main + $sidebar-width + 1em){
+	@media all and (min-width: $mobile-view){
 		max-width: $limit + $offset-main;
 
 		border-left: $offset-main solid transparent;
