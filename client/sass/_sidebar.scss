@@ -140,7 +140,7 @@
 }
 
 
-$ou-width: 9em;
+$ou-width: 10em;
 
 .online-users{
 	margin: 2em auto;
@@ -169,6 +169,7 @@ $ou-width: 9em;
 		white-space: nowrap;
 	    overflow: hidden;
 	    color:#555;
+		margin-left:.5em!important;
 	    
 
 	    &.strike{
@@ -182,7 +183,10 @@ $ou-width: 9em;
 		width: $ou-width;
 		margin:auto;
 		display: inline-block;
-		margin-left:1em!important;
+		padding: .1em .2em;
+		border-left:1px solid rgba(200,200,200,.3);
+		border-right:1px solid rgba(200,200,200,.3);
+		border-bottom:1px dotted rgba(200,200,200,.3);
 	}
 
 .roomid{
