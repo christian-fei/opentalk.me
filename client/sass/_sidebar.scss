@@ -1,5 +1,5 @@
 .fixed-sidebar-background{
-	@media all and (min-width: $limit + $sidebar-width*2){
+	@media all and (min-width: $mobile-view){
 		border-top: 4px solid $color-main;
 	}
 	
@@ -37,10 +37,11 @@
 		color:black;
 	}	
 
-	@media all and (max-width: $limit + $sidebar-width*2){
+	@media all and (max-width: $mobile-view){
 		border-top: 4px solid $color-main;
 		left: - $sidebar-width - 1em !important;
 		padding:5em 2em 4em;
+		background: url('/images/pattern-black-w.png');
 		-webkit-transition: all $animation-duration ease-in-out;
 		-moz-transition: all $animation-duration ease-in-out;
 		-ms-transition: all $animation-duration ease-in-out;
@@ -72,9 +73,6 @@
 		// box-shadow:  1em 0 1em lightgrey;
 		box-shadow: none;
 	}
-	@media all and (max-width: $limit + $sidebar-width*2){
-		background: url('/images/pattern-black-w.png');
-	}
 	
 	&:hover{
 		opacity:1;
@@ -84,7 +82,7 @@
 	}
 }
 .csstransforms .fixed-sidebar{
-	@media all and (max-width: $limit + $sidebar-width*2){
+	@media all and (max-width: $mobile-view){
 		&.show{
 			-webkit-transform: translate3d($sidebar-width + 1em,0,0);
 			-moz-transform: translate3d($sidebar-width + 1em,0,0);
@@ -96,7 +94,7 @@
 }
 
 .no-csstransforms .fixed-sidebar{
-	@media all and (max-width: $limit + $sidebar-width*2){
+	@media all and (max-width: $mobile-view){
 		&.show{
 			left:0!important;
 		}
@@ -214,7 +212,7 @@
 	transition: all .4s ease-in-out;
 	*/
 
-	@media all and (max-width: $limit + $sidebar-width*2){
+	@media all and (max-width: $mobile-view){
 		// border-top-left-radius:0px;
 		// border-bottom-left-radius:0px;
 		left: 0!important;
@@ -242,7 +240,7 @@
 
 	border:.1em solid darken($color-main,10%);
 	
-	@media all and(max-width: $limit + $sidebar-width*2){
+	@media all and(max-width: $mobile-view){
 		display:block;
 		left: 0!important;
 	}

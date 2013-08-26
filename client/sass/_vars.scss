@@ -1,7 +1,11 @@
-$limit:32em;
+$limit:31em;
 $limit-extend:40em;
 
-$sidebar-width:15em;
+$sidebar-width:17em;
+
+$offset-main:6em;
+
+$mobile-view: $limit + $sidebar-width + $offset-main + 2em;
 
 $color-main:lighten(#2980b9,10%);
 
