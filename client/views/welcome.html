@@ -1,5 +1,5 @@
 <template name="welcome">
-	<div class="welcome-mast">
+	<section class="welcome-mast">
 		<div class="welcome-mast-cont">
 			<h1 style='font-size: 3.5em;'>OpenTalk</h1>
 			<h1>The <b>real</b> realtime chat</h1>
@@ -10,14 +10,24 @@
 			<h6><a href="#mdc-modal">Markdown</a> support? hell yeah</h6>
 			<h6>Uh! I almost forgot: it's <a style='color:#222;' target='_blank' href="https://github.com/christian-fei/opentalk.me">opensource</a></h6>
 		</div>
-	</div>
-	<div class="blanket medium-text">
-		<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
-	</div>
-	<div class="blanket-search ">
-		<span class='vam'>or search for interesting chatrooms</span> <span class="vam">{{>search}}</span>
-	</div>
-	<div class="features">
+	</section>
+	<section class='blankets-wrapper'>
+
+		<div class="blanket-wrapper">
+			<div class="blanket medium-text">
+				<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
+			</div>
+		</div>
+
+		<div class="blanket-wrapper">
+			<div class="blanket-search medium-text">
+				<span>find interesting chatrooms</span>
+				<br>
+				{{>search}}
+			</div>
+		</div>
+	</section>
+	<section class="features">
 		<div class="features-wrapper">
 			<h1 class='features-header'>Features</h1>
 			<div class="feature">
@@ -63,8 +73,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="todos">
+	</section>
+	<section class="todos">
 		<div class="todos-wrapper">
 			<h4>TODO</h4>
 			<br>
@@ -74,12 +84,12 @@
 				<li><strike>Better <a href="#mdc-modal">Markdown</a> support</strike></li>
 				<li>Code highlighting?</li>
 				<li>Implement notification system logic</li>
-				<li>Tagging of chatrooms *in progress*</li>
+				<li><strike>Tagging of chatrooms *in progress*</strike></li>
 			</ul>
 			<br>
 			Do you want to contribute or have a suggestion to make this better?	<a href="https://github.com/christian-fei/opentalk.me">Fork away!</a>
 		</div>
-	</div>
+	</section>
 	<footer class="footer">
 		<div class="footer-wrapper">
 			<div class="tos">

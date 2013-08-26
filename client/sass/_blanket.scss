@@ -1,0 +1,53 @@
+.blanket{
+	position: relative;
+	display: block;
+	max-width: $blanket-width;
+	width: 93%;
+	padding:1.5em;
+	box-shadow: 3px 3px 25px lightgrey;
+	margin: 2.5em auto;
+	border-radius: 5px;
+	border: 1px solid lightgrey;
+	background:url('/images/pattern-black-w.png');
+
+	@media all and(min-width: $blanket-width*2 + 10em){
+		display: inline-block;
+	}
+}
+.blanket-white{
+	@extend .blanket;
+	// background:white;
+}
+.blanket-search{
+	@extend .blanket;
+}
+
+.medium-text{
+	font-size: 1.3em;
+}
+.vam{
+	vertical-align: middle;
+	display:table-cell;
+}
+
+
+.blankets-wrapper{
+	width: 100%;
+	margin: 0 auto;
+	max-width: 	$blanket-width*2 + 10em;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.blanket-wrapper{
+	margin:auto;
+	@media all and(min-width: $blanket-width*2 + 10em){
+		width: 49%;
+		padding:1em;
+		display: inline-block;
+		/* IE 7 hack, but who cares, right?? */
+		*zoom:1;
+		*display: inline;
+		vertical-align: middle;
+	}
+}

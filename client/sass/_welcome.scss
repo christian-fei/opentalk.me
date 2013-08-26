@@ -66,36 +66,6 @@
 	margin-top: -.3em;
 }
 
-.blanket{
-	position: relative;
-	display:table;
-	max-width: $limit;
-	padding:1.5em;
-	box-shadow: 3px 3px 25px lightgrey;
-	margin: 4em auto 4em;
-	border-radius: 5px;
-	border: 1px solid lightgrey;
-	background:url('/images/pattern-black-w.png');
-
-	@media all and(max-width: $limit){
-		margin: 2.5em 1em;
-	}
-}
-.blanket-white{
-	@extend .blanket;
-	// background:white;
-}
-.blanket-search{
-	@extend .blanket;
-}
-
-.medium-text{
-	font-size: 1.3em;
-}
-.vam{
-	vertical-align: middle;
-	display:table-cell;
-}
 
 $offset-y:-400px;
 @-webkit-keyframes welcome-mast-anim{

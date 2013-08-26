@@ -10,16 +10,19 @@
 		border:1px solid #C9C9C9;
 		display: inline-block;
 		color: black;
+		a{
+			text-decoration: none;
+		}
 	}
 }
 
 	#search-tags{
 		position: relative;
-		padding: 1em;
+		padding: 1em 1.5em 1em 0;
 		//font-size: 1.3em;
 		//margin: 0 1em;
 		text-align: center;
-		width:8em;
+		width:10em;
 
 		outline:none;
 		border:0px;
