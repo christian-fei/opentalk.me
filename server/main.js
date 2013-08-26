@@ -32,7 +32,7 @@ Meteor.publish("userData", function () {
 });
 Meteor.publish('roomTags',function(roomid){
   //if there is no such room, create one
-  if( Rooms.find({roomid:roomid}).count() === 0 )
+  if( Rooms.find({roomid:roomid}).count() === 0  && roomid !== null)
     Rooms.insert({roomid:roomid,tags:[]});
   return Rooms.find({roomid:roomid});
 });
@@ -119,8 +119,10 @@ Meteor.methods({
     ret.wordsCount=wordsCount;
     return ret;
   },
-  getRoomTags:function(roomid){
-    return Rooms.findOne({roomid:roomid},{fields:{tags:true}}).fetch();
+  roomsTaggedWith:function(tag){
+    if(!tag)return [];
+    var regex = new RegExp(tag, "gi");
+    return Rooms.find({tags: {$in: [regex] }}).fetch();
   }
 });
 

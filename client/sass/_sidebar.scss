@@ -16,6 +16,8 @@
     background: linear-gradient(left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 1)', endColorstr='rgba(255, 255, 255, 0)', GradientType=1);
+	
+	background:white;
 }
 
 .fixed-sidebar{
@@ -305,8 +307,8 @@
 	text-align: center;
 
 	#enter-tag{
-		padding:.5em;
-		width:6em;
+		padding: 1em 2em;
+		width:10em;
 		border:none;
 		margin-top:.5em;
 
@@ -316,7 +318,7 @@
 		}
 	}
 	.tag{
-		padding:.3em .6em;
+		padding:.3em .7em;
 		margin:  .4em .16em;
 		background:white;
 		border-radius: 7px;

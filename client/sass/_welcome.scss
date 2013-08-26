@@ -85,6 +85,9 @@
 	@extend .blanket;
 	// background:white;
 }
+.blanket-search{
+	@extend .blanket;
+}
 
 .medium-text{
 	font-size: 1.3em;
