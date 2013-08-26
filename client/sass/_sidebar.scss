@@ -302,10 +302,47 @@
 
 .tags{
 	list-style-type: none;
-
+	
 	.tag{
 		display: inline-block;
-		padding: .2em .5em;
-		margin:  .2em .5em;
+		padding: .3em .5em;
+		margin:  .4em .3em;
+		cursor:  pointer;
+		background: $color-main;
+		color:black;
+		border:1px solid lightgrey;
+		position: relative;
+		border-radius:5px;
 	}
+	.tag:before{
+		content:"";
+		float:left;
+		position:absolute;
+		top:.15em;
+		left:-.5em;
+		width:0;
+		height:0;
+		border-color:transparent $color-main transparent transparent;
+		border-style:solid;
+		border-width:12px 12px 14px 0;		
+		}	
+	.tag:after{
+		content:"";
+		position:absolute;
+		top:.8em;
+		left:0;
+		float:left;
+		width:4px;
+		height:4px;
+		-moz-border-radius:2px;
+		-webkit-border-radius:2px;
+		border-radius:2px;
+		background:#fff;
+		-moz-box-shadow:-1px -1px 2px #004977;
+		-webkit-box-shadow:-1px -1px 2px #004977;
+		box-shadow:-1px -1px 2px #004977;
+		}		
+
+	.tag:hover{background: lighten($color-secondary,30%); cursor:crosshair}	
+	.tag:hover:before{border-color:transparent  lighten($color-secondary,30%) transparent transparent;}
 }

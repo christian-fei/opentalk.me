@@ -171,10 +171,6 @@ Meteor.startup(function(){
 		}
 	}
 	Session.set('avatar',avatar);
-
-	Meteor.subscribe('roomTags',Session.get('roomid'));
-	console.log('=====');
-	console.log(Rooms.find().fetch());
 });
 
 
@@ -187,6 +183,7 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 	positionFixedContent();
+	Meteor.subscribe('roomTags',Session.get('roomid'));
 	// console.log('room');
 }
 
