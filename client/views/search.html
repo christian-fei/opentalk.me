@@ -1,8 +1,8 @@
 <template name='search'>
-	<input type="text" id="search"/>
-	<ul>
+	<input type="text" id="search-tags" placeholder='search term'/>
+	<ul class='tag-search-results'>
 		{{#each searchResults}}
-			<li>{{roomid}}</li>
+			<li><a href="{{roomid}}" class="room">{{roomid}}</a></li>
 		{{/each}}
 	</ul>
 </template>

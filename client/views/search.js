@@ -1,9 +1,9 @@
 Template.search.events({
-	'keyup #search':function(evnt,tmplt){
+	'keyup #search-tags':function(evnt,tmplt){
 		Session.set('searchquery',evnt.target.value);
 		Meteor.call('roomsTaggedWith',Session.get('searchquery'),function(err,res){
-			console.log(err);
-			console.log(res);
+			// console.log(err);
+			// console.log(res);
 			Session.set('searchresults',res);
 		});
 	}

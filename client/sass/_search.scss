@@ -1,0 +1,31 @@
+.tag-search-results{
+	list-style-type: none;
+
+	li{
+		padding:.3em .6em;
+		margin:.4em ;
+		font-size: .9em;
+		background:white;
+		border-radius: 7px;
+		border:1px solid #C9C9C9;
+		display: inline-block;
+		color: black;
+	}
+}
+
+	#search-tags{
+		position: relative;
+		padding: 1em;
+		//font-size: 1.3em;
+		//margin: 0 1em;
+		text-align: center;
+		width:8em;
+
+		outline:none;
+		border:0px;
+		box-shadow: none;
+
+		font-size: 1.1rem;
+		font-family: 'Questrial', sans-serif;
+		margin-top: -.3em;
+	}

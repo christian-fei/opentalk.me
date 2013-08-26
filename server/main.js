@@ -122,7 +122,7 @@ Meteor.methods({
   roomsTaggedWith:function(tag){
     if(!tag)return [];
     var regex = new RegExp(tag, "gi");
-    return Rooms.find({tags: {$in: [regex] }}).fetch();
+    return Rooms.find({tags: {$in: [regex] }},{limit: 10}).fetch();
   }
 });
 

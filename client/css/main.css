@@ -2018,3 +2018,33 @@ html {
   max-width: 31em;
   padding: 2em;
 }
+
+/* line 1, ../sass/_search.scss */
+.tag-search-results {
+  list-style-type: none;
+}
+/* line 4, ../sass/_search.scss */
+.tag-search-results li {
+  padding: .3em .6em;
+  margin: 0.4em;
+  font-size: .9em;
+  background: white;
+  border-radius: 7px;
+  border: 1px solid #C9C9C9;
+  display: inline-block;
+  color: black;
+}
+
+/* line 16, ../sass/_search.scss */
+#search-tags {
+  position: relative;
+  padding: 1em;
+  text-align: center;
+  width: 8em;
+  outline: none;
+  border: 0px;
+  box-shadow: none;
+  font-size: 1.1rem;
+  font-family: 'Questrial', sans-serif;
+  margin-top: -.3em;
+}
