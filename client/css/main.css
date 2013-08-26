@@ -1006,6 +1006,17 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
+/* line 303, ../sass/_sidebar.scss */
+.tags {
+  list-style-type: none;
+}
+/* line 306, ../sass/_sidebar.scss */
+.tags .tag {
+  display: inline-block;
+  padding: .2em .5em;
+  margin: .2em .5em;
+}
+
 /* line 1, ../sass/_messages.scss */
 .messages {
   list-style-type: none;

@@ -116,12 +116,19 @@ Template.room.events({
 		if(evnt.keyCode === 13){
 			var txt = tmplt.find('#enter-tag').value.trim();
 			//enter tag only if string is not empty and has no spaces
-			if(txt.length > 0 &&  txt.indexOf(' ') <= 0){
+			if(txt.length > 0 && txt.length < 15 &&  txt.indexOf(' ') <= 0){
 				//enter tag
 				console.log('enter tag');
 				Rooms.update({_id:Rooms.findOne()._id},{$addToSet:{tags:txt}});
+				tmplt.find('#enter-tag').value ='';
 			}
 		}
+	},
+	'click .tag':function(evnt,tmpl){
+		console.log(evnt.target.innerText);
+		var rem=evnt.target.innerText;
+		Rooms.update({_id:Rooms.findOne()._id},{$pull:{tags:rem}});
+
 	}
 });
 

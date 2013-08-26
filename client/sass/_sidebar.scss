@@ -296,3 +296,16 @@
 	display:block;
 	text-align: center;
 }
+
+
+
+
+.tags{
+	list-style-type: none;
+
+	.tag{
+		display: inline-block;
+		padding: .2em .5em;
+		margin:  .2em .5em;
+	}
+}
