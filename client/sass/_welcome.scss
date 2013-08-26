@@ -127,9 +127,7 @@ $offset-y:-400px;
 	@extend .tile;
 }
 .features-header{
-	text-align: center;
-	font-size: 4em;
-	// margin-top:-1.2em;
+	@extend .tiles-header;
 }
 
 .footer{

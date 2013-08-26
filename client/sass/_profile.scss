@@ -40,7 +40,9 @@
 	@extend .tile;
 	height:13em;
 }
-
+.stats-header{
+	@extend .tiles-header;
+}
 
 .user-rooms{
 	margin:2em auto;

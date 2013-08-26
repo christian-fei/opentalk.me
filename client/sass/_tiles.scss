@@ -4,6 +4,10 @@
 	float:left; //or overflow:hidden
 	padding: 2em;
 }
+	.tiles-header{
+		text-align: center;
+		font-size: 4em;
+	}
 	.tiles-wrapper{
 		max-width: $limit + 10em;
 		margin:auto;

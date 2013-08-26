@@ -62,6 +62,9 @@ Template.profile.helpers({
 });
 
 function renderUserRooms(r){
+	//don't let it render multiple times when the user navigates to /profile (hack)
+	// if($('.user-room').length)return;
+	$('.user-room').remove();
 	r.forEach(function(entry){
 		console.log(entry);
 		$('#append-here').after( $('<li class="user-room"> <a href="/'+entry+'">'+entry+'</a></li>') );
