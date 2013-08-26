@@ -10,6 +10,8 @@
 		border:1px solid #C9C9C9;
 		display: inline-block;
 		color: black;
+
+		@extend .fly-in-right;
 		a{
 			text-decoration: none;
 		}

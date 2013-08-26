@@ -140,6 +140,7 @@
 }
 
 
+$ou-width: 9em;
 
 .online-users{
 	margin: 2em auto;
@@ -156,13 +157,19 @@
 	.online-users-heading{
 		text-align: center;
 		font-family: 'Source Sans Pro', sans-serif;
+		background: rgba(200,200,200,.5);
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		width: $ou-width;
+		margin:auto;
+		display: inline-block;
 	}
 	.online-user{
-		display: inline-block;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	    overflow: hidden;
 	    color:#555;
+	    
 
 	    &.strike{
 	    	text-decoration: line-through;
@@ -172,7 +179,10 @@
 	}
 	.online-user-wrapper{
 		text-align: left;
-		margin-left:5em!important;
+		width: $ou-width;
+		margin:auto;
+		display: inline-block;
+		margin-left:1em!important;
 	}
 
 .roomid{
