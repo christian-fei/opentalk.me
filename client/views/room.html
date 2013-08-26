@@ -33,7 +33,7 @@
 						{{onlineUsersCount}} online
 					</li>
 					{{#each onlineUsers}}
-						<li class='online-user-wrapper'><span class="status-badge {{status}}"></span><span class='online-user'>{{nickname}}</span></li>
+						<li class='online-user-wrapper'><span class="status-badge {{status}}"></span><span class='online-user' data-userid='{{userid}}'>{{nickname}}</span></li>
 					{{/each}}
 				{{else}}
 					<li>:( nobody is online right now</li>

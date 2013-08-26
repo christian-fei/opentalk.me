@@ -1,7 +1,8 @@
 .fixed-sidebar-background{
 	@media all and (min-width: $limit + $sidebar-width*2){
-		border-left: 4px solid $color-main;
+		border-top: 4px solid $color-main;
 	}
+	
 	position: fixed;
 	top:0;
 	bottom:0;
@@ -37,6 +38,7 @@
 	}	
 
 	@media all and (max-width: $limit + $sidebar-width*2){
+		border-top: 4px solid $color-main;
 		left: - $sidebar-width - 1em !important;
 		padding:5em 2em 4em;
 		-webkit-transition: all $animation-duration ease-in-out;

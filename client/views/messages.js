@@ -177,7 +177,7 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
-			message = $('<li class="message new-message" id="'+id+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
+			message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
 
 			if(before === null) {
 				//first item of first load and recently typed ones
@@ -263,7 +263,9 @@ function renderMessages(){
 			if(stick)scrollDown();
 		},
 		changed: function(id,fields){
-			// console.log('changed ' + id + ' to ' + fields.text);
+			// console.log('changed ' + id);
+			
+			var mfdb = Messages.find({_id:id}).fetch()[0];
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
@@ -275,24 +277,23 @@ function renderMessages(){
 			}
 			else 
 				if(fields.messageComplete === true){
-					// console.log('message completed');
-					var mfdb = Messages.find({_id:id}).fetch()[0];
 					// console.log(mfdb);
 					if(prevUserId===mfdb.userid){
-						message = $('<li class="message new-message" id="'+id+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
+						message = $('<li class="message new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
 					}
 					else{
 						$('#'+prevId).addClass('lastOfUser');
-						message = $('<li class="message diffUser new-message" id="'+id+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
+						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+prevUserId+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
 					}
-					prevUserId=mfdb.userid;
-					prevId=id;
+					
 					// if(!prevUserId)prevUserId=fields.username;
 					// message.hide();
 					$('#last').before(message);
 					// tiprAll();
 					// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 				}
+			prevUserId=mfdb.userid;
+			prevId=id;
 			imageExp();
 			if(stick)
 				scrollDown();

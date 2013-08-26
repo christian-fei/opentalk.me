@@ -79,6 +79,11 @@ Template.room.events({
 		ouSub.stop();
 		Meteor.Router.to('/');
 	},
+	'click #userstats' : function(evnt,tmplt){
+		evnt.preventDefault();
+		ouSub.stop();
+		Meteor.Router.to('/profile');
+	},
 	'click #logout' : function(evnt,tmplt){
 		//console.log('logout clicked');
 		evnt.preventDefault();
@@ -96,6 +101,9 @@ Template.room.events({
 		
 		Meteor.logout(function(){
 		});
+	},
+	'click .online-user':function(evnt,tmplt){
+		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
 	}
 });
 

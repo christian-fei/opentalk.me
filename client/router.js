@@ -18,6 +18,7 @@ Meteor.Router.add({'/:id': function(id){
 		//reset
 		$('html').css({'overflow':'auto'});
 		Session.set('roomid',id);
+		prevUserId=prevId=null;
 		goOnline();
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
