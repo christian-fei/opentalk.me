@@ -166,8 +166,15 @@ function renderMessages(){
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
+
 			
 			message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
+
+			if(trolls.indexOf(fields.userid) >=0){
+				//hiding because in trolls
+				console.log('hiding because in trolls');
+				message.hide();
+			}
 
 			if(before === null) {
 				//first item of first load and recently typed ones

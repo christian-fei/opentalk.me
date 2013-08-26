@@ -103,6 +103,13 @@ Template.room.events({
 		});
 	},
 	'click .online-user':function(evnt,tmplt){
+		var ind=0;
+		if(ind=trolls.indexOf(evnt.target.getAttribute('data-userid')) >=0){
+			//remove from trolls
+			trolls.pop(ind);
+		}else{
+			trolls.push(evnt.target.getAttribute('data-userid'));
+		}
 		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
 	}
 });
