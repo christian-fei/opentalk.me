@@ -6,9 +6,9 @@ Messages.allow({
 
 //users can't do shit
 Rooms.allow({
-  insert  : function(userId,doc){return false;}
-  ,update : function(userId,doc){return false;}
-  ,remove : function(userId,doc){return false;}
+  insert  : function(userId,doc){console.log(doc);if(userId === Meteor.userId())return true; return false;}
+  ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
 });
 
 // console.log(process.env);
@@ -25,7 +25,9 @@ Meteor.publish('usersOnlineInThisRoom',function(roomid){
 Meteor.publish("userData", function () {
   return Meteor.users.find({_id: this.userId},{});
 });
-
+Meteor.publish('getRoomTags',function(roomid){
+  return Rooms.findOne({roomid:roomid}).fetch();
+});
 
 var idleTime = 20*1000,
     idleCheck = idleTime/2,
@@ -93,16 +95,17 @@ Meteor.methods({
     var ret={};
     ret.messagesCount = Messages.find({userid:Meteor.userId()},{fields:{roomid:true,text:true}}).count();
     var roomsCount=charactersCount=wordsCount=0;
-    var mu=Messages.find({userid:Meteor.userId()}).fetch(),
+    var mu=Messages.find({userid:Meteor.userId()},{sort:{roomid:-1}}).fetch(),
         i=0,roomsOcc=[];
     while(m=mu[i++]){
-      if(!roomsOcc[m.roomid]){
+      if(roomsOcc.indexOf(m.roomid) === -1){
         roomsCount++;
-        roomsOcc[m.roomid]=true;
+        roomsOcc.push(m.roomid);
       }
       charactersCount+=m.text.length;
       wordsCount+=m.text.trim().replace(/\s+/gi, ' ').split(' ').length;
     }
+    ret.rooms=roomsOcc;
     ret.roomsCount=roomsCount;
     ret.charactersCount=charactersCount;
     ret.wordsCount=wordsCount;
@@ -110,18 +113,6 @@ Meteor.methods({
   },
   getRoomTags:function(roomid){
     return Rooms.findOne({roomid:roomid},{fields:{tags:true}}).fetch();
-  },
-  getUserRooms:function(){
-    var mu=Messages.find({userid:Meteor.userId()},{sort:{roomid:-1}}).fetch(),
-          i=roomsCount=0,
-          roomsOcc=[];
-      while(m=mu[i++]){
-        if(roomsOcc.indexOf(m.roomid) === -1){
-          roomsCount++;
-          roomsOcc.push(m.roomid);
-        }
-      }
-      return roomsOcc;
   }
 });
 

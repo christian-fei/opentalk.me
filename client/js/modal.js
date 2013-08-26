@@ -37,7 +37,8 @@
 
 		// If key ESC is pressed
 		if (event.keyCode === 27) {
-			window.location.hash = '!';
+			// window.location.hash = '!';
+			window.location.hash = '';
 
 			if (modal.lastActive) {
 				return false;

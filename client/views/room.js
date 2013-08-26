@@ -131,7 +131,6 @@ Meteor.startup(function(){
 			$('#append-online-user-here').before(ou);
 		},
 		changed:function(id,fields){
-
 		},
 		removed:function(id){
 			//TODO, show messages of user even if troll, or just hide them??

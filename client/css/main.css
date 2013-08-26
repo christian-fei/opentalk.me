@@ -1724,7 +1724,6 @@ html {
 /* line 35, ../sass/_modal.scss */
 .has-overlay > body {
   height: 100%;
-  overflow-y: scroll;
 }
 
 /* line 41, ../sass/_modal.scss */

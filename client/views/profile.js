@@ -66,7 +66,6 @@ function renderUserRooms(r){
 	// if($('.user-room').length)return;
 	$('.user-room').remove();
 	r.forEach(function(entry){
-		console.log(entry);
 		$('#append-here').after( $('<li class="user-room"> <a href="/'+entry+'">'+entry+'</a></li>') );
 	});
 }
@@ -88,11 +87,6 @@ Template.profile.rendered = function(){
 		Session.set('userRoomsCount',result.roomsCount);
 		Session.set('userWordsCount',result.wordsCount);
 		Session.set('userCharactersCount',result.charactersCount);
-	});
-	Meteor.call('getUserRooms',function(e,r){
-	  // console.log(r);
-	  if(r){
-	  	renderUserRooms(r);
-	  }
+		renderUserRooms(result.rooms);
 	});
 }
