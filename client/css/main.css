@@ -1015,7 +1015,7 @@ SUPER SLICK TRANSFORMS
 /* line 304, ../sass/_sidebar.scss */
 .tags .tag {
   display: inline-block;
-  padding: .3em .5em;
+  padding: .2em .5em;
   margin: .4em .3em;
   cursor: pointer;
   background: #ffbb00;
@@ -1029,19 +1029,19 @@ SUPER SLICK TRANSFORMS
   content: "";
   float: left;
   position: absolute;
-  top: .15em;
-  left: -.5em;
+  top: .17em;
+  left: -.6em;
   width: 0;
   height: 0;
   border-color: transparent #ffbb00 transparent transparent;
   border-style: solid;
-  border-width: 12px 12px 14px 0;
+  border-width: .7em .7em .7em 0;
 }
 /* line 327, ../sass/_sidebar.scss */
 .tags .tag:after {
   content: "";
   position: absolute;
-  top: .8em;
+  top: .75em;
   left: 0;
   float: left;
   width: 4px;
