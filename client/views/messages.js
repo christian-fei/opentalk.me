@@ -158,67 +158,33 @@ Meteor.startup(function(){
 function renderMessages(){
 	if(mPagination)
 		mPagination.stop();
-	var prevUserId=prevId=null;
-	// console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			console.log('added id ' +id + ' before ' + before);
-			// console.log($('#'+id).prev());
-			// if($('#'+id).prev())
-			// 	console.log($('#'+id).prev().data('userid'));
-			// $('.load-more').removeClass('show-loading');
-
-			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
-			// console.log( typeof fields.userid );
-			// console.log( typeof Meteor.userId() );
+			// console.log('added id ' +id + ' before ' + before);
 			imageExp();
-
 			//Don't show my message until it's marked as complete..
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
-			
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 			
 			message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
 
-			console.log($('#'+id).prev());
-
 			if(before === null) {
 				//first item of first load and recently typed ones
-				// message.hide();
 				$('#last').before(message);
-				// console.log('prevUserId ' +prevUserId);
-				// console.log('currUser ' +fields.username);
 				if($('#'+id).prev() && $('#'+id).prev().data('userid')!==fields.userid){
 					//A NEW USER
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
 					message[0].firstChild.classList.add('avatar-border');
 					message[0].firstChild.classList.add('tip');
-					// message[0].firstChild.setAttribute('data-tip',fields.username);
-
-					$('#'+prevId).addClass('lastOfUser');
+					$('#'+id).prev().addClass('lastOfUser');
 				}
-				// message[0].classList.add('new-message');
-				//since all the message that have before === null are at the bottom, thisis a new message => display it like one
-				// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
 			}else{
 				//stay at the same position
 				var offsetBottom = document.body.offsetHeight - document.body.scrollTop;
-				// message.hide();
 				$('#'+before).before(message);
-				//it is at the bottom of the list, so add lastOfUser class
-				// console.log('=========');
-				// console.log(fields.username);
-				// console.log(prevUserId);
-				// console.log('=========');
 				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
-							
-				// message[0].firstChild.classList.add('avatar-border');
-				// message[0].firstChild.classList.add('tip');
-				// message[0].firstChild.setAttribute('data-tip',fields.username);				
-				// message[0].firstChild.classList.add('avatar-border');
-
 				if(firstRunAfterMore){
 					console.log('firstRunAfterMore');
 					message.addClass('lastOfUser');
@@ -226,7 +192,6 @@ function renderMessages(){
 					message.firstChild.classList.add('tip');
 					firstRunAfterMore=false;
 				}else{
-					console.log($('#'+id).prev());
 					if($('#'+id).next() && $('#'+id).next().data('userid')!==fields.userid){
 						/*NEW USER*/
 						message.addClass('lastOfUser');
@@ -250,35 +215,18 @@ function renderMessages(){
 
 					}
 				}
-				// message.delay(100).fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});
-				
-				//let's see if this fixes the issue on android
-				// setTimeout(function(){
-				// 	$('body').scrollTop( $('body').height() - offsetBottom );
-				// },2000);
-			
 				document.body.scrollTop = document.body.offsetHeight - offsetBottom;
 			}
 
-			prevUserId=fields.userid;
 			prevId=id;
-
-			// tiprAll();
 			imageExp();
 			
 			if(stick)scrollDown();
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id);
-			
-			console.log($('#'+id).prev());
 			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
-			console.log(mfdb);
-			// console.log( $('#mymessage').val() );
-			// console.log('lid ' +Session.get('lastInsertId'));
-			// console.log(fields);
-			// console.log('changed & lmu ' + prevUserId);
 			//update other users message
 			if( $('#'+id).length ){
 				if(fields.text !== undefined)
@@ -286,9 +234,7 @@ function renderMessages(){
 			}
 			else 
 				if(fields.messageComplete === true){
-
 					//if an element already exists => it's from an other user and he updated it
-
 					//if it does not exist=> an other user OR I finished my message and have to check if the element before #last is mine or not
 					if($('#last').prev() && $('#last') && mfdb.userid === $('#last').prev().data('userid')){
 						//same
@@ -297,13 +243,8 @@ function renderMessages(){
 						//diff
 						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
 					}					
-					// if(!prevUserId)prevUserId=fields.username;
-					// message.hide();
 					$('#last').before(message);
-					// tiprAll();
-					// message.addClass('realtime').fadeIn(animationDuration,function(){if(stick && Session.get('userid'))scrollDown()});	
 				}
-			prevUserId=mfdb.userid;
 			prevId=id;
 			imageExp();
 			if(stick)
@@ -317,17 +258,7 @@ function renderMessages(){
 			// }
 		},
 		removed: function(id){
-			// if(id === $('.messages li').first().attr('id'))
-			// 	return;
-
 			// console.log('removed ' + id);
-			// console.log('prevId ' + prevId);
-
-			// console.log( $('#last').prev().attr('id') );
-
-			if(id === $('#last').prev().attr('id')){
-				// prevUserId=prevId=null;
-			}
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
 				if( $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
@@ -336,13 +267,10 @@ function renderMessages(){
 					$('#'+id).next()[0].firstChild.classList.add('avatar-border');
 					$('#'+id).next().addClass('diffUser');
 					$('#'+id).next()[0].firstChild.classList.add('tip');
-					// $('#'+id).next()[0].firstChild.setAttribute('data-tip',$('#'+id + ' .username').html());
-					// tiprAll();
 				}else{
 					// console.log('strange behaviour');
 				}
 			}
-			// console.log('removing ' + $('#'+id));
 			$('#'+id).remove();
 		}
 	});
@@ -350,12 +278,10 @@ function renderMessages(){
 
 Template.messages.rendered=function(){
 	// console.log('messages rendered');
-	// console.log(mSub);
 	renderMessages();
 	if(stick){
 		//console.log('scrolling because stick');
 		scrollDown();
-		//this.find('#mymessage').focus();
 	}
 	$(window).scroll(function (e) {
 		if( $(window).scrollTop() < 300 ){
