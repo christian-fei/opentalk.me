@@ -1,10 +1,7 @@
 Messages.allow({
-  insert : function(userId,doc){
-    //console.log(userId + ' attempts to insert a doc');
-    //console.log('on the server he is ' + this.userId + ' || ' + Meteor.userId());
-    return true}
-  ,update : function(userId,doc){return true}
-  ,remove : function(userId,doc){return true}
+  insert : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
 });
 
 // console.log(process.env);

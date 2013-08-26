@@ -188,6 +188,12 @@
 	}
 }
 
+#first,#last{
+	border:none;
+	opacity: 0;
+	visibility: hidden;
+}
+
 @-webkit-keyframes realtime-anim{
 	0% { border-left:1px solid $color-main;  }
 	100% { border-left:1px solid $color-border;  }

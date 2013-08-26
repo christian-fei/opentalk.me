@@ -126,14 +126,23 @@ $offset-y:-400px;
 .feature{
 	@extend .tile;
 }
+.features-header{
+	text-align: center;
+	font-size: 4em;
+	// margin-top:-1.2em;
+}
 
 .footer{
-	@extend .main;
+	background:white;
 	overflow: hidden;
 	padding: 3em 2em!important;
 	margin:auto!important;
 	color:#666;
 	text-align: center;
+	.footer-wrapper{
+		@extend .main;
+		margin-top:0!important;
+	}
 }
 	.tos{
 		text-align: left;

@@ -112,6 +112,11 @@ Template.room.events({
 		}else{
 			trolls.push(evnt.target.getAttribute('data-userid'));
 		}
+		if(!evnt.target.classList.contains('strike'))
+			evnt.target.classList.add('strike');
+		else
+			evnt.target.classList.remove('strike');
+
 		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
 	}
 });

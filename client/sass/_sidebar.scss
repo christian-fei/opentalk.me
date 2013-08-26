@@ -161,6 +161,12 @@
 		white-space: nowrap;
 	    overflow: hidden;
 	    color:#444;
+
+	    &.strike{
+	    	text-decoration: line-through;
+	    	opacity: .3;
+	    	// margin-left:5px;
+	    }
 	}
 	.online-user-wrapper{
 		text-align: left;
