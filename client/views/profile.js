@@ -61,6 +61,13 @@ Template.profile.helpers({
 	},
 });
 
+function renderUserRooms(r){
+	r.forEach(function(entry){
+		console.log(entry);
+		$('#append-here').after( $('<li class="user-room"> <a href="/'+entry+'">'+entry+'</a></li>') );
+	});
+}
+
 Template.profile.events({
 	'click .go-back-you-are-drunk':function(e,t){
 		e.preventDefault();
@@ -72,10 +79,17 @@ Template.profile.events({
 	}
 });
 
-
-Meteor.call('getUserStats',function(err,result){
-	Session.set('userMessagesCount',result.messagesCount);
-	Session.set('userRoomsCount',result.roomsCount);
-	Session.set('userWordsCount',result.wordsCount);
-	Session.set('userCharactersCount',result.charactersCount);
-});	
+Template.profile.rendered = function(){
+	Meteor.call('getUserStats',function(err,result){
+		Session.set('userMessagesCount',result.messagesCount);
+		Session.set('userRoomsCount',result.roomsCount);
+		Session.set('userWordsCount',result.wordsCount);
+		Session.set('userCharactersCount',result.charactersCount);
+	});
+	Meteor.call('getUserRooms',function(e,r){
+	  // console.log(r);
+	  if(r){
+	  	renderUserRooms(r);
+	  }
+	});
+}

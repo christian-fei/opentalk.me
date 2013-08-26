@@ -40,3 +40,26 @@
 	@extend .tile;
 	height:13em;
 }
+
+
+.user-rooms{
+	margin:2em auto;
+	max-width:$limit;
+	width: 100%;
+	overflow: hidden;
+	padding:1.5em;
+	list-style-type: none;
+
+}
+	.user-room {
+		display:inline-block;
+		a{
+			padding:.7em 1.4em;
+			margin:.7em ;
+			background:white;
+			border-radius: 7px;
+			border:1px solid #C9C9C9;
+			display: inline-block;
+			color: black;
+		}
+	}

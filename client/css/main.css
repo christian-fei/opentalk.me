@@ -1625,6 +1625,31 @@ http://www.tipue.com/tipr
   height: 13em;
 }
 
+/* line 45, ../sass/_profile.scss */
+.user-rooms {
+  margin: 2em auto;
+  max-width: 32em;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5em;
+  list-style-type: none;
+}
+
+/* line 54, ../sass/_profile.scss */
+.user-room {
+  display: inline-block;
+}
+/* line 56, ../sass/_profile.scss */
+.user-room a {
+  padding: .7em 1.4em;
+  margin: 0.7em;
+  background: white;
+  border-radius: 7px;
+  border: 1px solid #C9C9C9;
+  display: inline-block;
+  color: black;
+}
+
 /* line 1, ../sass/_tiles.scss */
 .tiles, .features, .stats {
   background: white;
