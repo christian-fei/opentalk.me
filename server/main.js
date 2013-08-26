@@ -6,7 +6,11 @@ Messages.allow({
 
 //users can't do shit
 Rooms.allow({
-  insert  : function(userId,doc){console.log(doc);if(userId === Meteor.userId())return true; return false;}
+  insert  : function(userId,doc){
+    /*rooms can't contain more than 5 tags*/
+    
+    if(userId === Meteor.userId())return true; return false;
+  }
   ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
   ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
 });
