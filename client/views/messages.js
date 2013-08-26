@@ -162,8 +162,10 @@ function renderMessages(){
 	// console.log('observing');
 	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
-			// console.log('added id ' +id + ' before ' + before);
-
+			console.log('added id ' +id + ' before ' + before);
+			// console.log($('#'+id).prev());
+			// if($('#'+id).prev())
+			// 	console.log($('#'+id).prev().data('userid'));
 			// $('.load-more').removeClass('show-loading');
 
 			/*if I write and the message is not complete, don't add it to the list, only as soon as it changed status to messageComplete=true*/
@@ -179,13 +181,15 @@ function renderMessages(){
 			
 			message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
 
+			console.log($('#'+id).prev());
+
 			if(before === null) {
 				//first item of first load and recently typed ones
 				// message.hide();
 				$('#last').before(message);
 				// console.log('prevUserId ' +prevUserId);
 				// console.log('currUser ' +fields.username);
-				if(prevUserId===null || prevUserId!==fields.userid){
+				if($('#'+id).prev() && $('#'+id).prev().data('userid')!==fields.userid){
 					//A NEW USER
 					message.addClass('diffUser');
 					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
@@ -216,12 +220,14 @@ function renderMessages(){
 				// message[0].firstChild.classList.add('avatar-border');
 
 				if(firstRunAfterMore){
+					console.log('firstRunAfterMore');
 					message.addClass('lastOfUser');
 					message.firstChild.classList.add('avatar-border');
 					message.firstChild.classList.add('tip');
 					firstRunAfterMore=false;
 				}else{
-					if(prevUserId!==fields.userid){
+					console.log($('#'+id).prev());
+					if($('#'+id).next() && $('#'+id).next().data('userid')!==fields.userid){
 						/*NEW USER*/
 						message.addClass('lastOfUser');
 						if(message.next()[0]){
@@ -265,7 +271,10 @@ function renderMessages(){
 		changed: function(id,fields){
 			// console.log('changed ' + id);
 			
+			console.log($('#'+id).prev());
+			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
+			console.log(mfdb);
 			// console.log( $('#mymessage').val() );
 			// console.log('lid ' +Session.get('lastInsertId'));
 			// console.log(fields);
@@ -277,15 +286,17 @@ function renderMessages(){
 			}
 			else 
 				if(fields.messageComplete === true){
-					// console.log(mfdb);
-					if(prevUserId===mfdb.userid){
+
+					//if an element already exists => it's from an other user and he updated it
+
+					//if it does not exist=> an other user OR I finished my message and have to check if the element before #last is mine or not
+					if($('#last').prev() && $('#last') && mfdb.userid === $('#last').prev().data('userid')){
+						//same
 						message = $('<li class="message new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
-					}
-					else{
-						$('#'+prevId).addClass('lastOfUser');
-						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+prevUserId+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
-					}
-					
+					}else{
+						//diff
+						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
+					}					
 					// if(!prevUserId)prevUserId=fields.username;
 					// message.hide();
 					$('#last').before(message);
