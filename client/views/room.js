@@ -104,6 +104,8 @@ Template.room.events({
 	},
 	'click .online-user':function(evnt,tmplt){
 		var ind=0;
+		//don't hide my messages
+		if(evnt.target.getAttribute('data-userid') === Meteor.userId())return;
 		if(ind=trolls.indexOf(evnt.target.getAttribute('data-userid')) >=0){
 			//remove from trolls
 			trolls.pop(ind);
@@ -112,6 +114,25 @@ Template.room.events({
 		}
 		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
 	}
+});
+
+
+
+Meteor.startup(function(){
+	OnlineUsers.find().observeChanges({
+		added:function(id,fields){
+			var ou =  $('<li class="online-user-wrapper" id="'+id+'"><span class="status-badge '+fields.status+'"></span><span class="online-user" data-userid="'+fields.userid+'">'+fields.nickname+'</span></li>');
+			console.log(ou);
+			$('#append-online-user-here').before(ou);
+		},
+		changed:function(id,fields){
+
+		},
+		removed:function(id){
+			//TODO, show messages of user even if troll, or just hide them??
+			$('#'+id).remove();
+		}
+	});
 });
 
 

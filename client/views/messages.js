@@ -245,10 +245,10 @@ function renderMessages(){
 					//if it does not exist=> an other user OR I finished my message and have to check if the element before #last is mine or not
 					if($('#last').prev() && $('#last') && mfdb.userid === $('#last').prev().data('userid')){
 						//same
-						message = $('<li class="message new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
+						message = $('<li class="message new-message1" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
 					}else{
 						//diff
-						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
+						message = $('<li class="message diffUser new-message1" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
 					}					
 					$('#last').before(message);
 				}
