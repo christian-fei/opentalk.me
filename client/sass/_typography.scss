@@ -25,11 +25,15 @@ a:visited{
 	color:#002B73
 }
 
-ul{
-	li{
-		margin-left:1.3em;
-	}
+.message{
 	ul{
-		margin-left: 1.5em;
+		li{
+			margin-left:1.1em;
+		}
 	}
+}
+
+
+small{
+	font-size: .7em;
 }

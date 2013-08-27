@@ -158,13 +158,14 @@ a:visited {
   color: #002b73;
 }
 
-/* line 29, ../sass/_typography.scss */
-ul li {
-  margin-left: 1.3em;
+/* line 30, ../sass/_typography.scss */
+.message ul li {
+  margin-left: 1.1em;
 }
-/* line 32, ../sass/_typography.scss */
-ul ul {
-  margin-left: 1.5em;
+
+/* line 37, ../sass/_typography.scss */
+small {
+  font-size: .7em;
 }
 
 /*
@@ -843,7 +844,7 @@ SUPER SLICK TRANSFORMS
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
-  background: rgba(200, 200, 200, 0.5);
+  background: rgba(234, 234, 234, 0.5);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   width: 10em;
@@ -871,7 +872,7 @@ SUPER SLICK TRANSFORMS
   width: 10em;
   margin: auto;
   display: inline-block;
-  padding: .1em .2em;
+  padding: .05em .2em;
   border-left: 1px solid rgba(200, 200, 200, 0.3);
   border-right: 1px solid rgba(200, 200, 200, 0.3);
   border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
@@ -1000,14 +1001,17 @@ SUPER SLICK TRANSFORMS
   width: 10em;
   border: none;
   margin-top: .5em;
+  -ms-text-align-last: center;
+  text-align: center;
 }
-/* line 329, ../sass/_sidebar.scss */
+/* line 331, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 334, ../sass/_sidebar.scss */
+/* line 336, ../sass/_sidebar.scss */
 .tags .tag {
+  font-size: .82em;
   padding: .3em .7em;
   margin: .4em .16em;
   background: white;
@@ -1016,7 +1020,7 @@ SUPER SLICK TRANSFORMS
   display: inline-block;
   color: black;
 }
-/* line 343, ../sass/_sidebar.scss */
+/* line 346, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }

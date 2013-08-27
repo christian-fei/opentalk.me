@@ -157,7 +157,7 @@ $ou-width: 10em;
 	.online-users-heading{
 		text-align: center;
 		font-family: 'Source Sans Pro', sans-serif;
-		background: rgba(200,200,200,.5);
+		background: rgba(234,234,234,.5);
 		border-top-right-radius: 10px;
 		border-top-left-radius: 10px;
 		width: $ou-width;
@@ -183,7 +183,7 @@ $ou-width: 10em;
 		width: $ou-width;
 		margin:auto;
 		display: inline-block;
-		padding: .1em .2em;
+		padding: .05em .2em;
 		border-left:1px solid rgba(200,200,200,.3);
 		border-right:1px solid rgba(200,200,200,.3);
 		border-bottom:1px dotted rgba(200,200,200,.3);
@@ -325,6 +325,8 @@ $ou-width: 10em;
 		width:10em;
 		border:none;
 		margin-top:.5em;
+		-ms-text-align-last: center;
+		text-align: center;
 
 		&:focus{
 			border:none;
@@ -332,6 +334,7 @@ $ou-width: 10em;
 		}
 	}
 	.tag{
+		font-size: .82em;
 		padding:.3em .7em;
 		margin:  .4em .16em;
 		background:white;
