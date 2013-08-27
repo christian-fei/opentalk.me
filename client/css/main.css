@@ -865,19 +865,20 @@ SUPER SLICK TRANSFORMS
 
 /* line 178, ../sass/_sidebar.scss */
 .online-user {
+  font-size: .9em;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 186, ../sass/_sidebar.scss */
+/* line 187, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 192, ../sass/_sidebar.scss */
+/* line 193, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -889,7 +890,7 @@ SUPER SLICK TRANSFORMS
   border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
 }
 
-/* line 203, ../sass/_sidebar.scss */
+/* line 204, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -897,13 +898,13 @@ SUPER SLICK TRANSFORMS
   color: #805e00;
 }
 
-/* line 209, ../sass/_sidebar.scss */
+/* line 210, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 214, ../sass/_sidebar.scss */
+/* line 215, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -929,7 +930,7 @@ SUPER SLICK TRANSFORMS
   */
 }
 @media all and (max-width: 50em) {
-  /* line 214, ../sass/_sidebar.scss */
+  /* line 215, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -938,7 +939,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 255, ../sass/_sidebar.scss */
+/* line 256, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -955,20 +956,20 @@ SUPER SLICK TRANSFORMS
   border: 0.1em solid #cc9600;
 }
 @media all and (max-width: 50em) {
-  /* line 255, ../sass/_sidebar.scss */
+  /* line 256, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 280, ../sass/_sidebar.scss */
+/* line 281, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 289, ../sass/_sidebar.scss */
+/* line 290, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -977,23 +978,23 @@ SUPER SLICK TRANSFORMS
   border-radius: 70%;
   opacity: .5;
 }
-/* line 300, ../sass/_sidebar.scss */
+/* line 301, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 303, ../sass/_sidebar.scss */
+/* line 304, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 311, ../sass/_sidebar.scss */
+/* line 312, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 320, ../sass/_sidebar.scss */
+/* line 321, ../sass/_sidebar.scss */
 .markdown-cheatsheet {
   margin: 5em 0;
   padding: 2em 0;
@@ -1001,12 +1002,12 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
-/* line 330, ../sass/_sidebar.scss */
+/* line 331, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 334, ../sass/_sidebar.scss */
+/* line 335, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1015,12 +1016,12 @@ SUPER SLICK TRANSFORMS
   -ms-text-align-last: center;
   text-align: center;
 }
-/* line 342, ../sass/_sidebar.scss */
+/* line 343, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 347, ../sass/_sidebar.scss */
+/* line 348, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1031,7 +1032,7 @@ SUPER SLICK TRANSFORMS
   display: inline-block;
   color: black;
 }
-/* line 357, ../sass/_sidebar.scss */
+/* line 358, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }
