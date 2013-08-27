@@ -172,7 +172,7 @@ small {
 SUPER SLICK TRANSFORMS
 */
 /* line 8, ../sass/_transforms.scss */
-.fly-in-up, .fly-in-right, .tag-search-results li, .fly-in-left {
+.fly-in-up, .fly-in-right, .tag-search-results a, .fly-in-left {
   -webkit-transition: opacity 300ms 200ms ease;
   -moz-transition: opacity 300ms 200ms ease;
   -ms-transition: opacity 300ms 200ms ease;
@@ -203,7 +203,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 35, ../sass/_transforms.scss */
-.fly-in-right, .tag-search-results li {
+.fly-in-right, .tag-search-results a {
   opacity: 0 0.1;
   -webkit-animation: flyinright 200ms ease;
   -moz-animation: flyinright 200ms ease;
@@ -2022,6 +2022,10 @@ html {
 }
 /* line 4, ../sass/_search.scss */
 .tag-search-results li {
+  display: inline-block;
+}
+/* line 8, ../sass/_search.scss */
+.tag-search-results a {
   padding: .3em .6em;
   margin: 0.4em;
   font-size: .9em;
@@ -2030,13 +2034,10 @@ html {
   border: 1px solid #C9C9C9;
   display: inline-block;
   color: black;
-}
-/* line 15, ../sass/_search.scss */
-.tag-search-results li a {
   text-decoration: none;
 }
 
-/* line 21, ../sass/_search.scss */
+/* line 23, ../sass/_search.scss */
 #search-tags {
   position: relative;
   padding: 1em 1.5em 1em 0;
