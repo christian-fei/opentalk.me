@@ -1,4 +1,6 @@
 #!/bin/bash
+git checkout .
+git pull
 rm -rf .demeteorized
 demeteorizer
 cd .demeteorized
