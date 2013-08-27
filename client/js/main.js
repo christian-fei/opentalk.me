@@ -23,15 +23,15 @@ Meteor.startup(function(){
 			positionFixedContent();
 		});
 
-		$(document).wipetouch({
-			preventDefault:false,
-			wipeLeft: function(result) {
-				hideSidebar();
-			},
-			wipeRight: function(result) {
-				showSidebar();
-			}
-		});
+		// $(document).wipetouch({
+		// 	preventDefault:false,
+		// 	wipeLeft: function(result) {
+		// 		hideSidebar();
+		// 	},
+		// 	wipeRight: function(result) {
+		// 		showSidebar();
+		// 	}
+		// });
 
 
 		if( $('#mymessage') )

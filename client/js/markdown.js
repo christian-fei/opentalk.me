@@ -9,12 +9,12 @@ markdown = {
         // r = r.replace(/>(.*)/gm, '<blockquote>$1</blockquote>');
 
         // h1 - h6 and hr
-        r = r.replace(/######(.*)/gm, '<h6>$1</h6>');
-        r = r.replace(/#####(.*)/gm, '<h5>$1</h5>');
-        r = r.replace(/####(.*)/gm, '<h4>$1</h4>');
-        r = r.replace(/###(.*)/gm, '<h3>$1</h3>');
-        r = r.replace(/##(.*)/gm, '<h2>$1</h2>');
-        r = r.replace(/#(.*)/gm, '<h1>$1</h1>');
+        r = r.replace(/^######(.*)/gm, '<h6>$1</h6>');
+        r = r.replace(/^#####(.*)/gm, '<h5>$1</h5>');
+        r = r.replace(/^####(.*)/gm, '<h4>$1</h4>');
+        r = r.replace(/^###(.*)/gm, '<h3>$1</h3>');
+        r = r.replace(/^##(.*)/gm, '<h2>$1</h2>');
+        r = r.replace(/^#(.*)/gm, '<h1>$1</h1>');
         r = r.replace(/^[-*][-*][-*]+/gm, '<hr>');
         
         // bold
@@ -28,10 +28,10 @@ markdown = {
         // r = r.replace(new RegExp('//(((?!https?://).)*?)//', 'g'), '<em>$1</em>');
         r = r.replace(/``(.*?)``/gm, '<code>$1</code>');
         
-        // unordered lists with *
-        r = r.replace(/\+(.*)/gm, '<ul><li>$1</li></ul>');
-        r = r.replace(/\-(.*)/gm, '<ul><li>$1</li></ul>');
-        r = r.replace(/\*(.*)/gm, '<ul><li>$1</li></ul>');
+        // unordered lists with 
+        r = r.replace(/^\+(.*)/gm, '<ul><li>$1</li></ul>');
+        r = r.replace(/^\-(.*)/gm, '<ul><li>$1</li></ul>');
+        r = r.replace(/^\*(.*)/gm, '<ul><li>$1</li></ul>');
 
 
         // restore the preformatted and unformatted blocks
