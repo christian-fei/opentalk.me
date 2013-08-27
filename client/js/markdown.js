@@ -14,7 +14,7 @@ markdown = {
         r = r.replace(/(^|\s)####(.*)/gm, '<h4>$1</h4>');
         r = r.replace(/(^|\s)###(.*)/gm, '<h3>$1</h3>');
         r = r.replace(/(^|\s)##(.*)/gm, '<h2>$1</h2>');
-        r = r.replace(/(^|\s)#(.*)$/gm, '<h1>$1</h1>');
+        r = r.replace(/(^|\s)#(.*)/gm, '<h1>$2</h1>');
         r = r.replace(/(^|\s)[-*][-*][-*]+/gm, '<hr>');
         
         // bold
