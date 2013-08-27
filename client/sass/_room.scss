@@ -7,8 +7,10 @@
 
 	@media all and (min-width: $mobile-view){
 		max-width: $limit + $offset-main;
+		
+		$offset-main-plus: $offset-main + 2em;
 
-		border-left: $offset-main solid transparent;
+		border-left: $offset-main-plus solid transparent;
 	}
 
 	//width:100%;
