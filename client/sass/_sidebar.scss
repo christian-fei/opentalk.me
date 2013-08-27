@@ -20,6 +20,15 @@
 	background:white;
 }
 
+.mini-header-wrapper{
+	background:$color-main;
+}
+.mini-header{
+	height: 100%;
+	background:url('/images/pattern-white-high-res.png');
+}
+	
+
 .fixed-sidebar{
 	position:fixed;
 	
@@ -34,6 +43,8 @@
 	margin-bottom:-2em;
 
 	overflow-y:auto;
+
+	opacity: .7;
 
 	a{
 		color:black;
