@@ -1,5 +1,3 @@
-// if (typeof markdown === 'undefined') 
-// ;
 markdown = {
     parse: function (s) {
         var r = s, ii, pre1 = [], pre2 = [];
@@ -18,20 +16,20 @@ markdown = {
         r = r.replace(/(^|\s)[-*][-*][-*]+/gm, '<hr>');
         
         // bold
-        r = r.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        r = r.replace(/__(.*?)__/g, '<strong>$1</strong>');
+        r = r.replace(/\*\*(.*?)\*\*/g, ' <strong>$1</strong> ');
+        r = r.replace(/__(.*?)__/g, ' <strong>$1</strong> ');
         //italics
-        r = r.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        r = r.replace(/(^|\s)_(.*?)_/g, '<em>$2</em>');
+        r = r.replace(/\*(.*?)\*/g, ' <em>$1</em> ');
+        r = r.replace(/(^|\s)_(.*?)_/g, ' <em>$2</em> ');
         //strike through
-        r = r.replace(/~~(.*?)~~/g, '<strike>$1</strike>');
+        r = r.replace(/~~(.*?)~~/g, ' <strike>$1</strike> ');
         // r = r.replace(new RegExp('//(((?!https?://).)*?)//', 'g'), '<em>$1</em>');
-        r = r.replace(/``(.*?)``/gm, '<code>$1</code>');
+        r = r.replace(/``(.*?)``/gm, ' <code>$1</code> ');
         
         // unordered lists with 
-        r = r.replace(/(^|\s)\+(.*)/gm, '<ul><li>$2</li></ul>');
-        r = r.replace(/(^|\s)\-(.*)/gm, '<ul><li>$2</li></ul>');
-        r = r.replace(/(^|\s)\*(.*)/gm, '<ul><li>$2</li></ul>');
+        r = r.replace(/(^|\s)\+(.*)/gm, ' <ul><li>$2</li></ul> ');
+        r = r.replace(/(^|\s)\-(.*)/gm, ' <ul><li>$2</li></ul> ');
+        r = r.replace(/(^|\s)\*(.*)/gm, ' <ul><li>$2</li></ul> ');
 
 
         // restore the preformatted and unformatted blocks
