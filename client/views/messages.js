@@ -16,7 +16,7 @@ Template.messages.events({
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
 
-    	if(!text.trim().length){
+    	if(!text.trim().length || text.length > 500){
     		removeLastMessage();
     		return;
     	}
