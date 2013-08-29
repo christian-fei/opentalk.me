@@ -1,18 +1,16 @@
 Messages.allow({
-  insert  : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
-  ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  //on the client the message length limit is 500, but since I add tags and shit it gets bigger, hopefully not more than 1000 chars..
+  insert  : function(userId,doc){if(userId === Meteor.userId() && doc.text.length < 1000)return true; return false;}
+  ,update : function(userId,doc){if(userId === Meteor.userId() && doc.text.length < 1000)return true; return false;}
   ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
 });
 
-//users can't do shit
 Rooms.allow({
   insert  : function(userId,doc){
-    /*rooms can't contain more than 5 tags*/
-    //TODO
-    console.log(userId === Meteor.userId());
-    if(userId === Meteor.userId())return true; return false;
+    if(userId === Meteor.userId() && doc.tags.length  <= 5)return true; return false;
   }
-  ,update : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  ,update : function(userId,doc){
+    if(userId === Meteor.userId() && doc.tags.length  <= 5)return true; return false;}
   ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
 });
 

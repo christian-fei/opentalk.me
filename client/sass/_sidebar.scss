@@ -69,10 +69,10 @@
 	}
 	
 	/*prevent flicker*/
-	// -webkit-backface-visibility: hidden;
-	// -moz-backface-visibility: hidden;
-	// -ms-backface-visibility: hidden;
-	// backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
 
 
 	box-shadow: -0.3em 0 .4em lightgrey inset;
@@ -354,6 +354,8 @@ $ou-width: 10em;
 		border:1px solid #C9C9C9;
 		display: inline-block;
 		color: black;
+
+		@extend .fly-in-left;
 
 		&:hover{
 			cursor:crosshair;

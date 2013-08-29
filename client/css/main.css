@@ -172,7 +172,7 @@ small {
 SUPER SLICK TRANSFORMS
 */
 /* line 8, ../sass/_transforms.scss */
-.fly-in-up, .fly-in-right, .tag-search-results a, .fly-in-left {
+.fly-in-up, .fly-in-right, .tag-search-results a, .fly-in-left, .tags .tag {
   -webkit-transition: opacity 300ms 200ms ease;
   -moz-transition: opacity 300ms 200ms ease;
   -ms-transition: opacity 300ms 200ms ease;
@@ -212,7 +212,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 43, ../sass/_transforms.scss */
-.fly-in-left {
+.fly-in-left, .tags .tag {
   opacity: 0.1;
   -webkit-animation: flyinleft 200ms ease;
   -moz-animation: flyinleft 200ms ease;
@@ -745,6 +745,10 @@ SUPER SLICK TRANSFORMS
   margin-bottom: -2em;
   overflow-y: auto;
   /*prevent flicker*/
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
   box-shadow: -0.3em 0 .4em lightgrey inset;
 }
 /* line 49, ../sass/_sidebar.scss */
@@ -1032,7 +1036,7 @@ SUPER SLICK TRANSFORMS
   display: inline-block;
   color: black;
 }
-/* line 358, ../sass/_sidebar.scss */
+/* line 360, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }

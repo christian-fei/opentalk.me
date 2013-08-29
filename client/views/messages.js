@@ -15,11 +15,14 @@ Template.messages.events({
 
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
+	    allowed = text.length < 500 ? true : false;
 
-    	if(!text.trim().length || text.length > 500){
-    		removeLastMessage();
-    		return;
-    	}
+
+	    //remove last \n if any
+		text = text.charAt(text.length-1) === '\n' ? text.substring(0,text.length - 1) : text;
+
+
+
 
     	//remove last /n
     	// text = text.substring(0,text.length);
@@ -41,7 +44,7 @@ Template.messages.events({
     	var mm=$('#mymessage')[0],
     		hackOffset = 0;
     	if(navigator.userAgent.indexOf('Firefox') >=0){
-    		hackOffset=32;
+    		hackOffset=36;
     		//console.log('firefox');
     	}
     	if(initialMessageHeight===0)
@@ -53,6 +56,24 @@ Template.messages.events({
     	// console.log('scrollheight ' + mm.scrollHeight);
     	// console.log('offsetheight ' + mm.offsetHeight);
 
+    	if(!text.trim().length){
+    		removeLastMessage();
+    		mm.style.height = initialMessageHeight + 'px';
+    		return;
+    	}
+
+	    if(!allowed){
+	    	//show a notification that I shit on trolls, or just don't give a fuck
+	    	console.log('troll');
+
+	    	tmplt.find('#mymessage').style.border='1px solid red';
+
+	    	return;
+	    }else{
+	    	tmplt.find('#mymessage').style.border='none';
+	    	tmplt.find('#mymessage').style.borderLeft='2px solid #cc9600';
+
+	    }
 
 
     	if(Session.get('realtimeEnabled')) {
