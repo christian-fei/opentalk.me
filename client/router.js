@@ -18,7 +18,7 @@ Meteor.Router.add({'/profile':function(){
 		//reset
 		$('html').css({'overflow':'auto'});
 		console.log('pageview profile');
-		if(!alreadyTracked['/profile]){
+		if(!alreadyTracked['/profile']){
                         console.log('tracking /profile');
                         ga('send', 'pageview');
                         alreadyTracked['/profile']=true;
