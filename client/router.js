@@ -16,6 +16,9 @@ Meteor.Router.add({'/profile':function(){
 	}
 });
 
+//hack because of reactivity sources
+var alreadyTracked=[];
+
 Meteor.Router.add({'/:id': function(id){
 		//reset
 		$('html').css({'overflow':'auto'});
@@ -27,8 +30,11 @@ Meteor.Router.add({'/:id': function(id){
 		console.log('we are at ' + this.canonicalPath);
 		if( $('#mymessage') )
 			$('#mymessage').focus();
-		console.log('pageview /' + id);
-		//ga('send', 'pageview');
+		if(!alreadyTracked[id]){
+			console.log('tracking /' + id);
+			ga('send', 'pageview');
+			alreadyTracked[id]=true;			
+		}
 		return 'room';
 	}
 });
