@@ -1,8 +1,15 @@
+var alreadyTracked=[];
+
 Meteor.Router.add({'/': function(){
 		goOffline();
 		//reset
 		$('html').css({'overflow':'auto'});
 		Session.set('roomid',null);
+		if(!alreadyTracked['/']){
+                        console.log('tracking /');
+                        ga('send', 'pageview');
+                        alreadyTracked['/']=true;
+                }
 		return 'welcome';
 	}
 });
@@ -11,13 +18,16 @@ Meteor.Router.add({'/profile':function(){
 		//reset
 		$('html').css({'overflow':'auto'});
 		console.log('pageview profile');
-		ga('send', 'pageview');
+		if(!alreadyTracked['/profile]){
+                        console.log('tracking /profile');
+                        ga('send', 'pageview');
+                        alreadyTracked['/profile']=true;
+                }
 		return 'profile';
 	}
 });
 
 //hack because of reactivity sources
-var alreadyTracked=[];
 
 Meteor.Router.add({'/:id': function(id){
 		//reset
