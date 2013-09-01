@@ -10,6 +10,7 @@ Meteor.Router.add({'/': function(){
 Meteor.Router.add({'/profile':function(){
 		//reset
 		$('html').css({'overflow':'auto'});
+		console.log('pageview profile');
 		ga('send', 'pageview');
 		return 'profile';
 	}
@@ -26,6 +27,7 @@ Meteor.Router.add({'/:id': function(id){
 		console.log('we are at ' + this.canonicalPath);
 		if( $('#mymessage') )
 			$('#mymessage').focus();
+		console.log('pageview /' + id);
 		ga('send', 'pageview');
 		return 'room';
 	}
