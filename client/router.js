@@ -6,10 +6,10 @@ Meteor.Router.add({'/': function(){
 		$('html').css({'overflow':'auto'});
 		Session.set('roomid',null);
 		if(!alreadyTracked['/']){
-                        console.log('tracking /');
-                        ga('send', 'pageview');
-                        alreadyTracked['/']=true;
-                }
+                console.log('tracking /');
+                mixpanel.track('landing');
+                alreadyTracked['/']=true;
+        }
 		return 'welcome';
 	}
 });
@@ -19,10 +19,10 @@ Meteor.Router.add({'/profile':function(){
 		$('html').css({'overflow':'auto'});
 		console.log('pageview profile');
 		if(!alreadyTracked['/profile']){
-                        console.log('tracking /profile');
-                        ga('send', 'pageview');
-                        alreadyTracked['/profile']=true;
-                }
+	            console.log('tracking /profile');
+	            mixpanel.track('profile');
+	            alreadyTracked['/profile']=true;
+	    }
 		return 'profile';
 	}
 });
@@ -42,7 +42,10 @@ Meteor.Router.add({'/:id': function(id){
 			$('#mymessage').focus();
 		if(!alreadyTracked[id]){
 			console.log('tracking /' + id);
-			ga('send', 'pageview');
+			mixpanel.track(
+			    'room',
+			    { 'roomid': id }
+			);
 			alreadyTracked[id]=true;			
 		}
 		return 'room';
