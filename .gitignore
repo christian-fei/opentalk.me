@@ -1,2 +1,5 @@
 .demeteorized
 node_modules
+packages
+.sass-cache
+.meteor
