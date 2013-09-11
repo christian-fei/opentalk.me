@@ -191,7 +191,6 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 	positionFixedContent();
-	
 	// console.log('room');
 }
 
