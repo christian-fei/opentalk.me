@@ -1,9 +1,0 @@
-#!/bin/sh
-
-if [ $(ps aux | grep $USER | grep node | grep -v grep | wc -l | tr -s "\n") -eq 0 ]
-        export PATH=/usr/local/bin:$PATH
-        forever start ~/example/app.js > /dev/null
-fi
-
-#!/bin/sh
-forever start --spinSleepTime 10000 .demeteorized/main.js
