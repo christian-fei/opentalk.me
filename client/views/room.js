@@ -225,7 +225,7 @@ Deps.autorun(function(){
 
 function getServiceString(){
 	//this should always be true
-	if(Meteor.user()){
+	if(Meteor.user() && Meteor.user().services){
 		if(Meteor.user().services.twitter)
 			return 'twitter';
 		if(Meteor.user().services.github)
