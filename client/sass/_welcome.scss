@@ -111,8 +111,12 @@ $offset-y:-400px;
 	color:#666;
 	text-align: center;
 	.footer-wrapper{
-		@extend .main;
-		margin-top:0!important;
+		@extend .todos-wrapper;
+
+		//I'm ashamed shame
+		// margin-top:0!important;
+		// border-left: 0!important;
+		// max-width: 26em!important;
 	}
 }
 	.tos{

@@ -614,12 +614,8 @@ SUPER SLICK TRANSFORMS
   color: #666;
   text-align: center;
 }
-/* line 113, ../sass/_welcome.scss */
-.footer .footer-wrapper {
-  margin-top: 0 !important;
-}
 
-/* line 118, ../sass/_welcome.scss */
+/* line 122, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
@@ -628,7 +624,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 1, ../sass/_room.scss */
-.main, .footer .footer-wrapper {
+.main {
   z-index: 126;
   margin: 6em auto 0.5em;
   max-width: 31em;
@@ -638,20 +634,20 @@ SUPER SLICK TRANSFORMS
 }
 @media all and (min-width: 50em) {
   /* line 1, ../sass/_room.scss */
-  .main, .footer .footer-wrapper {
+  .main {
     max-width: 41em;
     border-left: 12em solid transparent;
   }
 }
 @media all and (max-width: 31em) {
   /* line 1, ../sass/_room.scss */
-  .main, .footer .footer-wrapper {
+  .main {
     width: 93%;
     margin-right: .5em;
   }
 }
 /* line 37, ../sass/_room.scss */
-.main.under-modal, .footer .under-modal.footer-wrapper {
+.main.under-modal {
   opacity: 0.3;
 }
 
@@ -705,15 +701,6 @@ SUPER SLICK TRANSFORMS
   bottom: 0;
   left: 0;
   background: white;
-  background: -moz-linear-gradient(left, white, rgba(255, 255, 255, 0));
-  background: -ms-linear-gradient(left, white, rgba(255, 255, 255, 0));
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(rgba(255, 255, 255, 0)));
-  background: -webkit-linear-gradient(left, white, rgba(255, 255, 255, 0));
-  background: -o-linear-gradient(left, white, rgba(255, 255, 255, 0));
-  background: linear-gradient(left, #ffffff, rgba(255, 255, 255, 0));
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 1)', endColorstr='rgba(255, 255, 255, 0)', GradientType=1);
-  background: white;
 }
 @media all and (min-width: 50em) {
   /* line 1, ../sass/_sidebar.scss */
@@ -722,9 +709,10 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 23, ../sass/_sidebar.scss */
+/* line 22, ../sass/_sidebar.scss */
 .mini-header-wrapper {
   background: #ffbb00;
+  height: 50%;
 }
 
 /* line 26, ../sass/_sidebar.scss */
@@ -2021,7 +2009,7 @@ html {
 }
 
 /* line 6, ../sass/_todo.scss */
-.todos-wrapper {
+.todos-wrapper, .footer .footer-wrapper {
   margin: 5em auto;
   max-width: 31em;
   padding: 2em;
