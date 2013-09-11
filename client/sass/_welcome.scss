@@ -90,21 +90,45 @@ $offset-y:-400px;
 }
 
 
-.features{
+/*
+fuuuuck that's sick,
+when i have some time i'll fix it
+oh jeez...
+*/
+.features, .globalstats{
 	@extend .tiles;
 }
-.features-wrapper{
+.features-wrapper, .globalstats-wrapper{
 	@extend .tiles-wrapper;
 }
-.feature{
+.feature, .globalstat{
 	@extend .tile;
 }
-.features-header{
+.features-header, .globalstats-header{
 	@extend .tiles-header;
 }
 
-.footer{
+.globalstats{
+	background:#F0F0F0!important;
+}
+
+
+
+.todos{
 	background:white;
+	overflow: hidden;
+	width: 100%;
+}
+	.todos-wrapper{
+		margin: 5em auto;
+		max-width: $limit;
+		padding:2em;
+	}
+
+
+
+.footer{
+	background:#F0F0F0;
 	overflow: hidden;
 	padding: 3em 2em!important;
 	margin:auto!important;

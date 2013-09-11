@@ -41,6 +41,15 @@ var idleTime = 20*1000,
     killCheck = killTime/2;
 
 Meteor.methods({
+  globalMessagesCount: function(){
+    return Messages.find().count();
+  },
+  globalRoomsCount: function(){
+    return Rooms.find().count();
+  },
+  globalOnlineUsersCount: function(){
+    return OnlineUsers.find().count();
+  },
   calltest:function(arg1){
     console.log(arg1);
     return arg1;

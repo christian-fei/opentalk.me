@@ -605,9 +605,33 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 106, ../sass/_welcome.scss */
-.footer {
+/*
+fuuuuck that's sick,
+when i have some time i'll fix it
+oh jeez...
+*/
+/* line 111, ../sass/_welcome.scss */
+.globalstats {
+  background: #f0f0f0 !important;
+}
+
+/* line 117, ../sass/_welcome.scss */
+.todos {
   background: white;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* line 122, ../sass/_welcome.scss */
+.todos-wrapper, .footer .footer-wrapper {
+  margin: 5em auto;
+  max-width: 31em;
+  padding: 2em;
+}
+
+/* line 130, ../sass/_welcome.scss */
+.footer {
+  background: #F0F0F0;
   overflow: hidden;
   padding: 3em 2em !important;
   margin: auto !important;
@@ -615,7 +639,7 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
-/* line 122, ../sass/_welcome.scss */
+/* line 146, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
@@ -1668,7 +1692,7 @@ http://www.tipue.com/tipr
 }
 
 /* line 1, ../sass/_tiles.scss */
-.tiles, .features, .stats {
+.tiles, .features, .globalstats, .stats {
   background: white;
   width: 100%;
   float: left;
@@ -1676,19 +1700,19 @@ http://www.tipue.com/tipr
 }
 
 /* line 7, ../sass/_tiles.scss */
-.tiles-header, .features-header, .stats-header {
+.tiles-header, .features-header, .globalstats-header, .stats-header {
   text-align: center;
   font-size: 4em;
 }
 
 /* line 11, ../sass/_tiles.scss */
-.tiles-wrapper, .features-wrapper, .stats-wrapper {
+.tiles-wrapper, .features-wrapper, .globalstats-wrapper, .stats-wrapper {
   max-width: 41em;
   margin: auto;
 }
 
 /* line 15, ../sass/_tiles.scss */
-.tile, .feature, .stat {
+.tile, .feature, .globalstat, .stat {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
   font-size: .9rem;
@@ -1701,21 +1725,21 @@ http://www.tipue.com/tipr
 }
 @media all and (max-width: 41em) {
   /* line 15, ../sass/_tiles.scss */
-  .tile, .feature, .stat {
+  .tile, .feature, .globalstat, .stat {
     width: 50%;
   }
 }
 /* line 33, ../sass/_tiles.scss */
-.tile h6, .feature h6, .stat h6 {
+.tile h6, .feature h6, .globalstat h6, .stat h6 {
   font-size: 1.2em;
 }
 /* line 37, ../sass/_tiles.scss */
-.tile img, .feature img, .stat img {
+.tile img, .feature img, .globalstat img, .stat img {
   width: 2em;
   height: 2em;
 }
 /* line 42, ../sass/_tiles.scss */
-.tile a, .feature a, .stat a {
+.tile a, .feature a, .globalstat a, .stat a {
   color: #444444;
 }
 
@@ -1999,20 +2023,6 @@ html {
     -o-transition: opacity 0.4s;
     transition: opacity 0.4s;
   }
-}
-
-/* line 1, ../sass/_todo.scss */
-.todos {
-  background: #F0F0F0;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* line 6, ../sass/_todo.scss */
-.todos-wrapper, .footer .footer-wrapper {
-  margin: 5em auto;
-  max-width: 31em;
-  padding: 2em;
 }
 
 /* line 1, ../sass/_search.scss */

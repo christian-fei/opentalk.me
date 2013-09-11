@@ -218,5 +218,40 @@ Deps.autorun(function(){
 	if( Meteor.user() ){
 		Meteor.subscribe('userData');
 		goOnline();
+		console.log('Meteor.user()');
 	}
+});
+
+
+function getServiceString(){
+	//this should always be true
+	if(Meteor.user()){
+		if(Meteor.user().services.twitter)
+			return 'twitter';
+		if(Meteor.user().services.github)
+			return 'github';
+		if(Meteor.user().services.facebook)
+			return 'facebook';
+		if(Meteor.user().services.google)
+			return 'google';
+	}
+	return '';
+}
+
+Meteor.startup(function(){
+	Deps.autorun(function(){
+		if( Meteor.user() ){
+			//tracking yo ass to enhance your experience, not because I'm a data whore
+			if(mixpanel){
+				console.log('mixpanel identifying user');
+				mixpanel.identify(Meteor.userId());
+				mixpanel.people.set({
+					'$name': Meteor.user().profile.name,
+					'$created': new Date(Meteor.user().createdAt),
+					'service': getServiceString()
+				});
+				console.log(getServiceString());				
+			}
+		}
+	});
 });
