@@ -691,6 +691,7 @@ SUPER SLICK TRANSFORMS
 
 /* line 79, ../sass/_room.scss */
 .loading {
+  cursor: pointer;
   display: block;
   width: 100%;
   font-size: 1.3em;
@@ -705,7 +706,7 @@ SUPER SLICK TRANSFORMS
   -o-transition: all 333ms linear;
   transition: all 333ms linear;
 }
-/* line 95, ../sass/_room.scss */
+/* line 96, ../sass/_room.scss */
 .loading.show-loading {
   height: auto;
   padding: 1em;
