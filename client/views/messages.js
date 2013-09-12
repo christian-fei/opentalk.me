@@ -1,5 +1,7 @@
 var initialMessageHeight = 0,
 	keysPressed = [];
+
+
 Template.messages.events({
 	'keydown #mymessage' : function(evnt,tmplt){
 		// console.log('keydown');
@@ -239,7 +241,6 @@ function renderMessages(){
 							message.next()[0].firstChild.style.backgroundImage='none';
 							message.next()[0].firstChild.classList.remove('avatar-border');
 							message.next()[0].firstChild.classList.remove('tip');
-
 						}
 
 					}
@@ -251,6 +252,13 @@ function renderMessages(){
 			imageExp();
 			
 			if(stick)scrollDown();
+
+			// console.log('got message when tab was ' + Visibility.state() );
+			if(Visibility.state() === 'hidden'){
+				message.addClass('unread');
+				unreadCount++;
+				Tinycon.setBubble(unreadCount);
+			}
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id);

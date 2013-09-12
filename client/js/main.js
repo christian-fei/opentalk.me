@@ -1,8 +1,19 @@
-favicon=new Favico({animation:'slide'});
+//I don't know why this is not working properly in Chrome
+Visibility.change(function (e, state) {
+	console.log('Visibility changed');
+	resetUnreadCount();
+	// if(state === 'visible'){
+	// 	//reset the favicon badge
+	// 	//maybe after a certain amount of time toggle the class of unread messages
+	// }
+});
 
-console.log(favicon);
-
-favicon.badge(1);
+//should work in every browser
+// setInterval(function () {
+// 	// console.log('v every');
+// 	if(Visibility.state() === 'visible')
+// 		resetUnreadCount();
+// },1000);
 
 Meteor.startup(function(){	
 	if(Meteor._localStorage.getItem('realtimeEnabled') === null){

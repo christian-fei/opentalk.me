@@ -10,7 +10,6 @@ Meteor.Router.add({'/': function(){
                 mixpanel.track('landing');
                 alreadyTracked['/']=true;
         }
-        
 		return 'welcome';
 	}
 });

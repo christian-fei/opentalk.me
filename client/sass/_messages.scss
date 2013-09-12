@@ -10,18 +10,39 @@
 	// margin-bottom: 2em;
 }
 	.message{
-		padding: 0em 0.7em;
+		padding: .2em 0.7em;
 		overflow: visible!important;//because jQuery adds overflow:hidden when hiding stuff
 		background:#fefefe;
 		border-left:1px solid $color-border;
 		border-right:1px solid $color-border;
+		
 		position:relative;
+
+		&.fadeOffUnread.unread::after{
+			background: transparent;
+			-webkit-transition: all 15s linear;
+			-moz-transition: all 15s linear;
+			-ms-transition: all 15s linear;
+			-o-transition: all 15s linear;
+			transition: all 15s linear;
+		}
+		&.unread::after{
+			position: absolute;
+			top: 0;
+			left: 0;
+			content: '';
+			display: inline-block;
+			height: 100%;
+			width: 2px;
+			background: lighten($color-main,25%);
+		}
 	}
 
 		.new-message{
 			@extend .fly-in-down;
 		}
 		.avatar{
+			z-index: 1000; //it should be above the unread::after
 			height:1.9em;
 			width: 1.9em;
 			// margin-top:.2em;
