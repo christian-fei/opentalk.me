@@ -340,6 +340,7 @@ Template.messages.rendered=function(){
 
 	$('.loading').on('click',function(){
 		console.log('load more clicked');
-		mSub.loadNextPage();
+		if(mSub)
+			mSub.loadNextPage();
 	});
 }
