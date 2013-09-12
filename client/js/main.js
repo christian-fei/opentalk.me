@@ -1,12 +1,13 @@
 visibly.visibilitychange(function(state){
     console.log('VSC The current visibility state is:' + state);
 	resetUnreadCount();
+	setTimeout(resetUnreadCount,1000);
 });
 
-setInterval(function(){
-	if(!visibly.hidden())
-		resetUnreadCount();
-},1000);
+// setInterval(function(){
+// 	if(!visibly.hidden())
+// 		resetUnreadCount();
+// },1000);
 
 //should work in every browser
 // setInterval(function () {
