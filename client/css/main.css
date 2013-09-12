@@ -484,7 +484,7 @@ SUPER SLICK TRANSFORMS
   }
 }
 
-/* line 8, ../sass/_welcome.scss */
+/* line 7, ../sass/_welcome.scss */
 .welcome-mast, .profile-mast {
   color: white;
   background: #ffbb00;
@@ -493,7 +493,7 @@ SUPER SLICK TRANSFORMS
   position: relative;
 }
 
-/* line 16, ../sass/_welcome.scss */
+/* line 15, ../sass/_welcome.scss */
 .welcome-mast-cont, .profile-mast-cont {
   padding: 5em;
   background-attachment: fixed;
@@ -504,7 +504,7 @@ SUPER SLICK TRANSFORMS
   text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.2), -1px -1px 1px rgba(0, 0, 0, 0.2);
 }
 @media all and (min-width: 31em) {
-  /* line 16, ../sass/_welcome.scss */
+  /* line 15, ../sass/_welcome.scss */
   .welcome-mast-cont, .profile-mast-cont {
     -webkit-animation: welcome-mast-anim 14s infinite linear;
     -moz-animation: welcome-mast-anim 14s infinite linear;
@@ -517,13 +517,13 @@ SUPER SLICK TRANSFORMS
   }
 }
 @media all and (max-width: 30em) {
-  /* line 16, ../sass/_welcome.scss */
+  /* line 15, ../sass/_welcome.scss */
   .welcome-mast-cont, .profile-mast-cont {
     padding: 5em 3em;
   }
 }
 
-/* line 44, ../sass/_welcome.scss */
+/* line 43, ../sass/_welcome.scss */
 .logo-welcome {
   display: block;
   margin: 1rem auto;
@@ -531,7 +531,7 @@ SUPER SLICK TRANSFORMS
   width: 3.75rem;
 }
 
-/* line 52, ../sass/_welcome.scss */
+/* line 51, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -546,90 +546,85 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 72, ../sass/_welcome.scss */
+  /* line 71, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 73, ../sass/_welcome.scss */
+  /* line 72, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 76, ../sass/_welcome.scss */
+  /* line 75, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 77, ../sass/_welcome.scss */
+  /* line 76, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 80, ../sass/_welcome.scss */
+  /* line 79, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 81, ../sass/_welcome.scss */
+  /* line 80, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 84, ../sass/_welcome.scss */
+  /* line 83, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 85, ../sass/_welcome.scss */
+  /* line 84, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 88, ../sass/_welcome.scss */
+  /* line 87, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 89, ../sass/_welcome.scss */
+  /* line 88, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
-/*
-fuuuuck that's sick,
-when i have some time i'll fix it
-oh jeez...
-*/
-/* line 111, ../sass/_welcome.scss */
-.globalstats {
+/* line 93, ../sass/_welcome.scss */
+.tiles:nth-of-type(2n), .stats:nth-of-type(2n) {
   background: #f0f0f0 !important;
 }
 
-/* line 117, ../sass/_welcome.scss */
+/* line 98, ../sass/_welcome.scss */
 .todos {
   background: white;
   overflow: hidden;
   width: 100%;
 }
 
-/* line 122, ../sass/_welcome.scss */
+/* line 103, ../sass/_welcome.scss */
 .todos-wrapper, .footer .footer-wrapper {
   margin: 5em auto;
   max-width: 31em;
   padding: 2em;
 }
 
-/* line 130, ../sass/_welcome.scss */
+/* line 111, ../sass/_welcome.scss */
 .footer {
   background: #F0F0F0;
   overflow: hidden;
@@ -639,7 +634,7 @@ oh jeez...
   text-align: center;
 }
 
-/* line 146, ../sass/_welcome.scss */
+/* line 122, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
@@ -1691,8 +1686,14 @@ http://www.tipue.com/tipr
   color: black;
 }
 
+/* line 70, ../sass/_profile.scss */
+.centered {
+  margin: auto;
+  text-align: center;
+}
+
 /* line 1, ../sass/_tiles.scss */
-.tiles, .features, .globalstats, .stats {
+.tiles, .stats {
   background: white;
   width: 100%;
   float: left;
@@ -1700,19 +1701,19 @@ http://www.tipue.com/tipr
 }
 
 /* line 7, ../sass/_tiles.scss */
-.tiles-header, .features-header, .globalstats-header, .stats-header {
+.tiles-header, .stats-header {
   text-align: center;
   font-size: 4em;
 }
 
 /* line 11, ../sass/_tiles.scss */
-.tiles-wrapper, .features-wrapper, .globalstats-wrapper, .stats-wrapper {
+.tiles-wrapper, .stats-wrapper {
   max-width: 41em;
   margin: auto;
 }
 
 /* line 15, ../sass/_tiles.scss */
-.tile, .feature, .globalstat, .stat {
+.tile, .stat {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
   font-size: .9rem;
@@ -1725,21 +1726,21 @@ http://www.tipue.com/tipr
 }
 @media all and (max-width: 41em) {
   /* line 15, ../sass/_tiles.scss */
-  .tile, .feature, .globalstat, .stat {
+  .tile, .stat {
     width: 50%;
   }
 }
 /* line 33, ../sass/_tiles.scss */
-.tile h6, .feature h6, .globalstat h6, .stat h6 {
+.tile h6, .stat h6 {
   font-size: 1.2em;
 }
 /* line 37, ../sass/_tiles.scss */
-.tile img, .feature img, .globalstat img, .stat img {
+.tile img, .stat img {
   width: 2em;
   height: 2em;
 }
 /* line 42, ../sass/_tiles.scss */
-.tile a, .feature a, .globalstat a, .stat a {
+.tile a, .stat a {
   color: #444444;
 }
 
