@@ -81,7 +81,7 @@ Meteor.startup(function(){
 	}
 
 
-	Deps.autorun(function(){console.log(mSub.loading() + ' ' + mSub.loaded() + ' / ' + $('.message').length)})
+	// Deps.autorun(function(){console.log(mSub.loading() + ' ' + mSub.loaded() + ' / ' + $('.message').length)})
 });
 
 
