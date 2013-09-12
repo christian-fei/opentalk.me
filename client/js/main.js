@@ -1,6 +1,10 @@
-Meteor.startup(function(){
+favicon=new Favico({animation:'slide'});
 
-	
+console.log(favicon);
+
+favicon.badge(1);
+
+Meteor.startup(function(){	
 	if(Meteor._localStorage.getItem('realtimeEnabled') === null){
 		//set default
 		Meteor._localStorage.setItem('realtimeEnabled',true);

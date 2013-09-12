@@ -2,7 +2,7 @@ var statsUpdater=null;
 function setGlobalStats(){
 	if(!statsUpdater){
 		statsUpdater = setInterval(function(){
-			console.log('updating stats');
+			// console.log('updating stats');
 			//setInterval to retrieve info periodcally
 			Meteor.call('globalMessagesCount',function(err,res){$('#globalMessagesCount').text(res);});
 			Meteor.call('globalRoomsCount',function(err,res){$('#globalRoomsCount').text(res);});
