@@ -18,14 +18,7 @@
 		
 		position:relative;
 
-		&.fadeOffUnread.unread::after{
-			background: transparent;
-			-webkit-transition: all 15s linear;
-			-moz-transition: all 15s linear;
-			-ms-transition: all 15s linear;
-			-o-transition: all 15s linear;
-			transition: all 15s linear;
-		}
+
 		&.unread::after{
 			position: absolute;
 			top: 0;
@@ -34,7 +27,25 @@
 			display: inline-block;
 			height: 100%;
 			width: 2px;
-			background: lighten($color-main,25%);
+			background: lighten($color-main,5%);
+		}
+		&.fadeOffUnread.unread::after{
+			background: transparent;
+			-webkit-transition: all 8s linear;
+			-moz-transition: all 8s linear;
+			-ms-transition: all 8s linear;
+			-o-transition: all 8s linear;
+			transition: all 8s linear;
+		}
+		@for $i from 1 through 30{
+			&.fadeOffUnread.unread:nth-last-of-type(#{30 - $i})::after{
+				-webkit-transition-delay: $i * 500ms;
+				-moz-transition-delay: $i * 500ms;
+				-ms-transition-delay: $i * 500ms;
+				-o-transition-delay: $i * 500ms;
+				transition-delay: $i * 500ms;
+				//
+			}
 		}
 	}
 

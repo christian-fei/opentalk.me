@@ -1,12 +1,12 @@
-//I don't know why this is not working properly in Chrome
-Visibility.change(function (e, state) {
-	console.log('Visibility changed');
+visibly.visibilitychange(function(state){
+    console.log('VSC The current visibility state is:' + state);
 	resetUnreadCount();
-	// if(state === 'visible'){
-	// 	//reset the favicon badge
-	// 	//maybe after a certain amount of time toggle the class of unread messages
-	// }
 });
+
+setInterval(function(){
+	if(!visibly.hidden())
+		resetUnreadCount();
+},1000);
 
 //should work in every browser
 // setInterval(function () {

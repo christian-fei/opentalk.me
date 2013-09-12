@@ -253,8 +253,8 @@ function renderMessages(){
 			
 			if(stick)scrollDown();
 
-			// console.log('got message when tab was ' + Visibility.state() );
-			if(Visibility.state() === 'hidden'){
+			// console.log('got message when tab was ' + visibly.visibilityState() );
+			if(visibly.hidden()){
 				message.addClass('unread');
 				unreadCount++;
 				Tinycon.setBubble(unreadCount);

@@ -1064,16 +1064,7 @@ SUPER SLICK TRANSFORMS
   border-right: 1px solid lightgrey;
   position: relative;
 }
-/* line 21, ../sass/_messages.scss */
-.message.fadeOffUnread.unread::after {
-  background: transparent;
-  -webkit-transition: all 15s linear;
-  -moz-transition: all 15s linear;
-  -ms-transition: all 15s linear;
-  -o-transition: all 15s linear;
-  transition: all 15s linear;
-}
-/* line 29, ../sass/_messages.scss */
+/* line 22, ../sass/_messages.scss */
 .message.unread::after {
   position: absolute;
   top: 0;
@@ -1082,10 +1073,259 @@ SUPER SLICK TRANSFORMS
   display: inline-block;
   height: 100%;
   width: 2px;
-  background: #ffdd80;
+  background: #ffc21a;
+}
+/* line 32, ../sass/_messages.scss */
+.message.fadeOffUnread.unread::after {
+  background: transparent;
+  -webkit-transition: all 8s linear;
+  -moz-transition: all 8s linear;
+  -ms-transition: all 8s linear;
+  -o-transition: all 8s linear;
+  transition: all 8s linear;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(29)::after {
+  -webkit-transition-delay: 500ms;
+  -moz-transition-delay: 500ms;
+  -ms-transition-delay: 500ms;
+  -o-transition-delay: 500ms;
+  transition-delay: 500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(28)::after {
+  -webkit-transition-delay: 1000ms;
+  -moz-transition-delay: 1000ms;
+  -ms-transition-delay: 1000ms;
+  -o-transition-delay: 1000ms;
+  transition-delay: 1000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(27)::after {
+  -webkit-transition-delay: 1500ms;
+  -moz-transition-delay: 1500ms;
+  -ms-transition-delay: 1500ms;
+  -o-transition-delay: 1500ms;
+  transition-delay: 1500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(26)::after {
+  -webkit-transition-delay: 2000ms;
+  -moz-transition-delay: 2000ms;
+  -ms-transition-delay: 2000ms;
+  -o-transition-delay: 2000ms;
+  transition-delay: 2000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(25)::after {
+  -webkit-transition-delay: 2500ms;
+  -moz-transition-delay: 2500ms;
+  -ms-transition-delay: 2500ms;
+  -o-transition-delay: 2500ms;
+  transition-delay: 2500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(24)::after {
+  -webkit-transition-delay: 3000ms;
+  -moz-transition-delay: 3000ms;
+  -ms-transition-delay: 3000ms;
+  -o-transition-delay: 3000ms;
+  transition-delay: 3000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(23)::after {
+  -webkit-transition-delay: 3500ms;
+  -moz-transition-delay: 3500ms;
+  -ms-transition-delay: 3500ms;
+  -o-transition-delay: 3500ms;
+  transition-delay: 3500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(22)::after {
+  -webkit-transition-delay: 4000ms;
+  -moz-transition-delay: 4000ms;
+  -ms-transition-delay: 4000ms;
+  -o-transition-delay: 4000ms;
+  transition-delay: 4000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(21)::after {
+  -webkit-transition-delay: 4500ms;
+  -moz-transition-delay: 4500ms;
+  -ms-transition-delay: 4500ms;
+  -o-transition-delay: 4500ms;
+  transition-delay: 4500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(20)::after {
+  -webkit-transition-delay: 5000ms;
+  -moz-transition-delay: 5000ms;
+  -ms-transition-delay: 5000ms;
+  -o-transition-delay: 5000ms;
+  transition-delay: 5000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(19)::after {
+  -webkit-transition-delay: 5500ms;
+  -moz-transition-delay: 5500ms;
+  -ms-transition-delay: 5500ms;
+  -o-transition-delay: 5500ms;
+  transition-delay: 5500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(18)::after {
+  -webkit-transition-delay: 6000ms;
+  -moz-transition-delay: 6000ms;
+  -ms-transition-delay: 6000ms;
+  -o-transition-delay: 6000ms;
+  transition-delay: 6000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(17)::after {
+  -webkit-transition-delay: 6500ms;
+  -moz-transition-delay: 6500ms;
+  -ms-transition-delay: 6500ms;
+  -o-transition-delay: 6500ms;
+  transition-delay: 6500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(16)::after {
+  -webkit-transition-delay: 7000ms;
+  -moz-transition-delay: 7000ms;
+  -ms-transition-delay: 7000ms;
+  -o-transition-delay: 7000ms;
+  transition-delay: 7000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(15)::after {
+  -webkit-transition-delay: 7500ms;
+  -moz-transition-delay: 7500ms;
+  -ms-transition-delay: 7500ms;
+  -o-transition-delay: 7500ms;
+  transition-delay: 7500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(14)::after {
+  -webkit-transition-delay: 8000ms;
+  -moz-transition-delay: 8000ms;
+  -ms-transition-delay: 8000ms;
+  -o-transition-delay: 8000ms;
+  transition-delay: 8000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(13)::after {
+  -webkit-transition-delay: 8500ms;
+  -moz-transition-delay: 8500ms;
+  -ms-transition-delay: 8500ms;
+  -o-transition-delay: 8500ms;
+  transition-delay: 8500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(12)::after {
+  -webkit-transition-delay: 9000ms;
+  -moz-transition-delay: 9000ms;
+  -ms-transition-delay: 9000ms;
+  -o-transition-delay: 9000ms;
+  transition-delay: 9000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(11)::after {
+  -webkit-transition-delay: 9500ms;
+  -moz-transition-delay: 9500ms;
+  -ms-transition-delay: 9500ms;
+  -o-transition-delay: 9500ms;
+  transition-delay: 9500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(10)::after {
+  -webkit-transition-delay: 10000ms;
+  -moz-transition-delay: 10000ms;
+  -ms-transition-delay: 10000ms;
+  -o-transition-delay: 10000ms;
+  transition-delay: 10000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(9)::after {
+  -webkit-transition-delay: 10500ms;
+  -moz-transition-delay: 10500ms;
+  -ms-transition-delay: 10500ms;
+  -o-transition-delay: 10500ms;
+  transition-delay: 10500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(8)::after {
+  -webkit-transition-delay: 11000ms;
+  -moz-transition-delay: 11000ms;
+  -ms-transition-delay: 11000ms;
+  -o-transition-delay: 11000ms;
+  transition-delay: 11000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(7)::after {
+  -webkit-transition-delay: 11500ms;
+  -moz-transition-delay: 11500ms;
+  -ms-transition-delay: 11500ms;
+  -o-transition-delay: 11500ms;
+  transition-delay: 11500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(6)::after {
+  -webkit-transition-delay: 12000ms;
+  -moz-transition-delay: 12000ms;
+  -ms-transition-delay: 12000ms;
+  -o-transition-delay: 12000ms;
+  transition-delay: 12000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(5)::after {
+  -webkit-transition-delay: 12500ms;
+  -moz-transition-delay: 12500ms;
+  -ms-transition-delay: 12500ms;
+  -o-transition-delay: 12500ms;
+  transition-delay: 12500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(4)::after {
+  -webkit-transition-delay: 13000ms;
+  -moz-transition-delay: 13000ms;
+  -ms-transition-delay: 13000ms;
+  -o-transition-delay: 13000ms;
+  transition-delay: 13000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(3)::after {
+  -webkit-transition-delay: 13500ms;
+  -moz-transition-delay: 13500ms;
+  -ms-transition-delay: 13500ms;
+  -o-transition-delay: 13500ms;
+  transition-delay: 13500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(2)::after {
+  -webkit-transition-delay: 14000ms;
+  -moz-transition-delay: 14000ms;
+  -ms-transition-delay: 14000ms;
+  -o-transition-delay: 14000ms;
+  transition-delay: 14000ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(1)::after {
+  -webkit-transition-delay: 14500ms;
+  -moz-transition-delay: 14500ms;
+  -ms-transition-delay: 14500ms;
+  -o-transition-delay: 14500ms;
+  transition-delay: 14500ms;
+}
+/* line 41, ../sass/_messages.scss */
+.message.fadeOffUnread.unread:nth-last-of-type(0)::after {
+  -webkit-transition-delay: 15000ms;
+  -moz-transition-delay: 15000ms;
+  -ms-transition-delay: 15000ms;
+  -o-transition-delay: 15000ms;
+  transition-delay: 15000ms;
 }
 
-/* line 44, ../sass/_messages.scss */
+/* line 55, ../sass/_messages.scss */
 .avatar {
   z-index: 1000;
   height: 1.9em;
@@ -1102,12 +1342,12 @@ SUPER SLICK TRANSFORMS
   top: -0.9em;
 }
 
-/* line 65, ../sass/_messages.scss */
+/* line 76, ../sass/_messages.scss */
 .avatar-border {
   border: 1px solid darkgrey;
 }
 
-/* line 68, ../sass/_messages.scss */
+/* line 79, ../sass/_messages.scss */
 .message .text, .message p {
   vertical-align: middle;
   margin: 0em .3em;
@@ -1120,7 +1360,7 @@ SUPER SLICK TRANSFORMS
   hyphens: auto;
 }
 
-/* line 82, ../sass/_messages.scss */
+/* line 93, ../sass/_messages.scss */
 code {
   white-space: pre;
   word-wrap: normal;
@@ -1132,13 +1372,13 @@ code {
   display: block;
 }
 
-/* line 93, ../sass/_messages.scss */
+/* line 104, ../sass/_messages.scss */
 .tip:hover .username {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 98, ../sass/_messages.scss */
+/* line 109, ../sass/_messages.scss */
 .username {
   position: absolute;
   font-size: .9em;
@@ -1158,7 +1398,7 @@ code {
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
-/* line 121, ../sass/_messages.scss */
+/* line 132, ../sass/_messages.scss */
 .username:after {
   content: "";
   position: absolute;
@@ -1170,11 +1410,11 @@ code {
   border-left: .5em solid transparent;
 }
 
-/* line 133, ../sass/_messages.scss */
+/* line 144, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
 }
-/* line 139, ../sass/_messages.scss */
+/* line 150, ../sass/_messages.scss */
 .message-image-wrapper .open-in-new-tab {
   position: absolute;
   top: .2em;
@@ -1185,21 +1425,21 @@ code {
   background-size: 100%;
 }
 
-/* line 149, ../sass/_messages.scss */
+/* line 160, ../sass/_messages.scss */
 .message-image {
   display: inline-block;
   max-height: 5em;
   margin-top: .2em;
   margin-top: .2em;
 }
-/* line 155, ../sass/_messages.scss */
+/* line 166, ../sass/_messages.scss */
 .message-image.exp {
   max-width: 31em;
   max-height: inherit;
   width: 100%;
 }
 
-/* line 162, ../sass/_messages.scss */
+/* line 173, ../sass/_messages.scss */
 .diffUser {
   margin-top: .8em;
   border-top-right-radius: .5em;
@@ -1207,14 +1447,14 @@ code {
   border-top: 1px solid lightgrey;
 }
 
-/* line 168, ../sass/_messages.scss */
+/* line 179, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
   border-bottom-right-radius: .5em;
   border-bottom-left-radius: .5em;
 }
 
-/* line 175, ../sass/_messages.scss */
+/* line 186, ../sass/_messages.scss */
 .cssanimations.csstransitions .slick-realtime-shit {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -1222,12 +1462,12 @@ code {
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 182, ../sass/_messages.scss */
+/* line 193, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 185, ../sass/_messages.scss */
+/* line 196, ../sass/_messages.scss */
 #mymessage {
   resize: none !important;
   width: 100%;
@@ -1243,7 +1483,7 @@ code {
   overflow-y: hidden;
 }
 
-/* line 212, ../sass/_messages.scss */
+/* line 223, ../sass/_messages.scss */
 #first, #last {
   border: none;
   opacity: 0;
@@ -1251,60 +1491,60 @@ code {
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 219, ../sass/_messages.scss */
+  /* line 230, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 220, ../sass/_messages.scss */
+  /* line 231, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 223, ../sass/_messages.scss */
+  /* line 234, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 224, ../sass/_messages.scss */
+  /* line 235, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 227, ../sass/_messages.scss */
+  /* line 238, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 228, ../sass/_messages.scss */
+  /* line 239, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 231, ../sass/_messages.scss */
+  /* line 242, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 232, ../sass/_messages.scss */
+  /* line 243, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 235, ../sass/_messages.scss */
+  /* line 246, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 236, ../sass/_messages.scss */
+  /* line 247, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
