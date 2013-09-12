@@ -337,13 +337,9 @@ Template.messages.rendered=function(){
 			stick=true;
 		}
 	});
-}
 
-Meteor.startup(function(){
 	$('.loading').on('click',function(){
 		console.log('load more clicked');
-		if(!mSub.loading()){
-			mSub.loadNextPage();
-		}
+		mSub.loadNextPage();
 	});
-});
+}
