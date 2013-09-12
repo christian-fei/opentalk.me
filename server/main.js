@@ -50,6 +50,9 @@ Meteor.methods({
   globalOnlineUsersCount: function(){
     return OnlineUsers.find().count();
   },
+  globalRegisteredUsersCount: function(){
+    return Meteor.users.find().count();
+  },
   calltest:function(arg1){
     console.log(arg1);
     return arg1;
