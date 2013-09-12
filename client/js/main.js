@@ -1,5 +1,5 @@
 visibly.visibilitychange(function(state){
-    console.log('VSC The current visibility state is:' + state);
+    // console.log('VSC The current visibility state is:' + state);
 	resetUnreadCount();
 	setTimeout(resetUnreadCount,1000);
 });
@@ -79,6 +79,12 @@ Meteor.startup(function(){
 			})
 		});
 	}
+
+
+	Deps.autorun(function(){console.log(mSub.loading() + ' ' + mSub.loaded() + ' / ' + $('.message').length)})
 });
+
+
+
 
 window.onbeforeunload=window.onunload=goOffline;

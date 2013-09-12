@@ -6,7 +6,7 @@ Meteor.Router.add({'/': function(){
 		$('html').css({'overflow':'auto'});
 		Session.set('roomid',null);
 		if(!alreadyTracked['/']){
-                console.log('tracking /');
+                // console.log('tracking /');
                 mixpanel.track('landing');
                 alreadyTracked['/']=true;
         }
@@ -17,9 +17,9 @@ Meteor.Router.add({'/': function(){
 Meteor.Router.add({'/profile':function(){
 		//reset
 		$('html').css({'overflow':'auto'});
-		console.log('pageview profile');
+		// console.log('pageview profile');
 		if(!alreadyTracked['/profile']){
-	            console.log('tracking /profile');
+	            // console.log('tracking /profile');
 	            mixpanel.track('profile');
 	            alreadyTracked['/profile']=true;
 	    }
@@ -37,11 +37,11 @@ Meteor.Router.add({'/:id': function(id){
 		goOnline();
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-		console.log('we are at ' + this.canonicalPath);
+		// console.log('we are at ' + this.canonicalPath);
 		if( $('#mymessage') )
 			$('#mymessage').focus();
 		if(!alreadyTracked[id]){
-			console.log('tracking /' + id);
+			// console.log('tracking /' + id);
 			mixpanel.track(
 			    'room',
 			    { 'roomid': id }

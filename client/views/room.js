@@ -41,8 +41,8 @@ Template.room.helpers({
 	'roomTags':function(){
 		// console.log(Rooms.find().fetch());
 		if( Rooms.findOne() ){
-			console.log('returning tags array');
-			console.log(Rooms.findOne().tags);
+			// console.log('returning tags array');
+			// console.log(Rooms.findOne().tags);
 			return Rooms.findOne().tags;
 		}else
 			return [];
@@ -118,15 +118,15 @@ Template.room.events({
 			//enter tag only if string is not empty and has no spaces
 			if(txt.length > 0 && txt.length < 15 &&  txt.indexOf(' ') <= 0){
 				//enter tag
-				console.log('enter tag');
+				// console.log('enter tag');
 				Rooms.update({_id:Rooms.findOne()._id},{$addToSet:{tags:txt}});
 				tmplt.find('#enter-tag').value ='';
 			}
 		}
 	},
 	'click .tag':function(evnt,tmpl){
-		console.log(evnt)
-		console.log(evnt.target.innerHTML);
+		// console.log(evnt)
+		// console.log(evnt.target.innerHTML);
 		var rem=evnt.target.innerHTML;
 		Rooms.update({_id:Rooms.findOne()._id},{$pull:{tags:rem}});
 
@@ -139,7 +139,7 @@ Meteor.startup(function(){
 	OnlineUsers.find().observeChanges({
 		added:function(id,fields){
 			var ou =  $('<li class="online-user-wrapper" id="'+id+'"><span class="status-badge '+fields.status+'"></span><span class="online-user" data-userid="'+fields.userid+'">'+fields.nickname+'</span></li>');
-			console.log(ou);
+			// console.log(ou);
 			$('#append-online-user-here').before(ou);
 		},
 		changed:function(id,fields){
@@ -217,7 +217,7 @@ Deps.autorun(function(){
 	if( Meteor.user() ){
 		Meteor.subscribe('userData');
 		goOnline();
-		console.log('Meteor.user()');
+		// console.log('Meteor.user()');
 	}
 });
 
@@ -249,7 +249,7 @@ Meteor.startup(function(){
 					'$created': new Date(Meteor.user().createdAt),
 					'service': getServiceString()
 				});
-				console.log(getServiceString());				
+				// console.log(getServiceString());				
 			}
 		}
 	});
