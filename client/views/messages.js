@@ -319,7 +319,14 @@ Template.messages.rendered=function(){
 				$('.loading').removeClass('show-loading');
 			}else{
 				// console.log('load more messages');
-				mSub.loadNextPage();
+
+				//dumb
+				setTimeout(function(){
+					if(!mSub.loading()){
+						mSub.loadNextPage();
+						$('.loading').addClass('show-loading');
+					}
+				},50);
 			}
 		}
 		if($(window).scrollTop() + $(window).height()  < $(document).height() - 100){
