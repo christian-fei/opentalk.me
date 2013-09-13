@@ -178,6 +178,7 @@ Meteor.startup(function(){
 	mPagination=null;
 });
 
+message=avatar=username=text=null;
 
 function renderMessages(){
 	if(mPagination)
@@ -192,7 +193,34 @@ function renderMessages(){
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
 			
-			message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
+			// message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
+
+			//the message
+			message = document.createElement('li');
+			message.setAttribute('class','message new-message');
+			message.setAttribute('id',id);
+			message.setAttribute('data-userid',fields.userid);
+
+				//span.avatar
+				avatar=document.createElement('span');
+				avatar.setAttribute('class','avatar');
+
+					//span.username
+					username=document.createElement('span');
+					username.setAttribute('class','username');
+					username.innerText = fields.username;
+
+				//span.text
+				text=document.createElement('span');
+				text.innerHTML=fields.text;
+
+
+			//assemble the message
+			avatar.appendChild( username );
+			message.appendChild(avatar);
+			message.appendChild(text);
+
+
 
 			if(trolls.indexOf(fields.userid) >=0){
 				//hiding because in trolls
@@ -205,42 +233,42 @@ function renderMessages(){
 				$('#last').before(message);
 				if($('#'+id).prev() && $('#'+id).prev().data('userid')!==fields.userid){
 					//A NEW USER
-					message.addClass('diffUser');
-					message[0].firstChild.style.backgroundImage='url("' + fields.useravatar + '")';
-					message[0].firstChild.classList.add('avatar-border');
-					message[0].firstChild.classList.add('tip');
+					message.classList.add('diffUser');
+					avatar.style.backgroundImage='url("' + fields.useravatar + '")';
+					avatar.classList.add('avatar-border');
+					avatar.classList.add('tip');
 					$('#'+id).prev().addClass('lastOfUser');
 				}
 			}else{
 				//stay at the same position
 				var offsetBottom = document.body.offsetHeight - document.body.scrollTop;
 				$('#'+before).before(message);
-				message[0].firstChild.style.backgroundImage='url("'+fields.useravatar+'")';
+				avatar.style.backgroundImage='url("'+fields.useravatar+'")';
 				if(firstRunAfterMore){
 					console.log('firstRunAfterMore');
-					message.addClass('lastOfUser');
-					message.firstChild.classList.add('avatar-border');
-					message.firstChild.classList.add('tip');
+					message.classList.add('lastOfUser');
+					avatar.classList.add('avatar-border');
+					avatar.classList.add('tip');
 					firstRunAfterMore=false;
 				}else{
 					if($('#'+id).next() && $('#'+id).next().data('userid')!==fields.userid){
 						/*NEW USER*/
-						message.addClass('lastOfUser');
-						if(message.next()[0]){
-							message.next().addClass('diffUser');
-							message.next()[0].firstChild.classList.add('avatar-border');
-							message.next()[0].firstChild.classList.add('tip');
+						message.classList.add('lastOfUser');
+						if(message.nextSibling){
+							message.nextSibling.classList.add('diffUser');
+							message.nextSibling.firstChild.classList.add('avatar-border');
+							message.nextSibling.firstChild.classList.add('tip');
 						}
 					}else{
 						/*SAME USER*/
 						//add the rounder top corner style class
 						//and remove the same class to the next item on the list, since it's of the same user
-						message.addClass('diffUser');
-						if(message.next()[0]){
-							message.next().removeClass('diffUser');
-							message.next()[0].firstChild.style.backgroundImage='none';
-							message.next()[0].firstChild.classList.remove('avatar-border');
-							message.next()[0].firstChild.classList.remove('tip');
+						message.classList.add('diffUser');
+						if(message.nextSibling){
+							message.nextSibling.classList.remove('diffUser');
+							message.nextSibling.firstChild.style.backgroundImage='none';
+							message.nextSibling.firstChild.classList.remove('avatar-border');
+							message.nextSibling.firstChild.classList.remove('tip');
 						}
 
 					}
@@ -255,7 +283,7 @@ function renderMessages(){
 
 			// console.log('got message when tab was ' + visibly.visibilityState() );
 			if(visibly.hidden()){
-				message.addClass('unread');
+				message.classList.add('unread');
 				unreadCount++;
 				Tinycon.setBubble(unreadCount);
 			}
