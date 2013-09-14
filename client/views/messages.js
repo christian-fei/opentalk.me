@@ -210,7 +210,7 @@ function renderMessages(){
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
 
-			autoCompleteUsername(fields.username,fields.useravatar);
+			
 
 
 			//the message
@@ -309,6 +309,11 @@ function renderMessages(){
 				if(notif)
 					notif.play();
 			}
+
+			autoCompleteUsername(fields.username,fields.useravatar);
+
+			// atReplyAll(); //can't get it to work with mention.js
+
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id);

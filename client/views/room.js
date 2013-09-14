@@ -138,7 +138,7 @@ Template.room.events({
 Meteor.startup(function(){
 	OnlineUsers.find().observe({
 		added:function(doc){
-			console.log(doc);
+			// console.log(doc);
 			var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
 			// console.log(ou);
 			$('#append-online-user-here').before(ou);
@@ -147,12 +147,11 @@ Meteor.startup(function(){
 
 		},
 		changed:function(doc){
-			// console.log('changed');
-			// console.log(doc);
+			console.log('changed');
+			console.log(doc);
 		},
 		removed:function(doc){
-			console.log(doc);
-			//TODO, show messages of user even if troll, or just hide them??
+			// console.log(doc);
 			$('#'+doc._id).remove();
 		}
 	});
@@ -258,3 +257,7 @@ Meteor.startup(function(){
 		}
 	});
 });
+
+
+ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);	
