@@ -304,6 +304,8 @@ function renderMessages(){
 				message.classList.add('unread');
 				unreadCount++;
 				Tinycon.setBubble(unreadCount);
+				if(notif)
+					notif.play();
 			}
 		},
 		changed: function(id,fields){

@@ -229,6 +229,8 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 	positionFixedContent();
+
+	notif = document.querySelector('#new_message');
 	// console.log('room');
 }
 

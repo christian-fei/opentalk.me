@@ -238,7 +238,8 @@ $ou-width: 10em;
 	position:fixed;
 	left:0em;
 	top:4.9em;
-	z-index: 998;
+	
+	z-index: 10000;
 
 	border:.1em solid darken($color-main,10%);
 
@@ -283,6 +284,7 @@ $ou-width: 10em;
 	border-bottom-left-radius:0px;
 
 	border:.1em solid darken($color-main,10%);
+	z-index: 10000;
 	
 	@media all and(max-width: $mobile-view){
 		display:block;

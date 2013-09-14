@@ -53,7 +53,7 @@
 			@extend .fly-in-down;
 		}
 		.avatar{
-			z-index: 1000; //it should be above the unread::after
+			z-index: 500; //it should be above the unread::after
 			height:1.9em;
 			width: 1.9em;
 			// margin-top:.2em;
