@@ -48,7 +48,7 @@ markdown = {
             r = r.replace(/^\*(.*)/gm, ' <ul><li>$1</li></ul> ');
 
             //@usernames
-            r = r.replace(/^@(.*\s)/gm, ' <span class="at-username">@$1</span> ');
+            r = r.replace(/^@(.\S+)/gm, ' <span class="at-username">@$1</span> ');
             
         }
 

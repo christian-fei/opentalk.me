@@ -92,6 +92,15 @@
 			hyphens: auto;
 
 			width: 100%;
+
+
+			a{
+				display: inline-block;
+				max-width: 15em;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
 		}
 
 		.at-username{
