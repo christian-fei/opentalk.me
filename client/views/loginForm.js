@@ -18,3 +18,11 @@ Template.loginForm.events({
 		}
 	}
 });
+
+
+//resend info when avatar changed
+Deps.autorun(function(){
+	if(Session.get('avatar')){
+		goOnline();
+	}
+});

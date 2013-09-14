@@ -21,7 +21,7 @@ Template.messages.events({
 
 
 	    //remove last \n if any
-		text = text.charAt(text.length-1) === '\n' ? text.substring(0,text.length - 1) : text;
+		// text = text.charAt(text.length-1) === '\n' ? text.substring(0,text.length - 1) : text;
 
 
 
@@ -188,6 +188,11 @@ function renderMessages(){
 		messagesObserveChanges.stop();
 	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
 		movedTo: function(document, fromIndex, toIndex, before){
+			//Don't show my message until it's marked as complete..
+			if(document.userid === Meteor.userId() && document.messageComplete===false)return;
+			//hide not yet completed messages to users who don't want to.
+			if(!Session.get('realtimeEnabled') && document.messageComplete===false)return;
+
 			console.log('moved to');
 			console.log(document);
 			console.log(fromIndex);
@@ -302,8 +307,8 @@ function renderMessages(){
 			}
 		},
 		changed: function(id,fields){
-			console.log('changed ' + id);
-			console.log(fields);
+			// console.log('changed ' + id);
+			// console.log(fields);
 			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
 			//update other users message

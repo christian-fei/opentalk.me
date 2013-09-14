@@ -8,10 +8,10 @@ markdown = {
         r = r.replace(/\n/g,' <br> ');
 
         if( r.match(/(^|\s)``/gm) ){
-            console.log('is code')
+            // console.log('is code')
             r = r.replace(/(^|\s)``(.*?)``/gm, ' <pre><code>$2</code></pre> ');
         }else{
-            console.log('ain\'t code');
+            // console.log('ain\'t code');
             var imagePattern = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?\.(?:png|jpg|jpeg|gif|bmp|svg))/gm;
             r = r.replace(imagePattern, " <div class='message-image-wrapper'><a href='$2' title='open in a new page' class='open-in-new-tab' target='_blank'></a><img src='$2' class='message-image'/></div>  ");
             var urlPatternWithProtocol = /(^|\s)(https?:\/\/[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gm;
@@ -48,7 +48,7 @@ markdown = {
             r = r.replace(/^\*(.*)/gm, ' <ul><li>$1</li></ul> ');
 
             //@usernames
-            r = r.replace(/^@(.*)\s/gm, ' <span class="at-username">@$1</span> ');
+            r = r.replace(/^@(.*\s)/gm, ' <span class="at-username">@$1</span> ');
             
         }
 

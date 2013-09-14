@@ -209,6 +209,10 @@ $ou-width: 10em;
 		border-left:1px solid rgba(200,200,200,.3);
 		border-right:1px solid rgba(200,200,200,.3);
 		border-bottom:1px dotted rgba(200,200,200,.3);
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 .roomid{

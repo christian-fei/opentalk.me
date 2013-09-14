@@ -279,6 +279,10 @@
 		&.active{
 			background: $color-main;
 		}
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.mention_image{
 		height: 1em;
