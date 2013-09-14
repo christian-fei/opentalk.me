@@ -19,7 +19,7 @@ Meteor.Router.add({'/profile':function(){
 		//reset
 		$('html').css({'overflow':'auto'});
 		// console.log('pageview profile');
-		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk'){
+		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me'){
 	            // console.log('tracking /profile');
 	            mixpanel.track('profile');
 	            alreadyTracked['/profile']=true;
