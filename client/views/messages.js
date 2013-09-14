@@ -203,12 +203,22 @@ function renderMessages(){
 	messagesObserveChanges=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
-			imageExp();
+
 			//Don't show my message until it's marked as complete..
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
+			var i=curr=0;
+			while(curr=onlineUsersAutoComplete[i++]){
+				console.log(curr);
+				if(curr.id === fields.userid){
+					// onlineUsersAutoComplete.pop(curr);
+					console.log("removing " + id + ' ' + i);
+					onlineUsersAutoComplete.splice(i-1, 1);
+				}
+			}
+			onlineUsersAutoComplete.push({username:fields.username.replace(/ /g,'') + ' ',image:fields.useravatar,id:fields.userid});
 			
 
 			//the message
