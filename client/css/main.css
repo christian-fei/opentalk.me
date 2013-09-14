@@ -1393,17 +1393,18 @@ audio {
 .at-username {
   display: inline-block;
   padding: 2px;
-  background: #fff8e5;
+  font-weight: bold;
+  color: #41441D;
 }
 
-/* line 112, ../sass/_messages.scss */
+/* line 114, ../sass/_messages.scss */
 pre {
   display: block;
   overflow-x: auto;
   overflow-y: auto;
 }
 
-/* line 118, ../sass/_messages.scss */
+/* line 120, ../sass/_messages.scss */
 code {
   display: block;
   white-space: pre;
@@ -1416,13 +1417,13 @@ code {
   border-radius: 3px;
 }
 
-/* line 130, ../sass/_messages.scss */
+/* line 132, ../sass/_messages.scss */
 .tip:hover .username {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 135, ../sass/_messages.scss */
+/* line 137, ../sass/_messages.scss */
 .username {
   position: absolute;
   font-size: .9em;
@@ -1442,7 +1443,7 @@ code {
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
-/* line 158, ../sass/_messages.scss */
+/* line 160, ../sass/_messages.scss */
 .username:after {
   content: "";
   position: absolute;
@@ -1454,11 +1455,11 @@ code {
   border-left: .5em solid transparent;
 }
 
-/* line 170, ../sass/_messages.scss */
+/* line 172, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
 }
-/* line 176, ../sass/_messages.scss */
+/* line 178, ../sass/_messages.scss */
 .message-image-wrapper .open-in-new-tab {
   position: absolute;
   top: .2em;
@@ -1469,21 +1470,21 @@ code {
   background-size: 100%;
 }
 
-/* line 186, ../sass/_messages.scss */
+/* line 188, ../sass/_messages.scss */
 .message-image {
   display: inline-block;
   max-height: 5em;
   margin-top: .2em;
   margin-top: .2em;
 }
-/* line 192, ../sass/_messages.scss */
+/* line 194, ../sass/_messages.scss */
 .message-image.exp {
   max-width: 31em;
   max-height: inherit;
   width: 100%;
 }
 
-/* line 199, ../sass/_messages.scss */
+/* line 201, ../sass/_messages.scss */
 .diffUser {
   margin-top: .8em;
   border-top-right-radius: .5em;
@@ -1491,14 +1492,14 @@ code {
   border-top: 1px solid lightgrey;
 }
 
-/* line 205, ../sass/_messages.scss */
+/* line 207, ../sass/_messages.scss */
 .lastOfUser {
   border-bottom: 1px solid lightgrey;
   border-bottom-right-radius: .5em;
   border-bottom-left-radius: .5em;
 }
 
-/* line 212, ../sass/_messages.scss */
+/* line 214, ../sass/_messages.scss */
 .cssanimations.csstransitions .slick-realtime-shit {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -1506,12 +1507,12 @@ code {
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 219, ../sass/_messages.scss */
+/* line 221, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 222, ../sass/_messages.scss */
+/* line 224, ../sass/_messages.scss */
 #mymessage {
   resize: none !important;
   width: 100%;
@@ -1527,7 +1528,7 @@ code {
   overflow-y: hidden;
 }
 
-/* line 249, ../sass/_messages.scss */
+/* line 251, ../sass/_messages.scss */
 #first, #last {
   border: none;
   opacity: 0;
@@ -1535,89 +1536,119 @@ code {
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 256, ../sass/_messages.scss */
+  /* line 258, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 257, ../sass/_messages.scss */
+  /* line 259, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 260, ../sass/_messages.scss */
+  /* line 262, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 261, ../sass/_messages.scss */
+  /* line 263, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 264, ../sass/_messages.scss */
+  /* line 266, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 265, ../sass/_messages.scss */
+  /* line 267, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 268, ../sass/_messages.scss */
+  /* line 270, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 269, ../sass/_messages.scss */
+  /* line 271, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 272, ../sass/_messages.scss */
+  /* line 274, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 273, ../sass/_messages.scss */
+  /* line 275, ../sass/_messages.scss */
   100% {
     border-left: 1px solid lightgrey;
   }
 }
 
-/* line 276, ../sass/_messages.scss */
+/* line 278, ../sass/_messages.scss */
 .typeahead {
   list-style-type: none;
+  width: 100%;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  border-radius: .5em;
+  margin-top: 1.5em;
 }
-/* line 278, ../sass/_messages.scss */
+/* line 287, ../sass/_messages.scss */
 .typeahead li {
+  position: relative;
   display: inline-block;
-  padding: .5em;
-  background: #F5F5F5;
+  padding: .3em;
+  height: 2em;
   float: left;
   clear: both;
-  width: 12em;
+  width: 100%;
+  background: white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 288, ../sass/_messages.scss */
-.typeahead li.active {
-  background: #ffbb00;
+/* line 289, ../sass/_messages.scss */
+.typeahead li a {
+  text-decoration: none !important;
 }
-/* line 296, ../sass/_messages.scss */
+/* line 305, ../sass/_messages.scss */
+.typeahead li.active {
+  background: white;
+  background: #4591FF;
+  opacity: 1;
+}
+/* line 310, ../sass/_messages.scss */
+.typeahead li.active .mention_username {
+  color: white;
+}
+/* line 319, ../sass/_messages.scss */
 .typeahead .mention_image {
-  height: 1em;
-  width: 1em;
+  position: absolute;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  border: 2px solid lightgrey;
+  top: .25em;
+  left: 1em;
+}
+/* line 328, ../sass/_messages.scss */
+.typeahead .mention_username {
+  position: absolute;
+  font-weight: bold;
+  text-decoration: none !important;
+  top: .45em;
+  left: 3em;
 }
 
 /* line 1, ../sass/_buttons.scss */

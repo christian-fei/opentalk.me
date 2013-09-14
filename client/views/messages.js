@@ -31,7 +31,7 @@ Template.messages.events({
 
 		if(keysPressed[13] && keysPressed[16]){
 			//add a new line and then return
-			console.log('shift + enter');
+			// console.log('shift + enter');
 			//TODO:understand if not needed
 			// text += '\n';
 			keysPressed[evnt.keyCode] = false;

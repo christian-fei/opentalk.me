@@ -106,7 +106,9 @@
 		.at-username{
 			display: inline-block;
 			padding: 2px;
-			background:lighten($color-main,45%);
+			// background:lighten($color-main,45%);
+			font-weight: bold;
+			color: #41441D;
 		}
 
 		pre{
@@ -275,18 +277,39 @@
 
 .typeahead{
 	list-style-type: none;
+	width: 100%;
+
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-radius:.5em;
+	margin-top: 1.5em;
+
 	li{
+		position: relative;
+		a{
+			text-decoration: none!important;
+		}
 		display: inline-block;
-		padding:.5em;
-		background:#F5F5F5;
+		padding:.3em;
+		height: 2em;
 		float:left;
 		clear: both;
 
-		width: 12em;
+		width: 100%;
 		// text-align: center;
+		// border: 1px solid black;
+		background:white;
+
+		// opacity: .7;
 
 		&.active{
-			background: $color-main;
+			background: white;
+			background:#4591FF;
+			opacity: 1;
+
+			.mention_username{
+				color:white;
+			}
 		}
 
 		white-space: nowrap;
@@ -294,10 +317,19 @@
 		text-overflow: ellipsis;
 	}
 	.mention_image{
-		height: 1em;
-		width: 1em;
+		position: absolute;
+		height: 1.5em;
+		width: 1.5em;
+		border-radius: 50%;
+		border:2px solid lightgrey;
+		top:.25em;
+		left:1em;
 	}
 	.mention_username{
-
+		position: absolute;
+		font-weight: bold;
+		text-decoration: none!important;
+		top:.45em;
+		left:3em;
 	}
 }
