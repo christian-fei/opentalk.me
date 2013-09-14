@@ -209,17 +209,9 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			var i=curr=0;
-			while(curr=onlineUsersAutoComplete[i++]){
-				console.log(curr);
-				if(curr.id === fields.userid){
-					// onlineUsersAutoComplete.pop(curr);
-					console.log("removing " + id + ' ' + i);
-					onlineUsersAutoComplete.splice(i-1, 1);
-				}
-			}
-			onlineUsersAutoComplete.push({username:fields.username.replace(/ /g,'') + ' ',image:fields.useravatar,id:fields.userid});
-			
+
+			autoCompleteUsername(fields.username,fields.useravatar);
+
 
 			//the message
 			message = document.createElement('li');
