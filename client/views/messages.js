@@ -39,6 +39,9 @@ Template.messages.events({
 		}
 
 		keysPressed[evnt.keyCode] = false;
+
+		//return if typeahead is showing, so that the user can safely hit return withouth sending the message
+		if( $('.typeahead').css('display') === 'block' )return;
  
     	/*
 		working in Chrome 28.0.1500.95
@@ -175,15 +178,24 @@ Template.messages.events({
 
 
 Meteor.startup(function(){
-	mPagination=null;
+	messagesObserveChanges=messagesObserve=null;
 });
 
 message=avatar=username=text=null;
 
 function renderMessages(){
-	if(mPagination)
-		mPagination.stop();
-	mPagination=Messages.find({},{sort:{timestamp:1}}).observeChanges({
+	if(messagesObserveChanges)
+		messagesObserveChanges.stop();
+	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
+		movedTo: function(document, fromIndex, toIndex, before){
+			console.log('moved to');
+			console.log(document);
+			console.log(fromIndex);
+			console.log(toIndex);
+			console.log(before);
+		}
+	});
+	messagesObserveChanges=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 			// console.log('added id ' +id + ' before ' + before);
 			imageExp();
@@ -193,7 +205,6 @@ function renderMessages(){
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
 			
-			// message = $('<li class="message new-message" id="'+id+'" data-userid="'+fields.userid+'"><span class="avatar"><b class="username">'+fields.username+'</b></span><div class="text">'+fields.text+'</div></li>');
 
 			//the message
 			message = document.createElement('li');
@@ -207,11 +218,12 @@ function renderMessages(){
 
 					//span.username
 					username=document.createElement('span');
-					username.setAttribute('class','username');
-					username.innerText = fields.username;
+					username.classList.add('username');
+					username.innerHTML = fields.username;
 
 				//span.text
 				text=document.createElement('span');
+				text.classList.add('text');
 				text.innerHTML=fields.text;
 
 
@@ -225,7 +237,8 @@ function renderMessages(){
 			if(trolls.indexOf(fields.userid) >=0){
 				//hiding because in trolls
 				console.log('hiding because in trolls');
-				message.hide();
+				// message.hide(); //not workging anymore
+				message.style.display = 'none';
 			}
 
 			if(before === null) {
@@ -289,7 +302,8 @@ function renderMessages(){
 			}
 		},
 		changed: function(id,fields){
-			// console.log('changed ' + id);
+			console.log('changed ' + id);
+			console.log(fields);
 			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
 			//update other users message
@@ -301,12 +315,12 @@ function renderMessages(){
 				if(fields.messageComplete === true){
 					//if an element already exists => it's from an other user and he updated it
 					//if it does not exist=> an other user OR I finished my message and have to check if the element before #last is mine or not
-					if($('#last').prev() && $('#last') && mfdb.userid === $('#last').prev().data('userid')){
+					if( $('#last') && $('#last').prev() &&  mfdb.userid === $('#last').prev().data('userid')){
 						//same
-						message = $('<li class="message new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><b class="username">'+mfdb.username+'</b></span><div class="text">'+mfdb.text+'</div></li>');
+						message = $('<li class="message new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar"><span class="username">'+mfdb.username+'</span></span><span class="text">'+mfdb.text+'</span></li>');
 					}else{
 						//diff
-						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><b class="username">'+mfdb.username+'</b></span><div class="text">'+ mfdb.text +'</div></li>');
+						message = $('<li class="message diffUser new-message" id="'+id+'" data-userid="'+mfdb.userid+'"><span class="avatar avatar-border tip" style="background:url('+mfdb.useravatar+')"><span class="username">'+mfdb.username+'</span></span><span class="text">'+ mfdb.text +'</span></li>');
 					}					
 					$('#last').before(message);
 				}

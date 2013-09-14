@@ -138,15 +138,52 @@ Template.room.events({
 Meteor.startup(function(){
 	OnlineUsers.find().observeChanges({
 		added:function(id,fields){
-			var ou =  $('<li class="online-user-wrapper" id="'+id+'"><span class="status-badge '+fields.status+'"></span><span class="online-user" data-userid="'+fields.userid+'">'+fields.nickname+'</span></li>');
+			var ou =  $('<li class="online-user-wrapper" id="'+id+'"><span class="status-badge '+fields.status+'"></span><span class="micro-avatar" style="background:url(\''+fields.avatar+'\')"></span><span class="online-user" data-userid="'+fields.userid+'">'+fields.nickname+'</span></li>');
 			// console.log(ou);
 			$('#append-online-user-here').before(ou);
+			onlineUsersAutoComplete.push({username:fields.nickname.replace(/ /g,'') + ' ',image:fields.avatar,id:id});
+			// $('#mymessage').typeahead({
+			// 	name:'ou',
+			// 	local:onlineUsersAutoComplete,
+			// 	template:'<p class="test"><span class="micro-avatar" style="background:url(\'{{avatar}}\')"></span>{{name}}</p>',
+			// 	engine:Hogan
+			// });
+			// $('#mymessage').mention('destroy');	
+			$('#mymessage').mention({
+				emptyQuery: true,
+				sensitive : true,
+				users: onlineUsersAutoComplete,
+				typeaheadOpts: {
+			        items: 3 // Max number of items you want to show
+			    },
+			});
 		},
 		changed:function(id,fields){
+			console.log('changed');
+			console.log(fields);
 		},
 		removed:function(id){
 			//TODO, show messages of user even if troll, or just hide them??
 			$('#'+id).remove();
+			//remove id from onlineUsersAutoComplete
+			var i=curr=0;
+			while(curr=onlineUsersAutoComplete[i++]){
+				console.log(curr);
+				if(curr.id === id){
+					// onlineUsersAutoComplete.pop(curr);
+					console.log("removing " + id + ' ' + i);
+					onlineUsersAutoComplete.splice(i-1, 1);
+				}
+			}
+			$('#mymessage').mention('destroy');			
+			$('#mymessage').mention({
+				emptyQuery: true,
+				sensitive : true,
+				users: onlineUsersAutoComplete,
+				typeaheadOpts: {
+			        items: 3 // Max number of items you want to show
+			    },
+			});
 		}
 	});
 });
@@ -160,6 +197,7 @@ Deps.autorun(function(){
 Deps.autorun(function(){
 	var avatar='/images/avatar.png';
 	if(Meteor.user()){
+		// goOnline(); //a typeahead hack
 		if(Meteor.user().services){
 			if(Meteor.user().services.twitter)
 				avatar = Meteor.user().services.twitter.profile_image_url;
@@ -213,14 +251,6 @@ Meteor.call('serverTime',function(error, result){
 });
 
 
-Deps.autorun(function(){
-	if( Meteor.user() ){
-		Meteor.subscribe('userData');
-		goOnline();
-		// console.log('Meteor.user()');
-	}
-});
-
 
 function getServiceString(){
 	//this should always be true
@@ -240,6 +270,8 @@ function getServiceString(){
 Meteor.startup(function(){
 	Deps.autorun(function(){
 		if( Meteor.user() ){
+			Meteor.subscribe('userData');
+			goOnline();
 			//tracking yo ass to enhance your experience, not because I'm a data whore
 			if(mixpanel){
 				console.log('mixpanel identifying user');

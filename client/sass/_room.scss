@@ -77,7 +77,7 @@
 
 
 .loading{
-	cursor: pointer;
+	
 	display: block;
 	width: 100%;
 	font-size: 1.3em;
@@ -94,6 +94,7 @@
 	-o-transition: all 333ms linear;
 	transition: all 333ms linear;
 	&.show-loading{
+		cursor: pointer;
 		height:auto;
 		padding: 1em;
 		opacity: 1;

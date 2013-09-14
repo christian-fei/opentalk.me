@@ -5,9 +5,7 @@ Template.loginForm.events({
 		console.log(e.target);
 		console.log(e.srcElement);
 		if(e.target.classList.contains('twitter') ) {
-			Meteor.loginWithTwitter(function(err){
-				console.log(err);
-			});
+			Meteor.loginWithTwitter();
 		}else
 		if(e.target.classList.contains('facebook') ) {
 			Meteor.loginWithFacebook();

@@ -190,6 +190,16 @@ $ou-width: 10em;
 	    	// margin-left:5px;
 	    }
 	}
+	
+	.micro-avatar{
+		height: 1em;
+		width: 1em;
+		display: inline-block;
+		background-size: 100% !important;
+
+		border-radius: 50%;
+	}
+
 	.online-user-wrapper{
 		text-align: left;
 		width: $ou-width;

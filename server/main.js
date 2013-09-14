@@ -70,7 +70,7 @@ Meteor.methods({
   clog : function(s){
     console.log(s);
   },
-  setUserStatus: function(userid,username,roomid,status){
+  setUserStatus: function(userid,username,roomid,avatar,status){
     //console.log('t.uid ' + this.userId);
     //console.log('m.u()' + Meteor.userId());
     if(!userid || !roomid || !username)
@@ -95,7 +95,8 @@ Meteor.methods({
           nickname:username,
           roomid:roomid,
           status:status,
-          lastSeen:now
+          lastSeen:now,
+          avatar:avatar
         }
       );
       // console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);

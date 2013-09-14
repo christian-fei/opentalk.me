@@ -10,6 +10,7 @@ Meteor.Router.add({'/': function(){
                 mixpanel.track('landing');
                 alreadyTracked['/']=true;
         }
+        onlineUsersAutoComplete=[];
 		return 'welcome';
 	}
 });
@@ -23,6 +24,7 @@ Meteor.Router.add({'/profile':function(){
 	            mixpanel.track('profile');
 	            alreadyTracked['/profile']=true;
 	    }
+	    onlineUsersAutoComplete=[];
 		return 'profile';
 	}
 });
@@ -48,6 +50,7 @@ Meteor.Router.add({'/:id': function(id){
 			);
 			alreadyTracked[id]=true;			
 		}
+		// onlineUsersAutoComplete=[];
 		return 'room';
 	}
 });
