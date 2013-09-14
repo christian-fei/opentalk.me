@@ -147,8 +147,8 @@ Meteor.startup(function(){
 
 		},
 		changed:function(doc){
-			console.log('changed');
-			console.log(doc);
+			// console.log('changed');
+			// console.log(doc);
 		},
 		removed:function(doc){
 			// console.log(doc);
@@ -245,7 +245,7 @@ Meteor.startup(function(){
 			goOnline();
 			//tracking yo ass to enhance your experience, not because I'm a data whore
 			if(mixpanel){
-				console.log('mixpanel identifying user');
+				// console.log('mixpanel identifying user');
 				mixpanel.identify(Meteor.userId());
 				mixpanel.people.set({
 					'$name': Meteor.user().profile.name,

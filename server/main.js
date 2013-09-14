@@ -1,8 +1,8 @@
 Messages.allow({
   //on the client the message length limit is 500, but since I add tags and shit it gets bigger, hopefully not more than 1000 chars..
-  insert  : function(userId,doc){if(userId === Meteor.userId() && doc.text.length < 1000)return true; return false;}
-  ,update : function(userId,doc){if(userId === Meteor.userId() && doc.text.length < 1000)return true; return false;}
-  ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+  insert  : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && !doc.text.match(/[<|>|&]+/gm)){return true;} return false;}
+  ,update : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && !doc.text.match(/[<|>|&]+/gm)){return true;} return false;}
+  ,remove : function(userId,doc){if(userId && userId === Meteor.userId())return true; return false;}
 });
 
 Rooms.allow({
@@ -41,6 +41,7 @@ var idleTime = 20*1000,
     killCheck = killTime/2;
 
 Meteor.methods({
+
   globalMessagesCount: function(){
     return Messages.find().count();
   },
@@ -65,7 +66,10 @@ Meteor.methods({
     return Date.now();
   },
   removeMessagesOfUserInRoom : function(userid,roomid){
-    Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
+    console.log('removing? ' + Meteor.userId() === userid);
+    if(Meteor.userId() === userid)
+      Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
+
   },
   clog : function(s){
     console.log(s);
@@ -152,12 +156,3 @@ Meteor.setInterval(function() {
     OnlineUsers.remove({_id:user._id,roomid:user.roomid},{multi:true});
   });
 },killCheck);
-
-
-Meteor.startup(function () {
-  // code to run on server at startup
-});
-
-function cleanUpObsoleteOnlineUsers(){
-  
-}
