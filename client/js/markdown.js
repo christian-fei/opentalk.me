@@ -68,8 +68,8 @@ markdown = {
                 [/:-*\|/g, '<span class="emojify flushed"></span>'],
                 [/:-*\$/g, '<span class="emojify relaxed"></span>'],
                 [/:-*x/gi, '<span class="emojify mask"></span>'],
-                [/<3/g, '<span class="emojify heart"></span>'],
-                [/<\/3/g, '<span class="emojify broken_heart"></span>']
+                [/&lt;3/g, '<span class="emojify heart"></span>'],
+                [/&lt;\/3/g, '<span class="emojify broken_heart"></span>']
             ];
             for (var i = emojis.length - 1; i >= 0; i--) {
                 r = r.replace(emojis[i][0],emojis[i][1]);
