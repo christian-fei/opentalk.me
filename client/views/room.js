@@ -261,4 +261,21 @@ Meteor.startup(function(){
 
 
 ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);	
+mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+
+
+Meteor.startup(function(){
+
+	var pn = window.location.pathname.replace(/\//,'');
+	if(pn.match(/[A-Z]/)){
+		console.log(pn);
+		console.log('uppercase');
+		var lc='/'+pn.toLowerCase();
+		console.log(lc);
+		Meteor.Router.to(lc);
+
+		positionFixedContent();
+		
+		// return 'room';	
+	}
+});

@@ -3,7 +3,6 @@ var alreadyTracked=[];
 Meteor.Router.add({'/': function(){
 		goOffline();
 		//reset
-		$('html').css({'overflow':'auto'});
 		Session.set('roomid',null);
 		if(!alreadyTracked['/'] && window.location.hostname === 'opentalk.me'){
                 // console.log('tracking /');
@@ -17,7 +16,6 @@ Meteor.Router.add({'/': function(){
 
 Meteor.Router.add({'/profile':function(){
 		//reset
-		$('html').css({'overflow':'auto'});
 		// console.log('pageview profile');
 		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me'){
 	            // console.log('tracking /profile');
@@ -29,11 +27,11 @@ Meteor.Router.add({'/profile':function(){
 	}
 });
 
-//hack because of reactivity sources
 
 Meteor.Router.add({'/:id': function(id){
 		//reset
-		$('html').css({'overflow':'auto'});
+		
+
 		Session.set('roomid',id);
 		prevUserId=prevId=null;
 		goOnline();

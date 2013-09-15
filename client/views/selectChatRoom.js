@@ -3,7 +3,7 @@ Template.selectChatRoom.events({
 		if((evnt.type === 'click') || (evnt.type === 'keyup' && evnt.keyCode ===13)) {
 			var room = tmplt.find('#roomid').value;
 			if(isValidRoom(room)){
-				joinRoom(room);
+				joinRoom(room.toLowerCase());
 			} else {
 				//notify
 			}
