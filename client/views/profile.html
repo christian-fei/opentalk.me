@@ -14,49 +14,7 @@
 			</div>
 		</div>
 
-		<div class="stats">
-			<h1 class="stats-header">Your stats</h1>
-			<div class="stats-wrapper">
-				<div class="stat">
-					<div class="vam">
-						{{{userMessagesCount}}}
-					</div>
-				</div>
-			</div>
-			<div class="stats-wrapper">
-				<div class="stat">
-					<div class="vam">
-						{{{userRoomsCount}}}
-					</div>
-				</div>
-			</div>
-			<div class="stats-wrapper">
-				<div class="stat">
-					<div class="vam">
-						{{{userWordsCount}}}
-					</div>
-				</div>
-			</div>
-			<div class="stats-wrapper">
-				<div class="stat">
-					<div class="vam">
-						{{{userCharactersCount}}}
-					</div>
-				</div>
-			</div>
-			<div class="stats-wrapper">
-				<div class="stat">
-					<div class="vam">
-						{{{memberSince}}}
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<ul class="user-rooms">
-			<li><h3 style='text-align:center;margin-bottom:1em;'>Your conversations</h3></li>
-			<li id="append-here"></li>
-		</ul>
+		{{>mystats}}
 	{{else}}
 		<div class="profile-mast">
 			<div class="profile-mast-cont">

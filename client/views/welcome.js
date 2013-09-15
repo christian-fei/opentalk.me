@@ -8,7 +8,7 @@ function setGlobalStats(){
 			Meteor.call('globalRoomsCount',function(err,res){$('#globalRoomsCount').text(res);});
 			Meteor.call('globalOnlineUsersCount',function(err,res){$('#globalOnlineUsersCount').text(res);});
 			Meteor.call('globalRegisteredUsersCount',function(err,res){$('#globalRegisteredUsersCount').text(res);});
-		},1000);
+		},1500);
 	}
 }
 

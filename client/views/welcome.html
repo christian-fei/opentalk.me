@@ -26,6 +26,8 @@
 			</div>
 		</div>
 	</section>
+	{{>mystats}}
+	{{#unless currentUser}}
 	<section class="tiles">
 		<div class="tiles-wrapper">
 			<h1 class='tiles-header'>Features</h1>
@@ -73,6 +75,7 @@
 			</div>
 		</div>
 	</section>
+	{{/unless}}
 	<section class="tiles">
 		<div class="tiles-wrapper">
 			<h1 class='tiles-header'>Global stats</h1>
@@ -102,6 +105,7 @@
 			</div>
 		</div>
 	</section>
+	{{#unless currentUser}}
 	<section class="todos">
 		<div class="todos-wrapper">
 			<h4>TODO</h4>
@@ -124,6 +128,7 @@
 			Do you want to contribute or have a suggestion to make this better?	<a href="https://github.com/christian-fei/opentalk.me">Fork away!</a>
 		</div>
 	</section>
+	{{/unless}}
 	<footer class="footer">
 		<div class="footer-wrapper">
 			<div class="tos">
