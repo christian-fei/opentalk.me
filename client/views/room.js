@@ -180,7 +180,7 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 
-	console.log('room rendered');
+	// console.log('room rendered');
 
 	positionFixedContent();
 
