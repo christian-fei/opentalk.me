@@ -179,7 +179,19 @@ Template.messages.events({
 
 Meteor.startup(function(){
 	messagesObserveChanges=messagesObserve=null;
+
+	// emojify.setConfig({
+	//     emojify_tag_type: 'span',
+	//     emoticons_enabled: true
+	// });
 });
+
+Template.messages.rendered = function() {
+	// renderEmoji();
+}
+
+
+
 
 message=avatar=username=text=null;
 
@@ -311,9 +323,6 @@ function renderMessages(){
 			}
 
 			autoCompleteUsername(fields.username,fields.useravatar);
-
-			// atReplyAll(); //can't get it to work with mention.js
-
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id);
