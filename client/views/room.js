@@ -137,26 +137,11 @@ Template.room.events({
 
 
 Meteor.startup(function(){
-	OnlineUsers.find().observe({
-		added:function(doc){
-			// console.log(doc);
-			var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
-			// console.log(ou);
-			$('#append-online-user-here').before(ou);
-
-			autoCompleteUsername(doc.nickname,doc.avatar);
-
-		},
-		changed:function(doc){
-			// console.log('changed');
-			// console.log(doc);
-		},
-		removed:function(doc){
-			// console.log(doc);
-			$('#'+doc._id).remove();
-		}
-	});
 });
+
+
+
+
 
 
 Deps.autorun(function(){
@@ -197,11 +182,37 @@ Deps.autorun(function(){
 // mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 
 
+onlineUsersObserver=null;
+
 Template.room.rendered=function(){
 	positionFixedContent();
 
 	notif = document.querySelector('#new_message');
 	// console.log('room');
+
+	if(onlineUsersObserver){
+		onlineUsersObserver.stop();
+	}
+	$('.online-user-wrapper').remove();
+	onlineUsersObserver=OnlineUsers.find().observe({
+		added:function(doc){
+			// console.log(doc);
+			var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
+			// console.log(ou);
+			$('#append-online-user-here').before(ou);
+
+			autoCompleteUsername(doc.nickname,doc.avatar);
+
+		},
+		changed:function(doc){
+			// console.log('changed');
+			// console.log(doc);
+		},
+		removed:function(doc){
+			// console.log(doc);
+			$('#'+doc._id).remove();
+		}
+	});
 }
 
 

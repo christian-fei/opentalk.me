@@ -15,6 +15,7 @@ Meteor.Router.add({'/': function(){
 });
 
 Meteor.Router.add({'/profile':function(){
+		goOffline(); //because you're not anymore in the room
 		//reset
 		// console.log('pageview profile');
 		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
