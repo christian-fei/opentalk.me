@@ -89,7 +89,7 @@ Meteor.methods({
     if(!userid || !roomid || !username)
       return;
     if(status === 'offline'){
-      OnlineUsers.remove({userid:userid});
+      OnlineUsers.remove({userid:userid,roomid:roomid});
       // console.log('offline ' + userid);
       /*mark all messages as complete*/
       Messages.update(

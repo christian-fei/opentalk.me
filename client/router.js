@@ -4,7 +4,7 @@ Meteor.Router.add({'/': function(){
 		goOffline();
 		//reset
 		Session.set('roomid',null);
-		if(!alreadyTracked['/'] && window.location.hostname === 'opentalk.me'){
+		if(!alreadyTracked['/'] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
                 // console.log('tracking /');
                 mixpanel.track('landing');
                 alreadyTracked['/']=true;
@@ -17,7 +17,7 @@ Meteor.Router.add({'/': function(){
 Meteor.Router.add({'/profile':function(){
 		//reset
 		// console.log('pageview profile');
-		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me'){
+		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
 	            // console.log('tracking /profile');
 	            mixpanel.track('profile');
 	            alreadyTracked['/profile']=true;
@@ -40,7 +40,7 @@ Meteor.Router.add({'/:id': function(id){
 		// console.log('we are at ' + this.canonicalPath);
 		if( $('#mymessage') )
 			$('#mymessage').focus();
-		if(!alreadyTracked[id] && window.location.hostname === 'opentalk.me'){
+		if(!alreadyTracked[id] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
 			// console.log('tracking /' + id);
 			mixpanel.track(
 			    'room',
