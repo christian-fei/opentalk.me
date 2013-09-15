@@ -2034,11 +2034,11 @@ http://www.tipue.com/tipr
   list-style-type: none;
 }
 
-/* line 56, ../sass/_profile.scss */
+/* line 55, ../sass/_profile.scss */
 .user-room {
   display: inline-block;
 }
-/* line 58, ../sass/_profile.scss */
+/* line 57, ../sass/_profile.scss */
 .user-room a {
   padding: .7em 1.4em;
   margin: 0.7em;
@@ -2047,6 +2047,7 @@ http://www.tipue.com/tipr
   border: 1px solid #C9C9C9;
   display: inline-block;
   color: black;
+  text-decoration: none;
 }
 
 /* line 70, ../sass/_profile.scss */

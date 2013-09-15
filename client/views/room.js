@@ -127,7 +127,8 @@ Template.room.events({
 	'click .tag':function(evnt,tmpl){
 		// console.log(evnt)
 		// console.log(evnt.target.innerHTML);
-		var rem=evnt.target.innerHTML;
+		var rem=unescapeHtml(evnt.target.innerHTML);
+		console.log(rem);
 		Rooms.update({_id:Rooms.findOne()._id},{$pull:{tags:rem}});
 
 	}

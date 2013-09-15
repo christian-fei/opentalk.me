@@ -7,11 +7,11 @@ Messages.allow({
 
 Rooms.allow({
   insert  : function(userId,doc){
-    if(userId === Meteor.userId() && doc.tags.length  <= 5)return true; return false;
+    if(userId && userId === Meteor.userId() && doc.tags.length  <= 5 && doc.roomid.indexOf('<script>'))return true; return false;
   }
   ,update : function(userId,doc){
-    if(userId === Meteor.userId() && doc.tags.length  <= 5)return true; return false;}
-  ,remove : function(userId,doc){if(userId === Meteor.userId())return true; return false;}
+    if(userId && userId === Meteor.userId() && doc.tags.length  <= 5 && doc.roomid.indexOf('<script>'))return true; return false;}
+  ,remove : function(userId,doc){if(userId && userId === Meteor.userId())return true;return false;}
 });
 
 // console.log(process.env);
