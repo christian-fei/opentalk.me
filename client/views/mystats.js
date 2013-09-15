@@ -14,7 +14,12 @@ Template.mystats.helpers({
 		return '<h1>' + Session.get('userCharactersCount') + '</h1>' + '<h6>characters</h6>';
 	},
 	memberSince:function(){
-		Session.set('memberSince',new Date(Meteor.user().createdAt).toDateString().substring(4));
+		console.log('member since');
+		console.log(Meteor.user());
+		
+
+		if(Meteor.user())
+			Session.set('memberSince',new Date(Meteor.user().createdAt).toDateString().substring(4));
 		return '<h3>' + Session.get('memberSince') + '</h3>' + '<h6>member since</h6>';
 	},
 });
