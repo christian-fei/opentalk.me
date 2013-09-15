@@ -185,7 +185,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 20, ../sass/_transforms.scss */
-.fly-in-down, .usermenu.show, .new-message {
+.fly-in-down, .csstransforms .usermenu.show, .new-message {
   -webkit-animation: flyindown 200ms ease;
   -moz-animation: flyindown 200ms ease;
   -ms-animation: flyindown 200ms ease;
@@ -832,7 +832,7 @@ audio {
 
 @media all and (max-width: 50em) {
   /* line 121, ../sass/_sidebar.scss */
-  .no-csstransforms .fixed-sidebar.show {
+  .no-csstransforms .fixed-sidebar.shadow {
     left: 0 !important;
   }
 }
@@ -876,13 +876,13 @@ audio {
   transition: all .3s ease-in-out;
 }
 
-/* line 168, ../sass/_sidebar.scss */
+/* line 170, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
   margin: 1em auto;
 }
 
-/* line 172, ../sass/_sidebar.scss */
+/* line 174, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #userstats {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -891,7 +891,7 @@ audio {
   border: 1px solid darkgrey;
 }
 
-/* line 190, ../sass/_sidebar.scss */
+/* line 192, ../sass/_sidebar.scss */
 .online-users {
   margin: 2em auto;
   text-align: left;
@@ -900,12 +900,12 @@ audio {
   overflow-y: auto;
   height: 10em;
 }
-/* line 198, ../sass/_sidebar.scss */
+/* line 200, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 202, ../sass/_sidebar.scss */
+/* line 204, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -917,7 +917,7 @@ audio {
   display: inline-block;
 }
 
-/* line 212, ../sass/_sidebar.scss */
+/* line 214, ../sass/_sidebar.scss */
 .online-user {
   font-size: .9em;
   text-overflow: ellipsis;
@@ -926,13 +926,13 @@ audio {
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 221, ../sass/_sidebar.scss */
+/* line 223, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 228, ../sass/_sidebar.scss */
+/* line 230, ../sass/_sidebar.scss */
 .micro-avatar {
   height: 1em;
   width: 1em;
@@ -941,7 +941,7 @@ audio {
   border-radius: 50%;
 }
 
-/* line 237, ../sass/_sidebar.scss */
+/* line 239, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -956,7 +956,7 @@ audio {
   text-overflow: ellipsis;
 }
 
-/* line 252, ../sass/_sidebar.scss */
+/* line 254, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -964,13 +964,13 @@ audio {
   color: #805e00;
 }
 
-/* line 258, ../sass/_sidebar.scss */
+/* line 260, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 263, ../sass/_sidebar.scss */
+/* line 265, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -996,7 +996,7 @@ audio {
   */
 }
 @media all and (max-width: 50em) {
-  /* line 263, ../sass/_sidebar.scss */
+  /* line 265, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -1005,7 +1005,7 @@ audio {
   }
 }
 
-/* line 305, ../sass/_sidebar.scss */
+/* line 307, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -1023,20 +1023,20 @@ audio {
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
-  /* line 305, ../sass/_sidebar.scss */
+  /* line 307, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 331, ../sass/_sidebar.scss */
+/* line 333, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 340, ../sass/_sidebar.scss */
+/* line 342, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -1045,23 +1045,23 @@ audio {
   border-radius: 70%;
   opacity: .5;
 }
-/* line 351, ../sass/_sidebar.scss */
+/* line 353, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 354, ../sass/_sidebar.scss */
+/* line 356, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 362, ../sass/_sidebar.scss */
+/* line 364, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 371, ../sass/_sidebar.scss */
+/* line 373, ../sass/_sidebar.scss */
 .tt-cheatsheet {
   margin: 1em 0;
   padding: 1em 0;
@@ -1069,23 +1069,23 @@ audio {
   text-align: center;
 }
 
-/* line 380, ../sass/_sidebar.scss */
+/* line 382, ../sass/_sidebar.scss */
 .emoji-table tr {
   float: left;
   margin: .3em;
   border: 1px solid #F5F5F5;
 }
-/* line 385, ../sass/_sidebar.scss */
+/* line 387, ../sass/_sidebar.scss */
 .emoji-table tr td {
   padding: .2em;
 }
 
-/* line 394, ../sass/_sidebar.scss */
+/* line 396, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 398, ../sass/_sidebar.scss */
+/* line 400, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1094,12 +1094,12 @@ audio {
   -ms-text-align-last: center;
   text-align: center;
 }
-/* line 406, ../sass/_sidebar.scss */
+/* line 408, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 411, ../sass/_sidebar.scss */
+/* line 413, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1110,7 +1110,7 @@ audio {
   display: inline-block;
   color: black;
 }
-/* line 423, ../sass/_sidebar.scss */
+/* line 425, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }

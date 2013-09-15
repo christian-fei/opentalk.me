@@ -118,7 +118,7 @@
 
 .no-csstransforms .fixed-sidebar{
 	@media all and (max-width: $mobile-view){
-		&.show{
+		&.shadow{
 			left:0!important;
 		}
 	}
@@ -159,10 +159,12 @@
 		-moz-transition: all .3s ease-in-out;
 		-ms-transition: all .3s ease-in-out;
 		-o-transition: all .3s ease-in-out;
-		transition: all .3s ease-in-out;
-
-		@extend .fly-in-down;
+		transition: all .3s ease-in-out;		
 	}
+}
+
+.csstransforms .usermenu.show{
+	@extend .fly-in-down;
 }
 
 .buttons-wrapper{
