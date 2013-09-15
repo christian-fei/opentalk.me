@@ -20,14 +20,17 @@
 					<img class="user-avatar" src="{{avatar}}"/>
 					<span class="user-username">{{username}}</span>
 
-					<a href="/profile" id='userstats' class='button silver' title='view your stats'>profile <span class="icon-profile"></span></a>
-				</div>
-				
+					<div class="usermenu">
+						<a href="/profile" id='userstats' class='button silver' title='view your stats'>profile <span class="icon-profile"></span></a>
+						<a href="#" id='logout' class='button silver' title='Log out'>Sign out <span class="icon-signout"></span></a>						
+					</div>
+				</div>				
 				<div class='buttons-wrapper'>
-					<a href="#" id='logout' class='button silver' title='Log out'>Log out</a>
-					<a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
+					<!-- <a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
 						<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
-					</a>
+					</a> -->
+					<a href="#settings-modal" class="button silver" title='Settings'><span class="icon-settings"></span></a>
+					<a href="#tt-modal" class="button silver" title='Manual'><span class="icon-reference"></span></a>
 				</div>
 			{{/if}}
 		{{/isolate}}
@@ -59,7 +62,7 @@
 			</ul>
 		{{/isolate}}
 
-		<a href="#settings-modal" class="settings-modal">Settings</a>
+		
 		<a href="#tt-modal" class="tt-cheatsheet">Tips 'n' tricks</a>
 	</aside>
 	<div class="main">
@@ -72,6 +75,8 @@
 			{{>loginForm}}
 		{{/unless}}
 	</div>
+
 	{{>tipstricks}}
+	{{>settings}}
 	<audio id="new_message" src="/audio/notif.mp3" preload="auto"></audio>
 </template>

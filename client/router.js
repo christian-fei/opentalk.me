@@ -1,6 +1,9 @@
 var alreadyTracked=[];
 
 Meteor.Router.add({'/': function(){
+		if(onlineUsersObserver){
+			onlineUsersObserver.stop();
+		}
 		goOffline();
 		//reset
 		Session.set('roomid',null);
@@ -15,6 +18,9 @@ Meteor.Router.add({'/': function(){
 });
 
 Meteor.Router.add({'/profile':function(){
+		if(onlineUsersObserver){
+			onlineUsersObserver.stop();
+		}
 		goOffline(); //because you're not anymore in the room
 		//reset
 		// console.log('pageview profile');
@@ -31,7 +37,7 @@ Meteor.Router.add({'/profile':function(){
 
 Meteor.Router.add({'/:id': function(id){
 		//reset
-		
+
 
 		Session.set('roomid',id);
 		prevUserId=prevId=null;

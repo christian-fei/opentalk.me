@@ -126,6 +126,8 @@
 
 .userinfo{
 	text-align: center;
+	cursor: pointer;
+	
 	.user-avatar{
 		height:3.5em;
 		border: 1px solid black;
@@ -138,11 +140,34 @@
 		white-space: nowrap;
 	    overflow: hidden;
 	    display: block;
+	    font-size: 1.1em;
+	}
+}
+
+
+.usermenu{
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+
+	&.show{
+		opacity: 1;
+		visibility: visible;
+		height:auto;
+
+		-webkit-transition: all .3s ease-in-out;
+		-moz-transition: all .3s ease-in-out;
+		-ms-transition: all .3s ease-in-out;
+		-o-transition: all .3s ease-in-out;
+		transition: all .3s ease-in-out;
+
+		@extend .fly-in-down;
 	}
 }
 
 .buttons-wrapper{
 	text-align: center;
+	margin: 1em auto;
 }
 #logout,#toggleRealtime,#userstats{
 	// float:left;
@@ -344,8 +369,8 @@ $ou-width: 10em;
 
 
 .tt-cheatsheet{
-	margin:2em 0 1em;
-	padding: 2em 0 1em;
+	margin:1em 0;
+	padding: 1em 0;
 	display:block;
 	text-align: center;
 }

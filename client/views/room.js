@@ -1,3 +1,8 @@
+ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
+mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
+
+
+
 Template.room.helpers({
 	'onlineUsers':function(){
 		return OnlineUsers.find();
@@ -136,20 +141,7 @@ Template.room.events({
 
 
 
-Meteor.startup(function(){
-});
-
-
-
-
-
-
-Deps.autorun(function(){
-	// console.log('uid ' +Meteor.userId());
-	Meteor.subscribe('roomTags',Session.get('roomid'));
-});
-
-Deps.autorun(function(){
+function getAvatar(){
 	var avatar='/images/avatar.png';
 	if(Meteor.user()){
 		// goOnline(); //a typeahead hack
@@ -176,15 +168,20 @@ Deps.autorun(function(){
 		}
 	}
 	Session.set('avatar',avatar);
+	
+}
+Deps.autorun(function(){
+	getAvatar();
+
+	Meteor.subscribe('roomTags',Session.get('roomid'));
 });
 
 
-// mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-
-
-onlineUsersObserver=null;
 
 Template.room.rendered=function(){
+
+	console.log('room rendered');
+
 	positionFixedContent();
 
 	notif = document.querySelector('#new_message');
@@ -193,7 +190,9 @@ Template.room.rendered=function(){
 	if(onlineUsersObserver){
 		onlineUsersObserver.stop();
 	}
+
 	$('.online-user-wrapper').remove();
+
 	onlineUsersObserver=OnlineUsers.find().observe({
 		added:function(doc){
 			// console.log(doc);
@@ -207,14 +206,23 @@ Template.room.rendered=function(){
 		changed:function(doc){
 			// console.log('changed');
 			// console.log(doc);
+			// console.log( $('#'+doc._id+' .status-badge')[0].className );
+			$('#'+doc._id+' .status-badge')[0].className = 'status-badge ' + doc.status;
+			$('#'+doc._id+' .micro-avatar').css({'background':doc.avatar});
+
+			//fuck the above shit
+			// $('#'+doc._id).remove();
+			// var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
+			// $('#append-online-user-here').before(ou);
 		},
 		removed:function(doc){
 			// console.log(doc);
 			$('#'+doc._id).remove();
 		}
 	});
-}
 
+	$('.userinfo:not(.bound)').addClass('bound').bind('click',  function(){ $('.usermenu').toggleClass('show'); });
+}
 
 
 
@@ -270,10 +278,14 @@ Meteor.startup(function(){
 	});
 });
 
-
-ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
-mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-
+Deps.autorun(function(){
+	if( Meteor.user() ){
+		console.log('Meteor.user()');
+		console.log(Meteor.user());
+		Meteor.subscribe('userData');
+		goOnline();
+	}
+});
 
 Meteor.startup(function(){
 

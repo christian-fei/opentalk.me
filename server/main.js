@@ -115,7 +115,7 @@ Meteor.methods({
       // console.log('setOnlineUser: registering as online [' + username + '](' + userid + ') @ ' + roomid  + ' with status ' + status);
     }else{
       //keep alive
-      OnlineUsers.update({userid:userid,roomid:roomid},{$set:{status:'online',lastSeen:now}});
+      OnlineUsers.update({userid:userid,roomid:roomid},{$set:{status:'online',lastSeen:now,avatar:avatar}});
       // console.log('keep alive ' + userid + ' in  ' + roomid);
     }
   },
