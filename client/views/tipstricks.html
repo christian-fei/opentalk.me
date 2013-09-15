@@ -1,0 +1,127 @@
+<template name="tipstricks">
+	<section class="semantic-content" id="tt-modal" tabindex="-1" role="dialog" aria-labelledby="tt-modal" aria-hidden="true">
+	    <div class="modal-inner">
+	        <header id="modal-label" class='modal-header'>
+	        	<h3>Tips 'n' tricks</h3>
+	        </header>
+	        <div class="modal-content">
+	        	<h2>Smileys</h2>
+	        	<small>emojis will be hopefully ported soon</small>
+	        	<br>
+	        	Because: who doesn't like Smileys?
+	        	<br>
+	        	<table class='emoji-table'>
+	        		<tr>
+	        			<td>:)</td><td><span class="emojify blush"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:O</td><td><span class="emojify scream"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:]</td><td><span class="emojify smirk"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:D</td><td><span class="emojify smiley"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>xD</td><td><span class="emojify stuck_out_tongue_closed_eyes"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:P</td><td><span class="emojify stuck_out_tongue_winking_eye"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:[ or :@</td><td><span class="emojify rage"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:(</td><td><span class="emojify disappointed"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:'(</td><td><span class="emojify sob"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:\</td><td><span class="emojify kissing_heart"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>;)</td><td><span class="emojify wink"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:|</td><td><span class="emojify flushed"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:$</td><td><span class="emojify relaxed"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>:X</td><td><span class="emojify mask"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>&lt;3</td><td><span class="emojify heart"></span></td>
+	        		</tr>
+	        		<tr>
+	        			<td>&lt;/3</td><td><span class="emojify broken_heart"></span></td>
+	        		</tr>
+
+	        	</table>
+
+	        	<br>
+	        	<br>
+	        	<h2>Markdown</h2>
+				<b>OpenTalk</b> supports your nerdy needs. <br/>
+				Basic Markdown parsing (in the <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target='_blank'>Github fashion</a>), like: <br/>
+
+				<br>
+
+				<h4>Headings</h4>
+				# H1<br/>
+				## H2<br/>
+				### H3<br/>
+				#### H4<br/>
+				##### H5<br/>
+				###### H6<br/>
+
+				<br>
+
+				<h4>Emphasis</h4>
+				Emphasis, aka italics, with *asterisks* or _underscores_. <br/>
+				Strong emphasis, aka bold, with **asterisks** or __underscores__. <br/>
+				Strikethrough uses two tildes. ~~Scratch this.~~ <br>
+				Horizontal lines are created with three dashes --- <br>
+
+				<br>
+				
+				<h4>Lists</h4>
+				<small>currently only unordered lists are supported</small>
+				<br/>
+				* Unordered list can use asterisks <br/>
+				- Or minuses <br/>
+				+ Or pluses <br/>
+				
+				<br>
+
+				<h4>Code</h4>
+				Code can be inline or multi-line (<b>reminder</b>: shift+enter to create a new line)
+				<br>
+				Code is introduced <b>and</b> ended with two backticks, like this:
+				<br>
+				``<br>
+				    var s = "ahoi"; <br>
+				    alert(s); <br>
+				``
+				<br>
+				no syntax highlighting at the momemt, but will be integrated (soon?).
+				<br>
+				Do you have suggestions or want to contribute? <br>
+				That would be <a href="https://github.com/christian-fei/opentalk.me/blob/master/client/js/markdown.js">dope</a>
+				
+				<br>
+
+				<h4>Limitations</h4>
+				Headings and lists can only be created at the very beginning of a message and cannot be over multiple lines
+				<br>
+				Again, if you some Regex magic, your help would <a href="https://github.com/christian-fei/opentalk.me/blob/master/client/js/markdown.js">rock my day</a>
+
+	        </div>
+	    </div>
+	    <a href="#" class="modal-close" title="Close" data-close="Close"
+	        data-dismiss="modal">×</a>
+	</section>
+</template>

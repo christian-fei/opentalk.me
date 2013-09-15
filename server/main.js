@@ -1,9 +1,9 @@
 Messages.allow({
   //on the client the message length limit is 500, but since I add tags and shit it gets bigger, hopefully not more than 1000 chars..
   insert  : function(userId,doc){
-    console.log(userId);
-    console.log(Meteor.userId());
-    console.log(doc);
+    // console.log(userId);
+    // console.log(Meteor.userId());
+    // console.log(doc);
     if(userId && userId === Meteor.userId() && doc.text.length < 1000 && !doc.text.match(/<[^>]*script/gmi) && doc.messageComplete !== undefined && doc.roomid && doc.useravatar && doc.userid && doc.username)
       return true;
     return false;}

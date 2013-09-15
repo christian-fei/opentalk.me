@@ -49,6 +49,31 @@ markdown = {
 
             //@usernames
             r = r.replace(/(^|\s)@(.\S+)/gm, ' <span class="at-username">@$2</span> ');
+
+            //simple emoji
+            var emojis= [
+                [/:-*\)/g, '<span class="emojify blush"></span>'],
+                [/:-*o/gi, '<span class="emojify scream"></span>'],
+                [/(:|;)-*]/g, '<span class="emojify smirk"></span>'],
+                [/(:|;)-*d/gi, '<span class="emojify smiley"></span>'],
+                [/xd/gi, '<span class="emojify stuck_out_tongue_closed_eyes"></span>'],
+                [/:-*p/gi, '<span class="emojify stuck_out_tongue_winking_eye"></span>'],
+                [/:-*(\[|@)/g, '<span class="emojify rage"></span>'],
+                [/:-*\(/g, '<span class="emojify disappointed"></span>'],
+                [/:('|’)-*\(/g, '<span class="emojify sob"></span>'],
+                [/:-*\*/g, '<span class="emojify kissing_heart"></span>'],
+                [/;-*\)/g, '<span class="emojify wink"></span>'],
+                [/:-*\//g, '<span class="emojify pensive"></span>'],
+                [/:-*s/gi, '<span class="emojify confounded"></span>'],
+                [/:-*\|/g, '<span class="emojify flushed"></span>'],
+                [/:-*\$/g, '<span class="emojify relaxed"></span>'],
+                [/:-*x/gi, '<span class="emojify mask"></span>'],
+                [/<3/g, '<span class="emojify heart"></span>'],
+                [/<\/3/g, '<span class="emojify broken_heart"></span>']
+            ];
+            for (var i = emojis.length - 1; i >= 0; i--) {
+                r = r.replace(emojis[i][0],emojis[i][1]);
+            };
             
         }
 

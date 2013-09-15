@@ -94,6 +94,15 @@
 			opacity: 1!important;
 		}
 	}
+
+
+	@media screen and (-webkit-min-device-pixel-ratio:0){
+		&::-webkit-scrollbar{width:.4em!important;background:#fff;} 
+		&::-webkit-scrollbar-track{background-color: #eee;} 
+		&::-webkit-scrollbar-thumb{border-radius: 4px;background-color: rgba(0,0,0,0.1); }
+	}
+
+
 }
 .csstransforms .fixed-sidebar{
 	@media all and (max-width: $mobile-view){
@@ -334,11 +343,24 @@ $ou-width: 10em;
 
 
 
-.markdown-cheatsheet{
-	margin:5em 0;
-	padding: 2em 0;
+.tt-cheatsheet{
+	margin:2em 0 1em;
+	padding: 2em 0 1em;
 	display:block;
 	text-align: center;
+}
+
+
+.emoji-table{
+	tr{
+		float:left;
+		margin: .3em;
+		border: 1px solid #F5F5F5;
+
+		td{
+			padding:.2em;
+		}
+	}
 }
 
 
