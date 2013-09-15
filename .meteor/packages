@@ -21,3 +21,4 @@ router
 spin
 accounts-ui
 http
+collection-hooks

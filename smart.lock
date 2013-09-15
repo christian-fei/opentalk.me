@@ -5,13 +5,14 @@
       "router": {},
       "HTML5-History-API": {},
       "paginated-subscription": {},
-      "spin": {}
+      "spin": {},
+      "collection-hooks": {}
     },
     "packages": {
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.5.4",
-        "commit": "e40ee450a756b54a32ed67be4595772403256fb5"
+        "tag": "v0.5.4.1",
+        "commit": "d00e380dda2184b70e909fc4a0fb5358d602c586"
       },
       "HTML5-History-API": {
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
@@ -27,6 +28,11 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v0.2.0",
         "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
+      },
+      "collection-hooks": {
+        "git": "https://github.com/matb33/meteor-collection-hooks.git",
+        "tag": "v0.5.2",
+        "commit": "2c986b3aeae7ad3ce3e146669675fd515db346b9"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

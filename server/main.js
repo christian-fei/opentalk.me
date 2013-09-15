@@ -1,9 +1,10 @@
 Messages.allow({
   //on the client the message length limit is 500, but since I add tags and shit it gets bigger, hopefully not more than 1000 chars..
-  insert  : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && !doc.text.match(/[<|>|&]+/gm)){return true;} return false;}
-  ,update : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && !doc.text.match(/[<|>|&]+/gm)){return true;} return false;}
+  insert  : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && doc.text.indexOf('<script>'))return true; return false;}
+  ,update : function(userId,doc){if(userId && userId === Meteor.userId() && doc.text.length < 1000 && doc.text.indexOf('<script>'))return true; return false;}
   ,remove : function(userId,doc){if(userId && userId === Meteor.userId())return true; return false;}
 });
+
 Rooms.allow({
   insert  : function(userId,doc){
     if(userId === Meteor.userId() && doc.tags.length  <= 5)return true; return false;
