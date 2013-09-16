@@ -211,13 +211,13 @@ function renderMessages(){
 			//i think this fixes some ff issues
 			if(doc._id === $('#last').prev().attr('id')  )return;
 
-			console.log(doc._id + ' !== ' + $('#last').prev().attr('id') );
+			// console.log(doc._id + ' !== ' + $('#last').prev().attr('id') );
 
-			console.log('moved to');
-			// console.log(doc);
-			console.log(fromIndex);
-			console.log(toIndex);
-			console.log(before);
+			// console.log('moved to');
+			// // console.log(doc);
+			// console.log(fromIndex);
+			// console.log(toIndex);
+			// console.log(before);
 
 			//the message
 			message = document.createElement('li');
