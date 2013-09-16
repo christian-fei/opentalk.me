@@ -326,24 +326,16 @@ function renderMessages(){
 			autoCompleteUsername(fields.username,fields.useravatar);
 
 			if( timetext=checkPrintTime(fields.timestamp) ){
-				// console.log( new Date(fields.timestamp) );
-				// console.log(timetext);
 
 				timestampli=document.createElement('li');
 				timestampli.setAttribute('class','timestamp-text');
 				timestampli.innerHTML = timetext;
 
-				
-				// if(message.parentNode){
-				// 	console.log('parentNode');
-				// 	message.parentNode.insertBefore(timestampli,message);
-				// }
-				// else{
-				// 	console.log('not parentNode')
-				// 	message.insertBefore(timestampli,message.childNode);
-				// }
-				// console.log($(message));
-				// console.log(message);
+
+				//fix avatars and borders
+				// if()
+
+
 				$(message).append( $(timestampli) ); //kinda works, it append the timestamp INSIDE of the message
 				$(message).after( $(timestampli) );
 				
