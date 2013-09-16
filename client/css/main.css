@@ -173,7 +173,7 @@ small {
 SUPER SLICK TRANSFORMS
 */
 /* line 8, ../sass/_transforms.scss */
-.fly-in-up, .fly-in-right, .tag-search-results a, .fly-in-left, .tags .tag {
+.fly-in-up, .csstransforms.cssanimations .usermenu.show, .fly-in-right, .tag-search-results a, .fly-in-left, .tags .tag {
   -webkit-transition: opacity 300ms 200ms ease;
   -moz-transition: opacity 300ms 200ms ease;
   -ms-transition: opacity 300ms 200ms ease;
@@ -186,7 +186,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 20, ../sass/_transforms.scss */
-.fly-in-down, .csstransforms .usermenu.show, .new-message {
+.fly-in-down, .new-message {
   -webkit-animation: flyindown 200ms ease;
   -moz-animation: flyindown 200ms ease;
   -ms-animation: flyindown 200ms ease;
@@ -195,7 +195,7 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 27, ../sass/_transforms.scss */
-.fly-in-up {
+.fly-in-up, .csstransforms.cssanimations .usermenu.show {
   opacity: 0.1;
   -webkit-animation: flyinup 200ms ease;
   -moz-animation: flyinup 200ms ease;
@@ -866,9 +866,9 @@ audio {
 }
 /* line 156, ../sass/_sidebar.scss */
 .usermenu.show {
-  opacity: 1;
-  visibility: visible;
-  height: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;

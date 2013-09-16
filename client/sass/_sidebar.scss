@@ -154,9 +154,9 @@
 	height: 0;
 
 	&.show{
-		opacity: 1;
-		visibility: visible;
-		height:auto;
+		opacity: 1!important;
+		visibility: visible!important;
+		height:auto!important;
 
 		-webkit-transition: all .3s ease-in-out;
 		-moz-transition: all .3s ease-in-out;
@@ -166,8 +166,8 @@
 	}
 }
 
-.csstransforms .usermenu.show{
-	@extend .fly-in-down;
+.csstransforms.cssanimations .usermenu.show{
+	@extend .fly-in-up;
 }
 
 .buttons-wrapper{
