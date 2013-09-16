@@ -202,22 +202,66 @@ function renderMessages(){
 	timeRefChecker=[];currentTimeRef=10000;
 
 	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
-		movedTo: function(document, fromIndex, toIndex, before){
+		movedTo: function(doc, fromIndex, toIndex, before){
 			//Don't show my message until it's marked as complete..
-			if(document.userid === Meteor.userId() && document.messageComplete===false)return;
+			if(doc.userid === Meteor.userId() && doc.messageComplete===false)return;
 			//hide not yet completed messages to users who don't want to.
-			if(!Session.get('realtimeEnabled') && document.messageComplete===false)return;
+			if(!Session.get('realtimeEnabled') && doc.messageComplete===false)return;
+
+			//i think this fixes some ff issues
+			if(doc._id === $('#last').prev().attr('id')  )return;
+
+			console.log(doc._id + ' !== ' + $('#last').prev().attr('id') );
 
 			console.log('moved to');
-			console.log(document);
+			// console.log(doc);
 			console.log(fromIndex);
 			console.log(toIndex);
 			console.log(before);
+
+			//the message
+			message = document.createElement('li');
+			message.setAttribute('class','message new-message diffUser lastOfUser');
+			message.setAttribute('id',doc._id);
+			message.setAttribute('data-userid',doc.userid);
+
+				//span.avatar
+				avatar=document.createElement('span');
+				avatar.setAttribute('class','avatar tip avatar-border');
+				avatar.style.background = 'url(\'' +doc.useravatar + '\')';
+
+					//span.username
+					username=document.createElement('span');
+					username.classList.add('username');
+					username.innerHTML = doc.username;
+
+				//span.text
+				text=document.createElement('span');
+				text.classList.add('text');
+				text.innerHTML=doc.text;
+
+
+			//assemble the message
+			avatar.appendChild( username );
+			message.appendChild(avatar);
+			message.appendChild(text);
+
+			$('#'+doc._id).remove();
+
+			$('#last').before( $(message) );
+
+			if(trolls.indexOf(doc.userid) >=0){
+				//hiding because in trolls
+				console.log('hiding because in trolls');
+				$(message).hide(); //not workging anymore
+				// message.style.display = 'none';
+			}
 		}
 	});
 	messagesObserveChanges=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 
+			// console.log(before);
 
 			timetext=checkPrintTime(fields.timestamp);
 
@@ -225,6 +269,9 @@ function renderMessages(){
 
 			//Don't show my message until it's marked as complete..
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
+			else{
+				// $('#last').prev().addClass('lastOfUser');
+			}
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
@@ -287,7 +334,7 @@ function renderMessages(){
 				avatar.style.backgroundImage='url("'+fields.useravatar+'")';
 
 				if(firstRunAfterMore){
-					console.log('firstRunAfterMore');
+					// console.log('firstRunAfterMore');
 					message.classList.add('lastOfUser');
 					avatar.classList.add('avatar-border');
 					avatar.classList.add('tip');
@@ -346,7 +393,7 @@ function renderMessages(){
 				// console.log( $('#'+id).next().data('userid') ); 
 				// console.log( $('#'+id).next().data('userid') ); 
 				if( fields.userid === $('#'+id).next().data('userid') ){
-					console.log('same userid');
+					// console.log('same userid');
 					//because it is the same user
 						//restore avatar
 						//diffUser
@@ -364,8 +411,11 @@ function renderMessages(){
 					$( '#'+ $('#'+id).next().attr('id') ).addClass('diffUser');
 
 
-					// $( '#'+ $('#'+id).prev().attr('id') ).addClass('lastOfUser');
+				}else{
+
 				}
+				
+				$('.timestamp-text').prev().addClass('lastOfUser');
 
 
 				$(message).after( $(timestampli) );
