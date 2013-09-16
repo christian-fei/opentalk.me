@@ -222,7 +222,7 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			console.log(id);
+			// console.log(id);
 
 
 

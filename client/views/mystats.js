@@ -14,8 +14,8 @@ Template.mystats.helpers({
 		return '<h1>' + Session.get('userCharactersCount') + '</h1>' + '<h6>characters</h6>';
 	},
 	memberSince:function(){
-		console.log('member since');
-		console.log(Meteor.user());
+		// console.log('member since');
+		// console.log(Meteor.user());
 		
 
 		if(Meteor.user())
