@@ -3,7 +3,6 @@
     "router": {},
     "HTML5-History-API": {},
     "paginated-subscription": {},
-    "spin": {},
-    "collection-hooks": {}
+    "spin": {}
   }
 }
