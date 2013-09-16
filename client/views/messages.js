@@ -198,6 +198,7 @@ message=avatar=username=text=null;
 function renderMessages(){
 	if(messagesObserveChanges)
 		messagesObserveChanges.stop();
+	var timetext='';
 	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
 		movedTo: function(document, fromIndex, toIndex, before){
 			//Don't show my message until it's marked as complete..
@@ -221,9 +222,8 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-
-			checkTimeRef(fields.timestamp);
 			
+
 
 
 			//the message
@@ -252,13 +252,35 @@ function renderMessages(){
 			message.appendChild(avatar);
 			message.appendChild(text);
 
+			if( timetext=checkPrintTime(fields.timestamp) ){
+				console.log( new Date(fields.timestamp) );
+				console.log(timetext);
+
+				timestampli=document.createElement('li');
+				timestampli.setAttribute('class','timestamp-text');
+				timestampli.innerHTML = timetext;
+
+				
+				// if(message.parentNode){
+				// 	console.log('parentNode');
+				// 	message.parentNode.insertBefore(timestampli,message);
+				// }
+				// else{
+				// 	console.log('not parentNode')
+				// 	message.insertBefore(timestampli,message.childNode);
+				// }
+				// console.log($(message));
+				// console.log(message);
+				$(message).append( $(timestampli) );
+			}
+
 
 
 			if(trolls.indexOf(fields.userid) >=0){
 				//hiding because in trolls
 				console.log('hiding because in trolls');
-				// message.hide(); //not workging anymore
-				message.style.display = 'none';
+				$(message).hide(); //not workging anymore
+				// message.style.display = 'none';
 			}
 
 			if(before === null) {
