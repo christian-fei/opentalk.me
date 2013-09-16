@@ -25,7 +25,6 @@ Template.messages.events({
 
 
 
-
     	//remove last /n
     	// text = text.substring(0,text.length);
 
@@ -218,6 +217,10 @@ function renderMessages(){
 	});
 	messagesObserveChanges=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
+
+
+			timetext=checkPrintTime(fields.timestamp);
+
 			// console.log('added id ' +id + ' before ' + before);
 
 			//Don't show my message until it's marked as complete..
@@ -278,8 +281,11 @@ function renderMessages(){
 			}else{
 				//stay at the same position
 				var offsetBottom = document.body.offsetHeight - document.body.scrollTop;
+
 				$('#'+before).before(message);
+
 				avatar.style.backgroundImage='url("'+fields.useravatar+'")';
+
 				if(firstRunAfterMore){
 					console.log('firstRunAfterMore');
 					message.classList.add('lastOfUser');
@@ -327,8 +333,7 @@ function renderMessages(){
 			}
 
 			autoCompleteUsername(fields.username,fields.useravatar);
-
-			if( timetext=checkPrintTime(fields.timestamp) ){
+			if( timetext ){
 
 				timestampli=document.createElement('li');
 				timestampli.setAttribute('class','timestamp-text');
@@ -336,10 +341,28 @@ function renderMessages(){
 
 
 				//fix avatars and borders
-				// if()
+				// console.log(fields.userid);
+				// console.log( $('#'+id).next().data('userid') ); 
+				// console.log( $('#'+id).next().data('userid') ); 
+				if( fields.userid === $('#'+id).next().data('userid') ){
+					console.log('same userid');
+					//because it is the same user
+						//restore avatar
+						//diffUser
+						//and to the current message add lastOfUser
+						// console.log( message );
+						// console.log( $('#'+id).next().attr('id') );
+
+						console.log( $( '#'+ $('#'+id).next().attr('id') )[0] );
+
+						var avatarElement = $( '#'+ $('#'+id).next().attr('id') +' .avatar' );
+						avatarElement.css('background','url(\'' + fields.useravatar + '\')' );
+						avatarElement.addClass('tip');
+						avatarElement.addClass('avatar-border');
+
+				}
 
 
-				$(message).append( $(timestampli) ); //kinda works, it append the timestamp INSIDE of the message
 				$(message).after( $(timestampli) );
 				
 			}
