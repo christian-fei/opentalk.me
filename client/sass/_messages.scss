@@ -221,6 +221,21 @@
 			-o-animation: realtime-anim $realtime-duration ease-out;
 			animation: realtime-anim $realtime-duration ease-out;			
 		}
+
+
+	.timestamp-text{
+		text-align: center;
+		font-size: .8em;
+		color: #857F7F;
+		margin: .8em 0 1.8em;
+
+		&::after{
+			content:'↑';
+			height:1em;
+			width:1em;
+			margin-left:.5em;
+		}
+	}
 		
 #li-message{
 	width:100%;

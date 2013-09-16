@@ -222,7 +222,7 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			
+			console.log(id);
 
 
 
@@ -252,29 +252,6 @@ function renderMessages(){
 			message.appendChild(avatar);
 			message.appendChild(text);
 
-			if( timetext=checkPrintTime(fields.timestamp) ){
-				console.log( new Date(fields.timestamp) );
-				console.log(timetext);
-
-				timestampli=document.createElement('li');
-				timestampli.setAttribute('class','timestamp-text');
-				timestampli.innerHTML = timetext;
-
-				
-				// if(message.parentNode){
-				// 	console.log('parentNode');
-				// 	message.parentNode.insertBefore(timestampli,message);
-				// }
-				// else{
-				// 	console.log('not parentNode')
-				// 	message.insertBefore(timestampli,message.childNode);
-				// }
-				// console.log($(message));
-				// console.log(message);
-				$(message).append( $(timestampli) );
-			}
-
-
 
 			if(trolls.indexOf(fields.userid) >=0){
 				//hiding because in trolls
@@ -292,7 +269,8 @@ function renderMessages(){
 					avatar.style.backgroundImage='url("' + fields.useravatar + '")';
 					avatar.classList.add('avatar-border');
 					avatar.classList.add('tip');
-					$('#'+id).prev().addClass('lastOfUser');
+					if( !$('#'+id).prev().hasClass('timestamp-text') )
+						$('#'+id).prev().addClass('lastOfUser');
 				}
 			}else{
 				//stay at the same position
@@ -346,6 +324,30 @@ function renderMessages(){
 			}
 
 			autoCompleteUsername(fields.username,fields.useravatar);
+
+			if( timetext=checkPrintTime(fields.timestamp) ){
+				// console.log( new Date(fields.timestamp) );
+				// console.log(timetext);
+
+				timestampli=document.createElement('li');
+				timestampli.setAttribute('class','timestamp-text');
+				timestampli.innerHTML = timetext;
+
+				
+				// if(message.parentNode){
+				// 	console.log('parentNode');
+				// 	message.parentNode.insertBefore(timestampli,message);
+				// }
+				// else{
+				// 	console.log('not parentNode')
+				// 	message.insertBefore(timestampli,message.childNode);
+				// }
+				// console.log($(message));
+				// console.log(message);
+				$(message).append( $(timestampli) ); //kinda works, it append the timestamp INSIDE of the message
+				$(message).after( $(timestampli) );
+				
+			}
 		},
 		changed: function(id,fields){
 			// console.log('changed ' + id);
