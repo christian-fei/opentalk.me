@@ -144,37 +144,6 @@ Template.room.events({
 	}
 });
 
-
-
-function getAvatar(){
-	var avatar='/images/avatar.png';
-	if(Meteor.user()){
-		// goOnline(); //a typeahead hack
-		if(Meteor.user().services){
-			if(Meteor.user().services.twitter)
-				avatar = Meteor.user().services.twitter.profile_image_url;
-			if(Meteor.user().services.google)
-				avatar = Meteor.user().services.google.picture;
-			if(Meteor.user().services.facebook)
-				avatar = 'https://graph.facebook.com/'+Meteor.user().services.facebook.username+'/picture';
-			if(Meteor.user().services.github){
-				//make ajax call to get profile image
-				var gh_api_url = 'https://api.github.com/users/' + Meteor.user().services.github.username;
-				//console.log('ajax to gh');
-				$.ajax({
-				  url: gh_api_url
-				}).done(function ( data ) {
-				    if(data.avatar_url){
-				    	avatar = data.avatar_url;
-					    Session.set('avatar',avatar);
-				    }
-				});
-			}
-		}
-	}
-	Session.set('avatar',avatar);
-	
-}
 Deps.autorun(function(){
 	getAvatar();
 

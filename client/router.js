@@ -8,7 +8,6 @@ Meteor.Router.add({'/': function(){
 		//reset
 		Session.set('roomid',null);
 		if(!alreadyTracked['/'] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
-                // console.log('tracking /');
                 mixpanel.track('landing');
                 alreadyTracked['/']=true;
         }
@@ -22,10 +21,9 @@ Meteor.Router.add({'/profile':function(){
 			onlineUsersObserver.stop();
 		}
 		goOffline(); //because you're not anymore in the room
+		Session.set('roomid',null);
 		//reset
-		// console.log('pageview profile');
 		if(!alreadyTracked['/profile'] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
-	            // console.log('tracking /profile');
 	            mixpanel.track('profile');
 	            alreadyTracked['/profile']=true;
 	    }
@@ -44,18 +42,15 @@ Meteor.Router.add({'/:id': function(id){
 		goOnline();
 		ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 		mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
-		// console.log('we are at ' + this.canonicalPath);
 		if( $('#mymessage') )
 			$('#mymessage').focus();
 		if(!alreadyTracked[id] && window.location.hostname === 'opentalk.me' && Meteor.userId() !== 'AZHSZ59HnHn2qiKW5'){
-			// console.log('tracking /' + id);
 			mixpanel.track(
 			    'room',
 			    { 'roomid': id }
 			);
 			alreadyTracked[id]=true;			
 		}
-		// onlineUsersAutoComplete=[];
 		return 'room';
 	}
 });

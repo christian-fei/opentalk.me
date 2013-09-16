@@ -1,20 +1,8 @@
 visibly.visibilitychange(function(state){
-    // console.log('VSC The current visibility state is:' + state);
 	resetUnreadCount();
 	setTimeout(resetUnreadCount,1000);
 });
 
-// setInterval(function(){
-// 	if(!visibly.hidden())
-// 		resetUnreadCount();
-// },1000);
-
-//should work in every browser
-// setInterval(function () {
-// 	// console.log('v every');
-// 	if(Visibility.state() === 'visible')
-// 		resetUnreadCount();
-// },1000);
 
 Meteor.startup(function(){	
 	if(Meteor._localStorage.getItem('realtimeEnabled') === null){
@@ -39,24 +27,12 @@ Meteor.startup(function(){
 			positionFixedContent();
 		});
 
-		// $(document).wipetouch({
-		// 	preventDefault:false,
-		// 	wipeLeft: function(result) {
-		// 		hideSidebar();
-		// 	},
-		// 	wipeRight: function(result) {
-		// 		showSidebar();
-		// 	}
-		// });
-
-
 		if( $('#mymessage') )
 			$('#mymessage').focus();
 	});
 
 
 	if(!Modernizr.input.placeholder){
-		//console.log('there ain\'t no placeholder support in your shitty browser, dude');
 		$('[placeholder]').focus(function() {
 		var input = $(this);
 		if (input.val() == input.attr('placeholder')) {
@@ -79,11 +55,7 @@ Meteor.startup(function(){
 			})
 		});
 	}
-
-
-	// Deps.autorun(function(){console.log(mSub.loading() + ' ' + mSub.loaded() + ' / ' + $('.message').length)})
 });
-
 
 
 
