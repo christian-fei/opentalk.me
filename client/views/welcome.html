@@ -12,6 +12,11 @@
 		</div>
 	</section>
 	<section class='blankets-wrapper'>
+		{{#unless currentUser}}
+			<div style='margin: 2em auto;text-align:center;'>
+				{{>loginForm}}
+			</div>
+		{{/unless}}
 		<div class="blanket-wrapper">
 			<div class="blanket medium-text">
 				<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
