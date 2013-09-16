@@ -1,0 +1,69 @@
+.success{
+	display: inline-block;
+	padding: .35em;
+
+	opacity: 0;
+
+	border-radius:.3em;
+	border:1px solid lightgrey;
+
+	&.yes{
+		background:$color-main;
+		opacity: 1;
+
+		-webkit-animation: fadeAway 5s ease-out;
+		-moz-animation: fadeAway 5s ease-out;
+		-ms-animation: fadeAway 5s ease-out;
+		-o-animation: fadeAway 5s ease-out;
+		animation: fadeAway 5s ease-out;
+
+		-webkit-animation-fill-mode:forwards;
+		-moz-animation-fill-mode:forwards;
+		-ms-animation-fill-mode:forwards;
+		-o-animation-fill-mode:forwards;
+		animation-fill-mode:forwards;
+	}
+}
+
+
+@keyframes "fadeAway" {
+ to {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   	filter: alpha(opacity=0);
+   	opacity: 0;
+ }
+
+}
+
+@-moz-keyframes fadeAway {
+ to {
+   filter: alpha(opacity=0);
+   opacity: 0;
+ }
+
+}
+
+@-webkit-keyframes "fadeAway" {
+ to {
+   filter: alpha(opacity=0);
+   opacity: 0;
+ }
+
+}
+
+@-ms-keyframes "fadeAway" {
+ to {
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+ }
+
+}
+
+@-o-keyframes "fadeAway" {
+ to {
+   filter: alpha(opacity=0);
+   opacity: 0;
+ }
+
+}

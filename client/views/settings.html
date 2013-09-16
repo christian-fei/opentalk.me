@@ -5,6 +5,20 @@
 	        	<h3>Settings</h3>
 	        </header>
 	        <div class="modal-content">
+	        	<div>
+	        		{{#isolate}}
+	        		<span>Enable or disable realtime writing</span> <a href='#' id='toggleRealtime' class='button silver' title='toggleRealtime'><span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span></a>
+	        		{{/isolate}}
+	        	</div>
+	        	<br>
+	        	<div>
+	        		<span>Delete my messages <b>in this rooom</b> </span> <a href='#' id="removeMessagesRoom" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessagesRoom">Success!</span>
+	        	</div>
+	        	<br>
+	        	<div>
+	        		<span>Delete all my messages </span> <a href='#' id="removeMessages" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessages">Success!</span>
+	        	</div>
+	        	<br>
 	        </div>
 	    </div>
 	    <a href="#" class="modal-close" title="Close" data-close="Close"

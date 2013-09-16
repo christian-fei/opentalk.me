@@ -171,7 +171,7 @@
 	text-align: center;
 	margin: 1em auto;
 }
-#logout,#toggleRealtime,#userstats{
+#logout,#toggleRealtime,#userstats,#removeMessagesRoom,#removeMessages{
 	// float:left;
 	//clear:right;
 	margin-left:0.5em;
@@ -180,6 +180,10 @@
 
 	text-decoration: none;
 	border:1px solid darkgrey;
+
+	cursor:pointer;
+
+	color:#333;
 }
 
 #toggleRealtime{

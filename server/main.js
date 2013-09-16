@@ -78,7 +78,11 @@ Meteor.methods({
     console.log('removing? ' + Meteor.userId() === userid);
     if(Meteor.userId() === userid)
       Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
-
+  },
+  removeMessagesOfUser : function(userid){
+    console.log('removing? ' + Meteor.userId() === userid);
+    if(Meteor.userId() === userid)
+      Messages.remove({userid:userid}, function(){console.log('messages of user removed ' + userid);});
   },
   clog : function(s){
     console.log(s);

@@ -13,22 +13,17 @@
 		<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
 			<img src="/images/logo_even_dark.png" alt="" class="logo">
 		</a>
-		
 		{{#isolate}}
 			{{#if currentUser}}
 				<div class="userinfo">
 					<img class="user-avatar" src="{{avatar}}"/>
 					<span class="user-username">{{username}}</span>
-
 					<div class="usermenu">
 						<a href="/profile" id='userstats' class='button silver' title='view your stats'>profile <span class="icon-profile"></span></a>
-						<a href="#" id='logout' class='button silver' title='Log out'>Sign out <span class="icon-signout"></span></a>						
+						<a href="#" id='logout' class='button silver' title='Log out'>Sign out <span class="icon-signout"></span></a>
 					</div>
 				</div>				
 				<div class='buttons-wrapper'>
-					<!-- <a href="#" id='toggleRealtime' class='button silver' title='toggleRealtime'>
-						<span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span>
-					</a> -->
 					<a href="#settings-modal" class="button silver" title='Settings'><span class="icon-settings"></span></a>
 					<a href="#tt-modal" class="button silver" title='Manual'><span class="icon-reference"></span></a>
 				</div>
@@ -61,9 +56,6 @@
 				{{/if}}
 			</ul>
 		{{/isolate}}
-
-		
-		<a href="#tt-modal" class="tt-cheatsheet">Tips 'n' tricks</a>
 	</aside>
 	<div class="main">
 
@@ -78,5 +70,9 @@
 
 	{{>tipstricks}}
 	{{>settings}}
-	<audio id="new_message" src="/audio/notif.mp3" preload="auto"></audio>
+
+	<audio id="new_message" preload="auto">
+		<source src='/audio/notif.mp3'/>
+		<source src='/audio/notif.ogg'/>
+	</audio>
 </template>

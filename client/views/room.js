@@ -16,9 +16,6 @@ Template.room.helpers({
 	'roomid':function(){
 		return Session.get('roomid');
 	},
-	'realtimeEnabled':function(){
-		return Session.get('realtimeEnabled') ? 'on' : 'off';
-	},
 	'username':function(){
 		var username='';
 		if(s=Meteor.user().services){
@@ -67,11 +64,6 @@ Template.room.events({
 		ouSub.stop();
 		Meteor.Router.to('/profile');
 	},
-	'click #toggleRealtime' : function(evnt){
-		evnt.preventDefault();
-		Meteor._localStorage.setItem('realtimeEnabled',!Session.get('realtimeEnabled'));
-		Session.set('realtimeEnabled' , !Session.get('realtimeEnabled'));
-	},
 	'click .go-home-you-are-drunk' : function(evnt,tmplt){
 		evnt.preventDefault();
 		ouSub.stop();
@@ -104,6 +96,13 @@ Template.room.events({
 		var ind=0;
 		//don't hide my messages
 		if(evnt.target.getAttribute('data-userid') === Meteor.userId())return;
+		
+		var offsetBottom = document.body.offsetHeight;
+		if(document.body.scrollTop > 0)
+			offsetBottom -= document.body.scrollTop;
+		else
+			offsetBottom -= document.documentElement.scrollTop;
+
 		if(ind=trolls.indexOf(evnt.target.getAttribute('data-userid')) >=0){
 			//remove from trolls
 			trolls.pop(ind);
@@ -116,6 +115,12 @@ Template.room.events({
 			evnt.target.classList.remove('strike');
 
 		$('.message[data-userid="'+evnt.target.getAttribute('data-userid')+'"]').toggle();
+		
+		
+		if(document.body.scrollTop > 0)
+			document.body.scrollTop = document.body.offsetHeight - offsetBottom;
+		else
+			document.documentElement.scrollTop = document.body.offsetHeight - offsetBottom;
 	},
 	'keyup #enter-tag' : function(evnt,tmplt){
 		if(evnt.keyCode === 13){
@@ -280,25 +285,22 @@ Meteor.startup(function(){
 
 Deps.autorun(function(){
 	if( Meteor.user() ){
-		console.log('Meteor.user()');
-		console.log(Meteor.user());
+		// console.log('Meteor.user()');
+		// console.log(Meteor.user());
 		Meteor.subscribe('userData');
 		goOnline();
 	}
 });
 
 Meteor.startup(function(){
-
 	var pn = window.location.pathname.replace(/\//,'');
 	if(pn.match(/[A-Z]/)){
-		console.log(pn);
-		console.log('uppercase');
+		// console.log(pn);
+		// console.log('uppercase');
 		var lc='/'+pn.toLowerCase();
 		console.log(lc);
 		Meteor.Router.to(lc);
 
 		positionFixedContent();
-		
-		// return 'room';	
 	}
 });
