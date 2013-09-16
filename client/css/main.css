@@ -1462,8 +1462,7 @@ code {
   white-space: pre;
   word-wrap: normal;
   overflow: auto;
-  margin: 0 2px;
-  padding: 3px 5px 0;
+  padding: 6px 6px 3px;
   border: 1px solid #ddd;
   background-color: #f8f8f8;
   border-radius: 3px;

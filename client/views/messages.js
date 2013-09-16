@@ -333,6 +333,7 @@ function renderMessages(){
 			}
 
 			autoCompleteUsername(fields.username,fields.useravatar);
+
 			if( timetext ){
 
 				timestampli=document.createElement('li');
@@ -353,13 +354,17 @@ function renderMessages(){
 						// console.log( message );
 						// console.log( $('#'+id).next().attr('id') );
 
-						console.log( $( '#'+ $('#'+id).next().attr('id') )[0] );
+					// console.log( $( '#'+ $('#'+id).next().attr('id') )[0] );
 
-						var avatarElement = $( '#'+ $('#'+id).next().attr('id') +' .avatar' );
-						avatarElement.css('background','url(\'' + fields.useravatar + '\')' );
-						avatarElement.addClass('tip');
-						avatarElement.addClass('avatar-border');
+					var avatarElement = $( '#'+ $('#'+id).next().attr('id') +' .avatar' );
+					avatarElement.css('background','url(\'' + fields.useravatar + '\')' );
+					avatarElement.addClass('tip');
+					avatarElement.addClass('avatar-border');
 
+					$( '#'+ $('#'+id).next().attr('id') ).addClass('diffUser');
+
+
+					// $( '#'+ $('#'+id).prev().attr('id') ).addClass('lastOfUser');
 				}
 
 
