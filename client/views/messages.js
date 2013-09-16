@@ -275,7 +275,7 @@ function renderMessages(){
 			//hide not yet completed messages to users who don't want to.
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
-			// console.log(id);
+
 
 
 
@@ -304,6 +304,15 @@ function renderMessages(){
 			avatar.appendChild( username );
 			message.appendChild(avatar);
 			message.appendChild(text);
+
+
+
+
+			if(fields.deletedAt){
+				// console.log('deleted message insert');
+				text.innerHTML='deleted message';
+				text.classList.add('deleted');
+			}
 
 
 			if(trolls.indexOf(fields.userid) >=0){
@@ -423,6 +432,13 @@ function renderMessages(){
 			}
 		},
 		changed: function(id,fields){
+			if(fields.deletedAt){
+				// console.log('deleted message updated');
+				var affMessage = $('#'+id+' .text');
+				affMessage.html('deleted message');
+				affMessage.addClass('deleted');
+				return;
+			}
 			// console.log('changed ' + id);
 			// console.log(fields);
 			//the message that changed, since observeChanges does not provide us the whole message (hack)

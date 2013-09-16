@@ -16,7 +16,7 @@ Template.settings.events({
 	'click #removeMessagesRoom':function(evnt){
 		evnt.preventDefault();
 		if(confirm('Are you sure?\nDo you really want to remove your messages from this chatroom?')){
-			Meteor.call('removeMessagesOfUserInRoom',Meteor.userId(),Session.get('roomid'),function(){
+			Meteor.call('removeMessagesOfUserInRoom',Session.get('roomid'),function(){
 				console.log('success');
 				var sccsrmmr = $('.success.removeMessagesRoom');
 				sccsrmmr.addClass('yes');

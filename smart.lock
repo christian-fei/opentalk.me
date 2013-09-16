@@ -5,8 +5,7 @@
       "router": {},
       "HTML5-History-API": {},
       "paginated-subscription": {},
-      "spin": {},
-      "collection-hooks": {}
+      "spin": {}
     },
     "packages": {
       "router": {
@@ -28,11 +27,6 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v0.2.0",
         "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
-      },
-      "collection-hooks": {
-        "git": "https://github.com/matb33/meteor-collection-hooks.git",
-        "tag": "v0.5.2",
-        "commit": "2c986b3aeae7ad3ce3e146669675fd515db346b9"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

@@ -103,6 +103,11 @@
 
 				vertical-align: middle;
 			}
+
+			&.deleted{
+				text-decoration: line-through;
+				color:#909090;
+			}
 		}
 
 		.at-username{

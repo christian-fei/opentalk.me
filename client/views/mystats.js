@@ -14,10 +14,6 @@ Template.mystats.helpers({
 		return '<h1>' + Session.get('userCharactersCount') + '</h1>' + '<h6>characters</h6>';
 	},
 	memberSince:function(){
-		// console.log('member since');
-		// console.log(Meteor.user());
-		
-
 		if(Meteor.user())
 			Session.set('memberSince',new Date(Meteor.user().createdAt).toDateString().substring(4));
 		return '<h3>' + Session.get('memberSince') + '</h3>' + '<h6>member since</h6>';
@@ -34,6 +30,7 @@ function renderUserRooms(r){
 }
 
 Template.mystats.rendered = function(){
+	console.log('mystats rendered');
 	Meteor.call('getUserStats',function(err,result){
 		Session.set('userMessagesCount',result.messagesCount);
 		Session.set('userRoomsCount',result.roomsCount);
@@ -41,4 +38,7 @@ Template.mystats.rendered = function(){
 		Session.set('userCharactersCount',result.charactersCount);
 		renderUserRooms(result.rooms);
 	});
+
+	Meteor.subscribe('userLastSeenInRooms');
+	console.log( LastSeenInRoom.find().fetch() );
 }

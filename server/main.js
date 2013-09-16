@@ -20,7 +20,7 @@ Rooms.allow({
   }
   ,update : function(userId,doc){
     if(userId && userId === Meteor.userId() && doc.tags.length  <= 5){ for(var i=0;i<doc.tags.length;i++){if(doc.tags[i].match(/<[^>]*script/gmi))return false;}return true;} return false;}
-  ,remove : function(userId,doc){return false; if(userId && userId === Meteor.userId())return true;return false;}
+  // ,remove : function(userId,doc){return false; if(userId && userId === Meteor.userId())return true;return false;}
 });
 
 // console.log(process.env);
@@ -43,6 +43,12 @@ Meteor.publish('roomTags',function(roomid){
     Rooms.insert({roomid:roomid,tags:[]});
   return Rooms.find({roomid:roomid});
 });
+
+Meteor.publish('userLastSeenInRooms', function(roomid) {
+  return LastSeenInRoom.find({userid:this.userId,roomid:roomid}, {sort: {timestamp:-1}});
+});
+
+
 
 var idleTime = 20*1000,
     idleCheck = idleTime/2,
@@ -74,15 +80,27 @@ Meteor.methods({
     //console.log('requested serverTime');
     return Date.now();
   },
-  removeMessagesOfUserInRoom : function(userid,roomid){
-    console.log('removing? ' + Meteor.userId() === userid);
-    if(Meteor.userId() === userid)
-      Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
+  removeMessagesOfUserInRoom : function(roomid){
+    if(Meteor.userId())
+      Messages.update(
+        {userid:Meteor.userId(),roomid:roomid},
+        {$set:
+          {deletedAt:Date.now()}
+        },
+        {multi:true}
+      );
+      // Messages.remove({userid:userid,roomid:roomid}, function(){console.log('messages of user ' + userid + ' removed from room ' + roomid);});
   },
-  removeMessagesOfUser : function(userid){
-    console.log('removing? ' + Meteor.userId() === userid);
-    if(Meteor.userId() === userid)
-      Messages.remove({userid:userid}, function(){console.log('messages of user removed ' + userid);});
+  removeMessagesOfUser : function(){
+    if(Meteor.userId())
+      Messages.update(
+        {userid:Meteor.userId()},
+        {$set:{
+          deletedAt:Date.now()}
+        },
+        {multi:true}
+      );
+      // Messages.remove({userid:Meteor.userId()}, function(){console.log('messages of user removed ' + userid);});
   },
   clog : function(s){
     console.log(s);
