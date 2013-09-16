@@ -1,6 +1,6 @@
 #!/bin/bash
-# echo '====checking out===='
-# git checkout .
+echo '====checking out===='
+git checkout .
 echo '====pulling latest changes===='
 git pull
 echo '====removing .demeteorized===='
