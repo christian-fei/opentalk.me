@@ -201,7 +201,7 @@ function renderMessages(){
 	//reset
 	var timetext='';
 	timeRefChecker=[];currentTimeRef=10000;
-	
+
 	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
 		movedTo: function(document, fromIndex, toIndex, before){
 			//Don't show my message until it's marked as complete..
@@ -383,7 +383,7 @@ function renderMessages(){
 			// console.log('removed ' + id);
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
-				if( $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
+				if( $('#'+id).next()[0].querySelector('.username') && $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
 					var bckpBg = $('#'+id)[0].firstChild.style.backgroundImage;
 					$('#'+id).next()[0].firstChild.style.backgroundImage=bckpBg;
 					$('#'+id).next()[0].firstChild.classList.add('avatar-border');
