@@ -198,7 +198,10 @@ message=avatar=username=text=null;
 function renderMessages(){
 	if(messagesObserveChanges)
 		messagesObserveChanges.stop();
+	//reset
 	var timetext='';
+	timeRefChecker=[];currentTimeRef=10000;
+	
 	messagesObserve=Messages.find({},{sort:{timestamp:1}}).observe({
 		movedTo: function(document, fromIndex, toIndex, before){
 			//Don't show my message until it's marked as complete..
