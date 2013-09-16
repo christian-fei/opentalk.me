@@ -61,6 +61,7 @@
 		-ms-transition: all $animation-duration ease-in-out;
 		-o-transition: all $animation-duration ease-in-out;
 		transition: all $animation-duration ease-in-out;
+
 		-webkit-transition-property: transform,opacity;
 		-moz-transition-property: transform,opacity;
 		-ms-transition-property: transform,opacity;
@@ -75,7 +76,9 @@
 	backface-visibility: hidden;
 
 
-	box-shadow: -0.3em 0 .4em lightgrey inset;
+	// box-shadow: -0.3em 0 .4em lightgrey inset;
+
+	// border-right:3px solid #F3F3F3;
 	&.show{
 		// width:15em;
 		// width: 16em;
@@ -97,7 +100,7 @@
 
 
 	@media screen and (-webkit-min-device-pixel-ratio:0){
-		&::-webkit-scrollbar{width:.4em!important;background:#fff;} 
+		&::-webkit-scrollbar{width:.3em!important;background:#fff;} 
 		&::-webkit-scrollbar-track{background-color: #eee;} 
 		&::-webkit-scrollbar-thumb{border-radius: 4px;background-color: rgba(0,0,0,0.1); }
 	}

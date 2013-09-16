@@ -222,6 +222,7 @@ function renderMessages(){
 			if(!Session.get('realtimeEnabled') && fields.messageComplete===false)return;
 
 
+			checkTimeRef(fields.timestamp);
 			
 
 

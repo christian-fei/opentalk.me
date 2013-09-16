@@ -762,7 +762,6 @@ audio {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
-  box-shadow: -0.3em 0 .4em lightgrey inset;
 }
 /* line 49, ../sass/_sidebar.scss */
 .fixed-sidebar a {
@@ -788,31 +787,31 @@ audio {
     transition-property: transform,opacity;
   }
 }
-/* line 79, ../sass/_sidebar.scss */
+/* line 82, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: none;
 }
-/* line 91, ../sass/_sidebar.scss */
+/* line 94, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 93, ../sass/_sidebar.scss */
+/* line 96, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 100, ../sass/_sidebar.scss */
+  /* line 103, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar {
-    width: 0.4em !important;
+    width: 0.3em !important;
     background: #fff;
   }
-  /* line 101, ../sass/_sidebar.scss */
+  /* line 104, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-track {
     background-color: #eee;
   }
-  /* line 102, ../sass/_sidebar.scss */
+  /* line 105, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -820,7 +819,7 @@ audio {
 }
 
 @media all and (max-width: 50em) {
-  /* line 109, ../sass/_sidebar.scss */
+  /* line 112, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(18em, 0, 0);
     -moz-transform: translate3d(18em, 0, 0);
@@ -831,25 +830,25 @@ audio {
 }
 
 @media all and (max-width: 50em) {
-  /* line 121, ../sass/_sidebar.scss */
+  /* line 124, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.shadow {
     left: 0 !important;
   }
 }
 
-/* line 127, ../sass/_sidebar.scss */
+/* line 130, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
   cursor: pointer;
 }
-/* line 131, ../sass/_sidebar.scss */
+/* line 134, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3.5em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 138, ../sass/_sidebar.scss */
+/* line 141, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -858,13 +857,13 @@ audio {
   font-size: 1.1em;
 }
 
-/* line 148, ../sass/_sidebar.scss */
+/* line 151, ../sass/_sidebar.scss */
 .usermenu {
   opacity: 0;
   visibility: hidden;
   height: 0;
 }
-/* line 153, ../sass/_sidebar.scss */
+/* line 156, ../sass/_sidebar.scss */
 .usermenu.show {
   opacity: 1;
   visibility: visible;
@@ -876,13 +875,13 @@ audio {
   transition: all .3s ease-in-out;
 }
 
-/* line 170, ../sass/_sidebar.scss */
+/* line 173, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
   margin: 1em auto;
 }
 
-/* line 174, ../sass/_sidebar.scss */
+/* line 177, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #userstats, #removeMessagesRoom, #removeMessages {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -893,7 +892,7 @@ audio {
   color: #333;
 }
 
-/* line 196, ../sass/_sidebar.scss */
+/* line 199, ../sass/_sidebar.scss */
 .online-users {
   margin: 2em auto;
   text-align: left;
@@ -902,12 +901,12 @@ audio {
   overflow-y: auto;
   height: 10em;
 }
-/* line 204, ../sass/_sidebar.scss */
+/* line 207, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 208, ../sass/_sidebar.scss */
+/* line 211, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -919,7 +918,7 @@ audio {
   display: inline-block;
 }
 
-/* line 218, ../sass/_sidebar.scss */
+/* line 221, ../sass/_sidebar.scss */
 .online-user {
   font-size: .9em;
   text-overflow: ellipsis;
@@ -928,13 +927,13 @@ audio {
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 227, ../sass/_sidebar.scss */
+/* line 230, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 234, ../sass/_sidebar.scss */
+/* line 237, ../sass/_sidebar.scss */
 .micro-avatar {
   height: 1em;
   width: 1em;
@@ -943,7 +942,7 @@ audio {
   border-radius: 50%;
 }
 
-/* line 243, ../sass/_sidebar.scss */
+/* line 246, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -958,7 +957,7 @@ audio {
   text-overflow: ellipsis;
 }
 
-/* line 258, ../sass/_sidebar.scss */
+/* line 261, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -966,13 +965,13 @@ audio {
   color: #805e00;
 }
 
-/* line 264, ../sass/_sidebar.scss */
+/* line 267, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 269, ../sass/_sidebar.scss */
+/* line 272, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -998,7 +997,7 @@ audio {
   */
 }
 @media all and (max-width: 50em) {
-  /* line 269, ../sass/_sidebar.scss */
+  /* line 272, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -1007,7 +1006,7 @@ audio {
   }
 }
 
-/* line 311, ../sass/_sidebar.scss */
+/* line 314, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -1025,20 +1024,20 @@ audio {
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
-  /* line 311, ../sass/_sidebar.scss */
+  /* line 314, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 337, ../sass/_sidebar.scss */
+/* line 340, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 346, ../sass/_sidebar.scss */
+/* line 349, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -1047,23 +1046,23 @@ audio {
   border-radius: 70%;
   opacity: .5;
 }
-/* line 357, ../sass/_sidebar.scss */
+/* line 360, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 360, ../sass/_sidebar.scss */
+/* line 363, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 368, ../sass/_sidebar.scss */
+/* line 371, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 377, ../sass/_sidebar.scss */
+/* line 380, ../sass/_sidebar.scss */
 .tt-cheatsheet {
   margin: 1em 0;
   padding: 1em 0;
@@ -1071,23 +1070,23 @@ audio {
   text-align: center;
 }
 
-/* line 386, ../sass/_sidebar.scss */
+/* line 389, ../sass/_sidebar.scss */
 .emoji-table tr {
   float: left;
   margin: .3em;
   border: 1px solid #F5F5F5;
 }
-/* line 391, ../sass/_sidebar.scss */
+/* line 394, ../sass/_sidebar.scss */
 .emoji-table tr td {
   padding: .2em;
 }
 
-/* line 400, ../sass/_sidebar.scss */
+/* line 403, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 404, ../sass/_sidebar.scss */
+/* line 407, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1096,12 +1095,12 @@ audio {
   -ms-text-align-last: center;
   text-align: center;
 }
-/* line 412, ../sass/_sidebar.scss */
+/* line 415, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 417, ../sass/_sidebar.scss */
+/* line 420, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1112,7 +1111,7 @@ audio {
   display: inline-block;
   color: black;
 }
-/* line 429, ../sass/_sidebar.scss */
+/* line 432, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }
