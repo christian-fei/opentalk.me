@@ -1,0 +1,49 @@
+<template name="settings">
+	<div class="Modal-Background toggle-Modal is-Hidden" id='settings-modal'>
+		<div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
+			<div class="Center-Content">
+				<header><h1>Settings</h1></header>
+				<section>
+					<table class='settings-panel'>
+		        		{{#isolate}}
+		        		<tr>
+		        			<td>
+		        			 	<span>Realtime writing</span>
+		        			 </td>
+		        			 <td class='button-holder'>
+		        			 	<a href='#' id='toggleRealtime' class='button silver' title='enable/disable realtime writing'><span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span></a>
+		        			 </td>
+		        		</tr>
+		        		{{/isolate}}
+		        		{{#isolate}}
+		        		<tr>
+		        			<td>
+		        			 	<span>Notification sound</span>
+		        			 </td>
+		        			 <td class='button-holder'>
+		        			 	<a href='#' id='toggleNotificationSound' class='button silver' title='toggleRealtime'> <span class="icon-sound {{notificationSoundEnabled}}"></span></a>
+		        			 </td>
+		        		</tr>
+		        		{{/isolate}}
+		        		<tr>
+		        			<td>
+		        			 	<span>Delete my messages <b>in this rooom</b> </span>
+		        			 </td>
+		        			 <td class='button-holder'>
+		        			 	<a href='#' id="removeMessagesRoom" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessagesRoom">Success!</span>
+		        			 </td>	        			
+		        		</tr>
+		        		<tr>
+		        			<td>
+		        				<span>Delete <b>ALL</b> my messages </span>
+		        			</td>
+		        			<td class='button-holder'>
+		        				<a href='#' id="removeMessages" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessages">Success!</span>
+		        			</td>	        			
+		        		</tr>
+					</table>
+				</section>
+			</div>
+		</div>
+	</div>
+</template>

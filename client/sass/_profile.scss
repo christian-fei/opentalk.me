@@ -1,0 +1,91 @@
+.profile-mast{
+	@extend .welcome-mast;
+
+	.logo{
+		position: absolute;
+		top:1.5em;
+		right:1.5em;
+	}
+	.back{
+		position: absolute;
+		top:1.5em;
+		left:1.5em;	
+	}
+}
+
+.profile-mast-cont{
+	@extend .welcome-mast-cont;
+
+	img{
+		height:4em;
+		width: 4em;
+		margin: .5em;
+		border-radius: 50%;
+		border:1px solid #222;
+	}
+
+	p{
+		font-size: 1.5em;
+	}
+}
+
+
+.stats{
+	@extend .tiles;
+}
+.stats-wrapper{
+	@extend .tiles-wrapper;
+}
+.stat{
+	@extend .tile;
+	height:13em;
+}
+.stats-header{
+	@extend .tiles-header;
+}
+
+.user-rooms{
+	margin:2em auto;
+	max-width:$limit;
+	width: 100%;
+	overflow: hidden;
+	padding:1.5em;
+	list-style-type: none;
+}
+	.user-room {
+		display:inline-block;
+		a{
+			padding:.7em 1.4em;
+			margin:.7em ;
+			background:white;
+			border-radius: 7px;
+			border:1px solid #C9C9C9;
+			display: inline-block;
+			color: black;
+			text-decoration: none;
+
+			position: relative;
+
+			.unreadCount{
+				position: absolute;
+				font-size: .8em;
+				top: -.7em;
+				right: -.7em;
+				height:1.8em;
+				width: 1.8em;
+				display: inline-block;
+				background:#E01400;
+				color:white;
+				border:3px solid #EFEFEF;
+				border-radius: 50%;
+				text-align: center;
+			}
+		}
+
+	}
+
+
+.centered{
+	margin:auto;
+	text-align: center;
+}

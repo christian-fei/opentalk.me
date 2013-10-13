@@ -1,0 +1,127 @@
+@mixin inset($light-shadow, $dark-shadow) {
+  text-shadow: 
+    0px 1px 3px rgba(255,255,255,$light-shadow),
+    -1px -1px 1px rgba(0,0,0,$dark-shadow);
+}
+
+.welcome-mast{
+	color:white;
+	background:$color-main;
+	color:black;
+	text-align:center;
+	// font-size: 2em;
+	position: relative;
+}
+	.welcome-mast-cont{
+		padding:5em;
+		background-attachment: fixed;
+		background:url('/images/opentalk_bg_opaque.png');
+		background:url('/images/pattern-white.png');
+		background:url('/images/pattern-white-high-res.png');
+		// background-size: 400px;
+		
+		@media all and(min-width: $limit){
+			-webkit-animation: welcome-mast-anim 14s infinite linear;
+			-moz-animation: welcome-mast-anim 14s infinite linear;
+			-o-animation: welcome-mast-anim 15s infinite linear;
+			animation: welcome-mast-anim 15s infinite linear;
+			-webkit-animation-fill-mode: both;
+			-moz-animation-fill-mode: both;
+			-o-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		@media all and(max-width:30em){
+			padding:5em 3em;
+		}
+
+		h1{
+		}
+			color:#222;
+		@include inset(.2,.2);
+	}
+	.logo-welcome{
+		display:block;
+		margin:1rem auto;
+		height:3.75rem;
+		width:3.75rem;
+		// margin-left:1rem;
+	}
+
+#roomid {
+	position: relative;
+	padding: 1em;
+	//font-size: 1.3em;
+	//margin: 0 1em;
+	text-align: center;
+	width:8em;
+
+	outline:none;
+	border:0px;
+	box-shadow: none;
+
+	font-size: 1.1rem;
+	font-family: 'Questrial', sans-serif;
+	margin-top: -.3em;
+}
+
+
+$offset-y:-400px;
+@-webkit-keyframes welcome-mast-anim{
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
+}
+@-moz-keyframes welcome-mast-anim{
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
+}
+@-ms-keyframes welcome-mast-anim{
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
+}
+@-o-keyframes welcome-mast-anim{
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
+}
+@keyframes welcome-mast-anim{
+	from { background-position:0 0; }
+	to { background-position:0 $offset-y; }
+}
+
+
+
+.tiles:nth-of-type(2n){
+	background:$color-subtle!important;
+}
+
+
+.todos{
+	background:white;
+	overflow: hidden;
+	width: 100%;
+}
+	.todos-wrapper{
+		margin: 5em auto;
+		max-width: $limit;
+		padding:2em;
+	}
+
+
+
+.footer{
+	background:#F0F0F0;
+	overflow: hidden;
+	padding: 3em 2em!important;
+	margin:auto!important;
+	color:#666;
+	text-align: center;
+	.footer-wrapper{
+		@extend .todos-wrapper;
+	}
+}
+	.tos{
+		text-align: left;
+		margin:4em auto;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 300;
+	}

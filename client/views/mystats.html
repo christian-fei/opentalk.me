@@ -1,0 +1,49 @@
+<template name="mystats">
+	{{#isolate}}
+	<section>
+		<ul class="user-rooms">
+			<li><h1 style='text-align:center;margin-bottom:1em;'>Conversations</h1></li>
+			<li id="append-here"></li>
+		</ul>
+	</section>
+	{{/isolate}}
+	<section class="stats">
+		<h1 class="stats-header">Stats</h1>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{userMessagesCount}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{userRoomsCount}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{userWordsCount}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{userCharactersCount}}}
+				</div>
+			</div>
+		</div>
+		<div class="stats-wrapper">
+			<div class="stat">
+				<div class="vam">
+					{{{memberSince}}}
+				</div>
+			</div>
+		</div>
+	</section>
+	
+</template>

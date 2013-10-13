@@ -1,0 +1,103 @@
+[class^='icon']{
+	display:inline-block;
+	height:1em;
+	width:1em;
+	background-size:100%!important; //to override background
+	height: 1.3em;
+	width: 1.3em;
+	margin-top: -.325em;
+	margin-bottom: -.325em;
+}
+.icon-arrow{
+	background:url('/images/arrow.png') no-repeat;
+	background-size:100%;
+
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+	-webkit-transform:rotateZ(0deg);
+	-moz-transform:rotateZ(0deg);
+	-o-transform:rotateZ(0deg);
+	-ms-transform:rotateZ(0deg);
+	transform:rotateZ(0deg);
+}
+.icon-signout{
+	background:url('/images/logout.png') no-repeat;
+	margin-left:.325em;
+}
+.icon-realtime{
+	background:url('/images/realtime.png') no-repeat;
+}
+.icon-profile{
+	background:url('/images/avatar.png') no-repeat;
+}
+.icon-settings{
+	background:url('/images/settings.png') no-repeat;
+}
+.icon-reference{
+	background:url('/images/reference.png') no-repeat;
+}
+.icon-sound{
+	background:url('/images/sound-on.png') no-repeat;
+	&.off{
+		background:url('/images/sound-off.png') no-repeat;
+	}
+}
+.icon-kitten{
+	background:url('/images/kitten-on.png') no-repeat;
+	&.off{
+		background:url('/images/kitten-off.png') no-repeat;
+	}
+}
+
+
+.toggle-sidebar.left .icon-arrow{
+	-webkit-transform:rotateZ(-180deg)!important;
+	-moz-transform:rotateZ(-180deg)!important;
+	-o-transform:rotateZ(-180deg)!important;
+	-ms-transform:rotateZ(-180deg)!important;
+	transform:rotateZ(-180deg)!important;
+}
+
+.toggle-sidebar:hover .icon-arrow{
+	-webkit-transform:rotateZ(-45deg);
+	-moz-transform:rotateZ(-45deg);
+	-o-transform:rotateZ(-45deg);
+	-ms-transform:rotateZ(-45deg);
+	transform:rotateZ(-45deg);
+}
+
+.icon-twitter,.icon-facebook,.icon-github,.icon-google{
+	background-size:100%;
+	width:1em;
+	height:1em;
+}
+.icon-twitter{
+	background:url('/images/social/twitter.png') no-repeat;
+}
+.icon-facebook{
+	background:url('/images/social/facebook.png') no-repeat;
+}
+.icon-github{
+	background:url('/images/social/github.png') no-repeat;
+}
+.icon-google{
+	background:url('/images/social/google.png') no-repeat;
+}
+
+
+
+.logo,.back{
+	height:$toggle-size;
+	width:$toggle-size;
+	border-radius: 50%;
+	// border-top-right-radius:0;
+	// border-bottom-right-radius:0;
+	padding:$toggle-size/4;
+	background:$color-main;
+	display: inline-block;
+	border:.1em solid darken($color-main,10%);
+	// box-shadow: .05em 0em .5em 0em lightgrey;
+}

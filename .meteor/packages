@@ -1,0 +1,22 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+preserve-inputs
+localstorage
+jquery
+accounts-twitter
+accounts-github
+accounts-google
+accounts-facebook
+standard-app-packages
+page-js-ie-support
+HTML5-History-API
+paginated-subscription
+HTML5-History-API
+page-js-ie-support
+router
+spin
+accounts-ui
+http

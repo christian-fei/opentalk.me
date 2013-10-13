@@ -1,0 +1,144 @@
+
+/*
+SUPER SLICK TRANSFORMS
+*/
+$opacity:.10;
+$duration: 200ms;
+
+%transform-base{
+  -webkit-transition: opacity 300ms 200ms ease;
+  -moz-transition: opacity 300ms 200ms ease;
+  -ms-transition: opacity 300ms 200ms ease;
+  -o-transition: opacity 300ms 200ms ease;
+  transition: opacity 300ms 200ms ease;
+
+  -webkit-animation-fill-mode: forwards !important;
+  -moz-animation-fill-mode: forwards !important;
+  -o-animation-fill-mode: forwards !important;
+  animation-fill-mode: forwards !important;
+}
+.fly-in-down{
+  -webkit-animation: flyindown $duration ease;
+  -moz-animation: flyindown $duration ease;
+  -ms-animation: flyindown $duration ease;
+  -o-animation: flyindown $duration ease;
+  animation: flyindown $duration ease;
+}
+.fly-in-up{
+  @extend %transform-base;
+  opacity:$opacity;
+  -webkit-animation: flyinup $duration ease;
+  -moz-animation: flyinup $duration ease;
+  -o-animation: flyinup $duration ease;
+  animation: flyinup $duration ease;
+}
+.fly-in-right{
+  @extend %transform-base;
+  opacity:0$opacity;
+  -webkit-animation: flyinright $duration ease;
+  -moz-animation: flyinright $duration ease;
+  -o-animation: flyinright $duration ease;
+  animation: flyinright $duration ease;
+}
+.fly-in-left{
+  @extend %transform-base;
+  opacity:$opacity;
+  -webkit-animation: flyinleft $duration ease;
+  -moz-animation: flyinleft $duration ease;
+  -o-animation: flyinleft $duration ease;
+  animation: flyinleft $duration ease;
+}
+
+
+$offset: .5em;
+
+
+/*flyindown*/
+@-webkit-keyframes flyindown {
+  0% {-webkit-transform: translate(0, $offset);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyindown {
+  0% {-moz-transform: translate(0, $offset);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyindown {
+  0% {-ms-transform: translate(0, $offset);} 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyindown {
+  0% {-o-transform: translate(0, $offset);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyindown {
+  0% {transform: translate(0, $offset);} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinup*/
+@-webkit-keyframes flyinup {
+  0% {-webkit-transform: translate(0,-$offset);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinup {
+  0% {-moz-transform:  translate(0,-$offset);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinup {
+  0% {-ms-transform: translate(0,-$offset);} 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinup {
+  0% {-o-transform:  translate(0,-$offset);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinup {
+  0% {transform: translate(0,-$offset)} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinright*/
+@-webkit-keyframes flyinright {
+  0% {-webkit-transform: translate(-$offset,0);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinright {
+  0% {-moz-transform:  translate(-$offset,0);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinright {
+  0% {-ms-transform: translate(-$offset,0);
+  } 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinright {
+  0% {-o-transform:  translate(-$offset,0);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinright{
+  0% {transform: translate(-$offset,0)} 
+  100% {opacity:1;transform: translate(0,0);}
+}
+
+/*flyinleft*/
+@-webkit-keyframes flyinleft {
+  0% {-webkit-transform: translate($offset,0);} 
+  100% {opacity:1;-webkit-transform: translate(0,0);}
+}
+@-moz-keyframes flyinleft {
+  0% {-moz-transform:  translate($offset,0);} 
+  100% {opacity:1;-moz-transform: translate(0,0);}
+}
+@-ms-keyframes flyinleft {
+  0% {-ms-transform: translate($offset,0);
+  } 
+  100% {opacity:1;-ms-transform: translate(0,0);}
+}
+@-o-keyframes flyinleft {
+  0% {-o-transform:  translate($offset,0);} 
+  100% {opacity:1;-o-transform: translate(0,0);}
+}
+@keyframes flyinleft {
+  0% {transform: translate($offset,0)} 
+  100% {opacity:1;transform: translate(0,0);}
+}

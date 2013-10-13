@@ -1,0 +1,18 @@
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+[32minfo[39m:    Forever processing file: [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+[32minfo[39m:    Forever processing file: [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+[32minfo[39m:    Forever processing file: [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+[32minfo[39m:    Forever processing file: [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+[32minfo[39m:    Forever processing file: [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m
+[32minfo[39m:    Forever restarted process(es):
+[90mdata[39m:    [37m   [39m [37muid[39m  [90mcommand[39m             [90mscript[39m                                            [37mforever[39m [37mpid[39m  [35mlogfile[39m                 [33muptime[39m       
+[90mdata[39m:    [0] dfyj [90m/usr/local/bin/node[39m [90m/root/nodestuff/opentalk.me/.demeteorized/main.js[39m 1008    2265 [35m/root/.forever/dfyj.log[39m [33m0:0:6:44.910[39m 

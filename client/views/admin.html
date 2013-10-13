@@ -1,0 +1,16 @@
+<template name="admin">
+	<ul>
+	{{#each onlineUsers}}
+		<li class='online-user'><span class="micro-avatar" style="background:url('{{avatar}}')"></span>{{nickname}} // <b>{{roomid}}</b></li>
+	{{/each}}	
+	</ul>
+	<br>
+	<br>
+	<table class='message-admin-table'>
+	{{#each messages}}
+		<tr>
+			<td>{{username}}</td> <td>{{roomid}}</td><td>{{text}}</td>
+		</tr>
+	{{/each}}	
+	</table>
+</template>

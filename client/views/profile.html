@@ -1,0 +1,36 @@
+<template name="profile">
+	{{#if currentUser}}
+		<div class="profile-mast">
+			<div class="profile-mast-cont">
+				<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
+					<img src="/images/logo_even_dark.png" alt="" class="logo">
+				</a>
+				<a href="/" title='back' class='go-back-you-are-drunk'>
+					<img src="/images/arrow-left.png" alt="" class="back">
+				</a>
+				<img src="{{avatar}}" alt=""/>
+				<br/>
+				<p>{{username}}</p>
+			</div>
+		</div>
+
+		{{>mystats}}
+	{{else}}
+		<div class="profile-mast">
+			<div class="profile-mast-cont">
+				<a href="/" title='to the homepage' class='go-home-you-are-drunk'>
+					<img src="/images/logo_even_dark.png" alt="" class="logo">
+				</a>
+				<a href="/" title='back' class='go-back-you-are-drunk'>
+					<img src="/images/arrow-left.png" alt="" class="back">
+				</a>
+				<h1>Sorry</h1>
+				<h4>you need to be logged in to see your stats</h4>
+			</div>
+		</div>
+
+		<div class="centered">
+			{{>loginForm}}
+		</div>
+	{{/if}}
+</template>
