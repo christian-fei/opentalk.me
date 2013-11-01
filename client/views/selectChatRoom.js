@@ -20,11 +20,11 @@ THE ROOM MUST BEGIN WITH NO SLASH
 */
 function joinRoom(r){
 	if(isValidRoom(r)) {
-	  //console.log('valid path\nrouting to /' + r);
+	  //
 	  Meteor.Router.to('/'+r);
 	} else {
 	  Meteor.Router.to('/');
-	  console.log('invalid path or already root\nrouting to /');
+	  
 	}
 }
 

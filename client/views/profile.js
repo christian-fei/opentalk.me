@@ -3,7 +3,7 @@ Template.profile.events({
 		e.preventDefault();
 		//hacky
 		history.back();
-		// console.log( Meteor.Router );
+		// 
 		// if(Session.get('roomid'))
 		// 	Meteor.Router.to('/'+Session.get('roomid'));
 		// else

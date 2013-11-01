@@ -4,16 +4,16 @@ var initialMessageHeight = 0,
 
 Template.messages.events({
 	'keydown #mymessage' : function(evnt,tmplt){
-		// console.log('keydown');
+		// 
 		keysPressed[evnt.keyCode] = true;
-		// console.log(keysPressed);
+		// 
 	},
 	'keyup #mymessage' : function(evnt,tmplt){
-		// console.log('keyup');
+		// 
 		
-		// console.log(keysPressed);
-		// console.log(evnt.keyCode);
-		// console.log(evnt.which);
+		// 
+		// 
+		// 
 
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
@@ -30,7 +30,7 @@ Template.messages.events({
 
 		if(keysPressed[13] && keysPressed[16]){
 			//add a new line and then return
-			// console.log('shift + enter');
+			// 
 			//TODO:understand if not needed
 			// text += '\n';
 			keysPressed[evnt.keyCode] = false;
@@ -49,16 +49,16 @@ Template.messages.events({
     		hackOffset = 0;
     	if(navigator.userAgent.indexOf('Firefox') >=0){
     		hackOffset=36;
-    		//console.log('firefox');
+    		//
     	}
     	if(initialMessageHeight===0)
     		initialMessageHeight = mm.offsetHeight;
     	if(mm.scrollHeight > initialMessageHeight)
 	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
     	
-    	// console.log('offsetheight ' + initialMessageHeight);
-    	// console.log('scrollheight ' + mm.scrollHeight);
-    	// console.log('offsetheight ' + mm.offsetHeight);
+    	// 
+    	// 
+    	// 
 
     	if(!text.trim().length){
     		removeLastMessage();
@@ -70,7 +70,7 @@ Template.messages.events({
 
 	    if(!allowed){
 	    	//show a notification that I shit on trolls, or just don't give a fuck
-	    	// console.log('troll');
+	    	// 
 
 	    	tmplt.find('#mymessage').style.border='1px solid red';
 
@@ -107,7 +107,7 @@ Template.messages.events({
 				if(text.length){
 					//format message, strip tags and shit
 					
-					//console.log(text);
+					//
 					Messages.update(
 						{
 							_id:''+Session.get('lastInsertId')
@@ -166,7 +166,7 @@ Template.messages.events({
 					}
 				);
 				mm.style.height = initialMessageHeight + 'px';
-				//console.log('resetting textarea to ' + initialMessageHeight)
+				//
 				$('#mymessage').val('');
 
 	    	}
@@ -203,7 +203,7 @@ text=null;
 function renderMessages(){
 	if(messagesAlreadyRendered)return;
 	messagesAlreadyRendered=true;
-	console.log('render messages');
+	
 	$('.fetching-your-messages').slideUp();
 
 	if(messagesObserveChanges)
@@ -260,7 +260,7 @@ function renderMessages(){
 
 			if(trolls.indexOf(doc.userid) >=0){
 				//hiding because in trolls
-				// console.log('hiding because in trolls');
+				// 
 				$(message).hide(); //not workging anymore
 				// message.style.display = 'none';
 			}
@@ -269,11 +269,11 @@ function renderMessages(){
 	messagesObserveChanges=Messages.find({},{sort:{timestamp:1}}).observeChanges({
 		addedBefore: function(id, fields,before){
 
-			// console.log(before);
+			// 
 
 			timetext=checkPrintTime(fields.timestamp);
 
-			// console.log('added id ' +id + ' before ' + before);
+			// 
 
 			//Don't show my message until it's marked as complete..
 			if(fields.userid === Meteor.userId() && fields.messageComplete===false)return;
@@ -306,7 +306,7 @@ function renderMessages(){
 				text=document.createElement('span');
 				text.classList.add('text');
 				if(fields.deletedAt){
-					// console.log('deleted message insert');
+					// 
 					text.innerHTML='deleted message';
 					text.classList.add('deleted');
 				}else{
@@ -329,7 +329,7 @@ function renderMessages(){
 
 			if(trolls.indexOf(fields.userid) >=0){
 				//hiding because in trolls
-				// console.log('hiding because in trolls');
+				// 
 				$(message).hide(); //not workging anymore
 				// message.style.display = 'none';
 			}
@@ -355,7 +355,7 @@ function renderMessages(){
 				avatar.style.backgroundImage='url("'+fields.useravatar+'")';
 
 				if(firstRunAfterMore){
-					// console.log('firstRunAfterMore');
+					// 
 					message.classList.add('lastOfUser');
 					avatar.classList.add('avatar-border');
 					avatar.classList.add('tip');
@@ -390,7 +390,7 @@ function renderMessages(){
 			
 			if(stick)scrollDown();
 
-			// console.log('got message when tab was ' + visibly.visibilityState() );
+			// 
 			if(visibly.hidden() && !oldMessages){ 
 				message.classList.add('unread');
 				unreadCount++;
@@ -409,19 +409,19 @@ function renderMessages(){
 
 
 				//fix avatars and borders
-				// console.log(fields.userid);
-				// console.log( $('#'+id).next().data('userid') ); 
-				// console.log( $('#'+id).next().data('userid') ); 
+				// 
+				//  
+				//  
 				if( fields.userid === $('#'+id).next().data('userid') ){
-					// console.log('same userid');
+					// 
 					//because it is the same user
 						//restore avatar
 						//diffUser
 						//and to the current message add lastOfUser
-						// console.log( message );
-						// console.log( $('#'+id).next().attr('id') );
+						// 
+						// 
 
-					// console.log( $( '#'+ $('#'+id).next().attr('id') )[0] );
+					// 
 
 					var avatarElement = $( '#'+ $('#'+id).next().attr('id') +' .avatar' );
 					avatarElement.css('background','url(\'' + fields.useravatar + '\')' );
@@ -444,14 +444,14 @@ function renderMessages(){
 		},
 		changed: function(id,fields){
 			if(fields.deletedAt){
-				// console.log('deleted message updated');
+				// 
 				var affMessage = $('#'+id+' .text');
 				affMessage.html('deleted message');
 				affMessage.addClass('deleted');
 				return;
 			}
-			// console.log('changed ' + id);
-			// console.log(fields);
+			// 
+			// 
 			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
 			//update other users message
@@ -478,14 +478,14 @@ function renderMessages(){
 				scrollDown();
 		},
 		movedBefore: function(id,before){
-			// console.log(id + ' changed position to ' + before);
+			// 
 			//kinda works, but only if the moved element has an avatar, else it's moved withouth
 			// if(before===null){
 			// 	$('#'+id).slideUp(animationDuration, function(){ $(this).insertBefore($('#last')) }).slideDown(animationDuration);
 			// }
 		},
 		removed: function(id){
-			// console.log('removed ' + id);
+			// 
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
 				if( $('#'+id).next()[0].querySelector('.username') && $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
@@ -495,7 +495,7 @@ function renderMessages(){
 					$('#'+id).next().addClass('diffUser');
 					$('#'+id).next()[0].firstChild.classList.add('tip');
 				}else{
-					// console.log('strange behaviour');
+					// 
 				}
 			}
 			$('#'+id).remove();
@@ -504,7 +504,7 @@ function renderMessages(){
 }
 
 Template.messages.rendered=function(){
-	console.log('messages.rendered');
+	
 	
 	if(!messagesAlreadyRendered){
 		// messagesAlreadyRendered=true;
@@ -513,16 +513,16 @@ Template.messages.rendered=function(){
 
 	// renderMessages();
 	if(stick){
-		//console.log('scrolling because stick');
+		//
 		scrollDown();
 	}
 	$(window).scroll(function (e) {
 		if( $(window).scrollTop() < 300 ){
 			if(!mSub.loading() && Messages.find().count() < mSub.loaded() ) {
-				// console.log('all messages loaded');
+				// 
 				$('.loading').removeClass('show-loading');
 			}else{
-				// console.log('load more messages');
+				// 
 				
 				$('.loading').addClass('show-loading');
 			}
@@ -535,7 +535,7 @@ Template.messages.rendered=function(){
 	});
 
 	$('.loading').on('click',function(){
-		// console.log('load more clicked');
+		// 
 		if(mSub)
 			mSub.loadNextPage();
 	});

@@ -31,10 +31,10 @@ function renderUserRooms(r){
 	// }
 	// if(userRoomsAlreadyRendered)return;
 	userRoomsAlreadyRendered=true;
-	console.log('renderUserRooms');
+	
 	$('.user-room').remove();
 	r.forEach(function(entry){
-		// console.log(entry);
+		// 
 		if(entry.unreadCount)
 			$('#append-here').after( $('<li class="user-room"> <a href="/'+entry.roomid+'">'+entry.roomid+' <span class="unreadCount">'+entry.unreadCount+'</span></a></li>') );
 		else
@@ -43,9 +43,9 @@ function renderUserRooms(r){
 }
 
 Template.mystats.rendered = function(){
-	console.log('mystats rendered');
+	
 	getUserStats();
-	// console.log( LastSeenInRoom.find().fetch() );
+	// 
 }
 
 function getUserStats(){
@@ -56,8 +56,8 @@ function getUserStats(){
 		Session.set('userWordsCount',result.wordsCount);
 		Session.set('userCharactersCount',result.charactersCount);
 
-		// console.log(result.rooms);
-		// console.log(result.roomsOccWithStats);
+		// 
+		// 
 		renderUserRooms(result.roomsOccWithStats);
 		// Meteor.setTimeout(function(){
 		// },1000);

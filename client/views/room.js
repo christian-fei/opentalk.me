@@ -44,10 +44,10 @@ Template.room.helpers({
 	return false;
 	},
 	'roomTags':function(){
-		// console.log(Rooms.find().fetch());
+		// 
 		if( Rooms.findOne() ){
-			// console.log('returning tags array');
-			// console.log(Rooms.findOne().tags);
+			// 
+			// 
 			return Rooms.findOne().tags;
 		}else
 			return [];
@@ -78,7 +78,7 @@ Template.room.events({
 		Meteor.Router.to('/profile');
 	},
 	'click #logout' : function(evnt,tmplt){
-		//console.log('logout clicked');
+		//
 		evnt.preventDefault();
 
 		if(Meteor.status().connected === false){
@@ -131,17 +131,17 @@ Template.room.events({
 			//enter tag only if string is not empty and has no spaces
 			if(txt.length > 0 && txt.length < 15 &&  txt.indexOf(' ') <= 0){
 				//enter tag
-				// console.log('enter tag');
+				// 
 				Rooms.update({_id:Rooms.findOne()._id},{$addToSet:{tags:txt}});
 				tmplt.find('#enter-tag').value ='';
 			}
 		}
 	},
 	'click .tag':function(evnt,tmpl){
-		// console.log(evnt)
-		// console.log(evnt.target.innerHTML);
+		// 
+		// 
 		var rem=unescapeHtml(evnt.target.innerHTML);
-		console.log(rem);
+		
 		Rooms.update({_id:Rooms.findOne()._id},{$pull:{tags:rem}});
 
 	}
@@ -157,14 +157,14 @@ Deps.autorun(function(){
 
 Template.room.rendered=function(){
 
-	// console.log('room rendered');
+	// 
 
 	positionFixedContent();
 
 	notif = document.querySelector('#new_message');
 	if(notif)
 		notif.load();
-	// console.log('room');
+	// 
 
 	if(onlineUsersObserver)
 		onlineUsersObserver.stop();
@@ -173,18 +173,18 @@ Template.room.rendered=function(){
 
 	onlineUsersObserver=OnlineUsers.find().observe({
 		added:function(doc){
-			// console.log(doc);
+			// 
 			var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
-			// console.log(ou);
+			// 
 			$('#append-online-user-here').before(ou);
 
 			autoCompleteUsername(doc.nickname,doc.avatar);
 
 		},
 		changed:function(doc){
-			// console.log('changed');
-			// console.log(doc);
-			// console.log( $('#'+doc._id+' .status-badge')[0].className );
+			// 
+			// 
+			// 
 			$('#'+doc._id+' .status-badge')[0].className = 'status-badge ' + doc.status;
 			$('#'+doc._id+' .micro-avatar').css({'background':doc.avatar});
 
@@ -194,7 +194,7 @@ Template.room.rendered=function(){
 			// $('#append-online-user-here').before(ou);
 		},
 		removed:function(doc){
-			// console.log(doc);
+			// 
 			$('#'+doc._id).remove();
 		}
 	});
@@ -205,17 +205,17 @@ Template.room.rendered=function(){
 	$('.toggle-Modal:not(.bound)').addClass('bound').bind('click',function(){$(this).toggleClass('is-Hidden')});
 
 	$('.tipstricks-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// console.log('settings toggle');
+		// 
 		$('#tipstricks-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 	
 	$('.settings-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// console.log('settings toggle');
+		// 
 		$('#settings-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 
 
-	// console.log( $('#settings-toggle') );
+	// 
 }
 
 
@@ -223,7 +223,7 @@ Template.room.rendered=function(){
 
 Meteor.setInterval(function () {
 	if(Session.get('roomid') && Meteor.user()){
-		// console.log('keepalive');
+		// 
 		goOnline();
 	}
 }, keepaliveTime);
@@ -259,14 +259,14 @@ Meteor.startup(function(){
 			goOnline();
 			//tracking yo ass to enhance your experience, not because I'm a data whore
 			if(mixpanel){
-				// console.log('mixpanel identifying user');
+				// 
 				mixpanel.identify(Meteor.userId());
 				mixpanel.people.set({
 					'$name': Meteor.user().profile.name,
 					'$created': new Date(Meteor.user().createdAt),
 					'service': getServiceString()
 				});
-				// console.log(getServiceString());				
+				// 				
 			}
 		}
 	});
@@ -274,8 +274,8 @@ Meteor.startup(function(){
 
 Deps.autorun(function(){
 	if( Meteor.user() ){
-		// console.log('Meteor.user()');
-		// console.log(Meteor.user());
+		// 
+		// 
 		Meteor.subscribe('userData');
 		goOnline();
 	}
