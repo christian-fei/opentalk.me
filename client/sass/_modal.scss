@@ -94,7 +94,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   min-width: 20%;
   max-width: 90%;
   min-height: 20%;
-  max-height: 80%;
+  max-height: 90%;
   resize: both;
 }
 
@@ -236,6 +236,13 @@ $greenDark: #2e5f3e;
   border-top-right-radius:.6em;
   max-width: 45em;
 
+  min-height:50%;
+
+  &.long{
+    min-height:70%;
+  }
+  
+
   @media all and(max-width: 45em){
     width:95%;
   }
@@ -245,11 +252,16 @@ $greenDark: #2e5f3e;
     margin-bottom: 1em;
     padding:.5em;
     background:$color-main;
+    background-image: url('/images/pattern-white-mobile.png');
+  
+    -webkit-animation:  welcome-mast-anim 20s linear infinite;
+    -o-animation:  welcome-mast-anim 20s linear infinite;
+    animation:  welcome-mast-anim 20s linear infinite;
+
     color:white;
 
-    h1,h2,h3,h4,h5,h6{
-      margin-left:.3em;
-    }
+    text-align: center;
+
   }
   section{
     padding:1em;

@@ -2292,7 +2292,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   min-width: 20%;
   max-width: 90%;
   min-height: 20%;
-  max-height: 80%;
+  max-height: 90%;
   resize: both;
 }
 
@@ -2465,6 +2465,11 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   border-top-left-radius: .6em;
   border-top-right-radius: .6em;
   max-width: 45em;
+  min-height: 50%;
+}
+/* line 241, ../sass/_modal.scss */
+.Modal.long {
+  min-height: 70%;
 }
 @media all and (max-width: 45em) {
   /* line 230, ../sass/_modal.scss */
@@ -2472,24 +2477,25 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
     width: 95%;
   }
 }
-/* line 243, ../sass/_modal.scss */
+/* line 250, ../sass/_modal.scss */
 .Modal header {
   border-left: 0.7em solid #ffbb00;
   margin-bottom: 1em;
   padding: .5em;
   background: #ffbb00;
+  background-image: url("/images/pattern-white-mobile.png");
+  -webkit-animation: welcome-mast-anim 20s linear infinite;
+  -o-animation: welcome-mast-anim 20s linear infinite;
+  animation: welcome-mast-anim 20s linear infinite;
   color: white;
+  text-align: center;
 }
-/* line 250, ../sass/_modal.scss */
-.Modal header h1, .Modal header h2, .Modal header h3, .Modal header h4, .Modal header h5, .Modal header h6 {
-  margin-left: .3em;
-}
-/* line 254, ../sass/_modal.scss */
+/* line 266, ../sass/_modal.scss */
 .Modal section {
   padding: 1em;
 }
 
-/* line 258, ../sass/_modal.scss */
+/* line 270, ../sass/_modal.scss */
 .Modal-Background {
   position: fixed;
   top: 0;
@@ -2502,12 +2508,12 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   background: rgba(10, 10, 10, 0.8);
 }
 
-/* line 259, ../sass/_modal.scss */
+/* line 271, ../sass/_modal.scss */
 .toggle-Modal {
   cursor: pointer;
 }
 
-/* line 260, ../sass/_modal.scss */
+/* line 272, ../sass/_modal.scss */
 .is-Hidden {
   display: none;
 }
