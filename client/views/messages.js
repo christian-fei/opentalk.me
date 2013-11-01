@@ -480,9 +480,9 @@ function renderMessages(){
 		movedBefore: function(id,before){
 			// 
 			//kinda works, but only if the moved element has an avatar, else it's moved withouth
-			// if(before===null){
-			// 	$('#'+id).slideUp(animationDuration, function(){ $(this).insertBefore($('#last')) }).slideDown(animationDuration);
-			// }
+			if(before===null){
+				$('#'+id).slideUp(animationDuration, function(){ $(this).insertBefore($('#last')) }).slideDown(animationDuration);
+			}
 		},
 		removed: function(id){
 			// 
@@ -513,7 +513,6 @@ Template.messages.rendered=function(){
 
 	// renderMessages();
 	if(stick){
-		//
 		scrollDown();
 	}
 	$(window).scroll(function (e) {
@@ -535,7 +534,6 @@ Template.messages.rendered=function(){
 	});
 
 	$('.loading').on('click',function(){
-		// 
 		if(mSub)
 			mSub.loadNextPage();
 	});
