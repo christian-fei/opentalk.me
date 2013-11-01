@@ -737,6 +737,7 @@ audio {
   bottom: 0;
   left: 0;
   background: white;
+  overflow-x: hidden;
 }
 @media all and (min-width: 50em) {
   /* line 1, ../sass/_sidebar.scss */
@@ -745,19 +746,21 @@ audio {
   }
 }
 
-/* line 22, ../sass/_sidebar.scss */
+/* line 23, ../sass/_sidebar.scss */
 .mini-header-wrapper {
   background: #ffbb00;
   height: 50%;
+  overflow-x: hidden;
 }
 
-/* line 26, ../sass/_sidebar.scss */
+/* line 28, ../sass/_sidebar.scss */
 .mini-header {
   height: 100%;
   background: url("/images/pattern-white-high-res.png");
+  overflow-x: hidden;
 }
 
-/* line 32, ../sass/_sidebar.scss */
+/* line 35, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;
   width: 17em;
@@ -775,12 +778,12 @@ audio {
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-/* line 50, ../sass/_sidebar.scss */
+/* line 53, ../sass/_sidebar.scss */
 .fixed-sidebar a {
   color: black;
 }
 @media all and (max-width: 50em) {
-  /* line 32, ../sass/_sidebar.scss */
+  /* line 35, ../sass/_sidebar.scss */
   .fixed-sidebar {
     border-top: 4px solid #ffbb00;
     left: -18em !important;
@@ -800,43 +803,49 @@ audio {
     background: white;
   }
 }
-/* line 87, ../sass/_sidebar.scss */
+/* line 90, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: none;
 }
-/* line 99, ../sass/_sidebar.scss */
+@media all and (max-width: 450px) {
+  /* line 90, ../sass/_sidebar.scss */
+  .fixed-sidebar.show {
+    width: 100%;
+  }
+}
+/* line 106, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 101, ../sass/_sidebar.scss */
+/* line 108, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 108, ../sass/_sidebar.scss */
+  /* line 115, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar {
     width: 0.3em !important;
     background: #fff;
   }
-  /* line 109, ../sass/_sidebar.scss */
+  /* line 116, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-track {
     background-color: #eee;
   }
-  /* line 110, ../sass/_sidebar.scss */
+  /* line 117, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
-/* line 113, ../sass/_sidebar.scss */
+/* line 120, ../sass/_sidebar.scss */
 .fixed-sidebar > * {
   z-index: 1000;
 }
 
 @media all and (max-width: 50em) {
-  /* line 119, ../sass/_sidebar.scss */
+  /* line 126, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(18em, 0, 0);
     -moz-transform: translate3d(18em, 0, 0);
@@ -847,18 +856,18 @@ audio {
 }
 
 @media all and (max-width: 50em) {
-  /* line 131, ../sass/_sidebar.scss */
+  /* line 138, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.shadow {
     left: 0 !important;
   }
 }
 
-/* line 137, ../sass/_sidebar.scss */
+/* line 144, ../sass/_sidebar.scss */
 .mobile-fixed-background {
   display: none;
 }
 @media all and (max-width: 50em) {
-  /* line 137, ../sass/_sidebar.scss */
+  /* line 144, ../sass/_sidebar.scss */
   .mobile-fixed-background {
     display: block;
     height: 50%;
@@ -872,19 +881,19 @@ audio {
   }
 }
 
-/* line 152, ../sass/_sidebar.scss */
+/* line 159, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
   cursor: pointer;
 }
-/* line 156, ../sass/_sidebar.scss */
+/* line 163, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3.5em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 163, ../sass/_sidebar.scss */
+/* line 170, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -893,13 +902,13 @@ audio {
   font-size: 1.1em;
 }
 
-/* line 173, ../sass/_sidebar.scss */
+/* line 180, ../sass/_sidebar.scss */
 .usermenu {
   opacity: 0;
   visibility: hidden;
   height: 0;
 }
-/* line 178, ../sass/_sidebar.scss */
+/* line 185, ../sass/_sidebar.scss */
 .usermenu.show {
   opacity: 1 !important;
   visibility: visible !important;
@@ -911,13 +920,13 @@ audio {
   transition: all .3s ease-in-out;
 }
 
-/* line 195, ../sass/_sidebar.scss */
+/* line 202, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
   margin: 1em auto;
 }
 
-/* line 199, ../sass/_sidebar.scss */
+/* line 206, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #toggleNotificationSound, #userstats, #removeMessagesRoom, #removeMessages {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -929,7 +938,7 @@ audio {
   color: #333;
 }
 
-/* line 222, ../sass/_sidebar.scss */
+/* line 229, ../sass/_sidebar.scss */
 .online-users {
   margin: 2em auto;
   text-align: left;
@@ -938,12 +947,12 @@ audio {
   overflow-y: auto;
   height: 10em;
 }
-/* line 230, ../sass/_sidebar.scss */
+/* line 237, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 234, ../sass/_sidebar.scss */
+/* line 241, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -951,11 +960,11 @@ audio {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   width: 10em;
-  margin: auto;
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
-/* line 244, ../sass/_sidebar.scss */
+/* line 251, ../sass/_sidebar.scss */
 .online-user {
   font-size: .9em;
   text-overflow: ellipsis;
@@ -964,22 +973,22 @@ audio {
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 253, ../sass/_sidebar.scss */
+/* line 259, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 260, ../sass/_sidebar.scss */
+/* line 266, ../sass/_sidebar.scss */
 .micro-avatar {
-  height: 1em;
-  width: 1em;
+  height: 1.1em;
+  width: 1.1em;
   display: inline-block;
   background-size: 100% !important;
   border-radius: 50%;
 }
 
-/* line 269, ../sass/_sidebar.scss */
+/* line 274, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -994,7 +1003,7 @@ audio {
   text-overflow: ellipsis;
 }
 
-/* line 284, ../sass/_sidebar.scss */
+/* line 289, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -1002,13 +1011,13 @@ audio {
   color: #805e00;
 }
 
-/* line 290, ../sass/_sidebar.scss */
+/* line 295, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 295, ../sass/_sidebar.scss */
+/* line 300, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -1034,7 +1043,7 @@ audio {
   */
 }
 @media all and (max-width: 50em) {
-  /* line 295, ../sass/_sidebar.scss */
+  /* line 300, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -1043,7 +1052,7 @@ audio {
   }
 }
 
-/* line 337, ../sass/_sidebar.scss */
+/* line 342, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -1061,20 +1070,20 @@ audio {
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
-  /* line 337, ../sass/_sidebar.scss */
+  /* line 342, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 363, ../sass/_sidebar.scss */
+/* line 368, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 372, ../sass/_sidebar.scss */
+/* line 377, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -1083,23 +1092,23 @@ audio {
   border-radius: 70%;
   opacity: .5;
 }
-/* line 383, ../sass/_sidebar.scss */
+/* line 388, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 386, ../sass/_sidebar.scss */
+/* line 391, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 394, ../sass/_sidebar.scss */
+/* line 399, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 403, ../sass/_sidebar.scss */
+/* line 408, ../sass/_sidebar.scss */
 .tt-cheatsheet {
   margin: 1em 0;
   padding: 1em 0;
@@ -1107,23 +1116,23 @@ audio {
   text-align: center;
 }
 
-/* line 412, ../sass/_sidebar.scss */
+/* line 417, ../sass/_sidebar.scss */
 .emoji-table tr {
   float: left;
   margin: .3em;
   border: 1px solid #F5F5F5;
 }
-/* line 417, ../sass/_sidebar.scss */
+/* line 422, ../sass/_sidebar.scss */
 .emoji-table tr td {
   padding: .2em;
 }
 
-/* line 426, ../sass/_sidebar.scss */
+/* line 431, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 430, ../sass/_sidebar.scss */
+/* line 435, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1133,12 +1142,12 @@ audio {
   text-align: center;
   color: #333;
 }
-/* line 439, ../sass/_sidebar.scss */
+/* line 444, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 444, ../sass/_sidebar.scss */
+/* line 449, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1149,7 +1158,7 @@ audio {
   display: inline-block;
   color: black;
 }
-/* line 456, ../sass/_sidebar.scss */
+/* line 461, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }
@@ -1163,14 +1172,21 @@ audio {
   -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   background: white;
 }
+@media all and (max-width: 31em) {
+  /* line 1, ../sass/_messages.scss */
+  .messages {
+    margin-left: 3.33em;
+    width: auto;
+  }
+}
 
-/* line 17, ../sass/_messages.scss */
+/* line 22, ../sass/_messages.scss */
 .message {
   padding: .2em 0.7em;
   overflow: visible !important;
   position: relative;
 }
-/* line 29, ../sass/_messages.scss */
+/* line 34, ../sass/_messages.scss */
 .message.unread::after {
   position: absolute;
   top: 0;
@@ -1181,7 +1197,7 @@ audio {
   width: 2px;
   background: #ffc21a;
 }
-/* line 39, ../sass/_messages.scss */
+/* line 44, ../sass/_messages.scss */
 .message.fadeOffUnread.unread::after {
   background: transparent;
   -webkit-transition: all 8s linear;
@@ -1190,7 +1206,7 @@ audio {
   -o-transition: all 8s linear;
   transition: all 8s linear;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(29)::after {
   -webkit-transition-delay: 500ms;
   -moz-transition-delay: 500ms;
@@ -1198,7 +1214,7 @@ audio {
   -o-transition-delay: 500ms;
   transition-delay: 500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(28)::after {
   -webkit-transition-delay: 1000ms;
   -moz-transition-delay: 1000ms;
@@ -1206,7 +1222,7 @@ audio {
   -o-transition-delay: 1000ms;
   transition-delay: 1000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(27)::after {
   -webkit-transition-delay: 1500ms;
   -moz-transition-delay: 1500ms;
@@ -1214,7 +1230,7 @@ audio {
   -o-transition-delay: 1500ms;
   transition-delay: 1500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(26)::after {
   -webkit-transition-delay: 2000ms;
   -moz-transition-delay: 2000ms;
@@ -1222,7 +1238,7 @@ audio {
   -o-transition-delay: 2000ms;
   transition-delay: 2000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(25)::after {
   -webkit-transition-delay: 2500ms;
   -moz-transition-delay: 2500ms;
@@ -1230,7 +1246,7 @@ audio {
   -o-transition-delay: 2500ms;
   transition-delay: 2500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(24)::after {
   -webkit-transition-delay: 3000ms;
   -moz-transition-delay: 3000ms;
@@ -1238,7 +1254,7 @@ audio {
   -o-transition-delay: 3000ms;
   transition-delay: 3000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(23)::after {
   -webkit-transition-delay: 3500ms;
   -moz-transition-delay: 3500ms;
@@ -1246,7 +1262,7 @@ audio {
   -o-transition-delay: 3500ms;
   transition-delay: 3500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(22)::after {
   -webkit-transition-delay: 4000ms;
   -moz-transition-delay: 4000ms;
@@ -1254,7 +1270,7 @@ audio {
   -o-transition-delay: 4000ms;
   transition-delay: 4000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(21)::after {
   -webkit-transition-delay: 4500ms;
   -moz-transition-delay: 4500ms;
@@ -1262,7 +1278,7 @@ audio {
   -o-transition-delay: 4500ms;
   transition-delay: 4500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(20)::after {
   -webkit-transition-delay: 5000ms;
   -moz-transition-delay: 5000ms;
@@ -1270,7 +1286,7 @@ audio {
   -o-transition-delay: 5000ms;
   transition-delay: 5000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(19)::after {
   -webkit-transition-delay: 5500ms;
   -moz-transition-delay: 5500ms;
@@ -1278,7 +1294,7 @@ audio {
   -o-transition-delay: 5500ms;
   transition-delay: 5500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(18)::after {
   -webkit-transition-delay: 6000ms;
   -moz-transition-delay: 6000ms;
@@ -1286,7 +1302,7 @@ audio {
   -o-transition-delay: 6000ms;
   transition-delay: 6000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(17)::after {
   -webkit-transition-delay: 6500ms;
   -moz-transition-delay: 6500ms;
@@ -1294,7 +1310,7 @@ audio {
   -o-transition-delay: 6500ms;
   transition-delay: 6500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(16)::after {
   -webkit-transition-delay: 7000ms;
   -moz-transition-delay: 7000ms;
@@ -1302,7 +1318,7 @@ audio {
   -o-transition-delay: 7000ms;
   transition-delay: 7000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(15)::after {
   -webkit-transition-delay: 7500ms;
   -moz-transition-delay: 7500ms;
@@ -1310,7 +1326,7 @@ audio {
   -o-transition-delay: 7500ms;
   transition-delay: 7500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(14)::after {
   -webkit-transition-delay: 8000ms;
   -moz-transition-delay: 8000ms;
@@ -1318,7 +1334,7 @@ audio {
   -o-transition-delay: 8000ms;
   transition-delay: 8000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(13)::after {
   -webkit-transition-delay: 8500ms;
   -moz-transition-delay: 8500ms;
@@ -1326,7 +1342,7 @@ audio {
   -o-transition-delay: 8500ms;
   transition-delay: 8500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(12)::after {
   -webkit-transition-delay: 9000ms;
   -moz-transition-delay: 9000ms;
@@ -1334,7 +1350,7 @@ audio {
   -o-transition-delay: 9000ms;
   transition-delay: 9000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(11)::after {
   -webkit-transition-delay: 9500ms;
   -moz-transition-delay: 9500ms;
@@ -1342,7 +1358,7 @@ audio {
   -o-transition-delay: 9500ms;
   transition-delay: 9500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(10)::after {
   -webkit-transition-delay: 10000ms;
   -moz-transition-delay: 10000ms;
@@ -1350,7 +1366,7 @@ audio {
   -o-transition-delay: 10000ms;
   transition-delay: 10000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(9)::after {
   -webkit-transition-delay: 10500ms;
   -moz-transition-delay: 10500ms;
@@ -1358,7 +1374,7 @@ audio {
   -o-transition-delay: 10500ms;
   transition-delay: 10500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(8)::after {
   -webkit-transition-delay: 11000ms;
   -moz-transition-delay: 11000ms;
@@ -1366,7 +1382,7 @@ audio {
   -o-transition-delay: 11000ms;
   transition-delay: 11000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(7)::after {
   -webkit-transition-delay: 11500ms;
   -moz-transition-delay: 11500ms;
@@ -1374,7 +1390,7 @@ audio {
   -o-transition-delay: 11500ms;
   transition-delay: 11500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(6)::after {
   -webkit-transition-delay: 12000ms;
   -moz-transition-delay: 12000ms;
@@ -1382,7 +1398,7 @@ audio {
   -o-transition-delay: 12000ms;
   transition-delay: 12000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(5)::after {
   -webkit-transition-delay: 12500ms;
   -moz-transition-delay: 12500ms;
@@ -1390,7 +1406,7 @@ audio {
   -o-transition-delay: 12500ms;
   transition-delay: 12500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(4)::after {
   -webkit-transition-delay: 13000ms;
   -moz-transition-delay: 13000ms;
@@ -1398,7 +1414,7 @@ audio {
   -o-transition-delay: 13000ms;
   transition-delay: 13000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(3)::after {
   -webkit-transition-delay: 13500ms;
   -moz-transition-delay: 13500ms;
@@ -1406,7 +1422,7 @@ audio {
   -o-transition-delay: 13500ms;
   transition-delay: 13500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(2)::after {
   -webkit-transition-delay: 14000ms;
   -moz-transition-delay: 14000ms;
@@ -1414,7 +1430,7 @@ audio {
   -o-transition-delay: 14000ms;
   transition-delay: 14000ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(1)::after {
   -webkit-transition-delay: 14500ms;
   -moz-transition-delay: 14500ms;
@@ -1422,7 +1438,7 @@ audio {
   -o-transition-delay: 14500ms;
   transition-delay: 14500ms;
 }
-/* line 48, ../sass/_messages.scss */
+/* line 53, ../sass/_messages.scss */
 .message.fadeOffUnread.unread:nth-last-of-type(0)::after {
   -webkit-transition-delay: 15000ms;
   -moz-transition-delay: 15000ms;
@@ -1431,7 +1447,7 @@ audio {
   transition-delay: 15000ms;
 }
 
-/* line 62, ../sass/_messages.scss */
+/* line 67, ../sass/_messages.scss */
 .avatar {
   z-index: 500;
   height: 1.9em;
@@ -1448,12 +1464,12 @@ audio {
   top: -0.9em;
 }
 
-/* line 83, ../sass/_messages.scss */
+/* line 88, ../sass/_messages.scss */
 .avatar-border {
   border: 1px solid darkgrey;
 }
 
-/* line 86, ../sass/_messages.scss */
+/* line 91, ../sass/_messages.scss */
 .message .text, .message p {
   display: inline-block;
   vertical-align: middle;
@@ -1467,7 +1483,7 @@ audio {
   hyphens: auto;
   width: 100%;
 }
-/* line 104, ../sass/_messages.scss */
+/* line 109, ../sass/_messages.scss */
 .message .text a, .message p a {
   display: inline-block;
   max-width: 15em;
@@ -1476,13 +1492,13 @@ audio {
   overflow: hidden;
   vertical-align: middle;
 }
-/* line 114, ../sass/_messages.scss */
+/* line 119, ../sass/_messages.scss */
 .message .text.deleted, .message p.deleted {
   text-decoration: line-through;
   color: #C0C0C0;
 }
 
-/* line 121, ../sass/_messages.scss */
+/* line 126, ../sass/_messages.scss */
 .time-hoverer {
   position: absolute;
   right: 0;
@@ -1492,13 +1508,13 @@ audio {
   display: inline-block;
 }
 
-/* line 129, ../sass/_messages.scss */
+/* line 134, ../sass/_messages.scss */
 .message:hover .time {
   opacity: 1;
   visibility: visible;
 }
 
-/* line 133, ../sass/_messages.scss */
+/* line 138, ../sass/_messages.scss */
 .time {
   cursor: pointer;
   display: inline-block;
@@ -1525,13 +1541,13 @@ audio {
   transition: all .2s ease;
 }
 @media all and (min-width: 58em) {
-  /* line 133, ../sass/_messages.scss */
+  /* line 138, ../sass/_messages.scss */
   .time {
     right: -12em;
   }
 }
 
-/* line 186, ../sass/_messages.scss */
+/* line 191, ../sass/_messages.scss */
 .at-username {
   display: inline-block;
   padding: 2px;
@@ -1539,7 +1555,7 @@ audio {
   color: #41441D;
 }
 
-/* line 194, ../sass/_messages.scss */
+/* line 199, ../sass/_messages.scss */
 pre {
   display: block;
   overflow-x: auto;
@@ -1547,7 +1563,7 @@ pre {
   word-break: normal;
 }
 
-/* line 203, ../sass/_messages.scss */
+/* line 208, ../sass/_messages.scss */
 code {
   display: block;
   white-space: pre;
@@ -1559,13 +1575,13 @@ code {
   border-radius: 3px;
 }
 
-/* line 215, ../sass/_messages.scss */
+/* line 220, ../sass/_messages.scss */
 .tip:hover .username {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 220, ../sass/_messages.scss */
+/* line 225, ../sass/_messages.scss */
 .username {
   position: absolute;
   font-size: .9em;
@@ -1585,7 +1601,7 @@ code {
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
-/* line 245, ../sass/_messages.scss */
+/* line 250, ../sass/_messages.scss */
 .username:after {
   content: "";
   position: absolute;
@@ -1597,11 +1613,11 @@ code {
   border-left: .5em solid transparent;
 }
 
-/* line 257, ../sass/_messages.scss */
+/* line 262, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
 }
-/* line 263, ../sass/_messages.scss */
+/* line 268, ../sass/_messages.scss */
 .message-image-wrapper .open-in-new-tab {
   position: absolute;
   top: .2em;
@@ -1612,7 +1628,7 @@ code {
   background-size: 100%;
 }
 
-/* line 273, ../sass/_messages.scss */
+/* line 278, ../sass/_messages.scss */
 .message-image {
   display: inline-block;
   max-height: 6em;
@@ -1620,20 +1636,20 @@ code {
   margin-top: .2em;
   max-width: 100%;
 }
-/* line 280, ../sass/_messages.scss */
+/* line 285, ../sass/_messages.scss */
 .message-image.exp {
   max-height: inherit;
   width: auto;
   max-width: 100%;
 }
 
-/* line 287, ../sass/_messages.scss */
+/* line 292, ../sass/_messages.scss */
 .diffUser {
   margin-top: .8em;
   border-top: 1px solid #eeeeee;
 }
 
-/* line 300, ../sass/_messages.scss */
+/* line 305, ../sass/_messages.scss */
 .cssanimations.csstransitions .slick-realtime-shit {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -1641,14 +1657,14 @@ code {
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 308, ../sass/_messages.scss */
+/* line 313, ../sass/_messages.scss */
 .timestamp-text {
   text-align: center;
   font-size: .8em;
   color: #857F7F;
   margin: .8em 0 1.8em;
 }
-/* line 314, ../sass/_messages.scss */
+/* line 319, ../sass/_messages.scss */
 .timestamp-text::after {
   content: '↑';
   height: 1em;
@@ -1656,12 +1672,12 @@ code {
   margin-left: .5em;
 }
 
-/* line 322, ../sass/_messages.scss */
+/* line 327, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 325, ../sass/_messages.scss */
+/* line 330, ../sass/_messages.scss */
 #mymessage {
   resize: none !important;
   width: 100%;
@@ -1677,7 +1693,7 @@ code {
   overflow-y: hidden;
 }
 
-/* line 352, ../sass/_messages.scss */
+/* line 357, ../sass/_messages.scss */
 #first, #last {
   border: none;
   opacity: 0;
@@ -1685,66 +1701,66 @@ code {
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 359, ../sass/_messages.scss */
+  /* line 364, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 360, ../sass/_messages.scss */
+  /* line 365, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 363, ../sass/_messages.scss */
+  /* line 368, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 364, ../sass/_messages.scss */
+  /* line 369, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 367, ../sass/_messages.scss */
+  /* line 372, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 368, ../sass/_messages.scss */
+  /* line 373, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 371, ../sass/_messages.scss */
+  /* line 376, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 372, ../sass/_messages.scss */
+  /* line 377, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 375, ../sass/_messages.scss */
+  /* line 380, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffbb00;
   }
 
-  /* line 376, ../sass/_messages.scss */
+  /* line 381, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
-/* line 379, ../sass/_messages.scss */
+/* line 384, ../sass/_messages.scss */
 .typeahead {
   list-style-type: none;
   width: 100%;
@@ -1753,7 +1769,7 @@ code {
   border-radius: .5em;
   margin-top: 1.5em;
 }
-/* line 388, ../sass/_messages.scss */
+/* line 393, ../sass/_messages.scss */
 .typeahead li {
   position: relative;
   display: inline-block;
@@ -1767,21 +1783,21 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 390, ../sass/_messages.scss */
+/* line 395, ../sass/_messages.scss */
 .typeahead li a {
   text-decoration: none !important;
 }
-/* line 406, ../sass/_messages.scss */
+/* line 411, ../sass/_messages.scss */
 .typeahead li.active {
   background: white;
   background: #4591FF;
   opacity: 1;
 }
-/* line 411, ../sass/_messages.scss */
+/* line 416, ../sass/_messages.scss */
 .typeahead li.active .mention_username {
   color: white;
 }
-/* line 420, ../sass/_messages.scss */
+/* line 425, ../sass/_messages.scss */
 .typeahead .mention_image {
   position: absolute;
   height: 1.5em;
@@ -1791,7 +1807,7 @@ code {
   top: .25em;
   left: 1em;
 }
-/* line 429, ../sass/_messages.scss */
+/* line 434, ../sass/_messages.scss */
 .typeahead .mention_username {
   position: absolute;
   font-weight: bold;
