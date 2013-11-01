@@ -768,13 +768,14 @@ audio {
   padding: 5em 1em 4em;
   margin-bottom: -2em;
   overflow-y: auto;
+  overflow-x: hidden;
   /*prevent flicker*/
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-/* line 49, ../sass/_sidebar.scss */
+/* line 50, ../sass/_sidebar.scss */
 .fixed-sidebar a {
   color: black;
 }
@@ -799,43 +800,43 @@ audio {
     background: white;
   }
 }
-/* line 86, ../sass/_sidebar.scss */
+/* line 87, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: none;
 }
-/* line 98, ../sass/_sidebar.scss */
+/* line 99, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 100, ../sass/_sidebar.scss */
+/* line 101, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 107, ../sass/_sidebar.scss */
+  /* line 108, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar {
     width: 0.3em !important;
     background: #fff;
   }
-  /* line 108, ../sass/_sidebar.scss */
+  /* line 109, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-track {
     background-color: #eee;
   }
-  /* line 109, ../sass/_sidebar.scss */
+  /* line 110, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
-/* line 112, ../sass/_sidebar.scss */
+/* line 113, ../sass/_sidebar.scss */
 .fixed-sidebar > * {
   z-index: 1000;
 }
 
 @media all and (max-width: 50em) {
-  /* line 118, ../sass/_sidebar.scss */
+  /* line 119, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(18em, 0, 0);
     -moz-transform: translate3d(18em, 0, 0);
@@ -846,18 +847,18 @@ audio {
 }
 
 @media all and (max-width: 50em) {
-  /* line 130, ../sass/_sidebar.scss */
+  /* line 131, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.shadow {
     left: 0 !important;
   }
 }
 
-/* line 136, ../sass/_sidebar.scss */
+/* line 137, ../sass/_sidebar.scss */
 .mobile-fixed-background {
   display: none;
 }
 @media all and (max-width: 50em) {
-  /* line 136, ../sass/_sidebar.scss */
+  /* line 137, ../sass/_sidebar.scss */
   .mobile-fixed-background {
     display: block;
     height: 50%;
@@ -871,19 +872,19 @@ audio {
   }
 }
 
-/* line 151, ../sass/_sidebar.scss */
+/* line 152, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
   cursor: pointer;
 }
-/* line 155, ../sass/_sidebar.scss */
+/* line 156, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3.5em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 162, ../sass/_sidebar.scss */
+/* line 163, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -892,13 +893,13 @@ audio {
   font-size: 1.1em;
 }
 
-/* line 172, ../sass/_sidebar.scss */
+/* line 173, ../sass/_sidebar.scss */
 .usermenu {
   opacity: 0;
   visibility: hidden;
   height: 0;
 }
-/* line 177, ../sass/_sidebar.scss */
+/* line 178, ../sass/_sidebar.scss */
 .usermenu.show {
   opacity: 1 !important;
   visibility: visible !important;
@@ -910,13 +911,13 @@ audio {
   transition: all .3s ease-in-out;
 }
 
-/* line 194, ../sass/_sidebar.scss */
+/* line 195, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
   margin: 1em auto;
 }
 
-/* line 198, ../sass/_sidebar.scss */
+/* line 199, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #toggleNotificationSound, #userstats, #removeMessagesRoom, #removeMessages {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -928,7 +929,7 @@ audio {
   color: #333;
 }
 
-/* line 221, ../sass/_sidebar.scss */
+/* line 222, ../sass/_sidebar.scss */
 .online-users {
   margin: 2em auto;
   text-align: left;
@@ -937,12 +938,12 @@ audio {
   overflow-y: auto;
   height: 10em;
 }
-/* line 229, ../sass/_sidebar.scss */
+/* line 230, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 233, ../sass/_sidebar.scss */
+/* line 234, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -954,7 +955,7 @@ audio {
   display: inline-block;
 }
 
-/* line 243, ../sass/_sidebar.scss */
+/* line 244, ../sass/_sidebar.scss */
 .online-user {
   font-size: .9em;
   text-overflow: ellipsis;
@@ -963,13 +964,13 @@ audio {
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 252, ../sass/_sidebar.scss */
+/* line 253, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 259, ../sass/_sidebar.scss */
+/* line 260, ../sass/_sidebar.scss */
 .micro-avatar {
   height: 1em;
   width: 1em;
@@ -978,7 +979,7 @@ audio {
   border-radius: 50%;
 }
 
-/* line 268, ../sass/_sidebar.scss */
+/* line 269, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -993,7 +994,7 @@ audio {
   text-overflow: ellipsis;
 }
 
-/* line 283, ../sass/_sidebar.scss */
+/* line 284, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -1001,13 +1002,13 @@ audio {
   color: #805e00;
 }
 
-/* line 289, ../sass/_sidebar.scss */
+/* line 290, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 294, ../sass/_sidebar.scss */
+/* line 295, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -1033,7 +1034,7 @@ audio {
   */
 }
 @media all and (max-width: 50em) {
-  /* line 294, ../sass/_sidebar.scss */
+  /* line 295, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -1042,7 +1043,7 @@ audio {
   }
 }
 
-/* line 336, ../sass/_sidebar.scss */
+/* line 337, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -1060,20 +1061,20 @@ audio {
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
-  /* line 336, ../sass/_sidebar.scss */
+  /* line 337, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 362, ../sass/_sidebar.scss */
+/* line 363, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 371, ../sass/_sidebar.scss */
+/* line 372, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -1082,23 +1083,23 @@ audio {
   border-radius: 70%;
   opacity: .5;
 }
-/* line 382, ../sass/_sidebar.scss */
+/* line 383, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 385, ../sass/_sidebar.scss */
+/* line 386, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 393, ../sass/_sidebar.scss */
+/* line 394, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 402, ../sass/_sidebar.scss */
+/* line 403, ../sass/_sidebar.scss */
 .tt-cheatsheet {
   margin: 1em 0;
   padding: 1em 0;
@@ -1106,23 +1107,23 @@ audio {
   text-align: center;
 }
 
-/* line 411, ../sass/_sidebar.scss */
+/* line 412, ../sass/_sidebar.scss */
 .emoji-table tr {
   float: left;
   margin: .3em;
   border: 1px solid #F5F5F5;
 }
-/* line 416, ../sass/_sidebar.scss */
+/* line 417, ../sass/_sidebar.scss */
 .emoji-table tr td {
   padding: .2em;
 }
 
-/* line 425, ../sass/_sidebar.scss */
+/* line 426, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 429, ../sass/_sidebar.scss */
+/* line 430, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1132,12 +1133,12 @@ audio {
   text-align: center;
   color: #333;
 }
-/* line 438, ../sass/_sidebar.scss */
+/* line 439, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 443, ../sass/_sidebar.scss */
+/* line 444, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1148,7 +1149,7 @@ audio {
   display: inline-block;
   color: black;
 }
-/* line 455, ../sass/_sidebar.scss */
+/* line 456, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }
@@ -1492,7 +1493,7 @@ audio {
 }
 
 /* line 129, ../sass/_messages.scss */
-.time-hoverer:hover .time {
+.message:hover .time {
   opacity: 1;
   visibility: visible;
 }

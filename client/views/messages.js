@@ -248,16 +248,11 @@ function renderMessages(){
 				time.classList.add('time');
 				time.innerHTML = (new Date(doc.timestamp)).toLocaleString();
 
-				timehoverer=document.createElement('span');
-				timehoverer.classList.add('time-hoverer');
-
-
 			//assemble the message
 			avatar.appendChild( username );
 			message.appendChild(avatar);
 			message.appendChild(text);
-			timehoverer.appendChild(time);
-			message.appendChild(timehoverer);
+			message.appendChild(time);
 
 			$('#'+doc._id).remove();
 
@@ -322,19 +317,13 @@ function renderMessages(){
 				time.classList.add('time');
 				time.innerHTML = (new Date(fields.timestamp)).toLocaleString();
 
-				timehoverer=document.createElement('a');
-				timehoverer.href='#'+id;
-				timehoverer.classList.add('time-hoverer');
-
 
 
 			//assemble the message
 			avatar.appendChild( username );
 			message.appendChild(avatar);
 			message.appendChild(text);
-			timehoverer.appendChild(time);
-			message.appendChild(timehoverer);
-
+			message.appendChild(time);
 
 
 

@@ -1,5 +1,4 @@
 Meteor.methods({
-
   globalMessagesCount: function(){
     return Messages.find().count();
   },
