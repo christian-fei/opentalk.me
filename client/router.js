@@ -41,7 +41,7 @@ Meteor.Router.add({'/admin': function(){
 Meteor.Router.add({'/:id': function(id){
 		//reset
 
-		console.log(this);
+		
 
 		id=id.toLowerCase();
 
