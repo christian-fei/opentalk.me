@@ -40,9 +40,6 @@ Meteor.Router.add({'/admin': function(){
 
 Meteor.Router.add({'/:id': function(id){
 		//reset
-
-		
-
 		id=id.toLowerCase();
 
 		Session.set('roomid',id);
