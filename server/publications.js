@@ -39,6 +39,6 @@ Meteor.publish('LastSeenInRoomAdmin',function(){
   return [];
 });
 
-function isAdmin(userid){
+function isAdmin(userId){
   return Meteor.users.find({_id:userId,admin:true}).count() === 1;
 }
