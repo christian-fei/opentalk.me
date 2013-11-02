@@ -5,9 +5,10 @@
 	"launch_path": "/index.html",
 	"appcache_path": "/offline.appcache",
 	"icons": {
-		"16": "/favicon.png",
-		"48": "/favicon.png",
-		"128": "/favicon.png"
+		"16": "/favicon-16.png",
+		"48": "/favicon-48.png",
+		"60": "/favicon-60.png",
+		"128": "/favicon-128.png"
 	},
 	"developer": {
 		"name": "Christian Fei",
