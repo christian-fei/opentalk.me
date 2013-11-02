@@ -23,6 +23,10 @@ Meteor.publish('userLastSeenInRooms', function(roomid) {
 });
 
 
+function isAdmin(userId){
+  return Meteor.users.find({_id:userId,admin:true}).count() === 1;
+}
+
 Meteor.publish('OnlineUsersAdmin',function(){
   if( isAdmin(this.userId) )
     return OnlineUsers.find();
@@ -30,15 +34,11 @@ Meteor.publish('OnlineUsersAdmin',function(){
 });
 Meteor.publish('MessagesAdmin',function(){
   if( isAdmin(this.userId) )
-    return Messages.find({}, {sort: {timestamp:-1}, limit: 500});
+    return Messages.find({}, {sort: {timestamp:-1}, limit: 250});
   return [];
 });
-Meteor.publish('LastSeenInRoomAdmin',function(){
+Meteor.publish('UsersAdmin',function(){
   if( isAdmin(this.userId) )
-    return LastSeenInRoom.find({}, {sort: {timestamp:-1}});
+    return Meteor.users.find({}, {sort: {timestamp:-1}, limit: 250});
   return [];
 });
-
-function isAdmin(userId){
-  return Meteor.users.find({_id:userId,admin:true}).count() === 1;
-}

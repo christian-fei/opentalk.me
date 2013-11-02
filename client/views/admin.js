@@ -5,8 +5,8 @@ Template.admin.helpers({
 	'messages' : function(){
 		return Messages.find({},{sort:{timestamp:-1}});
 	},
-	'lastSeen' : function(){
-		return LastSeenInRoom.find({},{sort:{timestamp:-1}});
+	'users' : function(){
+		return Meteor.users.find({},{sort:{timestamp:-1}});
 	}
 });
 
@@ -14,6 +14,6 @@ Deps.autorun(function(){
 	if(Meteor.user() && window.location.pathname === '/admin'){
 		Meteor.subscribe('OnlineUsersAdmin');
 		Meteor.subscribe('MessagesAdmin');
-		Meteor.subscribe('LastSeenInRoomAdmin');
-	}	
+		Meteor.subscribe('UsersAdmin');
+	}
 });

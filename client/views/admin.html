@@ -6,17 +6,17 @@
 	</ul>
 	<br>
 	<br>
-	<table class='message-admin-table' width="50%">
+	<table class='admin-table' style="width: 40%;float: left;">
 	{{#each messages}}
 		<tr>
 			<td>{{username}}</td> <td>{{roomid}}</td><td>{{text}}</td>
 		</tr>
 	{{/each}}	
 	</table>
-	<table class='lastseen-admin-table' width="50%">
-	{{#each lastSeen}}
+	<table class='admin-table' style="width: 40%;float: left;">
+	{{#each users}}
 		<tr>
-			<td>{{username}}</td> <td>{{roomid}}</td>
+			<td>{{profile.name}}</td> <td>{{createdAt}}</td>
 		</tr>
 	{{/each}}	
 	</table>
