@@ -6,10 +6,17 @@
 	</ul>
 	<br>
 	<br>
-	<table class='message-admin-table'>
+	<table class='message-admin-table' width="50%">
 	{{#each messages}}
 		<tr>
 			<td>{{username}}</td> <td>{{roomid}}</td><td>{{text}}</td>
+		</tr>
+	{{/each}}	
+	</table>
+	<table class='lastseen-admin-table' width="50%">
+	{{#each lastSeen}}
+		<tr>
+			<td>{{username}}</td> <td>{{roomid}}</td>
 		</tr>
 	{{/each}}	
 	</table>

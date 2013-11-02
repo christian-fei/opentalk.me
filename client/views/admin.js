@@ -4,6 +4,9 @@ Template.admin.helpers({
 	},
 	'messages' : function(){
 		return Messages.find({},{sort:{timestamp:-1}});
+	},
+	'lastSeen' : function(){
+		return LastSeenInRoom.find({},{sort:{timestamp:-1}});
 	}
 });
 

@@ -24,15 +24,21 @@ Meteor.publish('userLastSeenInRooms', function(roomid) {
 
 
 Meteor.publish('OnlineUsersAdmin',function(){
-  console.log( this.userId );
-  if( Meteor.users.find({_id:this.userId,admin:true}).count() === 1 )
+  if( isAdmin(this.userId) )
     return OnlineUsers.find();
   return [];
 });
-
 Meteor.publish('MessagesAdmin',function(){
-  console.log( this.userId );
-  if( Meteor.users.find({_id:this.userId,admin:true}).count() === 1 )
+  if( isAdmin(this.userId) )
     return Messages.find({}, {sort: {timestamp:-1}, limit: 500});
   return [];
 });
+Meteor.publish('LastSeenInRoomAdmin',function(){
+  if( isAdmin(this.userId) )
+    return LastSeenInRoom.find({}, {sort: {timestamp:-1}});
+  return [];
+});
+
+function isAdmin(userid){
+  return Meteor.users.find({_id:userId,admin:true}).count() === 1;
+}
