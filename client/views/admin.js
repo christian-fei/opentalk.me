@@ -14,5 +14,6 @@ Deps.autorun(function(){
 	if(Meteor.user() && window.location.pathname === '/admin'){
 		Meteor.subscribe('OnlineUsersAdmin');
 		Meteor.subscribe('MessagesAdmin');
+		Meteor.subscribe('LastSeenInRoomAdmin');
 	}	
 });
