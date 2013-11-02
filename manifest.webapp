@@ -5,17 +5,14 @@
 	"launch_path": "/index.html",
 	"appcache_path": "/offline.appcache",
 	"icons": {
-		"16": "/public/favicon.png",
-		"48": "/public/favicon.png",
-		"128": "/public/favicon.png"
+		"16": "/favicon.png",
+		"48": "/favicon.png",
+		"128": "/favicon.png"
 	},
 	"developer": {
 		"name": "Christian Fei",
 		"url": "http://christian-fei.com"
 	},
 	"installs_allowed_from": ["*"],
-	"default_locale": "en",
-	"permissions": {
-		"systemXHR": {}
-	}
+	"default_locale": "en"
 }
