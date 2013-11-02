@@ -20,3 +20,4 @@ router
 spin
 accounts-ui
 http
+npm

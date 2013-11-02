@@ -18,3 +18,16 @@ Meteor.setInterval(function() {
     OnlineUsers.remove({_id:user._id,roomid:user.roomid},{multi:true});
   });
 },killCheck);
+
+
+var fs = Npm.require('fs'),
+    path = Npm.require('path');
+var __dirname = path.resolve('../../../../../');
+
+Meteor.Router.add( '/manifest.webapp', 'GET', function () {
+  console.log('wants manifest ' + __dirname);
+  return [200,
+    {
+       'Content-type': 'application/x-web-app-manifest+json'
+    }, fs.readFileSync( __dirname + '/manifest.webapp' )];
+} );
