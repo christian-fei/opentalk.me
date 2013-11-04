@@ -4,38 +4,60 @@
 			<h1 style='font-size: 3.5em;'>OpenTalk</h1>
 			<h1>The <b>real</b> realtime chat</h1>
 			<img src="/images/logo_even_white.svg" class='logo-welcome'/>
+			{{#if currentUser}}
+				<br/>
+				<div class="userinfo">
+					<img class="user-avatar" src="{{avatar}}"/>
+					<span class="user-username">{{username}}</span>
+					<div class="usermenu">
+						<a href="/profile" id='userstats' class='button silver' title='view your stats'>profile <span class="icon-profile"></span></a>
+						<a href="#" id='logout' class='button silver' title='Log out'>Sign out <span class="icon-signout"></span></a>
+					</div>
+				</div>	
+			{{else}}
 			<h6>No app to install</h6>
 			<h6>No signup required</h6>
 			<h6>Simple and uncluttered UI</h6>
 			<h6><span class="tipstricks-toggle fake-link">Markdown</span> support? Hell yeah</h6>
 			<h6>Uh! I almost forgot: it's <a style='color:#222;' target='_blank' href="https://github.com/christian-fei/opentalk.me">opensource</a></h6>
+			
+			<div class="limit intro">
+				<b>OpenTalk</b> is a platform where you can create public chatrooms and invite people to join the discussion by simply sharing an URL. It's that simple.
+				<br/>
+				Sign in to see at a glance in which chatroom you have unread messages and to chat in realtime with other people (yes, you can see how fast the other user is typing, too).
+			</div>
+			{{/if}}
 		</div>
 	</section>
-	<section class='blankets-wrapper'>
-		{{#unless currentUser}}
-			<div style='margin: 2em auto;text-align:center;'>
-				{{>loginForm}}
+	<section class="alternate-background">
+		<section class='blankets-wrapper'>
+			{{#unless currentUser}}
+				<div style='margin: 2em auto;text-align:center;'>
+					{{>loginForm}}
+				</div>
+			{{/unless}}
+			<div class="blanket-wrapper">
+				<div class="blanket medium-text">
+					<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
+				</div>
 			</div>
-		{{/unless}}
-		<div class="blanket-wrapper">
-			<div class="blanket medium-text">
-				<span class='vam'>Join the conversation at</span> <span class="vam">{{>selectChatRoom}}</span>
+		
+			<div class="blanket-wrapper">
+				<div class="blanket-search medium-text">
+					<span>find interesting chatrooms</span>
+					<br>
+					{{>search}}
+				</div>
 			</div>
-		</div>
-
-		<div class="blanket-wrapper">
-			<div class="blanket-search medium-text">
-				<span>find interesting chatrooms</span>
-				<br>
-				{{>search}}
-			</div>
-		</div>
+		</section>
 	</section>
 	{{#if currentUser}}
-		{{>mystats}}
+		<section class="alternate-background">
+			{{>mystats}}
+		</section>
 	{{/if}}
 	{{#unless currentUser}}
-	<section class="tiles">
+	<section class="tiles alternate-background">
 		<div class="tiles-wrapper">
 			<h1 class='tiles-header'>Features</h1>
 			<div class="tile">
@@ -83,7 +105,7 @@
 		</div>
 	</section>
 	{{/unless}}
-	<section class="tiles">
+	<section class="tiles alternate-background">
 		<div class="tiles-wrapper">
 			<h1 class='tiles-header'>Global stats</h1>
 			<div class="tile">
@@ -113,7 +135,7 @@
 		</div>
 	</section>
 	{{#unless currentUser}}
-	<section class="todos">
+	<section class="todos alternate-background">
 		<div class="todos-wrapper">
 			<h4>TODO</h4>
 			<br>
@@ -136,7 +158,7 @@
 		</div>
 	</section>
 	{{/unless}}
-	<footer class="footer">
+	<footer class="footer alternate-background">
 		<div class="footer-wrapper">
 			<div class="tos">
 				<h6>ToS</h6>

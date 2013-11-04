@@ -11,6 +11,7 @@
 	text-align:center;
 	// font-size: 2em;
 	position: relative;
+	color:#222;
 }
 	.welcome-mast-cont{
 		padding:5em;
@@ -35,10 +36,12 @@
 			padding:5em 3em;
 		}
 
-		h1{
-		}
-			color:#222;
+		color:#222;
 		@include inset(.2,.2);
+
+		.userinfo{
+			font-size: 1.15em;
+		}
 	}
 	.logo-welcome{
 		display:block;
@@ -90,9 +93,20 @@ $offset-y:-400px;
 
 
 
-.tiles:nth-of-type(2n){
+.alternate-background:nth-of-type(odd){
+	background:#000!important;
 	background:$color-subtle!important;
+	box-shadow: 0px 0px 40px -15px grey inset;
 }
+
+.intro{
+	padding:1em;
+	font-size: 1.2em;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
+
+
 
 
 .todos{
@@ -109,7 +123,6 @@ $offset-y:-400px;
 
 
 .footer{
-	background:#F0F0F0;
 	overflow: hidden;
 	padding: 3em 2em!important;
 	margin:auto!important;

@@ -104,6 +104,46 @@ input, select {
   text-rendering: optimizeLegibility;
 }
 
+/* line 1, ../sass/_general.scss */
+body {
+  background: #f8f8f8;
+}
+
+/* line 5, ../sass/_general.scss */
+input {
+  background: none;
+}
+
+/* line 9, ../sass/_general.scss */
+html {
+  overflow-x: hidden;
+}
+
+/* line 17, ../sass/_general.scss */
+::selection {
+  background: #323232;
+  color: white;
+}
+
+/* line 18, ../sass/_general.scss */
+::-moz-selection {
+  background: #323232;
+  color: white;
+}
+
+/* line 21, ../sass/_general.scss */
+.fake-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* line 26, ../sass/_general.scss */
+.limit {
+  max-width: 31em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* line 1, ../sass/_typography.scss */
 body {
   font: 95% / 1.3 sans-serif;
@@ -488,13 +528,14 @@ SUPER SLICK TRANSFORMS
 /* line 7, ../sass/_welcome.scss */
 .welcome-mast, .profile-mast {
   color: white;
-  background: #ffbb00;
+  background: #ffd100;
   color: black;
   text-align: center;
   position: relative;
+  color: #222;
 }
 
-/* line 15, ../sass/_welcome.scss */
+/* line 16, ../sass/_welcome.scss */
 .welcome-mast-cont, .profile-mast-cont {
   padding: 5em;
   background-attachment: fixed;
@@ -505,7 +546,7 @@ SUPER SLICK TRANSFORMS
   text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.2), -1px -1px 1px rgba(0, 0, 0, 0.2);
 }
 @media all and (min-width: 31em) {
-  /* line 15, ../sass/_welcome.scss */
+  /* line 16, ../sass/_welcome.scss */
   .welcome-mast-cont, .profile-mast-cont {
     -webkit-animation: welcome-mast-anim 14s infinite linear;
     -moz-animation: welcome-mast-anim 14s infinite linear;
@@ -518,13 +559,17 @@ SUPER SLICK TRANSFORMS
   }
 }
 @media all and (max-width: 30em) {
-  /* line 15, ../sass/_welcome.scss */
+  /* line 16, ../sass/_welcome.scss */
   .welcome-mast-cont, .profile-mast-cont {
     padding: 5em 3em;
   }
 }
+/* line 42, ../sass/_welcome.scss */
+.welcome-mast-cont .userinfo, .profile-mast-cont .userinfo {
+  font-size: 1.15em;
+}
 
-/* line 43, ../sass/_welcome.scss */
+/* line 46, ../sass/_welcome.scss */
 .logo-welcome {
   display: block;
   margin: 1rem auto;
@@ -532,7 +577,7 @@ SUPER SLICK TRANSFORMS
   width: 3.75rem;
 }
 
-/* line 51, ../sass/_welcome.scss */
+/* line 54, ../sass/_welcome.scss */
 #roomid {
   position: relative;
   padding: 1em;
@@ -547,87 +592,96 @@ SUPER SLICK TRANSFORMS
 }
 
 @-webkit-keyframes welcome-mast-anim {
-  /* line 71, ../sass/_welcome.scss */
+  /* line 74, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 72, ../sass/_welcome.scss */
+  /* line 75, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-moz-keyframes welcome-mast-anim {
-  /* line 75, ../sass/_welcome.scss */
+  /* line 78, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 76, ../sass/_welcome.scss */
+  /* line 79, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-ms-keyframes welcome-mast-anim {
-  /* line 79, ../sass/_welcome.scss */
+  /* line 82, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 80, ../sass/_welcome.scss */
+  /* line 83, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @-o-keyframes welcome-mast-anim {
-  /* line 83, ../sass/_welcome.scss */
+  /* line 86, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 84, ../sass/_welcome.scss */
+  /* line 87, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
 @keyframes welcome-mast-anim {
-  /* line 87, ../sass/_welcome.scss */
+  /* line 90, ../sass/_welcome.scss */
   from {
     background-position: 0 0;
   }
 
-  /* line 88, ../sass/_welcome.scss */
+  /* line 91, ../sass/_welcome.scss */
   to {
     background-position: 0 -400px;
   }
 }
 
-/* line 93, ../sass/_welcome.scss */
-.tiles:nth-of-type(2n), .stats:nth-of-type(2n) {
-  background: #fbfbfb !important;
+/* line 96, ../sass/_welcome.scss */
+.alternate-background:nth-of-type(odd) {
+  background: black !important;
+  background: #f8f8f8 !important;
+  box-shadow: 0px 0px 40px -15px grey inset;
 }
 
-/* line 98, ../sass/_welcome.scss */
+/* line 102, ../sass/_welcome.scss */
+.intro {
+  padding: 1em;
+  font-size: 1.2em;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+}
+
+/* line 112, ../sass/_welcome.scss */
 .todos {
   background: white;
   overflow: hidden;
   width: 100%;
 }
 
-/* line 103, ../sass/_welcome.scss */
+/* line 117, ../sass/_welcome.scss */
 .todos-wrapper, .footer .footer-wrapper {
   margin: 5em auto;
   max-width: 31em;
   padding: 2em;
 }
 
-/* line 111, ../sass/_welcome.scss */
+/* line 125, ../sass/_welcome.scss */
 .footer {
-  background: #F0F0F0;
   overflow: hidden;
   padding: 3em 2em !important;
   margin: auto !important;
@@ -635,7 +689,7 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
-/* line 122, ../sass/_welcome.scss */
+/* line 135, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
@@ -742,13 +796,13 @@ audio {
 @media all and (min-width: 50em) {
   /* line 1, ../sass/_sidebar.scss */
   .fixed-sidebar-background {
-    border-top: 4px solid #ffbb00;
+    border-top: 4px solid #ffd100;
   }
 }
 
 /* line 23, ../sass/_sidebar.scss */
 .mini-header-wrapper {
-  background: #ffbb00;
+  background: #ffd100;
   height: 50%;
   overflow-x: hidden;
 }
@@ -785,7 +839,7 @@ audio {
 @media all and (max-width: 50em) {
   /* line 35, ../sass/_sidebar.scss */
   .fixed-sidebar {
-    border-top: 4px solid #ffbb00;
+    border-top: 4px solid #ffd100;
     left: -18em !important;
     padding: 5em 2em 4em;
     background: url("/images/pattern-black-w.png");
@@ -1008,7 +1062,7 @@ audio {
   margin-top: 3em;
   text-align: center;
   padding: .5em;
-  color: #805e00;
+  color: #806900;
 }
 
 /* line 295, ../sass/_sidebar.scss */
@@ -1022,14 +1076,14 @@ audio {
   color: #444444;
   font-weight: bold;
   padding: .5em .8em .5em;
-  background: #ffbb00;
+  background: #ffd100;
   display: none;
   border-radius: 50%;
   position: fixed;
   left: 0em;
   top: 4.9em;
   z-index: 10000;
-  border: 0.1em solid #cc9600;
+  border: 0.1em solid #cca700;
   /*sadly no transition because it would be 
   	positioned *again* when a heartbeat happens,
   	will be fixed, soon
@@ -1061,12 +1115,12 @@ audio {
   position: fixed;
   height: 3.33em;
   width: 3.33em;
-  background: #ffbb00;
+  background: #ffd100;
   z-index: 1000;
   border-radius: 50%;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border: 0.1em solid #cc9600;
+  border: 0.1em solid #cca700;
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
@@ -1195,7 +1249,7 @@ audio {
   display: inline-block;
   height: 100%;
   width: 2px;
-  background: #ffc21a;
+  background: #ffd61a;
 }
 /* line 44, ../sass/_messages.scss */
 .message.fadeOffUnread.unread::after {
@@ -1688,7 +1742,7 @@ code {
   outline: none;
   border: none;
   background: none;
-  border-left: 2px solid #cc9600;
+  border-left: 2px solid #cca700;
   font-family: 'Questrial', sans-serif;
   overflow-y: hidden;
 }
@@ -1703,7 +1757,7 @@ code {
 @-webkit-keyframes realtime-anim {
   /* line 364, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #ffd100;
   }
 
   /* line 365, ../sass/_messages.scss */
@@ -1715,7 +1769,7 @@ code {
 @-moz-keyframes realtime-anim {
   /* line 368, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #ffd100;
   }
 
   /* line 369, ../sass/_messages.scss */
@@ -1727,7 +1781,7 @@ code {
 @-ms-keyframes realtime-anim {
   /* line 372, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #ffd100;
   }
 
   /* line 373, ../sass/_messages.scss */
@@ -1739,7 +1793,7 @@ code {
 @-o-keyframes realtime-anim {
   /* line 376, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #ffd100;
   }
 
   /* line 377, ../sass/_messages.scss */
@@ -1751,7 +1805,7 @@ code {
 @keyframes realtime-anim {
   /* line 380, ../sass/_messages.scss */
   0% {
-    border-left: 1px solid #ffbb00;
+    border-left: 1px solid #ffd100;
   }
 
   /* line 381, ../sass/_messages.scss */
@@ -2005,42 +2059,9 @@ input[type='text'].change:focus {
   width: 3.33em;
   border-radius: 50%;
   padding: 0.8325em;
-  background: #ffbb00;
+  background: #ffd100;
   display: inline-block;
-  border: 0.1em solid #cc9600;
-}
-
-/* line 1, ../sass/_general.scss */
-body {
-  background: #fbfbfb;
-}
-
-/* line 5, ../sass/_general.scss */
-input {
-  background: none;
-}
-
-/* line 9, ../sass/_general.scss */
-html {
-  overflow-x: hidden;
-}
-
-/* line 17, ../sass/_general.scss */
-::selection {
-  background: #ffbb00;
-  color: inherit;
-}
-
-/* line 18, ../sass/_general.scss */
-::-moz-selection {
-  background: #ffbb00;
-  color: inherit;
-}
-
-/* line 21, ../sass/_general.scss */
-.fake-link {
-  text-decoration: underline;
-  cursor: pointer;
+  border: 0.1em solid #cca700;
 }
 
 /* line 1, ../sass/_loginButtons.scss */
@@ -2088,7 +2109,7 @@ html {
 
 /* line 47, ../sass/_profile.scss */
 .user-rooms {
-  margin: 2em auto;
+  margin: 0 auto;
   max-width: 31em;
   width: 100%;
   overflow: hidden;
@@ -2139,7 +2160,7 @@ html {
   background: white;
   width: 100%;
   float: left;
-  padding: 2em;
+  padding: 1.5em;
 }
 
 /* line 7, ../sass/_tiles.scss */
@@ -2161,7 +2182,7 @@ html {
   font-size: .9rem;
   display: table;
   width: 33.3%;
-  padding: 2em;
+  padding: 1.5em;
   float: left;
   text-align: center;
   height: 15em;
@@ -2479,10 +2500,10 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 /* line 250, ../sass/_modal.scss */
 .Modal header {
-  border-left: 0.7em solid #ffbb00;
+  border-left: 0.7em solid #ffd100;
   margin-bottom: 1em;
   padding: .5em;
-  background: #ffbb00;
+  background: #ffd100;
   background-image: url("/images/pattern-white-mobile.png");
   -webkit-animation: welcome-mast-anim 20s linear infinite;
   -o-animation: welcome-mast-anim 20s linear infinite;
@@ -2736,7 +2757,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 /* line 10, ../sass/_settings.scss */
 .success.yes {
-  background: #ffbb00;
+  background: #ffd100;
   background: #FFB101;
   opacity: 1;
   color: #333;
@@ -2808,12 +2829,13 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 
 /* line 1, ../sass/_admin.scss */
-.message-admin-table {
+.admin-table {
+  height: 100%;
   font-size: .8em;
   overflow: scroll;
 }
-/* line 8, ../sass/_admin.scss */
-.message-admin-table td {
+/* line 9, ../sass/_admin.scss */
+.admin-table td {
   padding: 0em 1em;
   border: 1px solid #EEEEEE;
 }

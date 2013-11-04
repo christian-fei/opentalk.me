@@ -23,6 +23,10 @@ Meteor.setInterval(function() {
 var fs = Npm.require('fs'),
     path = Npm.require('path');
 var __dirname = path.resolve('../../../');
+/*
+../../../ for demeteorized package
+../../../../../ when running through meteor
+*/
 
 Meteor.Router.add( '/manifest.webapp', 'GET', function () {
   console.log('wants manifest ' + __dirname);

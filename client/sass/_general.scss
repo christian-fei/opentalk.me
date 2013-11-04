@@ -14,11 +14,17 @@ html{
 // 	::-webkit-scrollbar-track{background-color: #ccc;} 
 // 	::-webkit-scrollbar-thumb{border-radius: 4px;background-color: rgba(0,0,0,0.2); }
 // }
-::selection{background:$color-main;color:inherit;}
-::-moz-selection{background:$color-main;color:inherit;}
+::selection{background:rgb(50,50,50);color:white;}
+::-moz-selection{background:rgb(50,50,50);color:white;}
 
 
 .fake-link{
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.limit{
+	max-width: $limit;
+	margin-left: auto;
+	margin-right: auto;
 }
