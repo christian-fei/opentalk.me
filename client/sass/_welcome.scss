@@ -93,12 +93,13 @@ $offset-y:-400px;
 
 
 
-.alternate-background:nth-of-type(odd){
-	background:#000!important;
-	background:$color-subtle!important;
+.alternate-background:nth-of-type(even){
+	background:$color-subtle;
 	box-shadow: 0px 0px 40px -15px grey inset;
 }
-
+.alternate-background:nth-of-type(odd){
+	background:white;
+}
 .intro{
 	padding:1em;
 	font-size: 1.2em;

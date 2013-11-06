@@ -652,13 +652,17 @@ SUPER SLICK TRANSFORMS
 }
 
 /* line 96, ../sass/_welcome.scss */
-.alternate-background:nth-of-type(odd) {
-  background: black !important;
-  background: #f8f8f8 !important;
+.alternate-background:nth-of-type(even) {
+  background: #f8f8f8;
   box-shadow: 0px 0px 40px -15px grey inset;
 }
 
-/* line 102, ../sass/_welcome.scss */
+/* line 100, ../sass/_welcome.scss */
+.alternate-background:nth-of-type(odd) {
+  background: white;
+}
+
+/* line 103, ../sass/_welcome.scss */
 .intro {
   padding: 1em;
   font-size: 1.2em;
@@ -666,21 +670,21 @@ SUPER SLICK TRANSFORMS
   font-weight: 300;
 }
 
-/* line 112, ../sass/_welcome.scss */
+/* line 113, ../sass/_welcome.scss */
 .todos {
   background: white;
   overflow: hidden;
   width: 100%;
 }
 
-/* line 117, ../sass/_welcome.scss */
+/* line 118, ../sass/_welcome.scss */
 .todos-wrapper, .footer .footer-wrapper {
   margin: 5em auto;
   max-width: 31em;
   padding: 2em;
 }
 
-/* line 125, ../sass/_welcome.scss */
+/* line 126, ../sass/_welcome.scss */
 .footer {
   overflow: hidden;
   padding: 3em 2em !important;
@@ -689,7 +693,7 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
-/* line 135, ../sass/_welcome.scss */
+/* line 136, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
