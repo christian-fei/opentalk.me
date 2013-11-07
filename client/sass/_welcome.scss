@@ -108,6 +108,23 @@ $offset-y:-400px;
 }
 
 
+.features-sprite{
+	$w:30px;
+	height: $w;
+	width: $w;
+	background-image:url('/images/welcome-sprite.png');
+	background-size: $w!important;
+	margin: auto;
+	&.realtime-icon{background-position: 0 0;}
+	&.stats-icon{background-position: 0 -#{$w*1};}
+	&.search-icon{background-position: 0 -#{$w*2};}
+	&.unlocked-icon{background-position: 0 -#{$w*3};}
+	&.speech-bubble-icon{background-position: 0 -#{$w*4};}
+	&.mail-icon{background-position: 0 -#{$w*5};}
+}
+
+
+
 
 
 .todos{

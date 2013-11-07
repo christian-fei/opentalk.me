@@ -69,22 +69,20 @@
 	transform:rotateZ(-45deg);
 }
 
-.icon-twitter,.icon-facebook,.icon-github,.icon-google{
-	background-size:100%;
-	width:1em;
-	height:1em;
-}
-.icon-twitter{
-	background:url('/images/social/twitter.png') no-repeat;
-}
-.icon-facebook{
-	background:url('/images/social/facebook.png') no-repeat;
-}
-.icon-github{
-	background:url('/images/social/github.png') no-repeat;
-}
-.icon-google{
-	background:url('/images/social/google.png') no-repeat;
+.serviceLogin{
+	$w:45px;
+	display: block;
+	background-size:$w!important; /*fuck you and all CSS shit fuck bitch asshole*/
+	width:$w;
+	height:$w;
+	background:url('/images/social/sprite.png') no-repeat;
+
+	/*
+	*/
+	&.twitter{background-position: 0 -#{$w*0};}
+	&.github{background-position: 0 -#{$w*1};}
+	&.facebook{background-position: 0 -#{$w*2};}
+	&.google{background-position: 0 -#{$w*3};}
 }
 
 

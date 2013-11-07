@@ -670,21 +670,54 @@ SUPER SLICK TRANSFORMS
   font-weight: 300;
 }
 
-/* line 113, ../sass/_welcome.scss */
+/* line 111, ../sass/_welcome.scss */
+.features-sprite {
+  height: 30px;
+  width: 30px;
+  background-image: url("/images/welcome-sprite.png");
+  background-size: 30px !important;
+  margin: auto;
+}
+/* line 118, ../sass/_welcome.scss */
+.features-sprite.realtime-icon {
+  background-position: 0 0;
+}
+/* line 119, ../sass/_welcome.scss */
+.features-sprite.stats-icon {
+  background-position: 0 -30px;
+}
+/* line 120, ../sass/_welcome.scss */
+.features-sprite.search-icon {
+  background-position: 0 -60px;
+}
+/* line 121, ../sass/_welcome.scss */
+.features-sprite.unlocked-icon {
+  background-position: 0 -90px;
+}
+/* line 122, ../sass/_welcome.scss */
+.features-sprite.speech-bubble-icon {
+  background-position: 0 -120px;
+}
+/* line 123, ../sass/_welcome.scss */
+.features-sprite.mail-icon {
+  background-position: 0 -150px;
+}
+
+/* line 130, ../sass/_welcome.scss */
 .todos {
   background: white;
   overflow: hidden;
   width: 100%;
 }
 
-/* line 118, ../sass/_welcome.scss */
+/* line 135, ../sass/_welcome.scss */
 .todos-wrapper, .footer .footer-wrapper {
   margin: 5em auto;
   max-width: 31em;
   padding: 2em;
 }
 
-/* line 126, ../sass/_welcome.scss */
+/* line 143, ../sass/_welcome.scss */
 .footer {
   overflow: hidden;
   padding: 3em 2em !important;
@@ -693,7 +726,7 @@ SUPER SLICK TRANSFORMS
   text-align: center;
 }
 
-/* line 136, ../sass/_welcome.scss */
+/* line 153, ../sass/_welcome.scss */
 .tos {
   text-align: left;
   margin: 4em auto;
@@ -2031,33 +2064,34 @@ input[type='text'].change:focus {
 }
 
 /* line 72, ../sass/_icons.scss */
-.icon-twitter, .icon-facebook, .icon-github, .icon-google {
-  background-size: 100%;
-  width: 1em;
-  height: 1em;
+.serviceLogin {
+  display: block;
+  background-size: 45px !important;
+  /*fuck you and all CSS shit fuck bitch asshole*/
+  width: 45px;
+  height: 45px;
+  background: url("/images/social/sprite.png") no-repeat;
+  /*
+  */
 }
-
-/* line 77, ../sass/_icons.scss */
-.icon-twitter {
-  background: url("/images/social/twitter.png") no-repeat;
+/* line 82, ../sass/_icons.scss */
+.serviceLogin.twitter {
+  background-position: 0 -0px;
 }
-
-/* line 80, ../sass/_icons.scss */
-.icon-facebook {
-  background: url("/images/social/facebook.png") no-repeat;
-}
-
 /* line 83, ../sass/_icons.scss */
-.icon-github {
-  background: url("/images/social/github.png") no-repeat;
+.serviceLogin.github {
+  background-position: 0 -45px;
+}
+/* line 84, ../sass/_icons.scss */
+.serviceLogin.facebook {
+  background-position: 0 -90px;
+}
+/* line 85, ../sass/_icons.scss */
+.serviceLogin.google {
+  background-position: 0 -135px;
 }
 
-/* line 86, ../sass/_icons.scss */
-.icon-google {
-  background: url("/images/social/google.png") no-repeat;
-}
-
-/* line 92, ../sass/_icons.scss */
+/* line 90, ../sass/_icons.scss */
 .logo, .back {
   height: 3.33em;
   width: 3.33em;
@@ -2202,11 +2236,6 @@ input[type='text'].change:focus {
   font-size: 1.2em;
 }
 /* line 37, ../sass/_tiles.scss */
-.tile img, .stat img {
-  width: 2em;
-  height: 2em;
-}
-/* line 42, ../sass/_tiles.scss */
 .tile a, .stat a {
   color: #444444;
 }
