@@ -1,12 +1,11 @@
 [class^='icon']{
 	display:inline-block;
-	height:1em;
-	width:1em;
 	background-size:100%!important; //to override background
-	height: 1.3em;
-	width: 1.3em;
-	margin-top: -.325em;
-	margin-bottom: -.325em;
+	$icon-size:1.4em;
+	height: $icon-size;
+	width: $icon-size;
+	margin-top: -$icon-size/5;
+	margin-bottom: -$icon-size/5;
 }
 .icon-arrow{
 	background:url('/images/arrow.png') no-repeat;
@@ -52,6 +51,9 @@
 	}
 }
 
+.icon-add{
+	background:url('/images/add.png') no-repeat;
+}
 
 .toggle-sidebar.left .icon-arrow{
 	-webkit-transform:rotateZ(-180deg)!important;

@@ -1,0 +1,34 @@
+.share-modal{
+	text-align: center;
+}
+.share-url{
+	display: inline-block;
+	text-align: center;
+	padding: .8em 1em;
+	background-color: rgb(247, 247, 247);
+	border-radius: .5em;
+	margin: .7em auto;
+
+	font-size: 1.2em;
+}
+
+.social-invite{
+	display: inline-block;
+	padding:.2em;
+	margin: .2em;
+
+	cursor: pointer;
+
+	$w:45px;
+	background-size:$w!important; /*fuck you and all CSS shit fuck bitch asshole*/
+	width:$w;
+	height:$w;
+	background:url('/images/social/sprite.png') no-repeat;
+
+	/*
+	*/
+	&.twitter{background-position: 0 -#{$w*0};}
+	&.github{background-position: 0 -#{$w*1};}
+	&.facebook{background-position: 0 -#{$w*2};}
+	&.google{background-position: 0 -#{$w*3};}
+}

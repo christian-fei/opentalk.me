@@ -1,6 +1,6 @@
 <template name="settings">
 	<div class="Modal-Background toggle-Modal is-Hidden" id='settings-modal'>
-		<div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
+		<div class="Modal Center-Block" id="Fixed-Modal">
 			<div class="Center-Content">
 				<header><h1>Settings</h1></header>
 				<section>
@@ -8,7 +8,7 @@
 		        		{{#isolate}}
 		        		<tr>
 		        			<td>
-		        			 	<span>Realtime writing</span>
+		        			 	<span>Realtime chatting is {{realtimeEnabled}}</span>
 		        			 </td>
 		        			 <td class='button-holder'>
 		        			 	<a href='#' id='toggleRealtime' class='button silver' title='enable/disable realtime writing'><span class="status-badge {{realtimeEnabled}}"></span> <span class="icon-realtime"></span></a>
@@ -30,15 +30,15 @@
 		        			 	<span>Delete my messages <b>in this rooom</b> </span>
 		        			 </td>
 		        			 <td class='button-holder'>
-		        			 	<a href='#' id="removeMessagesRoom" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessagesRoom">Success!</span>
+		        			 	<a href='#' id="removeMessagesRoom" class="button silver">Delete <span class="icon-signout"></span></a>
 		        			 </td>	        			
 		        		</tr>
-		        		<tr>
+		        		<tr class='last'>
 		        			<td>
 		        				<span>Delete <b>ALL</b> my messages </span>
 		        			</td>
 		        			<td class='button-holder'>
-		        				<a href='#' id="removeMessages" class="button silver">Delete <span class="icon-signout"></span></a> <span class="success removeMessages">Success!</span>
+		        				<a href='#' id="removeMessages" class="button silver">Delete <span class="icon-signout"></span></a>
 		        			</td>	        			
 		        		</tr>
 					</table>

@@ -33,14 +33,17 @@
 .settings-panel{
 	margin:2em auto;
 	tr{
-		border-top: 1px solid #F5F5F5;
+		border-bottom: 1px solid #F3F3F3;
+		&.last{
+			border-bottom: none;
+		}
 	}
 	td{
 		padding: 0 1em;
 	}
 
 	.button-holder{
-
+		text-align: center;
 	}
 }
 

@@ -1,14 +1,22 @@
 <template name="invite">
-	<section class="semantic-content" id="invite-modal" tabindex="-1" role="dialog" aria-labelledby="invite-modal" aria-hidden="true">
-	    <div class="modal-inner">
-	        <header id="modal-label" class='modal-header'>
-	        	<h3>Markdown Cheatsheet</h3>
-	        </header>
-	        <div class="modal-content">
-	        	
-	        </div>
-	    </div>
-	    <a href="#" class="modal-close" title="Close" data-close="Close"
-	        data-dismiss="modal">×</a>
-	</section>
+	<div class="Modal-Background toggle-Modal is-Hidden" id='invite-modal'>
+		<div class="Modal Center-Block share-modal" id="Fixed-Modal">
+			<div class="Center-Content">
+				<header><h1>Invite people</h1></header>
+				<section>
+					Simply share this url if you have something to discuss quickly 
+					<div style="text-align: center;">
+						<span class="share-url">http://opentalk.me/{{room}}</span>
+					</div>
+					or use these social networks to invite people to join this chat!
+					<div style="text-align: center; margin-top: 1em;">
+						<a href="#" class="social-invite twitter"></a>
+						<a href="#" class="social-invite github"></a>
+						<a href="#" class="social-invite facebook"></a>
+						<a href="#" class="social-invite google"></a>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
 </template>

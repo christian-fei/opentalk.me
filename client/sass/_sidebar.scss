@@ -7,7 +7,7 @@
 	top:0;
 	bottom:0;
 	left:0;
-	// background: -moz-linear-gradient(left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+ // background: -moz-linear-gradient(left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
  //    background: -ms-linear-gradient(left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
  //    background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0)));
  //    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -21,16 +21,11 @@
 }
 
 .mini-header-wrapper{
-	background:$color-main;
+	background-color:$color-main;
+	background-image:url('/images/pattern-white-high-res.png');
 	height:50%;
 	overflow-x:hidden;
 }
-.mini-header{
-	height: 100%;
-	background:url('/images/pattern-white-high-res.png');
-	overflow-x:hidden;
-}
-	
 
 .fixed-sidebar{
 	position:fixed;
@@ -147,7 +142,8 @@
 		display: block;
 		height: 50%;
 		z-index: 899;
-		background: url('/images/pattern-white-mobile.png');
+		background-image: url('/images/pattern-white-high-res.png');
+		background-color: $color-main;
 		position: fixed;
 		width: 100%;
 		top: 0;

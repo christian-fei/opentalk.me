@@ -6,7 +6,6 @@
 
 	<div class="fixed-sidebar-background">
 		<div class="mini-header-wrapper">
-			<div class="mini-header"></div>
 		</div>
 	</div>
 	{{#isolate}}
@@ -27,6 +26,9 @@
 				<div class='buttons-wrapper'>
 					<span class="settings-toggle button silver" title='Settings'><span class="icon-settings"></span></span>
 					<span class="tipstricks-toggle button silver" title='Manual'><span class="icon-reference"></span></span>
+					<br/>
+					<br/>
+					<span class="invite-toggle button silver" title='Invite people' style="font-size: .75rem;">Invite people</span>
 				</div>
 			{{/if}}
 		{{#isolate}}
@@ -72,6 +74,7 @@
 
 	{{>tipstricks}}
 	{{>settings}}
+	{{>invite}}
 
 	{{#isolate}}
 	<audio id="new_message" preload="auto">

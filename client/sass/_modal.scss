@@ -228,29 +228,39 @@ $greenDark: #2e5f3e;
 .no-js .is-Fixed { display: none; }
 //.Center-Block { overflow: auto; resize: both; }
 .Modal {
+  $modal-width:35em;
+  position: absolute;
+  top: 45%;
+  margin-top: -20%;
+  left: 50%;
+  margin-left: -$modal-width/2;
+
   box-shadow: 0 0 20px rgba(0,0,0,0.25);
   cursor:auto;
   color:#333;
   background:white;
-  border-top-left-radius:.6em;
-  border-top-right-radius:.6em;
-  max-width: 45em;
+  max-width: $modal-width;
 
-  min-height:50%;
+  width: 93%;
 
-  &.long{
-    min-height:70%;
+  max-height: 40em;
+
+  border-radius: .6em;
+
+  @media all and (max-width: $modal-width){
+    left: auto;
+    margin-left: 1em;
+    margin-right: 1em;
   }
+
+  //min-height:40%;
+
   
 
-  @media all and(max-width: 45em){
-    width:95%;
-  }
-
   header{
-    border-left: .7em solid $color-main;
-    margin-bottom: 1em;
-    padding:.5em;
+    border-radius: .6em .6em 0 0;
+    //border-left: .7em solid $color-main;
+    //margin-bottom: 1em;
     background:$color-main;
     background-image: url('/images/pattern-white-mobile.png');
   
@@ -267,6 +277,6 @@ $greenDark: #2e5f3e;
     padding:1em;
   }
 }
-.Modal-Background { position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: #000; background: fade(#000,85%); z-index: 2000; background:rgba(10,10,10,.8)}
+.Modal-Background { position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: #000; background: fade(#000,85%); z-index: 2000; background:rgba(10,10,10,.85)}
 .toggle-Modal { cursor: pointer; }
 .is-Hidden { display: none; }

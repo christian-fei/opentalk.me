@@ -839,19 +839,13 @@ audio {
 
 /* line 23, ../sass/_sidebar.scss */
 .mini-header-wrapper {
-  background: #ffd100;
+  background-color: #ffd100;
+  background-image: url("/images/pattern-white-high-res.png");
   height: 50%;
   overflow-x: hidden;
 }
 
-/* line 28, ../sass/_sidebar.scss */
-.mini-header {
-  height: 100%;
-  background: url("/images/pattern-white-high-res.png");
-  overflow-x: hidden;
-}
-
-/* line 35, ../sass/_sidebar.scss */
+/* line 30, ../sass/_sidebar.scss */
 .fixed-sidebar {
   position: fixed;
   width: 17em;
@@ -869,12 +863,12 @@ audio {
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-/* line 53, ../sass/_sidebar.scss */
+/* line 48, ../sass/_sidebar.scss */
 .fixed-sidebar a {
   color: black;
 }
 @media all and (max-width: 50em) {
-  /* line 35, ../sass/_sidebar.scss */
+  /* line 30, ../sass/_sidebar.scss */
   .fixed-sidebar {
     border-top: 4px solid #ffd100;
     left: -18em !important;
@@ -894,49 +888,49 @@ audio {
     background: white;
   }
 }
-/* line 90, ../sass/_sidebar.scss */
+/* line 85, ../sass/_sidebar.scss */
 .fixed-sidebar.show {
   z-index: 900;
   opacity: 1;
   box-shadow: none;
 }
 @media all and (max-width: 450px) {
-  /* line 90, ../sass/_sidebar.scss */
+  /* line 85, ../sass/_sidebar.scss */
   .fixed-sidebar.show {
     width: 100%;
   }
 }
-/* line 106, ../sass/_sidebar.scss */
+/* line 101, ../sass/_sidebar.scss */
 .fixed-sidebar:hover {
   opacity: 1;
 }
-/* line 108, ../sass/_sidebar.scss */
+/* line 103, ../sass/_sidebar.scss */
 .fixed-sidebar:hover .online-users-count {
   opacity: 1 !important;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 115, ../sass/_sidebar.scss */
+  /* line 110, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar {
     width: 0.3em !important;
     background: #fff;
   }
-  /* line 116, ../sass/_sidebar.scss */
+  /* line 111, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-track {
     background-color: #eee;
   }
-  /* line 117, ../sass/_sidebar.scss */
+  /* line 112, ../sass/_sidebar.scss */
   .fixed-sidebar::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
-/* line 120, ../sass/_sidebar.scss */
+/* line 115, ../sass/_sidebar.scss */
 .fixed-sidebar > * {
   z-index: 1000;
 }
 
 @media all and (max-width: 50em) {
-  /* line 126, ../sass/_sidebar.scss */
+  /* line 121, ../sass/_sidebar.scss */
   .csstransforms .fixed-sidebar.show {
     -webkit-transform: translate3d(18em, 0, 0);
     -moz-transform: translate3d(18em, 0, 0);
@@ -947,23 +941,24 @@ audio {
 }
 
 @media all and (max-width: 50em) {
-  /* line 138, ../sass/_sidebar.scss */
+  /* line 133, ../sass/_sidebar.scss */
   .no-csstransforms .fixed-sidebar.shadow {
     left: 0 !important;
   }
 }
 
-/* line 144, ../sass/_sidebar.scss */
+/* line 139, ../sass/_sidebar.scss */
 .mobile-fixed-background {
   display: none;
 }
 @media all and (max-width: 50em) {
-  /* line 144, ../sass/_sidebar.scss */
+  /* line 139, ../sass/_sidebar.scss */
   .mobile-fixed-background {
     display: block;
     height: 50%;
     z-index: 899;
-    background: url("/images/pattern-white-mobile.png");
+    background-image: url("/images/pattern-white-high-res.png");
+    background-color: #ffd100;
     position: fixed;
     width: 100%;
     top: 0;
@@ -972,19 +967,19 @@ audio {
   }
 }
 
-/* line 159, ../sass/_sidebar.scss */
+/* line 155, ../sass/_sidebar.scss */
 .userinfo {
   text-align: center;
   cursor: pointer;
 }
-/* line 163, ../sass/_sidebar.scss */
+/* line 159, ../sass/_sidebar.scss */
 .userinfo .user-avatar {
   height: 3.5em;
   border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 170, ../sass/_sidebar.scss */
+/* line 166, ../sass/_sidebar.scss */
 .userinfo .user-username {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -993,13 +988,13 @@ audio {
   font-size: 1.1em;
 }
 
-/* line 180, ../sass/_sidebar.scss */
+/* line 176, ../sass/_sidebar.scss */
 .usermenu {
   opacity: 0;
   visibility: hidden;
   height: 0;
 }
-/* line 185, ../sass/_sidebar.scss */
+/* line 181, ../sass/_sidebar.scss */
 .usermenu.show {
   opacity: 1 !important;
   visibility: visible !important;
@@ -1011,13 +1006,13 @@ audio {
   transition: all .3s ease-in-out;
 }
 
-/* line 202, ../sass/_sidebar.scss */
+/* line 198, ../sass/_sidebar.scss */
 .buttons-wrapper {
   text-align: center;
   margin: 1em auto;
 }
 
-/* line 206, ../sass/_sidebar.scss */
+/* line 202, ../sass/_sidebar.scss */
 #logout, #toggleRealtime, #toggleNotificationSound, #userstats, #removeMessagesRoom, #removeMessages {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -1029,7 +1024,7 @@ audio {
   color: #333;
 }
 
-/* line 229, ../sass/_sidebar.scss */
+/* line 225, ../sass/_sidebar.scss */
 .online-users {
   margin: 2em auto;
   text-align: left;
@@ -1038,12 +1033,12 @@ audio {
   overflow-y: auto;
   height: 10em;
 }
-/* line 237, ../sass/_sidebar.scss */
+/* line 233, ../sass/_sidebar.scss */
 .online-users li {
   margin-left: 0;
 }
 
-/* line 241, ../sass/_sidebar.scss */
+/* line 237, ../sass/_sidebar.scss */
 .online-users-heading {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -1055,7 +1050,7 @@ audio {
   width: 100%;
 }
 
-/* line 251, ../sass/_sidebar.scss */
+/* line 247, ../sass/_sidebar.scss */
 .online-user {
   font-size: .9em;
   text-overflow: ellipsis;
@@ -1064,13 +1059,13 @@ audio {
   color: #555;
   margin-left: 0.5em !important;
 }
-/* line 259, ../sass/_sidebar.scss */
+/* line 255, ../sass/_sidebar.scss */
 .online-user.strike {
   text-decoration: line-through;
   opacity: .3;
 }
 
-/* line 266, ../sass/_sidebar.scss */
+/* line 262, ../sass/_sidebar.scss */
 .micro-avatar {
   height: 1.1em;
   width: 1.1em;
@@ -1079,7 +1074,7 @@ audio {
   border-radius: 50%;
 }
 
-/* line 274, ../sass/_sidebar.scss */
+/* line 270, ../sass/_sidebar.scss */
 .online-user-wrapper {
   text-align: left;
   width: 10em;
@@ -1094,7 +1089,7 @@ audio {
   text-overflow: ellipsis;
 }
 
-/* line 289, ../sass/_sidebar.scss */
+/* line 285, ../sass/_sidebar.scss */
 .roomid {
   margin-top: 3em;
   text-align: center;
@@ -1102,13 +1097,13 @@ audio {
   color: #806900;
 }
 
-/* line 295, ../sass/_sidebar.scss */
+/* line 291, ../sass/_sidebar.scss */
 .online-users, .roomid {
   float: right;
   width: 100%;
 }
 
-/* line 300, ../sass/_sidebar.scss */
+/* line 296, ../sass/_sidebar.scss */
 .online-users-count {
   color: #444444;
   font-weight: bold;
@@ -1134,7 +1129,7 @@ audio {
   */
 }
 @media all and (max-width: 50em) {
-  /* line 300, ../sass/_sidebar.scss */
+  /* line 296, ../sass/_sidebar.scss */
   .online-users-count {
     left: 0 !important;
     opacity: 1;
@@ -1143,7 +1138,7 @@ audio {
   }
 }
 
-/* line 342, ../sass/_sidebar.scss */
+/* line 338, ../sass/_sidebar.scss */
 .toggle-sidebar {
   display: none;
   cursor: pointer;
@@ -1161,20 +1156,20 @@ audio {
   z-index: 10000;
 }
 @media all and (max-width: 50em) {
-  /* line 342, ../sass/_sidebar.scss */
+  /* line 338, ../sass/_sidebar.scss */
   .toggle-sidebar {
     display: block;
     left: 0 !important;
   }
 }
-/* line 368, ../sass/_sidebar.scss */
+/* line 364, ../sass/_sidebar.scss */
 .toggle-sidebar .icon-arrow {
   width: 1.665em;
   height: 1.665em;
   margin: 0.7325em 0 0 0.7325em;
 }
 
-/* line 377, ../sass/_sidebar.scss */
+/* line 373, ../sass/_sidebar.scss */
 .status-badge {
   height: .5em;
   width: .5em;
@@ -1183,23 +1178,23 @@ audio {
   border-radius: 70%;
   opacity: .5;
 }
-/* line 388, ../sass/_sidebar.scss */
+/* line 384, ../sass/_sidebar.scss */
 .status-badge.online, .status-badge.on {
   background: #29A100;
 }
-/* line 391, ../sass/_sidebar.scss */
+/* line 387, ../sass/_sidebar.scss */
 .status-badge.idle, .status-badge.off {
   background: #FF8200;
 }
 
-/* line 399, ../sass/_sidebar.scss */
+/* line 395, ../sass/_sidebar.scss */
 .fixed-sidebar .logo {
   position: absolute;
   top: 1.5em;
   right: 1em;
 }
 
-/* line 408, ../sass/_sidebar.scss */
+/* line 404, ../sass/_sidebar.scss */
 .tt-cheatsheet {
   margin: 1em 0;
   padding: 1em 0;
@@ -1207,23 +1202,23 @@ audio {
   text-align: center;
 }
 
-/* line 417, ../sass/_sidebar.scss */
+/* line 413, ../sass/_sidebar.scss */
 .emoji-table tr {
   float: left;
   margin: .3em;
   border: 1px solid #F5F5F5;
 }
-/* line 422, ../sass/_sidebar.scss */
+/* line 418, ../sass/_sidebar.scss */
 .emoji-table tr td {
   padding: .2em;
 }
 
-/* line 431, ../sass/_sidebar.scss */
+/* line 427, ../sass/_sidebar.scss */
 .tags {
   list-style-type: none;
   text-align: center;
 }
-/* line 435, ../sass/_sidebar.scss */
+/* line 431, ../sass/_sidebar.scss */
 .tags #enter-tag {
   padding: 1em 2em;
   width: 10em;
@@ -1233,12 +1228,12 @@ audio {
   text-align: center;
   color: #333;
 }
-/* line 444, ../sass/_sidebar.scss */
+/* line 440, ../sass/_sidebar.scss */
 .tags #enter-tag:focus {
   border: none;
   outline: none;
 }
-/* line 449, ../sass/_sidebar.scss */
+/* line 445, ../sass/_sidebar.scss */
 .tags .tag {
   font-size: .82em;
   padding: .3em .7em;
@@ -1249,7 +1244,7 @@ audio {
   display: inline-block;
   color: black;
 }
-/* line 461, ../sass/_sidebar.scss */
+/* line 457, ../sass/_sidebar.scss */
 .tags .tag:hover {
   cursor: crosshair;
 }
@@ -1607,7 +1602,6 @@ audio {
 
 /* line 138, ../sass/_messages.scss */
 .time {
-  cursor: pointer;
   display: inline-block;
   font-size: .7em;
   color: #5F5C5C;
@@ -1638,7 +1632,7 @@ audio {
   }
 }
 
-/* line 191, ../sass/_messages.scss */
+/* line 190, ../sass/_messages.scss */
 .at-username {
   display: inline-block;
   padding: 2px;
@@ -1646,7 +1640,7 @@ audio {
   color: #41441D;
 }
 
-/* line 199, ../sass/_messages.scss */
+/* line 198, ../sass/_messages.scss */
 pre {
   display: block;
   overflow-x: auto;
@@ -1654,7 +1648,7 @@ pre {
   word-break: normal;
 }
 
-/* line 208, ../sass/_messages.scss */
+/* line 207, ../sass/_messages.scss */
 code {
   display: block;
   white-space: pre;
@@ -1666,13 +1660,13 @@ code {
   border-radius: 3px;
 }
 
-/* line 220, ../sass/_messages.scss */
+/* line 219, ../sass/_messages.scss */
 .tip:hover .username {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 225, ../sass/_messages.scss */
+/* line 224, ../sass/_messages.scss */
 .username {
   position: absolute;
   font-size: .9em;
@@ -1692,7 +1686,7 @@ code {
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
-/* line 250, ../sass/_messages.scss */
+/* line 249, ../sass/_messages.scss */
 .username:after {
   content: "";
   position: absolute;
@@ -1704,11 +1698,11 @@ code {
   border-left: .5em solid transparent;
 }
 
-/* line 262, ../sass/_messages.scss */
+/* line 261, ../sass/_messages.scss */
 .message-image-wrapper {
   position: relative;
 }
-/* line 268, ../sass/_messages.scss */
+/* line 267, ../sass/_messages.scss */
 .message-image-wrapper .open-in-new-tab {
   position: absolute;
   top: .2em;
@@ -1719,7 +1713,7 @@ code {
   background-size: 100%;
 }
 
-/* line 278, ../sass/_messages.scss */
+/* line 277, ../sass/_messages.scss */
 .message-image {
   display: inline-block;
   max-height: 6em;
@@ -1727,20 +1721,20 @@ code {
   margin-top: .2em;
   max-width: 100%;
 }
-/* line 285, ../sass/_messages.scss */
+/* line 284, ../sass/_messages.scss */
 .message-image.exp {
   max-height: inherit;
   width: auto;
   max-width: 100%;
 }
 
-/* line 292, ../sass/_messages.scss */
+/* line 291, ../sass/_messages.scss */
 .diffUser {
   margin-top: .8em;
   border-top: 1px solid #eeeeee;
 }
 
-/* line 305, ../sass/_messages.scss */
+/* line 304, ../sass/_messages.scss */
 .cssanimations.csstransitions .slick-realtime-shit {
   -webkit-animation: realtime-anim 10s ease-out;
   -moz-animation: realtime-anim 10s ease-out;
@@ -1748,14 +1742,14 @@ code {
   animation: realtime-anim 10s ease-out;
 }
 
-/* line 313, ../sass/_messages.scss */
+/* line 312, ../sass/_messages.scss */
 .timestamp-text {
   text-align: center;
   font-size: .8em;
   color: #857F7F;
   margin: .8em 0 1.8em;
 }
-/* line 319, ../sass/_messages.scss */
+/* line 318, ../sass/_messages.scss */
 .timestamp-text::after {
   content: '↑';
   height: 1em;
@@ -1763,12 +1757,12 @@ code {
   margin-left: .5em;
 }
 
-/* line 327, ../sass/_messages.scss */
+/* line 326, ../sass/_messages.scss */
 #li-message {
   width: 100%;
 }
 
-/* line 330, ../sass/_messages.scss */
+/* line 329, ../sass/_messages.scss */
 #mymessage {
   resize: none !important;
   width: 100%;
@@ -1784,7 +1778,7 @@ code {
   overflow-y: hidden;
 }
 
-/* line 357, ../sass/_messages.scss */
+/* line 356, ../sass/_messages.scss */
 #first, #last {
   border: none;
   opacity: 0;
@@ -1792,66 +1786,66 @@ code {
 }
 
 @-webkit-keyframes realtime-anim {
-  /* line 364, ../sass/_messages.scss */
+  /* line 363, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffd100;
   }
 
-  /* line 365, ../sass/_messages.scss */
+  /* line 364, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-moz-keyframes realtime-anim {
-  /* line 368, ../sass/_messages.scss */
+  /* line 367, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffd100;
   }
 
-  /* line 369, ../sass/_messages.scss */
+  /* line 368, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-ms-keyframes realtime-anim {
-  /* line 372, ../sass/_messages.scss */
+  /* line 371, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffd100;
   }
 
-  /* line 373, ../sass/_messages.scss */
+  /* line 372, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @-o-keyframes realtime-anim {
-  /* line 376, ../sass/_messages.scss */
+  /* line 375, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffd100;
   }
 
-  /* line 377, ../sass/_messages.scss */
+  /* line 376, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
 @keyframes realtime-anim {
-  /* line 380, ../sass/_messages.scss */
+  /* line 379, ../sass/_messages.scss */
   0% {
     border-left: 1px solid #ffd100;
   }
 
-  /* line 381, ../sass/_messages.scss */
+  /* line 380, ../sass/_messages.scss */
   100% {
     border-left: 1px solid #eeeeee;
   }
 }
 
-/* line 384, ../sass/_messages.scss */
+/* line 383, ../sass/_messages.scss */
 .typeahead {
   list-style-type: none;
   width: 100%;
@@ -1860,7 +1854,7 @@ code {
   border-radius: .5em;
   margin-top: 1.5em;
 }
-/* line 393, ../sass/_messages.scss */
+/* line 392, ../sass/_messages.scss */
 .typeahead li {
   position: relative;
   display: inline-block;
@@ -1874,21 +1868,21 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 395, ../sass/_messages.scss */
+/* line 394, ../sass/_messages.scss */
 .typeahead li a {
   text-decoration: none !important;
 }
-/* line 411, ../sass/_messages.scss */
+/* line 410, ../sass/_messages.scss */
 .typeahead li.active {
   background: white;
   background: #4591FF;
   opacity: 1;
 }
-/* line 416, ../sass/_messages.scss */
+/* line 415, ../sass/_messages.scss */
 .typeahead li.active .mention_username {
   color: white;
 }
-/* line 425, ../sass/_messages.scss */
+/* line 424, ../sass/_messages.scss */
 .typeahead .mention_image {
   position: absolute;
   height: 1.5em;
@@ -1898,7 +1892,7 @@ code {
   top: .25em;
   left: 1em;
 }
-/* line 434, ../sass/_messages.scss */
+/* line 433, ../sass/_messages.scss */
 .typeahead .mention_username {
   position: absolute;
   font-weight: bold;
@@ -1916,9 +1910,10 @@ code {
   margin-top: 0;
   padding: .8em 1em;
   border-radius: 0.5em;
+  cursor: pointer;
 }
 
-/* line 10, ../sass/_buttons.scss */
+/* line 12, ../sass/_buttons.scss */
 .silver {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efefef), color-stop(1, #f7f7f7));
   background: -webkit-linear-gradient(bottom, #efefef 0%, #f7f7f7 100%);
@@ -1931,7 +1926,7 @@ code {
   box-shadow: inset 0 2px 0 #fff;
   color: #666;
 }
-/* line 22, ../sass/_buttons.scss */
+/* line 24, ../sass/_buttons.scss */
 .silver:hover {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e3e3e3), color-stop(1, #efefef));
   background: -webkit-linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
@@ -1941,7 +1936,7 @@ code {
   background: linear-gradient(bottom, #e3e3e3 0%, #efefef 100%);
   color: #444;
 }
-/* line 31, ../sass/_buttons.scss */
+/* line 33, ../sass/_buttons.scss */
 .silver:active {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #d5d5d5), color-stop(1, #e5e5e5));
   background: -webkit-linear-gradient(bottom, #d5d5d5 0%, #e5e5e5 100%);
@@ -1976,16 +1971,14 @@ input[type='text'].change:focus {
 /* line 1, ../sass/_icons.scss */
 [class^='icon'] {
   display: inline-block;
-  height: 1em;
-  width: 1em;
   background-size: 100% !important;
-  height: 1.3em;
-  width: 1.3em;
-  margin-top: -.325em;
-  margin-bottom: -.325em;
+  height: 1.4em;
+  width: 1.4em;
+  margin-top: -0.28em;
+  margin-bottom: -0.28em;
 }
 
-/* line 11, ../sass/_icons.scss */
+/* line 10, ../sass/_icons.scss */
 .icon-arrow {
   background: url("/images/arrow.png") no-repeat;
   background-size: 100%;
@@ -2001,51 +1994,56 @@ input[type='text'].change:focus {
   transform: rotateZ(0deg);
 }
 
-/* line 26, ../sass/_icons.scss */
+/* line 25, ../sass/_icons.scss */
 .icon-signout {
   background: url("/images/logout.png") no-repeat;
   margin-left: .325em;
 }
 
-/* line 30, ../sass/_icons.scss */
+/* line 29, ../sass/_icons.scss */
 .icon-realtime {
   background: url("/images/realtime.png") no-repeat;
 }
 
-/* line 33, ../sass/_icons.scss */
+/* line 32, ../sass/_icons.scss */
 .icon-profile {
   background: url("/images/avatar.png") no-repeat;
 }
 
-/* line 36, ../sass/_icons.scss */
+/* line 35, ../sass/_icons.scss */
 .icon-settings {
   background: url("/images/settings.png") no-repeat;
 }
 
-/* line 39, ../sass/_icons.scss */
+/* line 38, ../sass/_icons.scss */
 .icon-reference {
   background: url("/images/reference.png") no-repeat;
 }
 
-/* line 42, ../sass/_icons.scss */
+/* line 41, ../sass/_icons.scss */
 .icon-sound {
   background: url("/images/sound-on.png") no-repeat;
 }
-/* line 44, ../sass/_icons.scss */
+/* line 43, ../sass/_icons.scss */
 .icon-sound.off {
   background: url("/images/sound-off.png") no-repeat;
 }
 
-/* line 48, ../sass/_icons.scss */
+/* line 47, ../sass/_icons.scss */
 .icon-kitten {
   background: url("/images/kitten-on.png") no-repeat;
 }
-/* line 50, ../sass/_icons.scss */
+/* line 49, ../sass/_icons.scss */
 .icon-kitten.off {
   background: url("/images/kitten-off.png") no-repeat;
 }
 
-/* line 56, ../sass/_icons.scss */
+/* line 54, ../sass/_icons.scss */
+.icon-add {
+  background: url("/images/add.png") no-repeat;
+}
+
+/* line 58, ../sass/_icons.scss */
 .toggle-sidebar.left .icon-arrow {
   -webkit-transform: rotateZ(-180deg) !important;
   -moz-transform: rotateZ(-180deg) !important;
@@ -2054,7 +2052,7 @@ input[type='text'].change:focus {
   transform: rotateZ(-180deg) !important;
 }
 
-/* line 64, ../sass/_icons.scss */
+/* line 66, ../sass/_icons.scss */
 .toggle-sidebar:hover .icon-arrow {
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
@@ -2063,7 +2061,7 @@ input[type='text'].change:focus {
   transform: rotateZ(-45deg);
 }
 
-/* line 72, ../sass/_icons.scss */
+/* line 74, ../sass/_icons.scss */
 .serviceLogin {
   display: block;
   background-size: 45px !important;
@@ -2074,24 +2072,24 @@ input[type='text'].change:focus {
   /*
   */
 }
-/* line 82, ../sass/_icons.scss */
+/* line 84, ../sass/_icons.scss */
 .serviceLogin.twitter {
   background-position: 0 -0px;
 }
-/* line 83, ../sass/_icons.scss */
+/* line 85, ../sass/_icons.scss */
 .serviceLogin.github {
   background-position: 0 -45px;
 }
-/* line 84, ../sass/_icons.scss */
+/* line 86, ../sass/_icons.scss */
 .serviceLogin.facebook {
   background-position: 0 -90px;
 }
-/* line 85, ../sass/_icons.scss */
+/* line 87, ../sass/_icons.scss */
 .serviceLogin.google {
   background-position: 0 -135px;
 }
 
-/* line 90, ../sass/_icons.scss */
+/* line 92, ../sass/_icons.scss */
 .logo, .back {
   height: 3.33em;
   width: 3.33em;
@@ -2512,30 +2510,31 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 
 /* line 230, ../sass/_modal.scss */
 .Modal {
+  position: absolute;
+  top: 45%;
+  margin-top: -20%;
+  left: 50%;
+  margin-left: -17.5em;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   cursor: auto;
   color: #333;
   background: white;
-  border-top-left-radius: .6em;
-  border-top-right-radius: .6em;
-  max-width: 45em;
-  min-height: 50%;
+  max-width: 35em;
+  width: 93%;
+  max-height: 40em;
+  border-radius: .6em;
 }
-/* line 241, ../sass/_modal.scss */
-.Modal.long {
-  min-height: 70%;
-}
-@media all and (max-width: 45em) {
+@media all and (max-width: 35em) {
   /* line 230, ../sass/_modal.scss */
   .Modal {
-    width: 95%;
+    left: auto;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
-/* line 250, ../sass/_modal.scss */
+/* line 260, ../sass/_modal.scss */
 .Modal header {
-  border-left: 0.7em solid #ffd100;
-  margin-bottom: 1em;
-  padding: .5em;
+  border-radius: .6em .6em 0 0;
   background: #ffd100;
   background-image: url("/images/pattern-white-mobile.png");
   -webkit-animation: welcome-mast-anim 20s linear infinite;
@@ -2544,12 +2543,12 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   color: white;
   text-align: center;
 }
-/* line 266, ../sass/_modal.scss */
+/* line 276, ../sass/_modal.scss */
 .Modal section {
   padding: 1em;
 }
 
-/* line 270, ../sass/_modal.scss */
+/* line 280, ../sass/_modal.scss */
 .Modal-Background {
   position: fixed;
   top: 0;
@@ -2559,15 +2558,15 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   background: #000;
   background: fade(black, 85%);
   z-index: 2000;
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 10, 10, 0.85);
 }
 
-/* line 271, ../sass/_modal.scss */
+/* line 281, ../sass/_modal.scss */
 .toggle-Modal {
   cursor: pointer;
 }
 
-/* line 272, ../sass/_modal.scss */
+/* line 282, ../sass/_modal.scss */
 .is-Hidden {
   display: none;
 }
@@ -2812,15 +2811,23 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 /* line 35, ../sass/_settings.scss */
 .settings-panel tr {
-  border-top: 1px solid #F5F5F5;
+  border-bottom: 1px solid #F3F3F3;
 }
-/* line 38, ../sass/_settings.scss */
+/* line 37, ../sass/_settings.scss */
+.settings-panel tr.last {
+  border-bottom: none;
+}
+/* line 41, ../sass/_settings.scss */
 .settings-panel td {
   padding: 0 1em;
 }
+/* line 45, ../sass/_settings.scss */
+.settings-panel .button-holder {
+  text-align: center;
+}
 
 @keyframes "fadeAway" {
-  /* line 52, ../sass/_settings.scss */
+  /* line 55, ../sass/_settings.scss */
   to {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -2829,7 +2836,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 
 @-moz-keyframes fadeAway {
-  /* line 61, ../sass/_settings.scss */
+  /* line 64, ../sass/_settings.scss */
   to {
     filter: alpha(opacity=0);
     opacity: 0;
@@ -2837,7 +2844,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 
 @-webkit-keyframes "fadeAway" {
-  /* line 69, ../sass/_settings.scss */
+  /* line 72, ../sass/_settings.scss */
   to {
     filter: alpha(opacity=0);
     opacity: 0;
@@ -2845,7 +2852,7 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 
 @-ms-keyframes "fadeAway" {
-  /* line 77, ../sass/_settings.scss */
+  /* line 80, ../sass/_settings.scss */
   to {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -2854,11 +2861,58 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 }
 
 @-o-keyframes "fadeAway" {
-  /* line 86, ../sass/_settings.scss */
+  /* line 89, ../sass/_settings.scss */
   to {
     filter: alpha(opacity=0);
     opacity: 0;
   }
+}
+
+/* line 1, ../sass/_invite.scss */
+.share-modal {
+  text-align: center;
+}
+
+/* line 4, ../sass/_invite.scss */
+.share-url {
+  display: inline-block;
+  text-align: center;
+  padding: .8em 1em;
+  background-color: #f7f7f7;
+  border-radius: .5em;
+  margin: .7em auto;
+  font-size: 1.2em;
+}
+
+/* line 15, ../sass/_invite.scss */
+.social-invite {
+  display: inline-block;
+  padding: .2em;
+  margin: .2em;
+  cursor: pointer;
+  background-size: 45px !important;
+  /*fuck you and all CSS shit fuck bitch asshole*/
+  width: 45px;
+  height: 45px;
+  background: url("/images/social/sprite.png") no-repeat;
+  /*
+  */
+}
+/* line 30, ../sass/_invite.scss */
+.social-invite.twitter {
+  background-position: 0 -0px;
+}
+/* line 31, ../sass/_invite.scss */
+.social-invite.github {
+  background-position: 0 -45px;
+}
+/* line 32, ../sass/_invite.scss */
+.social-invite.facebook {
+  background-position: 0 -90px;
+}
+/* line 33, ../sass/_invite.scss */
+.social-invite.google {
+  background-position: 0 -135px;
 }
 
 /* line 1, ../sass/_admin.scss */

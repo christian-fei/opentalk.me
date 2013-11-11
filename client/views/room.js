@@ -214,6 +214,11 @@ Template.room.rendered=function(){
 		$('#settings-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 
+	$('.invite-toggle:not(.bound)').addClass('bound').bind('click',function(){
+		// 
+		$('#invite-modal.is-Hidden').toggleClass('is-Hidden');
+	});
+
 
 	// 
 }
