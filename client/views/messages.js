@@ -9,11 +9,6 @@ Template.messages.events({
 		// 
 	},
 	'keyup #mymessage' : function(evnt,tmplt){
-		// 
-		
-		// 
-		// 
-		// 
 
 	    text = tmplt.find('#mymessage').value;
 	    t= Date.now() + tdiff;
@@ -22,7 +17,6 @@ Template.messages.events({
 
 	    //remove last \n if any
 		// text = text.charAt(text.length-1) === '\n' ? text.substring(0,text.length - 1) : text;
-
 
 
     	//remove last /n
@@ -55,10 +49,7 @@ Template.messages.events({
     		initialMessageHeight = mm.offsetHeight;
     	if(mm.scrollHeight > initialMessageHeight)
 	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
-    	
-    	// 
-    	// 
-    	// 
+
 
     	if(!text.trim().length){
     		removeLastMessage();
@@ -181,15 +172,11 @@ Template.messages.events({
 Meteor.startup(function(){
 	messagesObserveChanges=null;
 	messagesObserve=null;
-
-	// emojify.setConfig({
-	//     emojify_tag_type: 'span',
-	//     emoticons_enabled: true
-	// });
 });
 
 Template.messages.rendered = function() {
 	// renderEmoji();
+	console.log('messages rendered');
 }
 
 
@@ -203,7 +190,9 @@ text=null;
 function renderMessages(){
 	if(messagesAlreadyRendered)return;
 	messagesAlreadyRendered=true;
-	
+
+	$('.message').remove();	
+	$('.timestamp-text').remove();	
 	$('.fetching-your-messages').slideUp();
 
 	if(messagesObserveChanges)
@@ -481,7 +470,7 @@ function renderMessages(){
 			// 
 			//kinda works, but only if the moved element has an avatar, else it's moved withouth
 			if(before===null){
-				$('#'+id).slideUp(animationDuration, function(){ $(this).insertBefore($('#last')) }).slideDown(animationDuration);
+				$('#'+id).slideUp(animationDuration50, function(){ $(this).insertBefore($('#last')) }).slideDown(50);
 			}
 		},
 		removed: function(id){

@@ -230,8 +230,7 @@ $greenDark: #2e5f3e;
 .Modal {
   $modal-width:35em;
   position: absolute;
-  top: 45%;
-  margin-top: -20%;
+  top: 15%;
   left: 50%;
   margin-left: -$modal-width/2;
 
@@ -243,7 +242,9 @@ $greenDark: #2e5f3e;
 
   width: 93%;
 
-  max-height: 40em;
+  overflow-y: auto;
+
+  max-height: 70%;
 
   border-radius: .6em;
 
@@ -255,7 +256,6 @@ $greenDark: #2e5f3e;
 
   //min-height:40%;
 
-  
 
   header{
     border-radius: .6em .6em 0 0;

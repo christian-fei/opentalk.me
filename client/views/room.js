@@ -2,11 +2,7 @@ ouSub=Meteor.subscribe('usersOnlineInThisRoom',Session.get('roomid'));
 mSub=Meteor.subscribeWithPagination('paginatedMessages',Session.get('roomid'), messagesLimit);
 
 
-
 Template.room.helpers({
-	'kittenSoundEnabled':function(){
-		return Session.get('kittenSoundEnabled') ? 'on' : 'off';
-	},
 	'onlineUsers':function(){
 		return OnlineUsers.find();
 	},
@@ -62,11 +58,6 @@ Template.room.helpers({
 Template.room.events({
 	'click .toggle-sidebar' : toggleSidebar,
 	'click .online-users-count' : toggleSidebar,
-	'click #userstats' : function(){
-		goOffline();
-		ouSub.stop();
-		Meteor.Router.to('/profile');
-	},
 	'click .go-home-you-are-drunk' : function(evnt,tmplt){
 		evnt.preventDefault();
 		ouSub.stop();
@@ -74,6 +65,7 @@ Template.room.events({
 	},
 	'click #userstats' : function(evnt,tmplt){
 		evnt.preventDefault();
+		goOffline();
 		ouSub.stop();
 		Meteor.Router.to('/profile');
 	},
@@ -86,9 +78,6 @@ Template.room.events({
 			Meteor.reconnect();
 			return;
 		}
-		setTimeout(function(){
-						
-		},0);
 
 		goOffline();
 		
@@ -131,15 +120,12 @@ Template.room.events({
 			//enter tag only if string is not empty and has no spaces
 			if(txt.length > 0 && txt.length < 15 &&  txt.indexOf(' ') <= 0){
 				//enter tag
-				// 
 				Rooms.update({_id:Rooms.findOne()._id},{$addToSet:{tags:txt}});
 				tmplt.find('#enter-tag').value ='';
 			}
 		}
 	},
 	'click .tag':function(evnt,tmpl){
-		// 
-		// 
 		var rem=unescapeHtml(evnt.target.innerHTML);
 		
 		Rooms.update({_id:Rooms.findOne()._id},{$pull:{tags:rem}});
@@ -149,22 +135,18 @@ Template.room.events({
 
 Deps.autorun(function(){
 	getAvatar();
-
 	Meteor.subscribe('roomTags',Session.get('roomid'));
 });
 
 
 
 Template.room.rendered=function(){
-
-	// 
-
+	//console.log('room rendered');
 	positionFixedContent();
 
 	notif = document.querySelector('#new_message');
 	if(notif)
 		notif.load();
-	// 
 
 	if(onlineUsersObserver)
 		onlineUsersObserver.stop();
@@ -173,25 +155,15 @@ Template.room.rendered=function(){
 
 	onlineUsersObserver=OnlineUsers.find().observe({
 		added:function(doc){
-			// 
 			var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
-			// 
 			$('#append-online-user-here').before(ou);
 
 			autoCompleteUsername(doc.nickname,doc.avatar);
 
 		},
 		changed:function(doc){
-			// 
-			// 
-			// 
 			$('#'+doc._id+' .status-badge')[0].className = 'status-badge ' + doc.status;
 			$('#'+doc._id+' .micro-avatar').css({'background':doc.avatar});
-
-			//fuck the above shit
-			// $('#'+doc._id).remove();
-			// var ou =  $('<li class="online-user-wrapper" id="'+doc._id+'"><span class="status-badge '+doc.status+'"></span><span class="micro-avatar" style="background:url(\''+doc.avatar+'\')"></span><span class="online-user" data-userid="'+doc.userid+'">'+doc.nickname+'</span></li>');
-			// $('#append-online-user-here').before(ou);
 		},
 		removed:function(doc){
 			// 
@@ -205,24 +177,17 @@ Template.room.rendered=function(){
 	$('.toggle-Modal:not(.bound)').addClass('bound').bind('click',function(){$(this).toggleClass('is-Hidden')});
 
 	$('.tipstricks-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// 
 		$('#tipstricks-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 	
 	$('.settings-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// 
 		$('#settings-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 
 	$('.invite-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// 
 		$('#invite-modal.is-Hidden').toggleClass('is-Hidden');
 	});
-
-
-	// 
 }
-
 
 
 
@@ -234,28 +199,12 @@ Meteor.setInterval(function () {
 }, keepaliveTime);
 
 
-
 Meteor.call('serverTime',function(error, result){
 	servert=result;
 	tdiff = servert - clientt;
 });
 
 
-
-function getServiceString(){
-	//this should always be true
-	if(Meteor.user() && Meteor.user().services){
-		if(Meteor.user().services.twitter)
-			return 'twitter';
-		if(Meteor.user().services.github)
-			return 'github';
-		if(Meteor.user().services.facebook)
-			return 'facebook';
-		if(Meteor.user().services.google)
-			return 'google';
-	}
-	return '';
-}
 
 Meteor.startup(function(){
 	Deps.autorun(function(){
