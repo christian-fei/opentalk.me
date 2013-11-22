@@ -4,9 +4,7 @@ var initialMessageHeight = 0,
 
 Template.messages.events({
 	'keydown #mymessage' : function(evnt,tmplt){
-		// 
 		keysPressed[evnt.keyCode] = true;
-		// 
 	},
 	'keyup #mymessage' : function(evnt,tmplt){
 

@@ -3,11 +3,6 @@ Template.profile.events({
 		e.preventDefault();
 		//hacky
 		history.back();
-		// 
-		// if(Session.get('roomid'))
-		// 	Meteor.Router.to('/'+Session.get('roomid'));
-		// else
-		// 	Meteor.Router.to('/');
 	}
 });
 

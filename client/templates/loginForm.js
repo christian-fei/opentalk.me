@@ -1,9 +1,6 @@
 Template.loginForm.events({
 	'click .serviceLogin': function(e,t){
 		e.preventDefault();
-		// 
-		// 
-		// 
 		if(e.target.classList.contains('twitter') ) {
 			Meteor.loginWithTwitter();
 		}else
@@ -16,13 +13,5 @@ Template.loginForm.events({
 		if(e.target.classList.contains('google') ) {
 			Meteor.loginWithGoogle();
 		}
-	}
-});
-
-
-//resend info when avatar changed
-Deps.autorun(function(){
-	if(Session.get('avatar')){
-		goOnline();
 	}
 });

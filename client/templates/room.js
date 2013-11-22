@@ -133,12 +133,6 @@ Template.room.events({
 	}
 });
 
-Deps.autorun(function(){
-	getAvatar();
-	Meteor.subscribe('roomTags',Session.get('roomid'));
-});
-
-
 
 Template.room.rendered=function(){
 	//console.log('room rendered');
@@ -224,13 +218,4 @@ Meteor.startup(function(){
 			}
 		}
 	});
-});
-
-Deps.autorun(function(){
-	if( Meteor.user() ){
-		// 
-		// 
-		Meteor.subscribe('userData');
-		goOnline();
-	}
 });

@@ -59,7 +59,7 @@ Meteor.Router.add({'/:id': function(id){
 			);
 			alreadyTracked[id]=true;			
 		}
-
+		
 		return 'room';
 	}
 });

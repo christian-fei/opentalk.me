@@ -1,5 +1,7 @@
 var statsUpdater=null;
 function renderGlobalStats(){
+	//because Template.welcome.rendered can be triggered
+	// multiple times, thus resulting in multiple intervals
 	if(!statsUpdater){
 		getGlobalStats();
 		statsUpdater = setInterval(function(){
@@ -16,14 +18,11 @@ function getGlobalStats(){
 
 Template.welcome.rendered = function(){
 	renderGlobalStats();
-
+	
 	$('.userinfo:not(.bound)').addClass('bound').bind('click',  function(){ $('.usermenu').toggleClass('show'); });
-
 	$('.Modal:not(.bound)').addClass('bound').bind('click',function(e){e.stopPropagation()});
 	$('.toggle-Modal:not(.bound)').addClass('bound').bind('click',function(){$(this).toggleClass('is-Hidden')});
-
 	$('.tipstricks-toggle:not(.bound)').addClass('bound').bind('click',function(){
-		// 
 		$('#tipstricks-modal.is-Hidden').toggleClass('is-Hidden');
 	});
 } 

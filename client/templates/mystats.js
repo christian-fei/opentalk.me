@@ -23,18 +23,10 @@ Template.mystats.helpers({
 
 var userRoomsAlreadyRendered= false;
 function renderUserRooms(r){
-	//don't let it render multiple times when the user navigates to /profile (hack)
-	// if($('.user-room').length)return;
-	// if(!r){
-	// 	getUserStats();
-	// 	return;
-	// }
-	// if(userRoomsAlreadyRendered)return;
 	userRoomsAlreadyRendered=true;
 	
 	$('.user-room').remove();
 	r.forEach(function(entry){
-		// 
 		if(entry.unreadCount)
 			$('#append-here').after( $('<li class="user-room"> <a href="/'+entry.roomid+'">'+entry.roomid+' <span class="unreadCount">'+entry.unreadCount+'</span></a></li>') );
 		else
