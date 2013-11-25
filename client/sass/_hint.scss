@@ -1,0 +1,43 @@
+.hint{
+	position: relative;
+
+	display: inline-block;
+
+	line-height: .9;
+
+	padding: .1em .35em .2em;
+	border-radius:5px;
+
+	font-size: .85em;
+
+	background: lightgrey;
+
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+
+
+	&:hover:after {
+		content: "tags help others to find this chatroom";
+		display: inline-block;
+		position: absolute;
+
+		font-size: 1em;
+
+		color:white;
+		background: $color-secondary;
+
+		z-index: 1000;
+
+		width: 10em;
+
+		bottom: 110%;
+		left: -4.5em;
+
+		padding: .1em .15em;
+
+		border-radius: 5px;
+	}
+}

@@ -2537,18 +2537,15 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   border-radius: .6em .6em 0 0;
   background: #ffd100;
   background-image: url("/images/pattern-white-mobile.png");
-  -webkit-animation: welcome-mast-anim 20s linear infinite;
-  -o-animation: welcome-mast-anim 20s linear infinite;
-  animation: welcome-mast-anim 20s linear infinite;
   color: white;
   text-align: center;
 }
-/* line 276, ../sass/_modal.scss */
+/* line 272, ../sass/_modal.scss */
 .Modal section {
   padding: 1em;
 }
 
-/* line 280, ../sass/_modal.scss */
+/* line 276, ../sass/_modal.scss */
 .Modal-Background {
   position: fixed;
   top: 0;
@@ -2561,12 +2558,12 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
   background: rgba(10, 10, 10, 0.85);
 }
 
-/* line 281, ../sass/_modal.scss */
+/* line 277, ../sass/_modal.scss */
 .toggle-Modal {
   cursor: pointer;
 }
 
-/* line 282, ../sass/_modal.scss */
+/* line 278, ../sass/_modal.scss */
 .is-Hidden {
   display: none;
 }
@@ -2913,6 +2910,37 @@ Modernizr test adds ".absolutecentercontent" to <html> if the browser will cente
 /* line 33, ../sass/_invite.scss */
 .social-invite.google {
   background-position: 0 -135px;
+}
+
+/* line 1, ../sass/_hint.scss */
+.hint {
+  position: relative;
+  display: inline-block;
+  line-height: .9;
+  padding: .1em .35em .2em;
+  border-radius: 5px;
+  font-size: .85em;
+  background: lightgrey;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+/* line 22, ../sass/_hint.scss */
+.hint:hover:after {
+  content: "tags help others to find this chatroom";
+  display: inline-block;
+  position: absolute;
+  font-size: 1em;
+  color: white;
+  background: #444444;
+  z-index: 1000;
+  width: 10em;
+  bottom: 110%;
+  left: -4.5em;
+  padding: .1em .15em;
+  border-radius: 5px;
 }
 
 /* line 1, ../sass/_admin.scss */

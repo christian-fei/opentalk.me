@@ -12,11 +12,6 @@ Template.messages.events({
 	    t= Date.now() + tdiff;
 	    allowed = text.length < 500 ? true : false;
 
-
-	    //remove last \n if any
-		// text = text.charAt(text.length-1) === '\n' ? text.substring(0,text.length - 1) : text;
-
-
     	//remove last /n
     	// text = text.substring(0,text.length);
 
@@ -41,14 +36,11 @@ Template.messages.events({
     		hackOffset = 0;
     	if(navigator.userAgent.indexOf('Firefox') >=0){
     		hackOffset=36;
-    		//
     	}
     	if(initialMessageHeight===0)
     		initialMessageHeight = mm.offsetHeight;
     	if(mm.scrollHeight > initialMessageHeight)
 	    	mm.style.height = mm.scrollHeight + hackOffset + 'px';
-
-
     	if(!text.trim().length){
     		removeLastMessage();
     		mm.style.height = initialMessageHeight + 'px';
@@ -59,10 +51,7 @@ Template.messages.events({
 
 	    if(!allowed){
 	    	//show a notification that I shit on trolls, or just don't give a fuck
-	    	// 
-
 	    	tmplt.find('#mymessage').style.border='1px solid red';
-
 	    	return;
 	    }else{
 	    	tmplt.find('#mymessage').style.border='none';
@@ -78,13 +67,13 @@ Template.messages.events({
 					'lastInsertId',
 					Messages.insert(
 						{
-						userid:Meteor.userId()
-						,username:Session.get('screenname')
-						,roomid:Session.get('roomid')
-						,text:text
-						,timestamp:t
-						,messageComplete:false
-						,useravatar:Session.get('avatar')
+							userid:Meteor.userId()
+							,username:Session.get('screenname')
+							,roomid:Session.get('roomid')
+							,text:text
+							,timestamp:t
+							,messageComplete:false
+							,useravatar:Session.get('avatar')
 						}
 					)
 				);
@@ -145,17 +134,16 @@ Template.messages.events({
     			text = formatMessage(text);
 	    		Messages.insert(
 					{
-					userid:Meteor.userId()
-					,username:Session.get('screenname')
-					,roomid:Session.get('roomid')
-					,text:text
-					,timestamp:t
-					,messageComplete:true
-					,useravatar:Session.get('avatar')
+						userid:Meteor.userId()
+						,username:Session.get('screenname')
+						,roomid:Session.get('roomid')
+						,text:text
+						,timestamp:t
+						,messageComplete:true
+						,useravatar:Session.get('avatar')
 					}
 				);
 				mm.style.height = initialMessageHeight + 'px';
-				//
 				$('#mymessage').val('');
 
 	    	}
@@ -173,9 +161,10 @@ Meteor.startup(function(){
 });
 
 Template.messages.rendered = function() {
-	// renderEmoji();
 	console.log('messages rendered');
 }
+
+
 
 
 
@@ -187,6 +176,7 @@ text=null;
 
 function renderMessages(){
 	if(messagesAlreadyRendered)return;
+	
 	messagesAlreadyRendered=true;
 
 	$('.message').remove();	
@@ -195,6 +185,7 @@ function renderMessages(){
 
 	if(messagesObserveChanges)
 		messagesObserveChanges.stop();
+
 	//reset
 	var timetext='';
 	timeRefChecker=[];
@@ -394,22 +385,7 @@ function renderMessages(){
 				timestampli.setAttribute('class','timestamp-text');
 				timestampli.innerHTML = timetext;
 
-
-				//fix avatars and borders
-				// 
-				//  
-				//  
 				if( fields.userid === $('#'+id).next().data('userid') ){
-					// 
-					//because it is the same user
-						//restore avatar
-						//diffUser
-						//and to the current message add lastOfUser
-						// 
-						// 
-
-					// 
-
 					var avatarElement = $( '#'+ $('#'+id).next().attr('id') +' .avatar' );
 					avatarElement.css('background','url(\'' + fields.useravatar + '\')' );
 					avatarElement.addClass('tip');
@@ -431,14 +407,12 @@ function renderMessages(){
 		},
 		changed: function(id,fields){
 			if(fields.deletedAt){
-				// 
 				var affMessage = $('#'+id+' .text');
 				affMessage.html('deleted message');
 				affMessage.addClass('deleted');
 				return;
 			}
-			// 
-			// 
+
 			//the message that changed, since observeChanges does not provide us the whole message (hack)
 			var mfdb = Messages.find({_id:id}).fetch()[0];
 			//update other users message
@@ -465,14 +439,12 @@ function renderMessages(){
 				scrollDown();
 		},
 		movedBefore: function(id,before){
-			// 
 			//kinda works, but only if the moved element has an avatar, else it's moved withouth
 			if(before===null){
 				$('#'+id).slideUp(animationDuration50, function(){ $(this).insertBefore($('#last')) }).slideDown(50);
 			}
 		},
 		removed: function(id){
-			// 
 			//if the next element in the list has an empty background it means it is from the same user, apply the image from this element (id) to it
 			if( $('#'+id).next()[0] !== undefined && $('#'+id).next()[0] !== null &&  $('#'+id).next()[0].id !== 'last'){
 				if( $('#'+id).next()[0].querySelector('.username') && $('#'+id + ' .username').html() === $('#'+id).next()[0].querySelector('.username').innerHTML ){
@@ -491,11 +463,10 @@ function renderMessages(){
 }
 
 Template.messages.rendered=function(){
-	
-	
+
 	if(!messagesAlreadyRendered){
 		// messagesAlreadyRendered=true;
-		Meteor.setTimeout(renderMessages,1000);
+		Meteor.setTimeout(renderMessages,150);
 	}
 
 	// renderMessages();
@@ -524,6 +495,4 @@ Template.messages.rendered=function(){
 		if(mSub)
 			mSub.loadNextPage();
 	});
-
-
 }

@@ -1,15 +1,11 @@
 visibly.visibilitychange(function(state){
 	resetUnreadCount();
-	setTimeout(resetUnreadCount,1000);
+	setTimeout(resetUnreadCount,500);
 });
 
 
 function restoreKey(key){
-	if(Meteor._localStorage.getItem(key) === null){
-		//set default
-		Meteor._localStorage.setItem(key,true);
-		Session.set(key,true);
-	} else {
+	if( Meteor._localStorage.getItem(key) ) {
 		if(Meteor._localStorage.getItem(key) === 'true')
 			Session.set(key,true);
 		else
@@ -21,7 +17,7 @@ Meteor.startup(function(){
 	restoreKey('realtimeEnabled');
 	restoreKey('notificationSoundEnabled');
 
-	FastClick.attach(document.body);
+	FastClick.attach( document.body );
 
 	$(document).ready(function() {
 		
