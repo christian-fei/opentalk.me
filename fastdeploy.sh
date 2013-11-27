@@ -11,6 +11,7 @@ if curl --output /dev/null -sI "http://athmosphere.meteor.com/"; then
 	echo '====removing .demeteorized===='
 	rm -rf .demeteorized
 	echo '====demeteorizing===='
+	export LC_ALL=C
 	demeteorizer
 	echo '====cd .demeteorized===='
 #	cp .package.json .demeteorized/package.json
