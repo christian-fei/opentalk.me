@@ -6,7 +6,7 @@ function renderGlobalStats(){
 		getGlobalStats();
 		statsUpdater = setInterval(function(){
 			getGlobalStats();
-		},1500);
+		},2000);
 	}
 }
 function getGlobalStats(){

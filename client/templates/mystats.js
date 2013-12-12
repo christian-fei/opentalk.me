@@ -23,6 +23,7 @@ Template.mystats.helpers({
 
 var userRoomsAlreadyRendered= false;
 function renderUserRooms(r){
+	if(userRoomsAlreadyRendered && !r)return;
 	userRoomsAlreadyRendered=true;
 	
 	$('.user-room').remove();
@@ -35,9 +36,7 @@ function renderUserRooms(r){
 }
 
 Template.mystats.rendered = function(){
-	
 	getUserStats();
-	// 
 }
 
 function getUserStats(){
@@ -47,11 +46,6 @@ function getUserStats(){
 		Session.set('userRoomsCount',result.roomsCount);
 		Session.set('userWordsCount',result.wordsCount);
 		Session.set('userCharactersCount',result.charactersCount);
-
-		// 
-		// 
 		renderUserRooms(result.roomsOccWithStats);
-		// Meteor.setTimeout(function(){
-		// },1000);
 	});
 }
