@@ -30,12 +30,13 @@ Meteor.startup(function(){
 		if( $('#mymessage') )
 			$('#mymessage').focus();
 
-		/*just having fun*/
+		/*just having fun*
 		$.ajax({
 			url: "http://37.139.20.20:3005"
 		}).done(function(data) {
 			//console.log(data);
-		});		
+		});
+		/**/
 	});
 
 
