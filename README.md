@@ -5,6 +5,9 @@ Source of [opentalk.me](http://opentalk.me)
 
 Please learn, read, and use any code from this project.
 
+![awesomeness](http://b.adge.me/badge/awesomeness-9000+-green.svg)
+
+
 #Contributing
 
 - Fork this project
